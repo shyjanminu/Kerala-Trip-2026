@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>St. Joseph's Church Midalam - Kerala Trip 2026</title>
+  <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
   
   <!-- High-Density QR Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -22,7 +22,6 @@
       --success: #10b981;
       --danger: #ef4444;
       --warning: #f59e0b;
-      --info: #3b82f6;
       --radius: 16px;
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
       --shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.08), 0 8px 10px -6px rgba(11, 19, 43, 0.04);
@@ -81,7 +80,7 @@
     }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
-    /* 3 Clean Navigation Tabs */
+    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -117,7 +116,7 @@
       padding: 16px;
     }
 
-    /* Core Card */
+    /* Cards */
     .card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -136,7 +135,7 @@
       gap: 8px;
     }
 
-    /* Standalone Dashboard View */
+    /* Dashboard Page Grid */
     .dash-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -218,7 +217,7 @@
     .summary-item span:first-child { color: #94a3b8; }
     .summary-item span:last-child { font-weight: 700; }
 
-    /* Form & Controls */
+    /* Form & Booking */
     .form-group { margin-bottom: 15px; }
     label {
       display: block;
@@ -277,7 +276,7 @@
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Coach Grid */
+    /* Coach Seat Grid */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -416,7 +415,7 @@
     </div>
   </header>
 
-  <!-- 3 SEPARATE TABS -->
+  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
@@ -610,7 +609,7 @@
             <p>St. Joseph's Catechism Midalam • Kerala Pilgrimage 2026</p>
           </div>
           <div class="ticket-body">
-            <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId">-</span></div>
+            <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color: var(--accent); font-size: 1.05rem;">-</span></div>
             <div class="t-row"><span class="t-lbl">Student Name</span><span class="t-val" id="tPassName">-</span></div>
             <div class="t-row"><span class="t-lbl">Standard</span><span class="t-val" id="tPassStandard">-</span></div>
             <div class="t-row"><span class="t-lbl">Parent</span><span class="t-val" id="tPassParent">-</span></div>
@@ -704,7 +703,6 @@
       setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
 
-    // Tab Switcher between Dashboard, Booking, and Admin
     function switchTab(tabId, evt) {
       document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -759,7 +757,6 @@
       const advanceTotal = registrations.filter(r => r.status === 'WAITING' || Number(r.balance) > 0).reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
       const pendingStudentsCount = registrations.filter(r => Number(r.balance) > 0).length;
 
-      // Update KPI Cards
       document.getElementById('kpiSeats').innerHTML = `${seatsCount} <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">/ 50</span>`;
       document.getElementById('kpiRemaining').innerText = seatsRemaining;
       document.getElementById('kpiSeatPct').innerText = `${seatPct}%`;
@@ -775,7 +772,6 @@
       document.getElementById('kpiAdvance').innerText = `₹${advanceTotal.toLocaleString()}`;
       document.getElementById('kpiWaitingCount').innerText = `Waiting List: ${waiting.length}`;
 
-      // Update Distribution Chips
       const juniorCount = registrations.filter(r => ['Class 1', 'Class 2', 'Class 3'].includes(r.standard)).length;
       const seniorCount = registrations.length - juniorCount;
       const upiTotal = registrations.filter(r => r.mode === 'UPI').reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
@@ -844,7 +840,9 @@
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
       const balance = Math.max(0, totalFare - paid);
-      const ticketId = 'MID-' + Math.floor(100 + Math.random() * 900);
+      
+      // Professional Sequential Ticket ID
+      const ticketId = 'MID-' + String(101 + registrations.length);
 
       const isConfirmed = (payType === 'Full');
       const bookingData = {
@@ -864,9 +862,13 @@
         status: isConfirmed ? "CONFIRMED" : "WAITING"
       };
 
+      // Immediate local state update so counters update with zero latency
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+      renderSeats();
+      updateDashboard();
 
+      // Cloud transmission to Google Sheets in background
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
@@ -874,16 +876,18 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bookingData)
         });
-        showToast("Saved to Google Sheet!");
+        showToast(`Booked successfully! Ticket: ${ticketId}`);
       } catch (err) {
         console.error("Cloud sync warning:", err);
       }
 
       displayTicket(bookingData);
-      renderSeats();
       document.getElementById('regForm').reset();
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate Pass";
+
+      // Refresh cloud data after 2 seconds
+      setTimeout(fetchLiveRegistrations, 2000);
     }
 
     function displayTicket(data) {
@@ -1003,7 +1007,7 @@
       registrations.forEach((r, idx) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><strong>${r.id}</strong></td>
+          <td><strong style="color:var(--primary);">${r.id}</strong></td>
           <td>${r.name}<br><span style="font-size:0.68rem;color:var(--text-muted);">${r.standard}</span></td>
           <td><span style="font-weight:700;color:var(--primary);">${r.seatNum}</span></td>
           <td>${r.phone || '-'}</td>
@@ -1061,10 +1065,11 @@
         const res = await fetch(GOOGLE_SCRIPT_URL);
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
+          if (Array.isArray(data)) {
             registrations = data;
             localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
             renderSeats();
+            updateDashboard();
             if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
               renderRoster();
             }
@@ -1073,13 +1078,17 @@
           if (text) text.innerText = "Google Sheet Live Synced";
         }
       } catch (err) {
-        console.warn("Syncing fallback:", err);
+        console.warn("Sync fallback to local cache:", err);
         if (text) text.innerText = "Offline Mode (Local Storage)";
+        renderSeats();
+        updateDashboard();
       }
     }
 
+    // Initialize & Poll every 25 seconds
     renderSeats();
     fetchLiveRegistrations();
+    setInterval(fetchLiveRegistrations, 25000);
   </script>
 </body>
 </html>
