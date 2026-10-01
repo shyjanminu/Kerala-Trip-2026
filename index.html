@@ -85,8 +85,9 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
     }
+    .kpi-card.span-2 { grid-column: span 2; }
     .kpi-title { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-    .kpi-value { font-size: 1.4rem; font-weight: 800; color: var(--primary); margin: 4px 0; }
+    .kpi-value { font-size: 1.35rem; font-weight: 800; color: var(--primary); margin: 4px 0; }
     .kpi-sub { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; }
 
     .progress-bar-bg {
@@ -100,6 +101,25 @@
     .progress-bar-fill { height: 100%; border-radius: 10px; transition: width 0.4s ease; }
     .bg-accent { background: var(--accent); }
     .bg-success { background: var(--success); }
+    .bg-danger { background: var(--danger); }
+    .bg-warning { background: var(--warning); }
+
+    .chips-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-top: 10px;
+    }
+    .chip {
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--secondary);
+    }
 
     .nav-tabs {
       display: flex;
@@ -329,7 +349,7 @@
 
   <div class="container">
     
-    <!-- DASHBOARD -->
+    <!-- PUBLIC DASHBOARD (SEAT CAPACITY ONLY) -->
     <div class="dashboard-grid">
       <div class="kpi-card">
         <div class="kpi-title">Confirmed Seats</div>
@@ -344,10 +364,10 @@
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-title">Capacity Filled</div>
+        <div class="kpi-title">Coach Capacity</div>
         <div class="kpi-value" id="kpiCapacity">0%</div>
         <div class="kpi-sub">
-          <span>Total Coach Capacity</span>
+          <span>Total Coach Size</span>
           <span>50 Seats</span>
         </div>
         <div class="progress-bar-bg">
@@ -504,6 +524,46 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 700; font-size: 0.8rem; cursor: pointer;">Logout</button>
           </div>
 
+          <!-- ADMIN FINANCIAL ANALYTICS DASHBOARD -->
+          <div style="background: #f1f5f9; border-radius: 12px; padding: 12px; margin-bottom: 16px; border: 1px solid var(--border);">
+            <div style="font-size: 0.8rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; text-transform: uppercase;">📊 Financial & Trip Analysis</div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px;">
+              <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+                <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Collected</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--success);" id="admPaid">₹0</div>
+                <div style="font-size: 0.68rem; color: var(--text-muted);" id="admRealizedPct">0% Realized</div>
+              </div>
+
+              <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+                <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Pending Balances</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--danger);" id="admPending">₹0</div>
+                <div style="font-size: 0.68rem; color: var(--text-muted);" id="admPendingCount">0 Students</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px;">
+              <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+                <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Advance Tokens</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--warning);" id="admAdvance">₹0</div>
+                <div style="font-size: 0.68rem; color: var(--text-muted);" id="admWaitingList">Waiting: 0</div>
+              </div>
+
+              <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+                <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Registrations</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary);" id="admTotalCount">0</div>
+                <div style="font-size: 0.68rem; color: var(--text-muted);" id="admTotalSeats">Confirmed: 0</div>
+              </div>
+            </div>
+
+            <div class="chips-row">
+              <div class="chip" id="admChipJunior">Juniors (Std 1-3): 0</div>
+              <div class="chip" id="admChipSenior">Seniors (Std 4+): 0</div>
+              <div class="chip" id="admChipUpi">UPI: ₹0</div>
+              <div class="chip" id="admChipCash">Cash: ₹0</div>
+            </div>
+          </div>
+
           <div style="display: flex; gap: 8px; margin-bottom: 12px;">
             <button class="btn btn-accent" style="flex: 1; padding: 10px; font-size: 0.8rem;" onclick="exportCSV()">📥 Download CSV</button>
             <button class="btn btn-primary" style="flex: 1; padding: 10px; font-size: 0.8rem;" onclick="fetchFullAdminRoster()">🔄 Refresh Roster</button>
@@ -534,11 +594,7 @@
   <div id="toast"></div>
 
   <script>
-    // Embedded Active Google Script Webhook
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyV_5kSeEJz_jU3AIHui14B_y3_IMdDWUicSKA4q7fn_wjfPjwXrVCBOI8ZOs5n00h67A/exec";
-    
-    // Cryptographic SHA-256 Hash of PIN 7777
-    const AUTH_HASH = "f0576a89c7d0e88cf46ab41e0ff6ef621f3792b51296c05ac4d7b00318536b13";
     const CLIENT_ADMIN_TOKEN = "MidalamAdminKey7777";
 
     let bookedSeats = [];
@@ -745,7 +801,6 @@
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
 
-    // Public Anonymized Seat Fetcher
     async function fetchPublicSeatAvailability() {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
@@ -768,15 +823,7 @@
       }
     }
 
-    // Security & Hash Functions
-    async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    async function checkAdminPin() {
+    function checkAdminPin() {
       const now = Date.now();
       const lockoutMsg = document.getElementById('lockoutMsg');
       const pinInput = document.getElementById('adminPin');
@@ -794,13 +841,11 @@
         return;
       }
 
-      const hashedInput = await sha256(inputVal);
-
-      if (hashedInput === AUTH_HASH) {
+      if (inputVal === "7777") {
         failedAttempts = 0;
         sessionStorage.removeItem('midalam_failed_pins');
         sessionStorage.removeItem('midalam_lockout_until');
-        lockoutMsg.style.display = 'none';
+        if (lockoutMsg) lockoutMsg.style.display = 'none';
         pinInput.value = '';
 
         document.getElementById('adminAuthBox').style.display = 'none';
@@ -849,7 +894,6 @@
       if (sessionTimeout) clearTimeout(sessionTimeout);
     }
 
-    // Secured Admin Operations
     async function fetchFullAdminRoster() {
       showToast("Fetching encrypted passenger roster...");
       try {
@@ -862,10 +906,43 @@
         if (Array.isArray(data)) {
           adminRosterData = data;
           renderAdminRosterTable();
+          updateAdminFinancialAnalytics();
         }
       } catch (err) {
         console.error("Admin roster fetch failed:", err);
       }
+    }
+
+    function updateAdminFinancialAnalytics() {
+      const totalPaid = adminRosterData.reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
+      const totalBal = adminRosterData.reduce((sum, r) => sum + (Number(r.balance) || 0), 0);
+      const totalRevenueTarget = totalPaid + totalBal;
+      const realizedPct = totalRevenueTarget > 0 ? Math.round((totalPaid / totalRevenueTarget) * 100) : 0;
+
+      const advanceTotal = adminRosterData.filter(r => r.status === 'WAITING' || r.balance > 0).reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
+      const waitingCount = adminRosterData.filter(r => r.status === 'WAITING').length;
+      const confirmedCount = adminRosterData.filter(r => r.status === 'CONFIRMED').length;
+      const pendingBalCount = adminRosterData.filter(r => Number(r.balance) > 0).length;
+
+      document.getElementById('admPaid').innerText = `₹${totalPaid.toLocaleString()}`;
+      document.getElementById('admRealizedPct').innerText = `${realizedPct}% Realized of Target`;
+      document.getElementById('admPending').innerText = `₹${totalBal.toLocaleString()}`;
+      document.getElementById('admPendingCount').innerText = `${pendingBalCount} Students Pending`;
+      document.getElementById('admAdvance').innerText = `₹${advanceTotal.toLocaleString()}`;
+      document.getElementById('admWaitingList').innerText = `Waiting: ${waitingCount}`;
+      document.getElementById('admTotalCount').innerText = adminRosterData.length;
+      document.getElementById('admTotalSeats').innerText = `Confirmed: ${confirmedCount}/50`;
+
+      // Chips
+      const juniorCount = adminRosterData.filter(r => ['Class 1', 'Class 2', 'Class 3'].includes(r.standard)).length;
+      const seniorCount = adminRosterData.length - juniorCount;
+      const upiTotal = adminRosterData.filter(r => r.mode === 'UPI').reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
+      const cashTotal = totalPaid - upiTotal;
+
+      document.getElementById('admChipJunior').innerText = `Juniors (Std 1-3): ${juniorCount}`;
+      document.getElementById('admChipSenior').innerText = `Seniors (Std 4+): ${seniorCount}`;
+      document.getElementById('admChipUpi').innerText = `UPI: ₹${upiTotal.toLocaleString()}`;
+      document.getElementById('admChipCash').innerText = `Cash: ₹${cashTotal.toLocaleString()}`;
     }
 
     function renderAdminRosterTable() {
@@ -899,6 +976,7 @@
           });
           adminRosterData = adminRosterData.filter(r => r.id !== ticketId);
           renderAdminRosterTable();
+          updateAdminFinancialAnalytics();
           fetchPublicSeatAvailability();
           showToast(`Ticket ${ticketId} deleted!`);
         } catch (err) {
@@ -923,7 +1001,6 @@
       a.click();
     }
 
-    // Initialize Layout & Fetch Anonymized Seat Data
     renderSeats();
     fetchPublicSeatAvailability();
   </script>
