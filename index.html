@@ -1,297 +1,612 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>St. Joseph's Catechism Midalam - Kerala Trip 2026</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>St. Joseph's Church Midalam - Catechism Kerala Trip 2026</title>
+  
+  <!-- Modern Typography and Vector Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- High-Fidelity Scannable QR Code Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <style>
     :root {
-      --primary: #0b132b;
-      --secondary: #1c2541;
+      --primary: #070d1e;
+      --secondary: #0f1d40;
+      --navy-card: #152554;
       --accent: #d4af37;
-      --accent-hover: #b89628;
-      --bg: #f4f6f9;
+      --accent-light: #f5d77f;
+      --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f9e29d 50%, #b89225 100%);
+      --bg: #f8fafc;
       --surface: #ffffff;
-      --text: #1e293b;
+      --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
       --success: #10b981;
+      --success-light: #ecfdf5;
       --danger: #ef4444;
+      --danger-light: #fef2f2;
       --warning: #f59e0b;
-      --radius: 12px;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+      --shadow-sm: 0 2px 8px rgba(7, 13, 30, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(7, 13, 30, 0.08), 0 8px 10px -6px rgba(7, 13, 30, 0.04);
+      --shadow-lg: 0 20px 35px -10px rgba(7, 13, 30, 0.2);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 60px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 70px;
+    }
 
     header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 24px 16px;
+      background: radial-gradient(circle at 80% 20%, #1a3272 0%, var(--secondary) 55%, var(--primary) 100%);
+      color: #ffffff;
+      padding: 30px 20px 24px;
       text-align: center;
       position: relative;
-      box-shadow: var(--shadow);
+      border-bottom: 3px solid var(--accent);
+      box-shadow: var(--shadow-lg);
     }
-    header h1 { font-size: 1.5rem; margin-bottom: 4px; color: #fff; }
-    header p { font-size: 0.9rem; color: #cbd5e1; }
-    .church-badge {
-      display: inline-block;
-      background: rgba(212, 175, 55, 0.2);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .cloud-status {
+    .parish-crest {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      margin-top: 10px;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 6px 14px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .parish-crest span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--accent-light);
+      text-transform: uppercase;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(180deg, #ffffff 30%, #e2e8f0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+    header p {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .cloud-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 14px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.1);
+      font-weight: 600;
       color: #cbd5e1;
     }
-    .status-dot {
+    .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--warning);
+      box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+      animation: pulse 2s infinite;
     }
-    .status-dot.connected { background: var(--success); }
+    .pulse-dot.connected {
+      background: var(--success);
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
 
-    .nav-tabs {
+    /* Top Tabs */
+    .tab-bar {
       display: flex;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 99;
+      box-shadow: var(--shadow-sm);
     }
-    .tab-btn {
+    .tab-item {
       flex: 1;
-      padding: 14px 8px;
-      border: none;
+      padding: 16px 12px;
       background: none;
-      font-weight: 600;
-      font-size: 0.9rem;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
-      border-bottom: 3px solid transparent;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       transition: all 0.2s ease;
     }
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--accent);
+    .tab-item.active {
+      color: var(--secondary);
+    }
+    .tab-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 15%;
+      width: 70%;
+      height: 3.5px;
+      background: var(--accent-gradient);
+      border-radius: 4px 4px 0 0;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 580px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 20px 16px;
     }
 
     .card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
+      padding: 22px;
       margin-bottom: 20px;
       border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
     }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--primary);
+    .card-heading {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .form-group { margin-bottom: 16px; position: relative; }
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
     input, select {
       width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
       font-size: 0.95rem;
+      font-weight: 500;
       color: var(--text);
-      background: #fafafa;
-      transition: border-color 0.2s;
+      background: #fafbfc;
+      transition: all 0.2s;
     }
     input:focus, select:focus {
       outline: none;
-      border-color: var(--accent);
-      background: #fff;
+      border-color: #3b82f6;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
     }
 
-    .price-box {
-      background: #f8fafc;
-      border: 1px dashed var(--accent);
-      border-radius: 8px;
-      padding: 12px;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .price-tag { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
-    .price-desc { font-size: 0.8rem; color: var(--text-muted); }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
+    /* Catechism Pricing Pill */
+    .fare-box {
+      background: linear-gradient(135deg, #0d1a3a 0%, #152759 100%);
+      color: white;
+      border-radius: 12px;
+      padding: 16px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      transition: background-color 0.2s, transform 0.1s;
+      margin-bottom: 18px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-accent { background: var(--accent); color: var(--primary); }
-    .btn-danger { background: var(--danger); color: white; }
-    .btn-secondary { background: var(--secondary); color: white; }
+    .fare-amount {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-light);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .fare-info-title { font-size: 0.95rem; font-weight: 700; }
+    .fare-info-subtitle { font-size: 0.78rem; color: #94a3b8; }
 
-    /* Coach Grid */
-    .bus-container {
+    .coach-shell {
       background: #f1f5f9;
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      padding: 16px 12px;
+      border: 2px solid #cbd5e1;
+      border-radius: 24px;
+      padding: 18px 12px;
       margin-top: 10px;
+      position: relative;
     }
-    .bus-front {
-      text-align: right;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      padding-bottom: 8px;
+    .cockpit-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
       border-bottom: 2px dashed #cbd5e1;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #64748b;
+      letter-spacing: 0.5px;
     }
+    .driver-cabin {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e2e8f0;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
     .seat-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
       align-items: center;
     }
-    .seat-grid .aisle { grid-column: 3; height: 10px; }
-    .seat {
-      aspect-ratio: 1;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      background: white;
-      font-size: 0.75rem;
+    .seat-grid .aisle-spacer {
+      grid-column: 3;
+      text-align: center;
+      font-size: 0.65rem;
+      color: #94a3b8;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .seat-node {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 800;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
       transition: all 0.15s ease;
       position: relative;
     }
-    .seat span { font-size: 0.6rem; color: var(--text-muted); }
-    .seat.booked { background: #fee2e2; border-color: #fca5a5; color: #991b1b; cursor: not-allowed; }
-    .seat.booked span { color: #991b1b; }
-    .seat.selected { background: var(--primary); border-color: var(--primary); color: white; }
-    .seat.selected span { color: #cbd5e1; }
-
-    /* Boarding Pass Ticket */
-    .ticket {
-      border: 2px solid var(--accent);
-      border-radius: 12px;
-      background: white;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-top: 20px;
-      display: none;
+    .seat-node .seat-sub {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--text-muted);
     }
-    .ticket-header {
+    .seat-node.window { border-color: #93c5fd; }
+    .seat-node.selected {
       background: var(--primary);
-      color: white;
-      padding: 16px;
-      text-align: center;
-      border-bottom: 2px dashed var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4);
+      transform: scale(1.05);
     }
-    .ticket-body { padding: 16px; }
-    .ticket-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; }
-    .ticket-row span:first-child { color: var(--text-muted); font-weight: 500; }
-    .ticket-row span:last-child { font-weight: 700; }
-    .ticket-qr { text-align: center; padding: 16px; border-top: 1px solid var(--border); }
+    .seat-node.selected .seat-sub { color: var(--accent-light); }
+    .seat-node.booked {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+    .seat-node.booked .seat-sub { color: #dc2626; }
 
-    /* Admin Table */
-    .table-container { overflow-x: auto; margin-top: 10px; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    th, td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border); }
-    th { background: #f8fafc; color: var(--text-muted); font-weight: 700; }
+    .seat-legend {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-box { width: 14px; height: 14px; border-radius: 4px; border: 1px solid #cbd5e1; }
+
+    /* Buttons */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+    .btn-gold {
+      background: var(--accent-gradient);
+      color: #070d1e;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+    .btn-gold:active { transform: scale(0.98); }
+    .btn-dark {
+      background: var(--secondary);
+      color: #ffffff;
+    }
+    .btn-dark:hover { background: var(--primary); }
+
+    .ticket-wrapper {
+      margin-top: 24px;
+      display: none;
+      filter: drop-shadow(0 12px 25px rgba(7, 13, 30, 0.15));
+    }
+    .boarding-pass {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #d4af37;
+      position: relative;
+    }
+    .pass-header {
+      background: linear-gradient(135deg, #070d1e 0%, #152554 100%);
+      color: #ffffff;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--accent);
+    }
+    .pass-title { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: #ffffff; }
+    .pass-tag {
+      font-size: 0.7rem;
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent);
+      color: var(--accent-light);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .pass-body {
+      padding: 20px;
+    }
+    .pass-route {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1.5px dashed #e2e8f0;
+    }
+    .loc-node { text-align: left; }
+    .loc-node.right { text-align: right; }
+    .loc-city { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+    .loc-label { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+    .route-arrow { color: var(--accent); font-size: 1.3rem; }
+
+    .pass-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 14px;
+      column-gap: 16px;
+      margin-bottom: 20px;
+    }
+    .grid-cell label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+    .grid-cell div {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* Perforated Notched Cutouts */
+    .perforation-line {
+      position: relative;
+      height: 20px;
+      background: #f8fafc;
+      border-top: 2px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .notch {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: var(--bg);
+      border-radius: 50%;
+      top: -12px;
+    }
+    .notch.left { left: -12px; box-shadow: inset -2px 0 3px rgba(0,0,0,0.06); }
+    .notch.right { right: -12px; box-shadow: inset 2px 0 3px rgba(0,0,0,0.06); }
+
+    .pass-stub {
+      padding: 20px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #qrcodeBox {
+      background: #ffffff;
+      padding: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .qr-footnote { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+
+    .password-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .password-wrap input {
+      padding-right: 48px;
+      letter-spacing: 2px;
+    }
+    .toggle-pwd-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #64748b;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: #f1f5f9;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .stat-card .val { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
+    .stat-card .lbl { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; white-space: nowrap; }
+    th {
+      background: #f8fafc;
+      padding: 12px 10px;
+      text-align: left;
+      font-weight: 800;
+      color: #475569;
+      border-bottom: 2px solid var(--border);
+    }
+    td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; }
+    .badge-status {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .badge-confirmed { background: var(--success-light); color: var(--success); }
+    .badge-waiting { background: #fef3c7; color: #b45309; }
 
     /* Toast Notification */
-    #toast {
+    #toastNotice {
       position: fixed;
-      bottom: 20px;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.95);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      z-index: 1000;
+      background: #070d1e;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      box-shadow: var(--shadow-lg);
       display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      white-space: nowrap;
+    }
+
+    /* Print styles */
+    @media print {
+      body * { visibility: hidden; }
+      .ticket-wrapper, .ticket-wrapper * { visibility: visible; }
+      .ticket-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: block !important;
+      }
+      .no-print { display: none !important; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
-    <div class="church-badge">St. Joseph's Church Midalam</div>
-    <h1>Kerala Tour 2026</h1>
-    <p>Catechism Ministry • Annual Youth & Children Trip</p>
-    <div class="cloud-status">
-      <span class="status-dot" id="cloudDot"></span>
-      <span id="cloudText">Connecting to Google Sheet...</span>
+    <div class="parish-crest">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span>Catechism Ministry</span>
+    </div>
+    <h1>St. Joseph's Church</h1>
+    <p>Midalam Parish • Annual Kerala Pilgrimage & Tour 2026</p>
+    
+    <div class="cloud-pill">
+      <div class="pulse-dot" id="cloudPulse"></div>
+      <span id="cloudLabel">Connecting with Parish Google Sheet...</span>
     </div>
   </header>
 
-  <nav class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('bookingTab', event)">Seat Booking</button>
-    <button class="tab-btn" onclick="switchTab('rosterTab', event)">Admin Roster</button>
-  </nav>
+  <!-- Navigation Tabs -->
+  <div class="tab-bar">
+    <button class="tab-item active" onclick="navigateTab('tabRegistration', this)">
+      <span>🎫</span> Register & Book Seat
+    </button>
+    <button class="tab-item" onclick="navigateTab('tabAdmin', this)">
+      <span>🔐</span> Admin Roster
+    </button>
+  </div>
 
   <div class="container">
-    
-    <!-- BOOKING TAB -->
-    <div id="bookingTab" class="tab-content">
+
+    <div id="tabRegistration">
       <div class="card">
-        <div class="card-title">📝 Student Registration</div>
-        
-        <form id="regForm" onsubmit="handleRegistration(event)">
+        <div class="card-heading">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#070d1e" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Student & Family Information
+        </div>
+
+        <form id="tourBookingForm" onsubmit="submitRegistration(event)">
           <div class="form-group">
             <label>Student Full Name</label>
-            <input type="text" id="studentName" required placeholder="e.g. Antony George">
+            <input type="text" id="regStudent" placeholder="e.g. Antony George" required />
           </div>
 
           <div class="form-group">
             <label>Catechism Standard</label>
-            <select id="standard" onchange="updateFare()" required>
-              <option value="" disabled selected>Select Catechism Class</option>
+            <select id="regStandard" onchange="calculateFareRule()" required>
+              <option value="" disabled selected>Choose Catechism Class</option>
               <option value="Class 1">Class 1</option>
               <option value="Class 2">Class 2</option>
               <option value="Class 3">Class 3</option>
@@ -304,109 +619,197 @@
               <option value="Class 10">Class 10</option>
               <option value="Class 11">Class 11</option>
               <option value="Class 12">Class 12</option>
-              <option value="Pre-Communion">Pre-Communion Class</option>
+              <option value="Pre-Communion">Pre-Communion</option>
               <option value="Confirmation / Youth">Confirmation / Youth</option>
             </select>
           </div>
 
-          <div class="price-box">
-            <div class="price-tag" id="fareDisplay">₹0</div>
-            <div class="price-desc" id="fareRuleDesc">Select class to compute parish fare</div>
+          <!-- Dynamic Parish Fare Pill -->
+          <div class="fare-box">
+            <div>
+              <div class="fare-info-title">Parish Subsidized Fare</div>
+              <div class="fare-info-subtitle" id="fareRuleText">Select standard to check subsidized fee</div>
+            </div>
+            <div class="fare-amount" id="computedFareTag">₹0</div>
           </div>
 
           <div class="form-group">
             <label>Parent / Guardian Name</label>
-            <input type="text" id="parentName" required placeholder="e.g. George Joseph">
+            <input type="text" id="regParent" placeholder="e.g. George Joseph" required />
           </div>
 
           <div class="form-group">
             <label>WhatsApp Contact Number</label>
-            <input type="tel" id="phoneNumber" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
+            <input type="tel" id="regPhone" pattern="[0-9]{10}" placeholder="10-digit mobile number" required />
           </div>
 
           <div class="form-group">
-            <label>Select Seat (Upper Wing Single Deck - 50 Seats)</label>
-            <div class="bus-container">
-              <div class="bus-front">FRONT (DRIVER CABIN) ➔</div>
-              <div class="seat-grid" id="seatMatrix"></div>
+            <label>Select Executive Coach Seat (Upper Wing - 50 Seats)</label>
+            <div class="coach-shell">
+              <div class="cockpit-bar">
+                <span>ENTRY DOOR ➔</span>
+                <div class="driver-cabin">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="M12 12v9"/></svg>
+                  DRIVER CABIN
+                </div>
+              </div>
+
+              <div class="seat-grid" id="busGrid"></div>
+
+              <div class="seat-legend">
+                <div class="legend-item"><div class="legend-box" style="background:#fff; border-color:#93c5fd;"></div> Window (W)</div>
+                <div class="legend-item"><div class="legend-box" style="background:#fff;"></div> Aisle (A)</div>
+                <div class="legend-item"><div class="legend-box" style="background:var(--primary); border-color:var(--accent);"></div> Selected</div>
+                <div class="legend-item"><div class="legend-box" style="background:#fee2e2; border-color:#fca5a5;"></div> Reserved</div>
+              </div>
             </div>
-            <input type="hidden" id="selectedSeat" required>
-            <input type="hidden" id="selectedSeatType" value="Side (S)">
+            <input type="hidden" id="selectedSeatNum" required />
+            <input type="hidden" id="selectedSeatType" value="Aisle (A)" />
           </div>
 
           <div class="form-group">
             <label>Payment Option</label>
-            <select id="paymentType" onchange="updatePayOption()" required>
-              <option value="Full">Full Payment (Immediate Seat Confirmation)</option>
-              <option value="Advance">Advance Token (Queued on Waiting List)</option>
+            <select id="regPayType" onchange="adjustPaymentOption()" required>
+              <option value="Full">Full Payment (Immediate Reserved Seat Confirmation)</option>
+              <option value="Advance">Token Advance (Queued on Waiting List)</option>
             </select>
           </div>
 
           <div class="form-group">
             <label>Amount Being Paid (₹)</label>
-            <input type="number" id="paidAmount" required min="100">
+            <input type="number" id="regAmountPaid" required min="100" />
           </div>
 
           <div class="form-group">
             <label>Payment Mode</label>
-            <select id="paymentMode" required>
-              <option value="UPI">UPI (GPay / PhonePe / Paytm)</option>
-              <option value="Cash">Cash to Catechism Teacher</option>
+            <select id="regPayMode" required>
+              <option value="UPI">UPI (Google Pay / PhonePe / Paytm)</option>
+              <option value="Cash">Cash Handover to Catechism Teacher</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Payment Reference / UTR ID</label>
-            <input type="text" id="refId" required placeholder="e.g. UPI Ref / Cash details">
+            <label>UTR Number / Payment Reference</label>
+            <input type="text" id="regRef" placeholder="e.g. UPI Ref / Receipt No" required />
           </div>
 
-          <button type="submit" class="btn btn-primary" id="submitBtn">
-            Confirm Booking & Generate Pass
+          <button type="submit" class="btn btn-gold" id="btnSubmitTicket">
+            <span>✨</span> Confirm Registration & Issue Pass
           </button>
         </form>
       </div>
 
-      <!-- BOARDING PASS PREVIEW -->
-      <div class="ticket" id="ticketCard">
-        <div class="ticket-header">
-          <h3>BOARDING PASS</h3>
-          <p style="font-size: 0.8rem; color: #cbd5e1;">St. Joseph's Catechism Midalam • Kerala 2026</p>
+      <div class="ticket-wrapper" id="passContainer">
+        <div class="boarding-pass">
+          <div class="pass-header">
+            <div>
+              <div class="pass-title">OFFICIAL BOARDING PASS</div>
+              <div style="font-size: 0.72rem; color: #cbd5e1;">St. Joseph's Catechism Midalam</div>
+            </div>
+            <div class="pass-tag" id="passStatusBadge">CONFIRMED</div>
+          </div>
+
+          <div class="pass-body">
+            <div class="pass-route">
+              <div class="loc-node">
+                <div class="loc-city">MIDALAM</div>
+                <div class="loc-label">Church Campus (Origin)</div>
+              </div>
+              <div class="route-arrow">➔</div>
+              <div class="loc-node right">
+                <div class="loc-city">KERALA</div>
+                <div class="loc-label">Annual Catechism Tour</div>
+              </div>
+            </div>
+
+            <div class="pass-grid">
+              <div class="grid-cell">
+                <label>STUDENT PASSENGER</label>
+                <div id="bpStudent">-</div>
+              </div>
+              <div class="grid-cell">
+                <label>TICKET / PASS ID</label>
+                <div id="bpTicketId" style="font-family:'JetBrains Mono'; color: #1e3a8a;">-</div>
+              </div>
+              <div class="grid-cell">
+                <label>CATECHISM CLASS</label>
+                <div id="bpClass">-</div>
+              </div>
+              <div class="grid-cell">
+                <label>SEAT RESERVATION</label>
+                <div id="bpSeat" style="color: #b45309;">-</div>
+              </div>
+              <div class="grid-cell">
+                <label>AMOUNT PAID</label>
+                <div id="bpPaid" style="color: var(--success);">-</div>
+              </div>
+              <div class="grid-cell">
+                <label>BALANCE DUE</label>
+                <div id="bpBalance" style="color: var(--danger);">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perforation cutouts -->
+          <div class="perforation-line">
+            <div class="notch left"></div>
+            <div class="notch right"></div>
+          </div>
+
+          <div class="pass-stub">
+            <div id="qrcodeBox"></div>
+            <div class="qr-footnote">Scan with phone camera to verify official registration</div>
+          </div>
         </div>
-        <div class="ticket-body">
-          <div class="ticket-row"><span>Ticket No</span><span id="tPassId">-</span></div>
-          <div class="ticket-row"><span>Student</span><span id="tPassName">-</span></div>
-          <div class="ticket-row"><span>Class</span><span id="tPassStandard">-</span></div>
-          <div class="ticket-row"><span>Parent</span><span id="tPassParent">-</span></div>
-          <div class="ticket-row"><span>Seat</span><span id="tPassSeat" style="color: var(--accent);">-</span></div>
-          <div class="ticket-row"><span>Amount Paid</span><span id="tPassPaid">-</span></div>
-          <div class="ticket-row"><span>Balance Due</span><span id="tPassBalance">-</span></div>
-          <div class="ticket-row"><span>Status</span><span id="tPassStatus">-</span></div>
-        </div>
-        <div class="ticket-qr">
-          <canvas id="qrCanvas" width="120" height="120"></canvas>
-          <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 6px;">Show this QR code at bus entry</p>
-        </div>
+
+        <button class="btn btn-dark no-print" onclick="window.print()" style="margin-top: 14px;">
+          <span>🖨️</span> Download / Print Boarding Pass
+        </button>
       </div>
     </div>
 
-    <!-- ADMIN ROSTER TAB -->
-    <div id="rosterTab" class="tab-content" style="display: none;">
+    <div id="tabAdmin" style="display: none;">
       <div class="card">
-        <div class="card-title">🔐 Admin Access</div>
-        <div id="adminAuthBox">
-          <div class="form-group">
-            <label>Admin Security PIN</label>
-            <input type="password" id="adminPin" placeholder="Enter PIN (7777)">
-          </div>
-          <button class="btn btn-secondary" onclick="checkAdminPin()">Login to Roster</button>
+        <div class="card-heading">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#070d1e" stroke-width="2.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Admin Security Authentication
         </div>
 
-        <div id="adminPanel" style="display: none;">
-          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-            <button class="btn btn-accent" style="flex: 1; padding: 8px; font-size: 0.8rem;" onclick="exportCSV()">📥 Download CSV</button>
-            <button class="btn btn-primary" style="flex: 1; padding: 8px; font-size: 0.8rem;" onclick="fetchLiveRegistrations()">🔄 Refresh Live Data</button>
+        <div id="adminLoginBlock">
+          <div class="form-group">
+            <label>Enter 4-Digit Security PIN</label>
+            <div class="password-wrap">
+              <input type="password" id="adminPinInput" maxlength="6" placeholder="Enter PIN (Default: 7777)" />
+              <button type="button" class="toggle-pwd-btn" onclick="togglePinVisibility()" title="Toggle PIN">
+                <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
           </div>
-          <div class="table-container">
+          <button class="btn btn-dark" onclick="authenticateAdmin()">Unlock Admin Dashboard</button>
+        </div>
+
+        <div id="adminDashboardBlock" style="display: none;">
+          <div class="admin-stats">
+            <div class="stat-card">
+              <div class="val" id="cntConfirmed" style="color:var(--success);">0</div>
+              <div class="lbl">Confirmed</div>
+            </div>
+            <div class="stat-card">
+              <div class="val" id="cntWaiting" style="color:var(--warning);">0</div>
+              <div class="lbl">Waiting</div>
+            </div>
+            <div class="stat-card">
+              <div class="val" id="cntTotalPaid">₹0</div>
+              <div class="lbl">Collected</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+            <input type="text" id="adminSearchInput" oninput="renderAdminRoster()" placeholder="Search name or phone..." style="flex:2;" />
+            <button class="btn btn-gold" onclick="fetchLiveRegistrations()" style="flex:1; padding: 8px; font-size: 0.8rem;">🔄 Sync Sheet</button>
+          </div>
+
+          <div class="table-responsive">
             <table>
               <thead>
                 <tr>
@@ -415,281 +818,345 @@
                   <th>Seat</th>
                   <th>Paid</th>
                   <th>Bal</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="rosterTableBody"></tbody>
+              <tbody id="adminTableBody"></tbody>
             </table>
           </div>
+
+          <button class="btn btn-gold" onclick="exportAdminCsv()" style="margin-top: 14px;">
+            <span>📥</span> Download Full Manifest (Excel / CSV)
+          </button>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div id="toast"></div>
+  <div id="toastNotice"></div>
 
   <script>
+    // Embedded Google Apps Script Web App Endpoint
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyV_5kSeEJz_jU3AIHui14B_y3_IMdDWUicSKA4q7fn_wjfPjwXrVCBOI8ZOs5n00h67A/exec";
-
-    let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
+    
+    // In-memory registrations
+    let registrations = JSON.parse(localStorage.getItem('midalam_kerala_trip_2026_data')) || [];
 
     function showToast(msg) {
-      const toast = document.getElementById('toast');
+      const toast = document.getElementById('toastNotice');
       toast.innerText = msg;
       toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      setTimeout(() => { toast.style.display = 'none'; }, 3200);
     }
 
-    function switchTab(tabId, evt) {
-      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    function navigateTab(tabId, el) {
+      document.getElementById('tabRegistration').style.display = 'none';
+      document.getElementById('tabAdmin').style.display = 'none';
+      document.querySelectorAll('.tab-item').forEach(b => b.classList.remove('active'));
       document.getElementById(tabId).style.display = 'block';
-      if (evt && evt.target) evt.target.classList.add('active');
+      el.classList.add('active');
     }
 
-    function updateFare() {
-      const std = document.getElementById('standard').value;
-      const fareDisplay = document.getElementById('fareDisplay');
-      const desc = document.getElementById('fareRuleDesc');
-      const paid = document.getElementById('paidAmount');
-      
+    // Toggle Admin Password Visibility
+    function togglePinVisibility() {
+      const input = document.getElementById('adminPinInput');
+      const eye = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.innerHTML = `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/>`;
+      } else {
+        input.type = 'password';
+        eye.innerHTML = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`;
+      }
+    }
+
+    // Dynamic Fare Calculation
+    function calculateFareRule() {
+      const std = document.getElementById('regStandard').value;
+      const fareTag = document.getElementById('computedFareTag');
+      const desc = document.getElementById('fareRuleText');
+      const paidInput = document.getElementById('regAmountPaid');
+
       let fare = 500;
       if (std === 'Class 1' || std === 'Class 2' || std === 'Class 3') {
         fare = 250;
-        desc.innerText = "Junior Fare (Class 1 to 3): ₹250";
+        desc.innerText = "Junior Subsidy (Classes 1 - 3): ₹250";
       } else {
-        desc.innerText = "Standard Fare: ₹500";
+        desc.innerText = "Senior / Youth Regular Fare: ₹500";
       }
-      fareDisplay.innerText = "₹" + fare;
-      
-      if (document.getElementById('paymentType').value === 'Full') {
-        paid.value = fare;
+      fareTag.innerText = "₹" + fare;
+
+      if (document.getElementById('regPayType').value === 'Full') {
+        paidInput.value = fare;
       }
     }
 
-    function updatePayOption() {
-      const type = document.getElementById('paymentType').value;
-      const fare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
-      const paid = document.getElementById('paidAmount');
+    function adjustPaymentOption() {
+      const type = document.getElementById('regPayType').value;
+      const fare = parseInt(document.getElementById('computedFareTag').innerText.replace('₹','')) || 500;
+      const paidInput = document.getElementById('regAmountPaid');
       if (type === 'Full') {
-        paid.value = fare;
+        paidInput.value = fare;
       } else {
-        paid.value = 100;
+        paidInput.value = 100;
       }
     }
 
-    function renderSeats() {
-      const matrix = document.getElementById('seatMatrix');
-      matrix.innerHTML = '';
-      
-      const bookedSeatNums = registrations
-        .filter(r => r.status === 'CONFIRMED')
+    // Render 50 Executive Coach Seats
+    function renderCoachLayout() {
+      const grid = document.getElementById('busGrid');
+      grid.innerHTML = '';
+
+      const bookedSeats = registrations
+        .filter(r => r.status === 'CONFIRMED' && r.seatNum !== 'WAITING')
         .map(r => String(r.seatNum));
 
       for (let i = 1; i <= 50; i++) {
         const seatNo = (i < 10 ? '0' : '') + i;
-        const isBooked = bookedSeatNums.includes(seatNo);
+        const isBooked = bookedSeats.includes(seatNo);
+        // Col 1 & Col 4 are window seats in 2x2 arrangement
         const isWindow = (i % 4 === 1 || i % 4 === 0);
+        const typeLabel = isWindow ? 'W' : 'A';
 
-        const btn = document.createElement('div');
-        btn.className = `seat ${isBooked ? 'booked' : ''}`;
-        btn.innerHTML = `${seatNo}<span>${isWindow ? 'W' : 'S'}</span>`;
+        const seat = document.createElement('div');
+        seat.className = `seat-node ${isWindow ? 'window' : ''} ${isBooked ? 'booked' : ''}`;
+        seat.innerHTML = `<div>${seatNo}</div><div class="seat-sub">${typeLabel}</div>`;
 
         if (!isBooked) {
-          btn.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Side (S)', btn);
+          seat.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', seat);
         }
-        matrix.appendChild(btn);
+        grid.appendChild(seat);
 
+        // Aisle spacer in the middle of 2x2
         if (i % 4 === 2) {
-          const aisle = document.createElement('div');
-          aisle.className = 'aisle';
-          matrix.appendChild(aisle);
+          const spacer = document.createElement('div');
+          spacer.className = 'aisle-spacer';
+          grid.appendChild(spacer);
         }
       }
     }
 
-    function selectSeat(seatNo, seatType, el) {
-      document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
-      el.classList.add('selected');
-      document.getElementById('selectedSeat').value = seatNo;
+    function selectSeat(seatNo, seatType, node) {
+      document.querySelectorAll('.seat-node').forEach(s => s.classList.remove('selected'));
+      node.classList.add('selected');
+      document.getElementById('selectedSeatNum').value = seatNo;
       document.getElementById('selectedSeatType').value = seatType;
-      showToast(`Selected Seat #${seatNo} (${seatType})`);
+      showToast(`Selected Coach Seat #${seatNo} (${seatType})`);
     }
 
-    async function handleRegistration(e) {
+    // Submit Registration & Two-Way Sync
+    async function submitRegistration(e) {
       e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const payType = document.getElementById('paymentType').value;
-      const selectedSeat = document.getElementById('selectedSeat').value;
+      const submitBtn = document.getElementById('btnSubmitTicket');
+      const payType = document.getElementById('regPayType').value;
+      const seatNum = document.getElementById('selectedSeatNum').value;
 
-      if (payType === 'Full' && !selectedSeat) {
-        showToast("Please choose a seat from the coach layout");
+      if (payType === 'Full' && !seatNum) {
+        showToast("Please tap and pick an available coach seat");
         return;
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "Securing Booking & Syncing...";
+      submitBtn.innerText = "Securing Seat & Syncing...";
 
-      const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹',''));
-      const paid = parseInt(document.getElementById('paidAmount').value);
+      const totalFare = parseInt(document.getElementById('computedFareTag').innerText.replace('₹',''));
+      const paid = parseInt(document.getElementById('regAmountPaid').value);
       const balance = Math.max(0, totalFare - paid);
       const ticketId = 'MID-' + String(registrations.length + 1).padStart(3, '0');
-
       const isConfirmed = (payType === 'Full');
-      const bookingData = {
+
+      const entry = {
         id: ticketId,
-        name: document.getElementById('studentName').value,
-        standard: document.getElementById('standard').value,
-        parent: document.getElementById('parentName').value,
-        phone: document.getElementById('phoneNumber').value,
+        name: document.getElementById('regStudent').value.trim(),
+        standard: document.getElementById('regStandard').value,
+        parent: document.getElementById('regParent').value.trim(),
+        phone: document.getElementById('regPhone').value.trim(),
         wing: "Upper wing",
-        seatNum: isConfirmed ? selectedSeat : "WAITING",
+        seatNum: isConfirmed ? seatNum : "WAITING",
         seatType: isConfirmed ? document.getElementById('selectedSeatType').value : "Waiting List",
         totalFare: totalFare,
         paid: paid,
         balance: balance,
-        mode: document.getElementById('paymentMode').value,
-        refId: document.getElementById('refId').value,
+        mode: document.getElementById('regPayMode').value,
+        refId: document.getElementById('regRef').value.trim(),
         status: isConfirmed ? "CONFIRMED" : "WAITING"
       };
 
-      registrations.push(bookingData);
-      localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+      registrations.push(entry);
+      localStorage.setItem('midalam_kerala_trip_2026_data', JSON.stringify(registrations));
 
-      // Post Directly to Google Sheets
+      // Post to Google Apps Script
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bookingData)
+          body: JSON.stringify(entry)
         });
-        showToast("Synced to Parish Google Sheet!");
+        showToast("Recorded & Synced with Parish Google Sheet!");
       } catch (err) {
-        console.error("Sync error:", err);
+        console.warn("Sync failed, stored offline:", err);
       }
 
-      displayTicket(bookingData);
-      renderSeats();
-      document.getElementById('regForm').reset();
+      displayBoardingPass(entry);
+      renderCoachLayout();
+      document.getElementById('tourBookingForm').reset();
+      calculateFareRule();
       submitBtn.disabled = false;
-      submitBtn.innerText = "Confirm Booking & Generate Pass";
+      submitBtn.innerText = "Confirm Registration & Issue Pass";
     }
 
-    function displayTicket(data) {
-      document.getElementById('tPassId').innerText = data.id;
-      document.getElementById('tPassName').innerText = data.name;
-      document.getElementById('tPassStandard').innerText = data.standard;
-      document.getElementById('tPassParent').innerText = data.parent;
-      document.getElementById('tPassSeat').innerText = `${data.seatNum} (${data.seatType})`;
-      document.getElementById('tPassPaid').innerText = `₹${data.paid}`;
-      document.getElementById('tPassBalance').innerText = `₹${data.balance}`;
-      document.getElementById('tPassStatus').innerText = data.status;
+    // Display High-Quality Boarding Pass & QR Code
+    function displayBoardingPass(data) {
+      document.getElementById('bpStudent').innerText = data.name;
+      document.getElementById('bpTicketId').innerText = data.id;
+      document.getElementById('bpClass').innerText = data.standard;
+      document.getElementById('bpSeat').innerText = `${data.seatNum} (${data.seatType})`;
+      document.getElementById('bpPaid').innerText = `₹${data.paid}`;
+      document.getElementById('bpBalance').innerText = `₹${data.balance}`;
+      document.getElementById('passStatusBadge').innerText = data.status;
 
-      // Draw QR Canvas
-      const canvas = document.getElementById('qrCanvas');
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, 120, 120);
-      ctx.fillStyle = '#0b132b';
-      for (let x = 10; x < 110; x += 10) {
-        for (let y = 10; y < 110; y += 10) {
-          if (Math.sin(x * y + data.id.length) > 0) {
-            ctx.fillRect(x, y, 8, 8);
-          }
-        }
-      }
-      ctx.fillRect(15, 15, 25, 25);
-      ctx.clearRect(20, 20, 15, 15);
-      ctx.fillRect(80, 15, 25, 25);
-      ctx.clearRect(85, 20, 15, 15);
-      ctx.fillRect(15, 80, 25, 25);
-      ctx.clearRect(20, 85, 15, 15);
+      // Authentic QR Code Generation
+      const qrBox = document.getElementById('qrcodeBox');
+      qrBox.innerHTML = '';
+      const payload = JSON.stringify({
+        parish: "St. Joseph's Midalam",
+        id: data.id,
+        student: data.name,
+        seat: data.seatNum,
+        status: data.status,
+        ref: data.refId
+      });
 
-      const ticketCard = document.getElementById('ticketCard');
-      ticketCard.style.display = 'block';
-      ticketCard.scrollIntoView({ behavior: 'smooth' });
+      new QRCode(qrBox, {
+        text: payload,
+        width: 140,
+        height: 140,
+        colorDark: "#070d1e",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      const pass = document.getElementById('passContainer');
+      pass.style.display = 'block';
+      pass.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function checkAdminPin() {
-      const pin = document.getElementById('adminPin').value;
+    // Admin Dashboard Logic
+    function authenticateAdmin() {
+      const pin = document.getElementById('adminPinInput').value;
       if (pin === '7777') {
-        document.getElementById('adminAuthBox').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-        renderRoster();
+        document.getElementById('adminLoginBlock').style.display = 'none';
+        document.getElementById('adminDashboardBlock').style.display = 'block';
+        renderAdminRoster();
       } else {
-        showToast("Incorrect Admin PIN");
+        showToast("Invalid Security PIN");
       }
     }
 
-    function renderRoster() {
-      const tbody = document.getElementById('rosterTableBody');
+    function renderAdminRoster() {
+      const tbody = document.getElementById('adminTableBody');
       tbody.innerHTML = '';
-      registrations.forEach((r, idx) => {
+      const q = document.getElementById('adminSearchInput').value.toLowerCase();
+
+      let confirmedCount = 0;
+      let waitingCount = 0;
+      let totalPaid = 0;
+
+      const filtered = registrations.filter(r => {
+        if (r.status === 'CONFIRMED') confirmedCount++;
+        else waitingCount++;
+        totalPaid += (parseFloat(r.paid) || 0);
+
+        return !q || r.name.toLowerCase().includes(q) || r.phone.includes(q) || r.id.toLowerCase().includes(q);
+      });
+
+      document.getElementById('cntConfirmed').innerText = confirmedCount;
+      document.getElementById('cntWaiting').innerText = waitingCount;
+      document.getElementById('cntTotalPaid').innerText = `₹${totalPaid.toLocaleString('en-IN')}`;
+
+      filtered.forEach((r, idx) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${r.id}</strong></td>
           <td>${r.name}</td>
           <td>${r.seatNum}</td>
-          <td>₹${r.paid}</td>
-          <td>₹${r.balance}</td>
-          <td><button onclick="deleteTicket(${idx})" style="border:none;background:none;color:red;cursor:pointer;">🗑️</button></td>
+          <td style="color:var(--success); font-weight:700;">₹${r.paid}</td>
+          <td style="color:${r.balance > 0 ? 'var(--danger)' : 'var(--success)'}; font-weight:700;">₹${r.balance}</td>
+          <td><span class="badge-status ${r.status === 'CONFIRMED' ? 'badge-confirmed' : 'badge-waiting'}">${r.status}</span></td>
+          <td><button onclick="removeRegistration('${r.id}')" style="background:none;border:none;cursor:pointer;color:#dc2626;">🗑️</button></td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function deleteTicket(idx) {
-      if (confirm(`Delete registration ${registrations[idx].id}?`)) {
-        registrations.splice(idx, 1);
-        localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-        renderRoster();
-        renderSeats();
-        showToast("Ticket removed");
+    // Delete ticket with Google Sheet row deletion
+    async function removeRegistration(ticketId) {
+      if (!confirm(`Delete ticket ${ticketId}? This will remove it from both your phone and the Parish Google Sheet.`)) return;
+
+      registrations = registrations.filter(r => r.id !== ticketId);
+      localStorage.setItem('midalam_kerala_trip_2026_data', JSON.stringify(registrations));
+      renderAdminRoster();
+      renderCoachLayout();
+      showToast("Removing record from Google Sheet...");
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "delete", id: ticketId })
+        });
+        showToast(`Ticket ${ticketId} deleted successfully from Google Sheet.`);
+      } catch (err) {
+        console.error("Delete sync error:", err);
       }
     }
 
-    function exportCSV() {
-      let csv = "Ticket ID,Student Name,Class,Parent,Phone,Seat,Type,Paid,Balance,Status\n";
+    // Export Excel / CSV
+    function exportAdminCsv() {
+      let csv = "Ticket ID,Student,Standard,Parent,Phone,Seat,Type,Paid,Balance,Status\n";
       registrations.forEach(r => {
-        csv += `"${r.id}","${r.name}","${r.standard}","${r.parent}","${r.phone}","${r.seatNum}","${r.seatType}","${r.paid}","${r.balance}","${r.status}"\n`;
+        csv += `"${r.id}","${r.name}","${r.standard}","${r.parent}","\t${r.phone}","${r.seatNum}","${r.seatType}","${r.paid}","${r.balance}","${r.status}"\n`;
       });
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = "Midalam_Catechism_Trip_2026.csv";
-      a.click();
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "St_Joseph_Midalam_Trip_Manifest.csv";
+      link.click();
     }
 
+    // Live sync fetch on startup
     async function fetchLiveRegistrations() {
-      const dot = document.getElementById('cloudDot');
-      const text = document.getElementById('cloudText');
+      const pulse = document.getElementById('cloudPulse');
+      const label = document.getElementById('cloudLabel');
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
             registrations = data;
-            localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-            renderSeats();
-            if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-              renderRoster();
+            localStorage.setItem('midalam_kerala_trip_2026_data', JSON.stringify(registrations));
+            renderCoachLayout();
+            if (document.getElementById('adminDashboardBlock').style.display !== 'none') {
+              renderAdminRoster();
             }
           }
-          if (dot) dot.classList.add('connected');
-          if (text) text.innerText = "Google Sheet Live Synced";
+          pulse.classList.add('connected');
+          label.innerText = "Synced with Parish Google Sheet";
         }
       } catch (err) {
-        console.warn("Could not load live sync, using local data", err);
-        if (text) text.innerText = "Offline Mode";
+        console.warn("Live fetch skipped, using cache", err);
+        label.innerText = "Offline / Local Mode";
       }
     }
 
-    // Initialize Layout & Fetch Live Sheet Data
-    renderSeats();
+    // Initialize Layout & Startup Fetch
+    renderCoachLayout();
     fetchLiveRegistrations();
   </script>
 </body>
 </html>
+```
