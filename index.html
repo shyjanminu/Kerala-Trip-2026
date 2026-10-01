@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
   
-  <!-- High-Density QR Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <style>
@@ -24,27 +23,23 @@
       --warning: #f59e0b;
       --radius: 16px;
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
-      --shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.08), 0 8px 10px -6px rgba(11, 19, 43, 0.04);
+      --shadow: 0 10px 25px -5px rgba(11, 19, 43, 0.08);
       --shadow-lg: 0 20px 30px -10px rgba(11, 19, 43, 0.15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
 
-    /* Header */
     header {
       background: linear-gradient(135deg, #070d1e 0%, #0b132b 50%, #1c2541 100%);
       color: white;
       padding: 30px 16px 20px;
       text-align: center;
       position: relative;
-      box-shadow: 0 6px 24px rgba(7, 13, 30, 0.4);
       border-bottom: 2px solid rgba(212, 175, 55, 0.4);
     }
     .church-crest {
       display: inline-flex;
-      align-items: center;
-      gap: 6px;
       background: rgba(212, 175, 55, 0.15);
       color: var(--accent);
       border: 1px solid rgba(212, 175, 55, 0.5);
@@ -52,11 +47,10 @@
       border-radius: 30px;
       font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.8px;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
-    header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+    header h1 { font-size: 1.6rem; font-weight: 800; }
     header p { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
 
     .sync-status-pill {
@@ -66,7 +60,6 @@
       margin-top: 10px;
       padding: 4px 12px;
       background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 30px;
       font-size: 0.72rem;
       color: #cbd5e1;
@@ -76,11 +69,9 @@
       height: 8px;
       border-radius: 50%;
       background: var(--warning);
-      transition: all 0.3s;
     }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
-    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -88,7 +79,6 @@
       position: sticky;
       top: 0;
       z-index: 95;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     }
     .tab-btn {
       flex: 1;
@@ -100,9 +90,7 @@
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 3px solid transparent;
-      transition: all 0.2s ease;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
     }
     .tab-btn.active {
       color: var(--primary);
@@ -110,13 +98,8 @@
       background: #fafafa;
     }
 
-    .container {
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 16px;
-    }
+    .container { max-width: 620px; margin: 0 auto; padding: 16px; }
 
-    /* Cards */
     .card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -135,64 +118,23 @@
       gap: 8px;
     }
 
-    /* Dashboard Page Grid */
-    .dash-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
-    }
+    /* Dashboard */
+    .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .kpi-card {
       background: #f8fafc;
       border-radius: 14px;
       padding: 16px 14px;
       border: 1px solid var(--border);
-      position: relative;
     }
-    .kpi-card.span-2 { grid-column: span 2; }
-    .kpi-lbl {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-    .kpi-val {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin: 6px 0 2px;
-    }
-    .kpi-sub {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 4px;
-    }
-    .progress-bar-bg {
-      width: 100%;
-      height: 6px;
-      background: #e2e8f0;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      border-radius: 10px;
-      transition: width 0.5s ease;
-    }
+    .kpi-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .kpi-val { font-size: 1.45rem; font-weight: 800; color: var(--primary); margin: 6px 0 2px; }
+    .kpi-sub { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; }
+    .progress-bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 8px; }
+    .progress-bar-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
     .bg-accent { background: var(--accent); }
     .bg-success { background: var(--success); }
 
-    .chips-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-top: 14px;
-    }
+    .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
     .chip-box {
       background: white;
       border: 1px solid var(--border);
@@ -201,33 +143,12 @@
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--secondary);
-      box-shadow: var(--shadow-sm);
     }
     .chip-box span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
-    .trip-summary-box {
-      background: linear-gradient(135deg, #0b132b, #1c2541);
-      color: white;
-      border-radius: 14px;
-      padding: 16px;
-      margin-top: 14px;
-    }
-    .trip-summary-box h3 { font-size: 0.9rem; font-weight: 800; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .summary-item { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; }
-    .summary-item span:first-child { color: #94a3b8; }
-    .summary-item span:last-child { font-weight: 700; }
-
-    /* Form & Booking */
+    /* Form */
     .form-group { margin-bottom: 15px; }
-    label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
+    label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
     input, select {
       width: 100%;
       padding: 13px 14px;
@@ -236,14 +157,8 @@
       font-size: 0.95rem;
       background: #fafafa;
       color: var(--text);
-      transition: all 0.2s;
     }
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
-    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; }
 
     .price-box {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -256,7 +171,6 @@
     .price-tag { font-size: 1.7rem; font-weight: 800; color: var(--primary); }
     .price-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
 
-    /* Buttons */
     .btn {
       width: 100%;
       padding: 14px;
@@ -269,14 +183,12 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.1s, background-color 0.2s;
     }
-    .btn:active { transform: scale(0.98); }
     .btn-primary { background: linear-gradient(135deg, #0b132b, #1c2541); color: white; }
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Coach Seat Grid */
+    /* Bus */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -294,12 +206,7 @@
       border-bottom: 2px dashed #cbd5e1;
       margin-bottom: 14px;
     }
-    .seat-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      align-items: center;
-    }
+    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: center; }
     .seat-grid .aisle { grid-column: 3; height: 10px; }
     .seat {
       aspect-ratio: 1;
@@ -317,67 +224,54 @@
     .seat span { font-size: 0.58rem; color: var(--text-muted); font-weight: 600; }
     .seat.booked { background: #fee2e2; border-color: #fca5a5; color: #991b1b; cursor: not-allowed; }
     .seat.booked span { color: #991b1b; }
-    .seat.selected {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-      transform: scale(1.05);
-    }
+    .seat.selected { background: var(--primary); border-color: var(--primary); color: white; transform: scale(1.05); }
     .seat.selected span { color: var(--accent); }
 
     /* Boarding Pass */
     .ticket-wrapper { margin-top: 24px; display: none; }
-    .ticket {
-      background: white;
-      border-radius: 18px;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .ticket-head {
-      background: linear-gradient(135deg, #070d1e, #0b132b);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 2px solid var(--accent);
-    }
+    .ticket { background: white; border-radius: 18px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); overflow: hidden; }
+    .ticket-head { background: linear-gradient(135deg, #070d1e, #0b132b); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
     .ticket-head h3 { font-size: 1.2rem; font-weight: 800; }
     .ticket-head p { font-size: 0.75rem; color: #cbd5e1; margin-top: 3px; }
     .ticket-body { padding: 18px 20px; }
     .t-row { display: flex; justify-content: space-between; margin-bottom: 9px; font-size: 0.85rem; }
     .t-lbl { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
     .t-val { font-weight: 800; color: var(--text); }
-
-    .ticket-divider {
-      position: relative;
-      border-top: 2px dashed #cbd5e1;
-      margin: 16px 0;
-    }
+    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 16px 0; }
     .ticket-divider::before, .ticket-divider::after {
-      content: '';
-      position: absolute;
-      top: -12px;
-      width: 24px;
-      height: 24px;
-      background: var(--bg);
-      border-radius: 50%;
+      content: ''; position: absolute; top: -12px; width: 24px; height: 24px; background: var(--bg); border-radius: 50%;
     }
     .ticket-divider::before { left: -32px; }
     .ticket-divider::after { right: -32px; }
-
-    .ticket-footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 20px 22px;
-    }
+    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 20px 22px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
-    /* Table */
+    /* Admin Table */
     .table-container { overflow-x: auto; margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    th, td { padding: 11px 9px; text-align: left; border-bottom: 1px solid var(--border); }
+    th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); }
     th { background: #f8fafc; color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
+
+    /* Settlement Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 19, 43, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+    }
 
     #toast {
       position: fixed;
@@ -390,21 +284,13 @@
       border-radius: 30px;
       font-size: 0.85rem;
       font-weight: 700;
-      z-index: 1000;
+      z-index: 1100;
       display: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    }
-
-    @media print {
-      body * { visibility: hidden; }
-      .ticket, .ticket * { visibility: visible; }
-      .ticket { position: absolute; left: 0; top: 0; width: 100%; border: none; box-shadow: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="church-crest">St. Joseph's Church Midalam</div>
     <h1>Kerala Tour 2026</h1>
@@ -415,7 +301,6 @@
     </div>
   </header>
 
-  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
@@ -424,13 +309,12 @@
 
   <div class="container">
     
-    <!-- PAGE 1: DEDICATED FULL-PAGE EXECUTIVE DASHBOARD -->
+    <!-- TAB 1: DASHBOARD -->
     <div id="dashboardTab" class="tab-content">
       <div class="card">
         <div class="card-title">📊 Executive Financial & Trip Dashboard</div>
 
         <div class="dash-grid">
-          <!-- Confirmed Seats -->
           <div class="kpi-card">
             <div class="kpi-lbl">Confirmed Seats</div>
             <div class="kpi-val" id="kpiSeats">0 <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">/ 50</span></div>
@@ -443,7 +327,6 @@
             </div>
           </div>
 
-          <!-- Total Collected -->
           <div class="kpi-card">
             <div class="kpi-lbl">Total Collected</div>
             <div class="kpi-val" id="kpiPaid">₹0</div>
@@ -456,7 +339,6 @@
             </div>
           </div>
 
-          <!-- Pending Balances -->
           <div class="kpi-card">
             <div class="kpi-lbl">Pending Balance</div>
             <div class="kpi-val" style="color: var(--danger);" id="kpiPending">₹0</div>
@@ -466,7 +348,6 @@
             </div>
           </div>
 
-          <!-- Advance Tokens & Waiting -->
           <div class="kpi-card">
             <div class="kpi-lbl">Advance Tokens</div>
             <div class="kpi-val" style="color: var(--warning);" id="kpiAdvance">₹0</div>
@@ -477,7 +358,6 @@
           </div>
         </div>
 
-        <!-- Catechism Category Breakdown Grid -->
         <label>Catechism & Payment Distribution</label>
         <div class="chips-grid">
           <div class="chip-box">
@@ -497,19 +377,10 @@
             <div id="chipCash">₹0 Collected</div>
           </div>
         </div>
-
-        <!-- Tour Operational Summary -->
-        <div class="trip-summary-box">
-          <h3>🚌 Pilgrimage Logistics Info</h3>
-          <div class="summary-item"><span>Coach Standard:</span> <span>Single Deck Luxury Coach (50 Seats)</span></div>
-          <div class="summary-item"><span>Parish Ministry:</span> <span>St. Joseph's Catechism Midalam</span></div>
-          <div class="summary-item"><span>Destination:</span> <span>Kerala Historical & Spiritual Tour</span></div>
-          <div class="summary-item"><span>Status:</span> <span style="color: var(--success);">Online Bookings Open</span></div>
-        </div>
       </div>
     </div>
 
-    <!-- PAGE 2: DEDICATED SEAT BOOKING PAGE -->
+    <!-- TAB 2: BOOKING -->
     <div id="bookingTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📝 Student Registration & Seat Booking</div>
@@ -601,7 +472,6 @@
         </form>
       </div>
 
-      <!-- BOARDING PASS PREVIEW -->
       <div class="ticket-wrapper" id="ticketWrapper">
         <div class="ticket" id="boardingPass">
           <div class="ticket-head">
@@ -632,12 +502,11 @@
       </div>
     </div>
 
-    <!-- PAGE 3: DEDICATED SECURED ADMIN ROSTER -->
+    <!-- TAB 3: ADMIN ROSTER -->
     <div id="rosterTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">🔐 Admin Control Center</div>
 
-        <!-- AUTH BOX -->
         <div id="adminAuthBox">
           <div class="form-group">
             <label>Admin Security PIN</label>
@@ -650,7 +519,6 @@
           <p id="lockoutMsg" style="color: var(--danger); font-size: 0.8rem; margin-top: 8px; display: none; text-align: center;"></p>
         </div>
 
-        <!-- ROSTER PANEL -->
         <div id="adminPanel" style="display: none;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
             <span style="font-size: 0.82rem; font-weight: 800; color: var(--success);">● Session Active</span>
@@ -669,10 +537,9 @@
                   <th>Ticket</th>
                   <th>Student</th>
                   <th>Seat</th>
-                  <th>Phone</th>
-                  <th>Paid</th>
-                  <th>Bal</th>
-                  <th>Action</th>
+                  <th>Paid / Bal</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody id="rosterTableBody"></tbody>
@@ -682,6 +549,37 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- PAYMENT & SEAT ASSIGNMENT MODAL -->
+  <div class="modal-overlay" id="settleModal">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">💳 Settle Balance & Confirm Seat</h3>
+        <button onclick="closeSettleModal()" style="border:none;background:none;font-size:1.2rem;cursor:pointer;color:var(--text-muted);">✕</button>
+      </div>
+
+      <div style="background:#f1f5f9;padding:10px 12px;border-radius:10px;margin-bottom:14px;font-size:0.82rem;">
+        <div><strong>Student:</strong> <span id="mStudentName">-</span> (<span id="mStudentClass">-</span>)</div>
+        <div><strong>Ticket ID:</strong> <span id="mTicketId">-</span></div>
+        <div style="margin-top:4px;"><strong>Already Paid:</strong> ₹<span id="mAlreadyPaid">0</span> | <strong style="color:var(--danger);">Balance Due:</strong> ₹<span id="mBalanceDue">0</span></div>
+      </div>
+
+      <input type="hidden" id="mCurrentIdx">
+
+      <div class="form-group">
+        <label>Additional Amount Paid Now (₹)</label>
+        <input type="number" id="mAdditionalPaid" required min="1">
+      </div>
+
+      <div class="form-group" id="mSeatAssignGroup">
+        <label>Assign Confirmed Coach Seat</label>
+        <select id="mAssignSeat"></select>
+        <small style="color:var(--text-muted);font-size:0.7rem;margin-top:3px;display:block;">Select an unoccupied coach seat for this student.</small>
+      </div>
+
+      <button class="btn btn-primary" onclick="submitSettlement()" id="mSaveBtn">Save Payment & Confirm Seat</button>
+    </div>
   </div>
 
   <div id="toast"></div>
@@ -841,7 +739,6 @@
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
       const balance = Math.max(0, totalFare - paid);
       
-      // Professional Sequential Ticket ID
       const ticketId = 'MID-' + String(101 + registrations.length);
 
       const isConfirmed = (payType === 'Full');
@@ -862,13 +759,11 @@
         status: isConfirmed ? "CONFIRMED" : "WAITING"
       };
 
-      // Immediate local state update so counters update with zero latency
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
 
-      // Cloud transmission to Google Sheets in background
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
@@ -886,7 +781,6 @@
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate Pass";
 
-      // Refresh cloud data after 2 seconds
       setTimeout(fetchLiveRegistrations, 2000);
     }
 
@@ -1006,19 +900,153 @@
       tbody.innerHTML = '';
       registrations.forEach((r, idx) => {
         const tr = document.createElement('tr');
+        
+        const isWaiting = (r.status === 'WAITING' || r.seatNum === 'WAITING');
+        const hasDue = Number(r.balance) > 0;
+
         tr.innerHTML = `
           <td><strong style="color:var(--primary);">${r.id}</strong></td>
           <td>${r.name}<br><span style="font-size:0.68rem;color:var(--text-muted);">${r.standard}</span></td>
-          <td><span style="font-weight:700;color:var(--primary);">${r.seatNum}</span></td>
-          <td>${r.phone || '-'}</td>
-          <td>₹${r.paid}</td>
-          <td>${r.balance > 0 ? `<span style="color:var(--danger);font-weight:700;">₹${r.balance}</span>` : '₹0'}</td>
           <td>
-            <button onclick="deleteTicket(${idx})" style="border:none;background:none;color:var(--danger);cursor:pointer;font-size:1.05rem;" title="Delete Ticket">🗑️</button>
+            <span style="font-weight:700;color:${isWaiting ? 'var(--warning)' : 'var(--primary)'};">
+              ${r.seatNum}
+            </span>
+          </td>
+          <td>
+            ₹${r.paid}<br>
+            ${hasDue ? `<span style="color:var(--danger);font-weight:700;font-size:0.7rem;">Due: ₹${r.balance}</span>` : `<span style="color:var(--success);font-size:0.7rem;">Paid in Full</span>`}
+          </td>
+          <td>
+            <span style="font-size:0.7rem;font-weight:700;padding:2px 6px;border-radius:4px;background:${isWaiting ? '#fef3c7;color:#92400e' : '#dcfce7;color:#166534'}">
+              ${r.status}
+            </span>
+          </td>
+          <td>
+            <div style="display:flex;gap:6px;align-items:center;">
+              ${(hasDue || isWaiting) ? `<button onclick="openSettleModal(${idx})" style="border:none;background:#10b981;color:white;border-radius:6px;padding:4px 8px;font-size:0.72rem;font-weight:700;cursor:pointer;" title="Settle Balance & Confirm Seat">💳 Pay</button>` : ''}
+              <button onclick="deleteTicket(${idx})" style="border:none;background:none;color:var(--danger);cursor:pointer;font-size:1.05rem;" title="Delete Ticket">🗑️</button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
       });
+    }
+
+    // Modal Handling for Settle Payment & Assign Seat
+    function openSettleModal(idx) {
+      const student = registrations[idx];
+      document.getElementById('mCurrentIdx').value = idx;
+      document.getElementById('mStudentName').innerText = student.name;
+      document.getElementById('mStudentClass').innerText = student.standard;
+      document.getElementById('mTicketId').innerText = student.id;
+      document.getElementById('mAlreadyPaid').innerText = student.paid;
+      document.getElementById('mBalanceDue').innerText = student.balance;
+      document.getElementById('mAdditionalPaid').value = student.balance; // default to settling full balance
+
+      const seatSelect = document.getElementById('mAssignSeat');
+      seatSelect.innerHTML = '';
+
+      const bookedSeatNums = registrations
+        .filter(r => r.status === 'CONFIRMED' && r.id !== student.id)
+        .map(r => String(r.seatNum).padStart(2, '0'));
+
+      const isWaiting = (student.status === 'WAITING' || student.seatNum === 'WAITING');
+
+      if (!isWaiting && student.seatNum) {
+        // Keep existing assigned seat
+        const opt = document.createElement('option');
+        opt.value = student.seatNum;
+        opt.innerText = `Keep Existing Seat ${student.seatNum} (${student.seatType})`;
+        seatSelect.appendChild(opt);
+      } else {
+        // Build list of empty seats
+        for (let i = 1; i <= 50; i++) {
+          const seatNo = String(i).padStart(2, '0');
+          if (!bookedSeatNums.includes(seatNo)) {
+            const isWindow = (i % 4 === 1 || i % 4 === 0);
+            const opt = document.createElement('option');
+            opt.value = seatNo;
+            opt.innerText = `Seat ${seatNo} - ${isWindow ? 'Window (W)' : 'Aisle (A)'}`;
+            seatSelect.appendChild(opt);
+          }
+        }
+      }
+
+      document.getElementById('settleModal').style.display = 'flex';
+    }
+
+    function closeSettleModal() {
+      document.getElementById('settleModal').style.display = 'none';
+    }
+
+    async function submitSettlement() {
+      const idx = document.getElementById('mCurrentIdx').value;
+      const student = registrations[idx];
+      const additionalPaid = parseInt(document.getElementById('mAdditionalPaid').value) || 0;
+
+      if (additionalPaid <= 0) {
+        showToast("Please enter an amount paid");
+        return;
+      }
+
+      const saveBtn = document.getElementById('mSaveBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerText = "Updating in Google Sheets...";
+
+      const newPaid = Number(student.paid) + additionalPaid;
+      const newBalance = Math.max(0, Number(student.totalFare) - newPaid);
+      
+      const assignedSeatVal = document.getElementById('mAssignSeat').value;
+      let newSeatNum = student.seatNum;
+      let newSeatType = student.seatType;
+      let newStatus = student.status;
+
+      if (assignedSeatVal && assignedSeatVal !== 'WAITING') {
+        newSeatNum = assignedSeatVal;
+        const seatInt = parseInt(assignedSeatVal, 10);
+        newSeatType = (seatInt % 4 === 1 || seatInt % 4 === 0) ? 'Window (W)' : 'Aisle (A)';
+        newStatus = 'CONFIRMED';
+      }
+
+      // Update locally
+      registrations[idx].paid = newPaid;
+      registrations[idx].balance = newBalance;
+      registrations[idx].seatNum = newSeatNum;
+      registrations[idx].seatType = newSeatType;
+      registrations[idx].status = newStatus;
+
+      localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+      renderRoster();
+      renderSeats();
+      updateDashboard();
+
+      // Transmit update to Google Sheets
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "update_payment",
+            id: student.id,
+            paid: newPaid,
+            balance: newBalance,
+            seatNum: newSeatNum,
+            seatType: newSeatType,
+            status: newStatus
+          })
+        });
+        showToast(`Updated! ${student.name} is now Seat #${newSeatNum}`);
+      } catch (err) {
+        console.error("Cloud update error:", err);
+      }
+
+      saveBtn.disabled = false;
+      saveBtn.innerText = "Save Payment & Confirm Seat";
+      closeSettleModal();
+      
+      // Auto-preview updated boarding pass
+      displayTicket(registrations[idx]);
     }
 
     async function deleteTicket(idx) {
@@ -1085,7 +1113,6 @@
       }
     }
 
-    // Initialize & Poll every 25 seconds
     renderSeats();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 25000);
