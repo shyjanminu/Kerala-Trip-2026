@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
+  <title>St. Joseph's Church Midalam - Kerala Trip 2026</title>
   
   <!-- High-Density QR Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -14,7 +14,7 @@
       --secondary: #1c2541;
       --accent: #d4af37;
       --accent-hover: #b89628;
-      --bg: #0b132b08;
+      --bg: #f8fafc;
       --surface: #ffffff;
       --text: #0f172a;
       --text-muted: #64748b;
@@ -29,14 +29,14 @@
       --shadow-lg: 0 20px 30px -10px rgba(11, 19, 43, 0.15);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
-    body { background-color: #f1f5f9; color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
 
-    /* Top Executive Header */
+    /* Header */
     header {
       background: linear-gradient(135deg, #070d1e 0%, #0b132b 50%, #1c2541 100%);
       color: white;
-      padding: 36px 16px 24px;
+      padding: 30px 16px 20px;
       text-align: center;
       position: relative;
       box-shadow: 0 6px 24px rgba(7, 13, 30, 0.4);
@@ -49,23 +49,23 @@
       background: rgba(212, 175, 55, 0.15);
       color: var(--accent);
       border: 1px solid rgba(212, 175, 55, 0.5);
-      padding: 5px 14px;
+      padding: 4px 14px;
       border-radius: 30px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-    header h1 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; }
-    header p { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; font-weight: 500; }
+    header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+    header p { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
 
     .sync-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      margin-top: 12px;
-      padding: 5px 14px;
+      margin-top: 10px;
+      padding: 4px 12px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 30px;
@@ -79,9 +79,9 @@
       background: var(--warning);
       transition: all 0.3s;
     }
-    .pulse-dot.active { background: var(--success); box-shadow: 0 0 10px var(--success); }
+    .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
-    /* Nav Tabs */
+    /* 3 Clean Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -93,15 +93,17 @@
     }
     .tab-btn {
       flex: 1;
-      padding: 16px 8px;
+      padding: 15px 4px;
       border: none;
       background: none;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.82rem;
+      font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 3px solid transparent;
       transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
     .tab-btn.active {
       color: var(--primary);
@@ -112,45 +114,39 @@
     .container {
       max-width: 620px;
       margin: 0 auto;
-      padding: 18px 14px;
+      padding: 16px;
     }
 
-    /* Executive Analytics Dashboard */
-    .dashboard-section {
+    /* Core Card */
+    .card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 22px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       margin-bottom: 20px;
     }
-    .dash-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-    .dash-header h2 {
-      font-size: 0.85rem;
+    .card-title {
+      font-size: 1.1rem;
       font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--secondary);
+      color: var(--primary);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
+
+    /* Standalone Dashboard View */
     .dash-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
+      margin-bottom: 16px;
     }
     .kpi-card {
       background: #f8fafc;
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 16px 14px;
       border: 1px solid var(--border);
       position: relative;
     }
@@ -166,7 +162,7 @@
       font-size: 1.45rem;
       font-weight: 800;
       color: var(--primary);
-      margin: 4px 0 2px;
+      margin: 6px 0 2px;
     }
     .kpi-sub {
       font-size: 0.72rem;
@@ -182,7 +178,7 @@
       background: #e2e8f0;
       border-radius: 10px;
       overflow: hidden;
-      margin-top: 6px;
+      margin-top: 8px;
     }
     .progress-bar-fill {
       height: 100%;
@@ -191,52 +187,42 @@
     }
     .bg-accent { background: var(--accent); }
     .bg-success { background: var(--success); }
-    .bg-danger { background: var(--danger); }
-    .bg-warning { background: var(--warning); }
 
-    .chips-carousel {
-      display: flex;
+    .chips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      overflow-x: auto;
-      padding-top: 10px;
-      margin-top: 10px;
-      border-top: 1px dashed var(--border);
+      margin-top: 14px;
     }
-    .chip {
-      background: #ffffff;
+    .chip-box {
+      background: white;
       border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.72rem;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.75rem;
       font-weight: 700;
-      white-space: nowrap;
       color: var(--secondary);
       box-shadow: var(--shadow-sm);
     }
+    .chip-box span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
-    /* Core Card */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 22px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
+    .trip-summary-box {
+      background: linear-gradient(135deg, #0b132b, #1c2541);
+      color: white;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
     }
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .trip-summary-box h3 { font-size: 0.9rem; font-weight: 800; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .summary-item { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; }
+    .summary-item span:first-child { color: #94a3b8; }
+    .summary-item span:last-child { font-weight: 700; }
 
-    .form-group { margin-bottom: 16px; }
+    /* Form & Controls */
+    .form-group { margin-bottom: 15px; }
     label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 6px;
@@ -245,7 +231,7 @@
     }
     input, select {
       width: 100%;
-      padding: 13px 15px;
+      padding: 13px 14px;
       border: 1px solid var(--border);
       border-radius: 10px;
       font-size: 0.95rem;
@@ -264,17 +250,17 @@
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border: 1.5px dashed var(--accent);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px;
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
-    .price-tag { font-size: 1.75rem; font-weight: 800; color: var(--primary); }
-    .price-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; font-weight: 600; }
+    .price-tag { font-size: 1.7rem; font-weight: 800; color: var(--primary); }
+    .price-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
 
-    /* Button Hierarchy */
+    /* Buttons */
     .btn {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
       border-radius: 10px;
       font-size: 0.95rem;
@@ -284,118 +270,89 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.1s, background-color 0.2s, box-shadow 0.2s;
+      transition: transform 0.1s, background-color 0.2s;
     }
     .btn:active { transform: scale(0.98); }
-    .btn-primary {
-      background: linear-gradient(135deg, #0b132b, #1c2541);
-      color: white;
-      box-shadow: 0 4px 12px rgba(11, 19, 43, 0.2);
-    }
-    .btn-accent {
-      background: linear-gradient(135deg, #d4af37, #b89628);
-      color: #0b132b;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
-    }
-    .btn-secondary {
-      background: #1c2541;
-      color: white;
-    }
+    .btn-primary { background: linear-gradient(135deg, #0b132b, #1c2541); color: white; }
+    .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
+    .btn-secondary { background: #1c2541; color: white; }
 
-    /* 50-Seat Executive Coach */
+    /* Coach Grid */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
-      border-radius: 22px;
-      padding: 18px 14px;
-      margin-top: 10px;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+      border-radius: 20px;
+      padding: 16px 12px;
+      margin-top: 8px;
     }
     .bus-front {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--text-muted);
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 2px dashed #cbd5e1;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .seat-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 9px;
+      gap: 8px;
       align-items: center;
     }
-    .seat-grid .aisle { grid-column: 3; height: 12px; }
+    .seat-grid .aisle { grid-column: 3; height: 10px; }
     .seat {
       aspect-ratio: 1;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1.5px solid #cbd5e1;
       background: white;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
-    .seat span { font-size: 0.6rem; color: var(--text-muted); font-weight: 600; }
-    .seat.booked {
-      background: #fee2e2;
-      border-color: #fca5a5;
-      color: #991b1b;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
+    .seat span { font-size: 0.58rem; color: var(--text-muted); font-weight: 600; }
+    .seat.booked { background: #fee2e2; border-color: #fca5a5; color: #991b1b; cursor: not-allowed; }
     .seat.booked span { color: #991b1b; }
     .seat.selected {
       background: var(--primary);
       border-color: var(--primary);
       color: white;
       transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(11, 19, 43, 0.25);
     }
     .seat.selected span { color: var(--accent); }
 
-    /* Luxury Boarding Pass */
-    .ticket-wrapper { margin-top: 26px; display: none; }
+    /* Boarding Pass */
+    .ticket-wrapper { margin-top: 24px; display: none; }
     .ticket {
       background: white;
-      border-radius: 20px;
+      border-radius: 18px;
       box-shadow: var(--shadow-lg);
       border: 1px solid var(--border);
       overflow: hidden;
-      position: relative;
     }
     .ticket-head {
       background: linear-gradient(135deg, #070d1e, #0b132b);
       color: white;
-      padding: 22px 20px;
+      padding: 20px;
       text-align: center;
       border-bottom: 2px solid var(--accent);
     }
-    .ticket-head h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.6px; }
-    .ticket-head p { font-size: 0.78rem; color: #cbd5e1; margin-top: 4px; }
-    
-    .ticket-body { padding: 20px 22px; }
-    .t-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 0.88rem;
-    }
-    .t-lbl { color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; font-weight: 700; }
+    .ticket-head h3 { font-size: 1.2rem; font-weight: 800; }
+    .ticket-head p { font-size: 0.75rem; color: #cbd5e1; margin-top: 3px; }
+    .ticket-body { padding: 18px 20px; }
+    .t-row { display: flex; justify-content: space-between; margin-bottom: 9px; font-size: 0.85rem; }
+    .t-lbl { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
     .t-val { font-weight: 800; color: var(--text); }
 
     .ticket-divider {
       position: relative;
       border-top: 2px dashed #cbd5e1;
-      margin: 18px 0;
+      margin: 16px 0;
     }
     .ticket-divider::before, .ticket-divider::after {
       content: '';
@@ -403,36 +360,25 @@
       top: -12px;
       width: 24px;
       height: 24px;
-      background: #f1f5f9;
+      background: var(--bg);
       border-radius: 50%;
     }
-    .ticket-divider::before { left: -34px; }
-    .ticket-divider::after { right: -34px; }
+    .ticket-divider::before { left: -32px; }
+    .ticket-divider::after { right: -32px; }
 
     .ticket-footer {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 20px 24px;
+      padding: 0 20px 22px;
     }
-    #qrcode {
-      padding: 10px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-    }
+    #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
-    /* Admin Table Styling */
-    .table-container {
-      overflow-x: auto;
-      margin-top: 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
-    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid var(--border); }
-    th { background: #f8fafc; color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.72rem; }
+    /* Table */
+    .table-container { overflow-x: auto; margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th, td { padding: 11px 9px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: #f8fafc; color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
 
     #toast {
       position: fixed;
@@ -441,9 +387,9 @@
       transform: translateX(-50%);
       background: rgba(11, 19, 43, 0.95);
       color: white;
-      padding: 12px 24px;
+      padding: 11px 22px;
       border-radius: 30px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
       z-index: 1000;
       display: none;
@@ -470,84 +416,104 @@
     </div>
   </header>
 
-  <!-- NAVIGATION TABS -->
+  <!-- 3 SEPARATE TABS -->
   <nav class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('bookingTab', event)">Seat Booking</button>
-    <button class="tab-btn" onclick="switchTab('rosterTab', event)">Admin Roster</button>
+    <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
+    <button class="tab-btn" onclick="switchTab('rosterTab', event)">🔐 Admin Roster</button>
   </nav>
 
   <div class="container">
     
-    <!-- EXECUTIVE FINANCIAL & CAPACITY ANALYTICS DASHBOARD -->
-    <div class="dashboard-section">
-      <div class="dash-header">
-        <h2>📊 Executive Tour Dashboard</h2>
-        <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent); background: var(--primary); padding: 3px 10px; border-radius: 20px;">Single Deck Luxury Coach</span>
-      </div>
+    <!-- PAGE 1: DEDICATED FULL-PAGE EXECUTIVE DASHBOARD -->
+    <div id="dashboardTab" class="tab-content">
+      <div class="card">
+        <div class="card-title">📊 Executive Financial & Trip Dashboard</div>
 
-      <div class="dash-grid">
-        <!-- Confirmed Seats -->
-        <div class="kpi-card">
-          <div class="kpi-lbl">Confirmed Seats</div>
-          <div class="kpi-val" id="kpiSeats">0 <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">/ 50</span></div>
-          <div class="kpi-sub">
-            <span>Remaining: <strong id="kpiRemaining">50</strong></span>
-            <span id="kpiSeatPct">0%</span>
+        <div class="dash-grid">
+          <!-- Confirmed Seats -->
+          <div class="kpi-card">
+            <div class="kpi-lbl">Confirmed Seats</div>
+            <div class="kpi-val" id="kpiSeats">0 <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">/ 50</span></div>
+            <div class="kpi-sub">
+              <span>Remaining: <strong id="kpiRemaining">50</strong></span>
+              <span id="kpiSeatPct">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill bg-accent" id="barSeats" style="width: 0%;"></div>
+            </div>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill bg-accent" id="barSeats" style="width: 0%;"></div>
+
+          <!-- Total Collected -->
+          <div class="kpi-card">
+            <div class="kpi-lbl">Total Collected</div>
+            <div class="kpi-val" id="kpiPaid">₹0</div>
+            <div class="kpi-sub">
+              <span>Realized</span>
+              <span id="kpiRealizedPct">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill bg-success" id="barPaid" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Pending Balances -->
+          <div class="kpi-card">
+            <div class="kpi-lbl">Pending Balance</div>
+            <div class="kpi-val" style="color: var(--danger);" id="kpiPending">₹0</div>
+            <div class="kpi-sub">
+              <span id="kpiPendingCount">0 Students Due</span>
+              <span>Due</span>
+            </div>
+          </div>
+
+          <!-- Advance Tokens & Waiting -->
+          <div class="kpi-card">
+            <div class="kpi-lbl">Advance Tokens</div>
+            <div class="kpi-val" style="color: var(--warning);" id="kpiAdvance">₹0</div>
+            <div class="kpi-sub">
+              <span id="kpiWaitingCount">Waiting List: 0</span>
+              <span>Queued</span>
+            </div>
           </div>
         </div>
 
-        <!-- Revenue Collected -->
-        <div class="kpi-card">
-          <div class="kpi-lbl">Total Collected</div>
-          <div class="kpi-val" id="kpiPaid">₹0</div>
-          <div class="kpi-sub">
-            <span>Realized</span>
-            <span id="kpiRealizedPct">0%</span>
+        <!-- Catechism Category Breakdown Grid -->
+        <label>Catechism & Payment Distribution</label>
+        <div class="chips-grid">
+          <div class="chip-box">
+            <span>JUNIORS (CLASSES 1-3)</span>
+            <div id="chipJunior">0 Registered (₹250)</div>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill bg-success" id="barPaid" style="width: 0%;"></div>
+          <div class="chip-box">
+            <span>SENIORS (CLASS 4+ / YOUTH)</span>
+            <div id="chipSenior">0 Registered (₹500)</div>
           </div>
-        </div>
-
-        <!-- Pending Balances -->
-        <div class="kpi-card">
-          <div class="kpi-lbl">Pending Balance</div>
-          <div class="kpi-val" style="color: var(--danger);" id="kpiPending">₹0</div>
-          <div class="kpi-sub">
-            <span id="kpiPendingCount">0 Registrations</span>
-            <span>Due</span>
+          <div class="chip-box">
+            <span>UPI PAYMENTS</span>
+            <div id="chipUpi">₹0 Collected</div>
+          </div>
+          <div class="chip-box">
+            <span>CASH PAYMENTS</span>
+            <div id="chipCash">₹0 Collected</div>
           </div>
         </div>
 
-        <!-- Advance Tokens & Waiting -->
-        <div class="kpi-card">
-          <div class="kpi-lbl">Advance Tokens</div>
-          <div class="kpi-val" style="color: var(--warning);" id="kpiAdvance">₹0</div>
-          <div class="kpi-sub">
-            <span id="kpiWaitingCount">Waiting List: 0</span>
-            <span>Queued</span>
-          </div>
-        </div>
-
-        <!-- Metric Badges Row -->
-        <div class="kpi-card span-2" style="padding: 10px 14px;">
-          <div class="chips-carousel">
-            <div class="chip" id="chipJunior">Juniors (Std 1-3): 0</div>
-            <div class="chip" id="chipSenior">Seniors (Std 4+): 0</div>
-            <div class="chip" id="chipUpi">UPI: ₹0</div>
-            <div class="chip" id="chipCash">Cash: ₹0</div>
-          </div>
+        <!-- Tour Operational Summary -->
+        <div class="trip-summary-box">
+          <h3>🚌 Pilgrimage Logistics Info</h3>
+          <div class="summary-item"><span>Coach Standard:</span> <span>Single Deck Luxury Coach (50 Seats)</span></div>
+          <div class="summary-item"><span>Parish Ministry:</span> <span>St. Joseph's Catechism Midalam</span></div>
+          <div class="summary-item"><span>Destination:</span> <span>Kerala Historical & Spiritual Tour</span></div>
+          <div class="summary-item"><span>Status:</span> <span style="color: var(--success);">Online Bookings Open</span></div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 1: REGISTRATION & SEAT SELECTION -->
-    <div id="bookingTab" class="tab-content">
+    <!-- PAGE 2: DEDICATED SEAT BOOKING PAGE -->
+    <div id="bookingTab" class="tab-content" style="display: none;">
       <div class="card">
-        <div class="card-title">📝 Student Registration</div>
+        <div class="card-title">📝 Student Registration & Seat Booking</div>
 
         <form id="regForm" onsubmit="handleRegistration(event)">
           <div class="form-group">
@@ -592,7 +558,7 @@
           </div>
 
           <div class="form-group">
-            <label>Select Seat (Upper Wing - 50 Seats)</label>
+            <label>Select Seat (50-Passenger Upper Wing)</label>
             <div class="bus-container">
               <div class="bus-front">
                 <span>ENTRY DOOR 🚪</span>
@@ -667,7 +633,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: SECURED ADMIN ROSTER -->
+    <!-- PAGE 3: DEDICATED SECURED ADMIN ROSTER -->
     <div id="rosterTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">🔐 Admin Control Center</div>
@@ -738,6 +704,7 @@
       setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
 
+    // Tab Switcher between Dashboard, Booking, and Admin
     function switchTab(tabId, evt) {
       document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -793,7 +760,7 @@
       const pendingStudentsCount = registrations.filter(r => Number(r.balance) > 0).length;
 
       // Update KPI Cards
-      document.getElementById('kpiSeats').innerHTML = `${seatsCount} <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">/ 50</span>`;
+      document.getElementById('kpiSeats').innerHTML = `${seatsCount} <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">/ 50</span>`;
       document.getElementById('kpiRemaining').innerText = seatsRemaining;
       document.getElementById('kpiSeatPct').innerText = `${seatPct}%`;
       document.getElementById('barSeats').style.width = `${Math.min(100, seatPct)}%`;
@@ -808,16 +775,16 @@
       document.getElementById('kpiAdvance').innerText = `₹${advanceTotal.toLocaleString()}`;
       document.getElementById('kpiWaitingCount').innerText = `Waiting List: ${waiting.length}`;
 
-      // Update Chips
+      // Update Distribution Chips
       const juniorCount = registrations.filter(r => ['Class 1', 'Class 2', 'Class 3'].includes(r.standard)).length;
       const seniorCount = registrations.length - juniorCount;
       const upiTotal = registrations.filter(r => r.mode === 'UPI').reduce((sum, r) => sum + (Number(r.paid) || 0), 0);
       const cashTotal = totalPaid - upiTotal;
 
-      document.getElementById('chipJunior').innerText = `Juniors (Std 1-3): ${juniorCount}`;
-      document.getElementById('chipSenior').innerText = `Seniors (Std 4+): ${seniorCount}`;
-      document.getElementById('chipUpi').innerText = `UPI: ₹${upiTotal.toLocaleString()}`;
-      document.getElementById('chipCash').innerText = `Cash: ₹${cashTotal.toLocaleString()}`;
+      document.getElementById('chipJunior').innerText = `${juniorCount} Students (₹250)`;
+      document.getElementById('chipSenior').innerText = `${seniorCount} Students (₹500)`;
+      document.getElementById('chipUpi').innerText = `₹${upiTotal.toLocaleString()} Collected`;
+      document.getElementById('chipCash').innerText = `₹${cashTotal.toLocaleString()} Collected`;
     }
 
     function renderSeats() {
