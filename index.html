@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Kerala Tour">
-  <link rel="apple-touch-icon" href="https://i.ibb.co/3ykG2j5/kerala-bus.jpg">
+  <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80">
 
   <!-- Production Engines -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -46,12 +46,12 @@
       background-image: 
         radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.09) 0px, transparent 50%),
-        linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(244, 248, 245, 0.95) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(244, 248, 245, 0.94) 100%),
         url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=70");
       background-attachment: fixed;
       background-size: cover;
       color: var(--text);
-      padding-bottom: 90px;
+      padding-bottom: 120px;
       min-height: 100vh;
     }
 
@@ -72,7 +72,7 @@
     /* VIBRANT KERALA SCENIC HEADER */
     header {
       background: 
-        linear-gradient(180deg, rgba(4, 31, 23, 0.60) 0%, rgba(6, 40, 30, 0.88) 100%),
+        linear-gradient(180deg, rgba(4, 31, 23, 0.65) 0%, rgba(6, 40, 30, 0.88) 100%),
         url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
       color: white;
       padding: max(12px, env(safe-area-inset-top)) 10px 14px;
@@ -90,7 +90,7 @@
       text-align: center;
     }
 
-    /* REAL KERALA TOURIST COACH PHOTO EMBLEM WITH CUSTOM "MASKARA" NAME STRIP */
+    /* REAL KERALA TOURIST COACH EMBLEM */
     .kerala-bus-photo-container {
       width: 86px;
       height: 68px;
@@ -111,12 +111,11 @@
       object-position: center top;
       transform: scale(1.05);
     }
-    /* "MASKARA" OVERLAY RIBBON ON BUS WINDSHIELD */
     .maskara-windshield-overlay {
       position: absolute;
       top: 15px;
-      left: 11px;
-      right: 11px;
+      left: 9px;
+      right: 9px;
       background: linear-gradient(180deg, #d90429 0%, #7209b7 100%);
       color: #ffffff;
       border: 1px solid var(--accent);
@@ -259,7 +258,7 @@
 
     .container { max-width: 620px; margin: 0 auto; padding: 14px; position: relative; }
 
-    /* VISIBLE MILD SCENIC BACKDROPS ON EVERY TAB */
+    /* MILD SCENIC BACKDROPS */
     #dashboardTab {
       background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244,248,245,0.92) 100%),
                   url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=70") center/cover no-repeat;
@@ -313,6 +312,70 @@
     .chip-box { background: rgba(255, 255, 255, 0.95); border: 1px solid var(--border); padding: 9px 11px; border-radius: 10px; font-size: 0.74rem; font-weight: 700; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.65rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
+    /* PILGRIMAGE GUIDELINES (DO'S & DON'TS) */
+    .guidelines-box {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 16px;
+    }
+    .guide-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .guide-col {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid var(--border);
+    }
+    .guide-col h5 {
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .guide-col.dos h5 { color: var(--success-dark); }
+    .guide-col.donts h5 { color: var(--danger); }
+    .guide-list {
+      list-style: none;
+      font-size: 0.68rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .guide-list li {
+      margin-bottom: 5px;
+      padding-left: 12px;
+      position: relative;
+    }
+    .guide-col.dos .guide-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 800;
+    }
+    .guide-col.donts .guide-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: var(--danger);
+      font-weight: 800;
+    }
+
     /* FORM STYLES */
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 0.76rem; font-weight: 700; color: var(--text); margin-bottom: 5px; text-transform: uppercase; }
@@ -357,6 +420,23 @@
     .btn-primary { background: linear-gradient(135deg, #06281e, #0e4432); color: white; box-shadow: 0 4px 12px rgba(6, 40, 30, 0.25); }
     .btn-accent { background: var(--accent-gradient); color: #06281e; font-weight: 900; }
     .btn-secondary { background: #0f3d2e; color: white; }
+
+    /* SEAT SEARCH BAR */
+    .seat-search-wrapper {
+      background: #f1f5f9;
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .seat-search-wrapper input {
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      background: white;
+    }
 
     /* 3D COACH BUS CABIN */
     .bus-container {
@@ -409,6 +489,7 @@
       justify-content: flex-start;
       perspective: 600px;
       user-select: none;
+      transition: transform 0.2s ease;
     }
 
     .seat-headrest {
@@ -497,6 +578,17 @@
     .seat-3d.boarded .seat-num { color: #14532d; }
     .seat-3d.boarded .seat-type-tag { color: #15803d; }
     .seat-3d.boarded .seat-assigned-name { color: #14532d; font-weight: 900; }
+
+    /* SEARCH HIGHLIGHTED SEAT */
+    .seat-3d.search-highlight {
+      transform: scale(1.15);
+      z-index: 10;
+      animation: seatPulse 1s infinite alternate;
+    }
+    @keyframes seatPulse {
+      from { filter: drop-shadow(0 0 4px var(--accent)); }
+      to { filter: drop-shadow(0 0 14px var(--accent)); }
+    }
 
     /* SEARCH & FILTER BAR IN ADMIN */
     .filter-wrapper { margin-bottom: 12px; }
@@ -609,80 +701,91 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 16px 18px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 12px; }
 
-    /* SCANNER MODAL */
-    #qr-scanner-box {
-      width: 100%;
-      height: 270px;
-      border-radius: 18px;
-      overflow: hidden;
-      margin: 10px auto;
-      border: 2px solid #cbd5e1;
-      background: #000;
-      position: relative;
-    }
-    .scanner-viewfinder {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 190px;
-      height: 190px;
-      border: 2px solid rgba(212, 175, 55, 0.8);
+    /* HELPLINE CARDS */
+    .contact-card {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
       border-radius: 14px;
-      box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.45);
-      pointer-events: none;
-      z-index: 10;
-    }
-    .scanner-viewfinder::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: #10b981;
-      box-shadow: 0 0 10px #10b981;
-      animation: scanAnim 2s infinite linear;
-    }
-    @keyframes scanAnim {
-      0% { top: 0%; }
-      50% { top: 100%; }
-      100% { top: 0%; }
-    }
-
-    .boarding-success-card {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #ffffff;
-      border-radius: 18px;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 16px;
-      z-index: 20;
-      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    @keyframes popIn {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .success-icon-badge {
-      width: 68px;
-      height: 68px;
-      background: #dcfce7;
-      color: #10b981;
-      border-radius: 50%;
+      padding: 12px 14px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
+      justify-content: space-between;
       margin-bottom: 10px;
-      box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
+    }
+    .contact-info { display: flex; flex-direction: column; }
+    .contact-name { font-size: 0.95rem; font-weight: 800; color: var(--primary); }
+    .contact-role { font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+    .contact-phone { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .call-btn {
+      background: #10b981;
+      color: white;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* HEADCOUNT POPUP CHECKLIST */
+    .headcount-list {
+      max-height: 280px;
+      overflow-y: auto;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .hc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      background: white;
+    }
+    .hc-item:last-child { border-bottom: none; }
+    .hc-item.checked { background: #ecfdf5; }
+
+    /* FLOATING BOTTOM SOS / HELPLINE BAR */
+    .floating-sos-bar {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 28px);
+      max-width: 480px;
+      background: rgba(6, 40, 30, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--accent);
+      border-radius: 30px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 90;
+    }
+    .sos-left-text {
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .sos-btn-trigger {
+      background: var(--accent-gradient);
+      color: #06281e;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      cursor: pointer;
     }
 
     #toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 74px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(4, 31, 23, 0.95);
@@ -809,6 +912,32 @@
             <div id="chipTotalPax">0 Registered</div>
           </div>
         </div>
+
+        <!-- PILGRIMAGE DOS & DON'TS -->
+        <div class="guidelines-box">
+          <div class="guide-title">📜 Pilgrimage Guidelines (Do's & Don'ts)</div>
+          <div class="guide-grid">
+            <div class="guide-col dos">
+              <h5>DO'S (Follow)</h5>
+              <ul class="guide-list">
+                <li>Assemble at Church campus 30 mins before departure.</li>
+                <li>Wear Catechism ID card & maintain reverence at holy shrines.</li>
+                <li>Stay with your assigned group leader at every stop.</li>
+                <li>Keep the luxury coach clean and tidy throughout.</li>
+              </ul>
+            </div>
+            <div class="guide-col donts">
+              <h5>DON'TS (Avoid)</h5>
+              <ul class="guide-list">
+                <li>Do not leave the bus at any stop without teacher's permission.</li>
+                <li>Do not stand or move along the aisle while coach is in motion.</li>
+                <li>Avoid carrying expensive jewelry or heavy cash.</li>
+                <li>Do not delay bus restart timing at tea or meal breaks.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -861,6 +990,12 @@
 
           <div class="form-group">
             <label>Select 3D Coach Seat (Passenger Details Shown)</label>
+            
+            <!-- LIVE SEAT SEARCH LOCATOR -->
+            <div class="seat-search-wrapper">
+              <span style="font-size:0.9rem;">🔎</span>
+              <input type="text" id="seatSearchQuery" placeholder="Find my seat (Enter student name or mobile)..." oninput="searchAndLocateSeat()">
+            </div>
             
             <div class="bus-container">
               <div class="bus-front-cockpit">
@@ -917,7 +1052,7 @@
             <label>Admin Security PIN (Cryptographic SHA-256)</label>
             <div style="position: relative; display: flex; align-items: center;">
               <input type="password" id="adminPin" placeholder="Enter Authorized PIN" autocomplete="off" maxlength="8" style="padding-right: 44px;">
-              <button type="button" onclick="togglePinVisibility()" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; font-size: 1.15rem; color: var(--text-muted);" id="pinEyeBtn">👁️</button>
+              <button type="button" onclick="togglePinVisibility()" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; font-size: 1.15rem; color: var(--text-muted);" id="pinEyeBtn">👁️️</button>
             </div>
           </div>
           <button class="btn btn-secondary" id="adminLoginBtn" onclick="checkAdminPinSecure()">Authorize & Access Roster</button>
@@ -930,9 +1065,13 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 800; font-size: 0.82rem; cursor: pointer;">Logout</button>
           </div>
 
-          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-            <button class="btn btn-primary" style="flex: 1; padding: 12px; font-size: 0.85rem;" onclick="openScannerModal()">📷 Scan Boarding QR</button>
-            <button class="btn btn-accent" style="flex: 1; padding: 12px; font-size: 0.85rem;" onclick="exportCSV()">📥 Download CSV</button>
+          <!-- ADMIN ACTION CLUSTER WITH HEADCOUNT TOOL -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+            <button class="btn btn-primary" style="padding: 11px; font-size: 0.82rem;" onclick="openScannerModal()">📷 Boarding QR</button>
+            <button class="btn btn-accent" style="padding: 11px; font-size: 0.82rem;" onclick="openHeadcountModal()">📋 Break Headcount</button>
+          </div>
+          <div style="margin-bottom: 12px;">
+            <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem;" onclick="exportCSV()">📥 Download Passenger CSV</button>
           </div>
 
           <!-- SEARCH & FILTER BAR -->
@@ -955,6 +1094,80 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- FLOATING BOTTOM SOS / HELPLINE BAR -->
+  <div class="floating-sos-bar">
+    <div class="sos-left-text">
+      <span>🚨 Need Assistance / Help?</span>
+    </div>
+    <button class="sos-btn-trigger" onclick="openHelplineModal()">📞 Helplines</button>
+  </div>
+
+  <!-- HELPLINES BOTTOM SHEET -->
+  <div class="modal-overlay" id="helplineModal">
+    <div class="modal-card">
+      <div class="sheet-handle"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📞 Parish Pilgrimage Helplines</h3>
+        <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
+      </div>
+
+      <!-- Parish Priest -->
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="contact-role">Parish Priest</span>
+          <span class="contact-name">Rev. Fr. Vigin Bright</span>
+          <span class="contact-phone">+91 85265 04345</span>
+        </div>
+        <a href="tel:+918526504345" class="call-btn">📞 Call</a>
+      </div>
+
+      <!-- Co-ordinator Denson -->
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="contact-role">Trip Co-ordinator</span>
+          <span class="contact-name">Denson</span>
+          <span class="contact-phone">+91 94864 72814</span>
+        </div>
+        <a href="tel:+919486472814" class="call-btn">📞 Call</a>
+      </div>
+
+      <!-- Lead Bensigar -->
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="contact-role">Tour Coordinator</span>
+          <span class="contact-name">Bensigar</span>
+          <span class="contact-phone">+91 94862 70230</span>
+        </div>
+        <a href="tel:+919486270230" class="call-btn">📞 Call</a>
+      </div>
+
+      <p style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 12px; font-weight: 600;">
+        St. Joseph's Church Midalam • 24/7 Pilgrimage Support
+      </p>
+    </div>
+  </div>
+
+  <!-- BREAK HEADCOUNT BOTTOM SHEET -->
+  <div class="modal-overlay" id="headcountModal">
+    <div class="modal-card">
+      <div class="sheet-handle"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h3>
+        <button onclick="closeHeadcountModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Tap each student as they step into the bus:</p>
+
+      <div style="background:#f1f5f9; padding:10px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.85rem; font-weight:800;" id="hcCountDisplay">Onboard: 0 / 0</span>
+        <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.72rem; font-weight:800; padding:4px 8px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+      </div>
+
+      <div class="headcount-list" id="headcountItemsList"></div>
+
+      <button class="btn btn-primary" onclick="closeHeadcountModal()">Finish Stop Headcount</button>
+    </div>
   </div>
 
   <!-- BOARDING PASS PREVIEW BOTTOM SHEET -->
@@ -1064,6 +1277,7 @@
     const AUTHORIZED_PIN_SHA256 = "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
+    let headcountChecked = JSON.parse(localStorage.getItem('midalam_headcount_checked') || '{}');
     let currentTicket = null;
     let qrScanner = null;
     let isProcessingScan = false;
@@ -1129,6 +1343,91 @@
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).style.display = 'block';
       if (evt && evt.target) evt.target.classList.add('active');
+    }
+
+    function openHelplineModal() {
+      document.getElementById('helplineModal').style.display = 'flex';
+    }
+    function closeHelplineModal() {
+      document.getElementById('helplineModal').style.display = 'none';
+    }
+
+    /* PIT-STOP HEADCOUNT ROLL-CALL */
+    function openHeadcountModal() {
+      renderHeadcountList();
+      document.getElementById('headcountModal').style.display = 'flex';
+    }
+    function closeHeadcountModal() {
+      document.getElementById('headcountModal').style.display = 'none';
+    }
+
+    function renderHeadcountList() {
+      const listEl = document.getElementById('headcountItemsList');
+      listEl.innerHTML = '';
+
+      let checkedCount = 0;
+      registrations.forEach(r => {
+        const isChecked = !!headcountChecked[r.id];
+        if (isChecked) checkedCount++;
+
+        const item = document.createElement('div');
+        item.className = `hc-item ${isChecked ? 'checked' : ''}`;
+        item.innerHTML = `
+          <div>
+            <strong style="font-size:0.85rem;">${r.name}</strong>
+            <span style="display:block; font-size:0.68rem; color:var(--text-muted);">Seat: ${r.seatNum} • ${r.standard}</span>
+          </div>
+          <button onclick="toggleHeadcount('${r.id}')" style="border:none; padding:6px 12px; border-radius:8px; font-weight:800; font-size:0.75rem; cursor:pointer; background:${isChecked ? '#10b981;color:white;' : '#e2e8f0;color:var(--text);'}">
+            ${isChecked ? '✓ Present' : '○ Missing'}
+          </button>
+        `;
+        listEl.appendChild(item);
+      });
+
+      document.getElementById('hcCountDisplay').innerText = `Onboard: ${checkedCount} / ${registrations.length}`;
+      document.getElementById('hcCountDisplay').style.color = (checkedCount === registrations.length) ? 'var(--success-dark)' : 'var(--danger)';
+    }
+
+    function toggleHeadcount(id) {
+      headcountChecked[id] = !headcountChecked[id];
+      localStorage.setItem('midalam_headcount_checked', JSON.stringify(headcountChecked));
+      renderHeadcountList();
+    }
+
+    function resetHeadcount() {
+      if (confirm("Reset pit-stop headcount roll-call for next stop?")) {
+        headcountChecked = {};
+        localStorage.removeItem('midalam_headcount_checked');
+        renderHeadcountList();
+        showToast("Headcount reset for new stop");
+      }
+    }
+
+    /* LIVE SEAT SEARCH LOCATOR */
+    function searchAndLocateSeat() {
+      const query = document.getElementById('seatSearchQuery').value.toLowerCase().trim();
+      document.querySelectorAll('.seat-3d').forEach(s => s.classList.remove('search-highlight'));
+
+      if (!query) return;
+
+      const matched = registrations.find(r => 
+        r.name.toLowerCase().includes(query) ||
+        (r.phone && r.phone.includes(query)) ||
+        (r.id && r.id.toLowerCase().includes(query))
+      );
+
+      if (matched && matched.seatNum) {
+        const seatNo = String(matched.seatNum).padStart(2, '0');
+        const seatElements = document.querySelectorAll('.seat-3d');
+        seatElements.forEach(el => {
+          const numEl = el.querySelector('.seat-num');
+          if (numEl && numEl.innerText === seatNo) {
+            el.classList.add('search-highlight');
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showToast(`Found: ${matched.name} ➔ Seat #${seatNo} (${matched.boarded ? 'Boarded' : 'Not Boarded'})`);
+          }
+        });
+      }
     }
 
     function updateFare() {
