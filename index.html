@@ -186,11 +186,7 @@
     }
     input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; }
 
-    .diet-selection-box {
-      display: flex;
-      gap: 12px;
-      margin-top: 6px;
-    }
+    .diet-selection-box { display: flex; gap: 12px; margin-top: 6px; }
     .diet-option {
       flex: 1;
       display: flex;
@@ -234,7 +230,7 @@
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Coach Layout */
+    /* Coach Diagram */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -345,7 +341,6 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
-    /* In-App Scanner View */
     #scanner-container {
       width: 100%;
       max-width: 380px;
@@ -379,7 +374,7 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER WITH LEFT COACH & RIGHT ST. JOSEPH PORTRAIT -->
   <header>
     <div class="header-layout">
       <div class="header-icon-box">
@@ -731,7 +726,8 @@
   <div id="toast"></div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyV_5kSeEJz_jU3AIHui14B_y3_IMdDWUicSKA4q7fn_wjfPjwXrVCBOI8ZOs5n00h67A/exec";
+    // LIVE GOOGLE APPS SCRIPT WEBHOOK URL:
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let currentTicket = null;
@@ -1041,7 +1037,7 @@
         { facingMode: "environment" },
         { fps: 10, qrbox: 220 },
         onScanSuccess,
-        (errorMessage) => { /* ignore minor scanning frame noise */ }
+        (errorMessage) => { }
       ).catch(err => {
         document.getElementById('scannerResult').innerText = "Camera permission needed to scan.";
         document.getElementById('scannerResult').style.color = "var(--danger)";
