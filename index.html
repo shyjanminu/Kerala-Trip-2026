@@ -30,48 +30,92 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
 
+    /* Custom Header with Left Coach & Right St. Joseph Portrait */
     header {
       background: linear-gradient(135deg, #070d1e 0%, #0b132b 50%, #1c2541 100%);
       color: white;
-      padding: 30px 16px 20px;
-      text-align: center;
+      padding: 22px 14px 18px;
       position: relative;
       border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    .header-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .header-icon-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 72px;
+      text-align: center;
+    }
+    .header-img-frame {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: #1c2541;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .header-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .header-badge-sub {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .header-center {
+      flex: 1;
+      text-align: center;
     }
     .church-crest {
       display: inline-flex;
-      background: rgba(212, 175, 55, 0.15);
+      background: rgba(212, 175, 55, 0.18);
       color: var(--accent);
       border: 1px solid rgba(212, 175, 55, 0.5);
-      padding: 4px 14px;
-      border-radius: 30px;
-      font-size: 0.72rem;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    header h1 { font-size: 1.6rem; font-weight: 800; }
-    header p { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
+    .header-center h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.3px; line-height: 1.2; }
+    .header-center p { font-size: 0.76rem; color: #94a3b8; margin-top: 3px; font-weight: 500; }
 
     .sync-status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      margin-top: 10px;
-      padding: 4px 12px;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 3px 10px;
       background: rgba(255, 255, 255, 0.08);
-      border-radius: 30px;
-      font-size: 0.72rem;
+      border-radius: 20px;
+      font-size: 0.68rem;
       color: #cbd5e1;
     }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--warning);
-    }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
+    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -120,12 +164,7 @@
 
     /* Dashboard */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
-    .kpi-card {
-      background: #f8fafc;
-      border-radius: 14px;
-      padding: 16px 14px;
-      border: 1px solid var(--border);
-    }
+    .kpi-card { background: #f8fafc; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); }
     .kpi-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
     .kpi-val { font-size: 1.45rem; font-weight: 800; color: var(--primary); margin: 6px 0 2px; }
     .kpi-sub { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; }
@@ -135,15 +174,7 @@
     .bg-success { background: var(--success); }
 
     .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
-    .chip-box {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--secondary);
-    }
+    .chip-box { background: white; border: 1px solid var(--border); padding: 10px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
     /* Form */
@@ -188,7 +219,7 @@
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Bus */
+    /* Coach Diagram with Names */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -206,57 +237,65 @@
       border-bottom: 2px dashed #cbd5e1;
       margin-bottom: 14px;
     }
-    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: center; }
-    .seat-grid .aisle { grid-column: 3; height: 10px; }
+    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; align-items: center; }
+    .seat-grid .aisle { grid-column: 3; height: 8px; }
     .seat {
-      aspect-ratio: 1;
+      min-height: 60px;
       border-radius: 8px;
       border: 1.5px solid #cbd5e1;
       background: white;
-      font-size: 0.78rem;
-      font-weight: 800;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      padding: 4px 2px;
+      text-align: center;
     }
-    .seat span { font-size: 0.58rem; color: var(--text-muted); font-weight: 600; }
-    .seat.booked { background: #fee2e2; border-color: #fca5a5; color: #991b1b; cursor: not-allowed; }
-    .seat.booked span { color: #991b1b; }
-    .seat.selected { background: var(--primary); border-color: var(--primary); color: white; transform: scale(1.05); }
-    .seat.selected span { color: var(--accent); }
-
-    /* Boarding Pass */
-    .ticket-wrapper { margin-top: 24px; display: none; }
-    .ticket { background: white; border-radius: 18px; box-shadow: var(--shadow-lg); border: 1px solid var(--border); overflow: hidden; }
-    .ticket-head { background: linear-gradient(135deg, #070d1e, #0b132b); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
-    .ticket-head h3 { font-size: 1.2rem; font-weight: 800; }
-    .ticket-head p { font-size: 0.75rem; color: #cbd5e1; margin-top: 3px; }
-    .ticket-body { padding: 18px 20px; }
-    .t-row { display: flex; justify-content: space-between; margin-bottom: 9px; font-size: 0.85rem; }
-    .t-lbl { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
-    .t-val { font-weight: 800; color: var(--text); }
-    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 16px 0; }
-    .ticket-divider::before, .ticket-divider::after {
-      content: ''; position: absolute; top: -12px; width: 24px; height: 24px; background: var(--bg); border-radius: 50%;
+    .seat .num { font-size: 0.75rem; font-weight: 800; }
+    .seat .type { font-size: 0.55rem; color: var(--text-muted); font-weight: 600; }
+    .seat .allocated-name {
+      font-size: 0.58rem;
+      font-weight: 800;
+      color: #991b1b;
+      margin-top: 2px;
+      max-width: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
     }
-    .ticket-divider::before { left: -32px; }
-    .ticket-divider::after { right: -32px; }
-    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 20px 22px; }
-    #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
+    .seat.booked { background: #fee2e2; border-color: #fca5a5; cursor: not-allowed; }
+    .seat.selected { background: var(--primary); border-color: var(--primary); color: white; }
+    .seat.selected .type { color: var(--accent); }
 
-    /* Admin Table */
+    /* Admin Action Clusters */
     .table-container { overflow-x: auto; margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+    th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
     th { background: #f8fafc; color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
 
-    /* Settlement Modal */
+    .action-cluster { display: flex; gap: 4px; flex-wrap: wrap; }
+    .act-btn {
+      padding: 5px 9px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .act-confirm { background: #10b981; color: white; }
+    .act-pass { background: #0b132b; color: var(--accent); border: 1px solid var(--accent); }
+    .act-cancel { background: #fee2e2; color: #ef4444; }
+
+    /* Modal Styling */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(11, 19, 43, 0.7);
+      background: rgba(11, 19, 43, 0.78);
       backdrop-filter: blur(4px);
       z-index: 1000;
       display: none;
@@ -271,7 +310,21 @@
       max-width: 440px;
       width: 100%;
       box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
     }
+
+    .ticket { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; margin-top: 10px; }
+    .ticket-head { background: linear-gradient(135deg, #070d1e, #0b132b); color: white; padding: 18px; text-align: center; border-bottom: 2px solid var(--accent); }
+    .ticket-head h3 { font-size: 1.15rem; font-weight: 800; }
+    .ticket-head p { font-size: 0.72rem; color: #cbd5e1; margin-top: 3px; }
+    .ticket-body { padding: 16px 18px; }
+    .t-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.82rem; }
+    .t-lbl { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; font-weight: 700; }
+    .t-val { font-weight: 800; color: var(--text); }
+    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 14px 0; }
+    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
+    #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
     #toast {
       position: fixed;
@@ -287,20 +340,49 @@
       z-index: 1100;
       display: none;
     }
+
+    @media print {
+      body * { visibility: hidden; }
+      #ticketModal, #ticketModal * { visibility: visible; }
+      #ticketModal { position: absolute; left: 0; top: 0; width: 100%; background: white; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- HEADER WITH LEFT BUS (MASKARA) & RIGHT ST. JOSEPH PORTRAIT -->
   <header>
-    <div class="church-crest">St. Joseph's Church Midalam</div>
-    <h1>Kerala Tour 2026</h1>
-    <p>Catechism Ministry • Annual Children & Youth Pilgrimage</p>
-    <div class="sync-status-pill">
-      <span class="pulse-dot" id="cloudDot"></span>
-      <span id="cloudStatusText">Connecting Cloud Database...</span>
+    <div class="header-layout">
+      <!-- Left side: Maskara Tourist Coach -->
+      <div class="header-icon-box">
+        <div class="header-img-frame">
+          <img src="https://applecarrentals.com/assets/web/images/about/bus.jpg" alt="Maskara Luxury Tourist Bus">
+        </div>
+        <div class="header-badge-sub">Maskara</div>
+      </div>
+
+      <!-- Center Title -->
+      <div class="header-center">
+        <div class="church-crest">St. Joseph's Church Midalam</div>
+        <h1>Kerala Tour 2026</h1>
+        <p>Catechism Ministry • Pilgrimage</p>
+        <div class="sync-status-pill">
+          <span class="pulse-dot" id="cloudDot"></span>
+          <span id="cloudStatusText">Connecting Cloud...</span>
+        </div>
+      </div>
+
+      <!-- Right side: St. Joseph Photo -->
+      <div class="header-icon-box">
+        <div class="header-img-frame">
+          <img src="https://media.istockphoto.com/id/139385849/photo/saint-joseph-statue-up-close.jpg?s=612x612&w=0&k=20&c=YPnRxi9z5NVJGcmqllQdxVWWDPbzX8pgC1ckA5Zk4O0=" alt="St. Joseph Midalam">
+        </div>
+        <div class="header-badge-sub">St. Joseph</div>
+      </div>
     </div>
   </header>
 
+  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
@@ -380,10 +462,10 @@
       </div>
     </div>
 
-    <!-- TAB 2: BOOKING -->
+    <!-- TAB 2: SEAT BOOKING -->
     <div id="bookingTab" class="tab-content" style="display: none;">
       <div class="card">
-        <div class="card-title">📝 Student Registration & Seat Booking</div>
+        <div class="card-title">📝 Student Registration & Seat Allocation</div>
 
         <form id="regForm" onsubmit="handleRegistration(event)">
           <div class="form-group">
@@ -427,8 +509,9 @@
             <input type="tel" id="phoneNumber" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
           </div>
 
+          <!-- Coach Map with Names -->
           <div class="form-group">
-            <label>Select Seat (50-Passenger Upper Wing)</label>
+            <label>Select Seat (Allocated Passenger Names Shown)</label>
             <div class="bus-container">
               <div class="bus-front">
                 <span>ENTRY DOOR 🚪</span>
@@ -443,7 +526,7 @@
           <div class="form-group">
             <label>Payment Mode Option</label>
             <select id="paymentType" onchange="updatePayOption()" required>
-              <option value="Full">Full Payment (Instant Seat Confirmation)</option>
+              <option value="Full">Full Payment (Instant Seat Allocation)</option>
               <option value="Advance">Advance Token (Queued on Waiting List)</option>
             </select>
           </div>
@@ -470,35 +553,6 @@
             Confirm Booking & Generate Pass
           </button>
         </form>
-      </div>
-
-      <div class="ticket-wrapper" id="ticketWrapper">
-        <div class="ticket" id="boardingPass">
-          <div class="ticket-head">
-            <h3>OFFICIAL BOARDING PASS</h3>
-            <p>St. Joseph's Catechism Midalam • Kerala Pilgrimage 2026</p>
-          </div>
-          <div class="ticket-body">
-            <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color: var(--accent); font-size: 1.05rem;">-</span></div>
-            <div class="t-row"><span class="t-lbl">Student Name</span><span class="t-val" id="tPassName">-</span></div>
-            <div class="t-row"><span class="t-lbl">Standard</span><span class="t-val" id="tPassStandard">-</span></div>
-            <div class="t-row"><span class="t-lbl">Parent</span><span class="t-val" id="tPassParent">-</span></div>
-            <div class="t-row"><span class="t-lbl">Seat Assigned</span><span class="t-val" id="tPassSeat" style="color: var(--accent);">-</span></div>
-            <div class="t-row"><span class="t-lbl">Amount Paid</span><span class="t-val" id="tPassPaid">-</span></div>
-            <div class="t-row"><span class="t-lbl">Balance Due</span><span class="t-val" id="tPassBalance">-</span></div>
-            <div class="t-row"><span class="t-lbl">Status</span><span class="t-val" id="tPassStatus">-</span></div>
-          </div>
-          <div class="ticket-divider"></div>
-          <div class="ticket-footer">
-            <div id="qrcode"></div>
-            <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 10px; font-weight: 600;">Present this digital QR pass at coach boarding</p>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 10px; margin-top: 14px;">
-          <button class="btn btn-accent" style="flex: 1;" onclick="window.print()">🖨️ Print / Save PDF</button>
-          <button class="btn btn-secondary" style="flex: 1;" onclick="shareWhatsApp()">💬 Share WhatsApp</button>
-        </div>
       </div>
     </div>
 
@@ -537,8 +591,7 @@
                   <th>Ticket</th>
                   <th>Student</th>
                   <th>Seat</th>
-                  <th>Paid / Bal</th>
-                  <th>Status</th>
+                  <th>Payment</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -551,12 +604,49 @@
 
   </div>
 
-  <!-- PAYMENT & SEAT ASSIGNMENT MODAL -->
-  <div class="modal-overlay" id="settleModal">
+  <!-- BOARDING PASS MODAL (Generated once at booking, and on-demand by Admin) -->
+  <div class="modal-overlay" id="ticketModal">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1rem; font-weight: 800; color: var(--primary);">Official Boarding Pass</h3>
+        <button onclick="closeTicketModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
+      </div>
+
+      <div class="ticket">
+        <div class="ticket-head">
+          <h3>OFFICIAL BOARDING PASS</h3>
+          <p>St. Joseph's Catechism Midalam • Kerala Pilgrimage 2026</p>
+        </div>
+        <div class="ticket-body">
+          <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color:var(--accent); font-size:1.05rem;">-</span></div>
+          <div class="t-row"><span class="t-lbl">Student Name</span><span class="t-val" id="tPassName">-</span></div>
+          <div class="t-row"><span class="t-lbl">Standard</span><span class="t-val" id="tPassStandard">-</span></div>
+          <div class="t-row"><span class="t-lbl">Parent</span><span class="t-val" id="tPassParent">-</span></div>
+          <div class="t-row"><span class="t-lbl">Seat Assigned</span><span class="t-val" id="tPassSeat" style="color:var(--accent);">-</span></div>
+          <div class="t-row"><span class="t-lbl">Amount Paid</span><span class="t-val" id="tPassPaid">-</span></div>
+          <div class="t-row"><span class="t-lbl">Balance Due</span><span class="t-val" id="tPassBalance">-</span></div>
+          <div class="t-row"><span class="t-lbl">Status</span><span class="t-val" id="tPassStatus">-</span></div>
+        </div>
+        <div class="ticket-divider"></div>
+        <div class="ticket-footer">
+          <div id="qrcode"></div>
+          <p style="font-size:0.7rem; color:var(--text-muted); margin-top:8px; font-weight:600;">Authorized by Catechism Ministry</p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-top: 14px;">
+        <button class="btn btn-accent" style="flex: 1;" onclick="window.print()">🖨️ Print Pass</button>
+        <button class="btn btn-secondary" style="flex: 1;" onclick="shareWhatsApp()">💬 WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM / SETTLE PAYMENT MODAL -->
+  <div class="modal-overlay" id="confirmModal">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">💳 Settle Balance & Confirm Seat</h3>
-        <button onclick="closeSettleModal()" style="border:none;background:none;font-size:1.2rem;cursor:pointer;color:var(--text-muted);">✕</button>
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">✅ Confirm Seat & Payment</h3>
+        <button onclick="closeConfirmModal()" style="border:none;background:none;font-size:1.2rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
       <div style="background:#f1f5f9;padding:10px 12px;border-radius:10px;margin-bottom:14px;font-size:0.82rem;">
@@ -568,17 +658,16 @@
       <input type="hidden" id="mCurrentIdx">
 
       <div class="form-group">
-        <label>Additional Amount Paid Now (₹)</label>
-        <input type="number" id="mAdditionalPaid" required min="1">
+        <label>Additional Amount Received (₹)</label>
+        <input type="number" id="mAdditionalPaid" min="0">
       </div>
 
-      <div class="form-group" id="mSeatAssignGroup">
-        <label>Assign Confirmed Coach Seat</label>
+      <div class="form-group">
+        <label>Assign / Confirm Coach Seat</label>
         <select id="mAssignSeat"></select>
-        <small style="color:var(--text-muted);font-size:0.7rem;margin-top:3px;display:block;">Select an unoccupied coach seat for this student.</small>
       </div>
 
-      <button class="btn btn-primary" onclick="submitSettlement()" id="mSaveBtn">Save Payment & Confirm Seat</button>
+      <button class="btn btn-primary" onclick="submitConfirmation()" id="mSaveBtn">Confirm Registration</button>
     </div>
   </div>
 
@@ -681,22 +770,40 @@
       document.getElementById('chipCash').innerText = `₹${cashTotal.toLocaleString()} Collected`;
     }
 
+    // Format student names on seat box
+    function formatSeatName(fullName) {
+      if (!fullName) return '';
+      const parts = fullName.trim().split(' ');
+      if (parts.length === 1) return parts[0];
+      return parts[0] + ' ' + parts[1].charAt(0).toUpperCase() + '.';
+    }
+
+    // Render 50 seats displaying allocated student names
     function renderSeats() {
       const matrix = document.getElementById('seatMatrix');
       matrix.innerHTML = '';
 
-      const bookedSeatNums = registrations
-        .filter(r => r.status === 'CONFIRMED')
-        .map(r => String(r.seatNum).padStart(2, '0'));
+      const seatAllocationMap = {};
+      registrations.forEach(r => {
+        if (r.status === 'CONFIRMED' && r.seatNum && r.seatNum !== 'WAITING') {
+          seatAllocationMap[String(r.seatNum).padStart(2, '0')] = r.name;
+        }
+      });
 
       for (let i = 1; i <= 50; i++) {
         const seatNo = String(i).padStart(2, '0');
-        const isBooked = bookedSeatNums.includes(seatNo);
+        const bookedByName = seatAllocationMap[seatNo];
+        const isBooked = !!bookedByName;
         const isWindow = (i % 4 === 1 || i % 4 === 0);
 
         const btn = document.createElement('div');
         btn.className = `seat ${isBooked ? 'booked' : ''}`;
-        btn.innerHTML = `${seatNo}<span>${isWindow ? 'W' : 'A'}</span>`;
+        
+        btn.innerHTML = `
+          <span class="num">${seatNo}</span>
+          <span class="type">${isWindow ? 'W' : 'A'}</span>
+          ${isBooked ? `<span class="allocated-name" title="${bookedByName}">${formatSeatName(bookedByName)}</span>` : ''}
+        `;
 
         if (!isBooked) {
           btn.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', btn);
@@ -720,6 +827,7 @@
       showToast(`Selected Coach Seat #${seatNo} (${seatType})`);
     }
 
+    // Public Registration (Generates pass on screen ONCE)
     async function handleRegistration(e) {
       e.preventDefault();
       
@@ -733,15 +841,15 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "Securing Seat & Syncing...";
+      submitBtn.innerText = "Securing Seat & Generating...";
 
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
       const balance = Math.max(0, totalFare - paid);
       
       const ticketId = 'MID-' + String(101 + registrations.length);
-
       const isConfirmed = (payType === 'Full');
+
       const bookingData = {
         id: ticketId,
         name: document.getElementById('studentName').value.trim(),
@@ -759,11 +867,16 @@
         status: isConfirmed ? "CONFIRMED" : "WAITING"
       };
 
+      // 1. Immediately record locally & reflect name on coach seat
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
 
+      // 2. Open Boarding Pass Modal (Generated Once at Booking)
+      openTicketModal(bookingData);
+
+      // 3. Send to Google Sheets
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
@@ -771,12 +884,10 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bookingData)
         });
-        showToast(`Booked successfully! Ticket: ${ticketId}`);
       } catch (err) {
         console.error("Cloud sync warning:", err);
       }
 
-      displayTicket(bookingData);
       document.getElementById('regForm').reset();
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate Pass";
@@ -784,8 +895,10 @@
       setTimeout(fetchLiveRegistrations, 2000);
     }
 
-    function displayTicket(data) {
+    // Modal Display Function for Boarding Pass
+    function openTicketModal(data) {
       currentTicket = data;
+
       document.getElementById('tPassId').innerText = data.id;
       document.getElementById('tPassName').innerText = data.name;
       document.getElementById('tPassStandard').innerText = data.standard;
@@ -807,15 +920,22 @@
         correctLevel: QRCode.CorrectLevel.H
       });
 
-      const wrapper = document.getElementById('ticketWrapper');
-      wrapper.style.display = 'block';
-      wrapper.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('ticketModal').style.display = 'flex';
+    }
+
+    function closeTicketModal() {
+      document.getElementById('ticketModal').style.display = 'none';
+    }
+
+    // Admin On-Demand Pass Generation
+    function adminGenerateTicket(idx) {
+      openTicketModal(registrations[idx]);
     }
 
     function shareWhatsApp() {
       if (!currentTicket) return;
       const text = `*ST. JOSEPH'S CATECHISM MIDALAM - KERALA TRIP 2026*%0A` +
-        `*Boarding Pass Confirmed*%0A` +
+        `*Official Boarding Pass*%0A` +
         `• Ticket No: ${currentTicket.id}%0A` +
         `• Student: ${currentTicket.name} (${currentTicket.standard})%0A` +
         `• Seat: ${currentTicket.seatNum} (${currentTicket.seatType})%0A` +
@@ -895,12 +1015,13 @@
       if (sessionTimeout) clearTimeout(sessionTimeout);
     }
 
+    // Render Admin Roster with Confirm / Pass / Cancel Action Cluster
     function renderRoster() {
       const tbody = document.getElementById('rosterTableBody');
       tbody.innerHTML = '';
+
       registrations.forEach((r, idx) => {
         const tr = document.createElement('tr');
-        
         const isWaiting = (r.status === 'WAITING' || r.seatNum === 'WAITING');
         const hasDue = Number(r.balance) > 0;
 
@@ -914,17 +1035,13 @@
           </td>
           <td>
             ₹${r.paid}<br>
-            ${hasDue ? `<span style="color:var(--danger);font-weight:700;font-size:0.7rem;">Due: ₹${r.balance}</span>` : `<span style="color:var(--success);font-size:0.7rem;">Paid in Full</span>`}
+            ${hasDue ? `<span style="color:var(--danger);font-weight:700;font-size:0.68rem;">Due: ₹${r.balance}</span>` : `<span style="color:var(--success);font-size:0.68rem;">Paid in Full</span>`}
           </td>
           <td>
-            <span style="font-size:0.7rem;font-weight:700;padding:2px 6px;border-radius:4px;background:${isWaiting ? '#fef3c7;color:#92400e' : '#dcfce7;color:#166534'}">
-              ${r.status}
-            </span>
-          </td>
-          <td>
-            <div style="display:flex;gap:6px;align-items:center;">
-              ${(hasDue || isWaiting) ? `<button onclick="openSettleModal(${idx})" style="border:none;background:#10b981;color:white;border-radius:6px;padding:4px 8px;font-size:0.72rem;font-weight:700;cursor:pointer;" title="Settle Balance & Confirm Seat">💳 Pay</button>` : ''}
-              <button onclick="deleteTicket(${idx})" style="border:none;background:none;color:var(--danger);cursor:pointer;font-size:1.05rem;" title="Delete Ticket">🗑️</button>
+            <div class="action-cluster">
+              <button class="act-btn act-confirm" onclick="openConfirmModal(${idx})" title="Confirm Seat & Balance">✅ Confirm</button>
+              <button class="act-btn act-pass" onclick="adminGenerateTicket(${idx})" title="Generate Official QR Pass">🎫 Pass</button>
+              <button class="act-btn act-cancel" onclick="cancelRegistration(${idx})" title="Cancel Booking & Free Seat">❌ Cancel</button>
             </div>
           </td>
         `;
@@ -932,8 +1049,8 @@
       });
     }
 
-    // Modal Handling for Settle Payment & Assign Seat
-    function openSettleModal(idx) {
+    // Confirm Modal Handler
+    function openConfirmModal(idx) {
       const student = registrations[idx];
       document.getElementById('mCurrentIdx').value = idx;
       document.getElementById('mStudentName').innerText = student.name;
@@ -941,7 +1058,7 @@
       document.getElementById('mTicketId').innerText = student.id;
       document.getElementById('mAlreadyPaid').innerText = student.paid;
       document.getElementById('mBalanceDue').innerText = student.balance;
-      document.getElementById('mAdditionalPaid').value = student.balance; // default to settling full balance
+      document.getElementById('mAdditionalPaid').value = student.balance;
 
       const seatSelect = document.getElementById('mAssignSeat');
       seatSelect.innerHTML = '';
@@ -953,45 +1070,38 @@
       const isWaiting = (student.status === 'WAITING' || student.seatNum === 'WAITING');
 
       if (!isWaiting && student.seatNum) {
-        // Keep existing assigned seat
         const opt = document.createElement('option');
         opt.value = student.seatNum;
-        opt.innerText = `Keep Existing Seat ${student.seatNum} (${student.seatType})`;
+        opt.innerText = `Keep Seat ${student.seatNum} (${student.seatType})`;
         seatSelect.appendChild(opt);
-      } else {
-        // Build list of empty seats
-        for (let i = 1; i <= 50; i++) {
-          const seatNo = String(i).padStart(2, '0');
-          if (!bookedSeatNums.includes(seatNo)) {
-            const isWindow = (i % 4 === 1 || i % 4 === 0);
-            const opt = document.createElement('option');
-            opt.value = seatNo;
-            opt.innerText = `Seat ${seatNo} - ${isWindow ? 'Window (W)' : 'Aisle (A)'}`;
-            seatSelect.appendChild(opt);
-          }
+      }
+
+      for (let i = 1; i <= 50; i++) {
+        const seatNo = String(i).padStart(2, '0');
+        if (!bookedSeatNums.includes(seatNo) && seatNo !== student.seatNum) {
+          const isWindow = (i % 4 === 1 || i % 4 === 0);
+          const opt = document.createElement('option');
+          opt.value = seatNo;
+          opt.innerText = `Seat ${seatNo} - ${isWindow ? 'Window (W)' : 'Aisle (A)'}`;
+          seatSelect.appendChild(opt);
         }
       }
 
-      document.getElementById('settleModal').style.display = 'flex';
+      document.getElementById('confirmModal').style.display = 'flex';
     }
 
-    function closeSettleModal() {
-      document.getElementById('settleModal').style.display = 'none';
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').style.display = 'none';
     }
 
-    async function submitSettlement() {
+    async function submitConfirmation() {
       const idx = document.getElementById('mCurrentIdx').value;
       const student = registrations[idx];
       const additionalPaid = parseInt(document.getElementById('mAdditionalPaid').value) || 0;
 
-      if (additionalPaid <= 0) {
-        showToast("Please enter an amount paid");
-        return;
-      }
-
       const saveBtn = document.getElementById('mSaveBtn');
       saveBtn.disabled = true;
-      saveBtn.innerText = "Updating in Google Sheets...";
+      saveBtn.innerText = "Syncing with Cloud...";
 
       const newPaid = Number(student.paid) + additionalPaid;
       const newBalance = Math.max(0, Number(student.totalFare) - newPaid);
@@ -999,28 +1109,24 @@
       const assignedSeatVal = document.getElementById('mAssignSeat').value;
       let newSeatNum = student.seatNum;
       let newSeatType = student.seatType;
-      let newStatus = student.status;
 
       if (assignedSeatVal && assignedSeatVal !== 'WAITING') {
         newSeatNum = assignedSeatVal;
         const seatInt = parseInt(assignedSeatVal, 10);
         newSeatType = (seatInt % 4 === 1 || seatInt % 4 === 0) ? 'Window (W)' : 'Aisle (A)';
-        newStatus = 'CONFIRMED';
       }
 
-      // Update locally
       registrations[idx].paid = newPaid;
       registrations[idx].balance = newBalance;
       registrations[idx].seatNum = newSeatNum;
       registrations[idx].seatType = newSeatType;
-      registrations[idx].status = newStatus;
+      registrations[idx].status = 'CONFIRMED';
 
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderRoster();
       renderSeats();
       updateDashboard();
 
-      // Transmit update to Google Sheets
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
@@ -1033,32 +1139,29 @@
             balance: newBalance,
             seatNum: newSeatNum,
             seatType: newSeatType,
-            status: newStatus
+            status: "CONFIRMED"
           })
         });
-        showToast(`Updated! ${student.name} is now Seat #${newSeatNum}`);
+        showToast(`Confirmed! ${student.name} assigned to Seat #${newSeatNum}`);
       } catch (err) {
         console.error("Cloud update error:", err);
       }
 
       saveBtn.disabled = false;
-      saveBtn.innerText = "Save Payment & Confirm Seat";
-      closeSettleModal();
-      
-      // Auto-preview updated boarding pass
-      displayTicket(registrations[idx]);
+      saveBtn.innerText = "Confirm Registration";
+      closeConfirmModal();
     }
 
-    async function deleteTicket(idx) {
+    async function cancelRegistration(idx) {
       const ticket = registrations[idx];
-      if (confirm(`Delete registration ${ticket.id} (${ticket.name})? This will also remove the record from Google Sheets.`)) {
+      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum} and remove the row from Google Sheets.`)) {
         const ticketIdToDelete = ticket.id;
         
         registrations.splice(idx, 1);
         localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
         renderRoster();
         renderSeats();
-        showToast("Deleting row from Google Sheet...");
+        showToast("Freeing seat & updating Google Sheets...");
 
         try {
           await fetch(GOOGLE_SCRIPT_URL, {
@@ -1067,9 +1170,9 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ action: "delete", id: ticketIdToDelete })
           });
-          showToast(`Ticket ${ticketIdToDelete} deleted!`);
+          showToast(`Seat released and ${ticketIdToDelete} cancelled.`);
         } catch (err) {
-          console.error("Delete sync error:", err);
+          console.error("Cancellation sync error:", err);
         }
       }
     }
