@@ -25,7 +25,7 @@
       --secondary: #0f3d2e;
       --accent: #d4af37;
       --accent-gradient: linear-gradient(135deg, #fce085 0%, #d4af37 50%, #9a7614 100%);
-      --bg: #f2f7f4;
+      --bg: #f4f8f5;
       --surface: #ffffff;
       --text: #0b1f17;
       --text-muted: #597165;
@@ -41,14 +41,8 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
     
-    /* BEAUTIFUL KERALA SILHOUETTE & BACKWATER ATMOSPHERE BACKGROUND */
     body {
       background-color: var(--bg);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.07) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-        linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(242, 247, 244, 0.95) 100%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2306281e' fill-opacity='0.02'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72l40 8 40-8v8H0v-8z'/%3E%3C/g%3E%3C/svg%3E");
       color: var(--text);
       padding-bottom: 90px;
       min-height: 100vh;
@@ -68,11 +62,11 @@
       transition: height 0.2s ease;
     }
 
-    /* KERALA HERITAGE & GOD'S OWN COUNTRY STYLED HEADER */
+    /* HEADER WITH REAL KERALA BACKDROP BEHIND TITLE */
     header {
       background: 
-        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.25) 0%, transparent 75%),
-        linear-gradient(145deg, #041f17 0%, #083325 50%, #03150f 100%);
+        linear-gradient(180deg, rgba(4, 31, 23, 0.82) 0%, rgba(6, 40, 30, 0.94) 100%),
+        url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=80") center/cover no-repeat;
       color: white;
       padding: max(14px, env(safe-area-inset-top)) 10px 14px;
       position: relative;
@@ -83,46 +77,82 @@
       display: grid;
       grid-template-columns: 80px 1fr 64px;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       max-width: 620px;
       margin: 0 auto;
       text-align: center;
     }
 
-    /* UNIFIED INTEGRATED COACH MEDALLION (BUS + NAME AS ONE UNIT) */
-    .integrated-bus-badge {
+    /* REAL TOURIST BUS FRONT WINDSHIELD EMBLEM WITH "MASKARA" ON GLASS */
+    .bus-windshield-badge {
+      width: 76px;
+      height: 58px;
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid #94a3b8;
+      border-radius: 12px 12px 6px 6px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.2);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(145deg, #0e4432, #06241a);
-      border: 1.5px solid var(--accent);
-      border-radius: 14px;
-      padding: 5px 4px 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.2);
+      justify-content: space-between;
+      padding: 2px 3px 4px;
     }
-    .bus-emblem-icon {
-      font-size: 1.45rem;
-      line-height: 1;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-    }
-    .bus-name-ribbon {
+    /* Windshield Sun Visor Tint Strip */
+    .windshield-visor {
+      background: linear-gradient(180deg, #d4af37 0%, #9a7614 100%);
+      color: #06281e;
       font-size: 0.58rem;
       font-weight: 900;
-      color: var(--accent);
-      letter-spacing: 0.6px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin-top: 2px;
+      padding: 2px 0;
+      border-radius: 6px 6px 0 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
       line-height: 1;
-      white-space: nowrap;
     }
-    .bus-type-sub {
-      font-size: 0.48rem;
-      font-weight: 700;
-      color: #a7f3d0;
+    /* Transparent Front Glass with Cabin View & Reflection */
+    .windshield-glass {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0.85) 60%);
+      position: relative;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .windshield-glass::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 40%; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-25deg);
+    }
+    .bus-dashboard-dash {
+      font-size: 0.52rem;
+      color: #cbd5e1;
+      font-weight: 800;
       letter-spacing: 0.4px;
-      text-transform: uppercase;
-      margin-top: 1px;
+    }
+    /* Front Headlights & Bumper Base */
+    .windshield-bumper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2px;
+    }
+    .bumper-light {
+      width: 8px;
+      height: 4px;
+      background: #fef08a;
+      border-radius: 2px;
+      box-shadow: 0 0 6px #fef08a;
+    }
+    .bumper-grill {
+      font-size: 0.42rem;
+      font-weight: 800;
+      color: #64748b;
+      letter-spacing: 0.3px;
     }
 
     /* RIGHT ST. JOSEPH PORTRAIT */
@@ -165,9 +195,9 @@
     }
     .church-crest {
       display: inline-block;
-      background: rgba(212, 175, 55, 0.18);
+      background: rgba(212, 175, 55, 0.22);
       color: #ffe89e;
-      border: 1px solid rgba(212, 175, 55, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.55);
       padding: 3px 10px;
       border-radius: 20px;
       font-size: 0.66rem;
@@ -179,14 +209,14 @@
       max-width: 98%;
       overflow: hidden;
       text-overflow: ellipsis;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .header-center h1 {
       font-size: 1.15rem;
       font-weight: 900;
       letter-spacing: -0.2px;
       line-height: 1.15;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
       white-space: nowrap;
       color: #ffffff;
     }
@@ -197,6 +227,7 @@
       font-weight: 700;
       letter-spacing: 0.3px;
       white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
     .sync-status-pill {
@@ -205,7 +236,7 @@
       gap: 6px;
       margin-top: 5px;
       padding: 3px 10px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border-radius: 20px;
       font-size: 0.64rem;
@@ -245,10 +276,28 @@
       background: #f7faf8;
     }
 
-    .container { max-width: 620px; margin: 0 auto; padding: 14px; }
+    .container { max-width: 620px; margin: 0 auto; padding: 14px; position: relative; }
+
+    /* MILD SCENIC BACKDROPS ON EVERY TAB */
+    #dashboardTab {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(244,248,245,0.96) 100%),
+                  url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=60") center/cover no-repeat;
+      border-radius: var(--radius);
+    }
+    #bookingTab {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(244,248,245,0.96) 100%),
+                  url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=60") center/cover no-repeat;
+      border-radius: var(--radius);
+    }
+    #rosterTab {
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(244,248,245,0.96) 100%),
+                  url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=60") center/cover no-repeat;
+      border-radius: var(--radius);
+    }
 
     .card {
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
       border-radius: var(--radius);
       padding: 20px 16px;
       border: 1px solid var(--border);
@@ -325,7 +374,7 @@
     .btn-accent { background: var(--accent-gradient); color: #06281e; font-weight: 900; }
     .btn-secondary { background: #0f3d2e; color: white; }
 
-    /* REALISTIC 3D COACH BUS CABIN */
+    /* 3D COACH BUS CABIN */
     .bus-container {
       background: linear-gradient(180deg, #d3e2d9 0%, #e8f0ec 35%, #d9e7df 100%);
       border: 3px solid #adc4b7;
@@ -422,28 +471,9 @@
       box-shadow: 0 1px 0 #94a3b8, 0 2px 4px rgba(15, 23, 42, 0.2);
     }
 
-    .seat-num {
-      font-size: 0.78rem;
-      font-weight: 900;
-      color: #0f172a;
-      line-height: 1;
-    }
-    .seat-type-tag {
-      font-size: 0.52rem;
-      font-weight: 800;
-      color: #64748b;
-      margin-top: 2px;
-    }
-    .seat-assigned-name {
-      font-size: 0.55rem;
-      font-weight: 800;
-      max-width: 50px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-      text-transform: capitalize;
-    }
+    .seat-num { font-size: 0.78rem; font-weight: 900; color: #0f172a; line-height: 1; }
+    .seat-type-tag { font-size: 0.52rem; font-weight: 800; color: #64748b; margin-top: 2px; }
+    .seat-assigned-name { font-size: 0.55rem; font-weight: 800; max-width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; text-transform: capitalize; }
 
     /* SELECTED 3D SEAT */
     .seat-3d.selected .seat-headrest {
@@ -463,10 +493,7 @@
 
     /* BOOKED 3D SEAT */
     .seat-3d.booked { cursor: not-allowed; }
-    .seat-3d.booked .seat-headrest {
-      background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
-      border-color: #991b1b;
-    }
+    .seat-3d.booked .seat-headrest { background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); border-color: #991b1b; }
     .seat-3d.booked .seat-body {
       background: linear-gradient(180deg, #fee2e2 0%, #fecaca 60%, #fca5a5 100%);
       border-color: #f87171;
@@ -477,10 +504,7 @@
     .seat-3d.booked .seat-assigned-name { color: #7f1d1d; }
 
     /* BOARDED 3D SEAT */
-    .seat-3d.boarded .seat-headrest {
-      background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
-      border-color: #14532d;
-    }
+    .seat-3d.boarded .seat-headrest { background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%); border-color: #14532d; }
     .seat-3d.boarded .seat-body {
       background: linear-gradient(180deg, #dcfce7 0%, #bbf7d0 60%, #86efac 100%);
       border-color: #22c55e;
@@ -518,37 +542,12 @@
       padding: 14px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .src-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #f1f5f9;
-      padding-bottom: 6px;
-    }
+    .src-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
     .src-name { font-size: 1rem; font-weight: 800; color: var(--primary); text-transform: capitalize; }
     .src-meta { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-top: 1px; }
-    .src-tid-badge {
-      background: #eef5f1;
-      color: var(--secondary);
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .src-details-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .src-detail-box {
-      background: #f8faf9;
-      border: 1px solid #e2ece6;
-      padding: 6px 8px;
-      border-radius: 8px;
-      text-align: center;
-    }
+    .src-tid-badge { background: #eef5f1; color: var(--secondary); font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
+    .src-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
+    .src-detail-box { background: #f8faf9; border: 1px solid #e2ece6; padding: 6px 8px; border-radius: 8px; text-align: center; }
     .src-detail-lbl { font-size: 0.6rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
     .src-detail-val { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-top: 1px; }
 
@@ -611,13 +610,7 @@
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
     }
-    .sheet-handle {
-      width: 40px;
-      height: 5px;
-      background: #cbd5e1;
-      border-radius: 4px;
-      margin: -10px auto 14px;
-    }
+    .sheet-handle { width: 40px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -10px auto 14px; }
 
     /* DIGITAL PASS CARD */
     .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 8px; }
@@ -724,17 +717,24 @@
 
   <div id="pullIndicator">Pull down to refresh cloud data...</div>
 
-  <!-- KERALA HERITAGE RESPONSIVE HEADER -->
+  <!-- KERALA SCENIC HEADER WITH TOURIST BUS WINDSHIELD -->
   <header>
     <div class="header-layout">
-      <!-- Left Integrated Coach Emblem (Bus + Name Combined) -->
-      <div class="integrated-bus-badge">
-        <span class="bus-emblem-icon">🚌</span>
-        <span class="bus-name-ribbon">MASKARA</span>
-        <span class="bus-type-sub">COACH</span>
+      
+      <!-- REAL TOURIST BUS WINDSHIELD ("MASKARA") -->
+      <div class="bus-windshield-badge" title="Maskara Luxury Tourist Coach">
+        <div class="windshield-visor">MASKARA</div>
+        <div class="windshield-glass">
+          <span class="bus-dashboard-dash">TOURIST</span>
+        </div>
+        <div class="windshield-bumper">
+          <div class="bumper-light"></div>
+          <span class="bumper-grill">COACH</span>
+          <div class="bumper-light"></div>
+        </div>
       </div>
 
-      <!-- Center Title and Crest -->
+      <!-- CENTER TITLE & KERALA PARISH CREST -->
       <div class="header-center">
         <div class="church-crest">St. Joseph's Catechism Midalam</div>
         <h1>Kerala Tour 2026</h1>
@@ -745,7 +745,7 @@
         </div>
       </div>
 
-      <!-- Right St. Joseph Portrait -->
+      <!-- RIGHT ST. JOSEPH PORTRAIT -->
       <div class="header-icon-box">
         <div class="header-img-frame">
           <img src="https://media.istockphoto.com/id/139385849/photo/saint-joseph-statue-up-close.jpg?s=612x612&w=0&k=20&c=YPnRxi9z5NVJGcmqllQdxVWWDPbzX8pgC1ckA5Zk4O0=" alt="St. Joseph Midalam">
@@ -885,7 +885,6 @@
           <div class="form-group">
             <label>Select 3D Coach Seat (Passenger Details Shown)</label>
             
-            <!-- REALISTIC 3D COACH BUS CABIN -->
             <div class="bus-container">
               <div class="bus-front-cockpit">
                 <span>🚪 ENTRY DOOR</span>
@@ -1519,7 +1518,7 @@
 
       if (matchIdx === -1) {
         playChime(false);
-        resultBox.innerText = `⚠️️ Ticket ${ticketId} not in passenger manifest`;
+        resultBox.innerText = `⚠ Ticket ${ticketId} not in passenger manifest`;
         resultBox.style.color = "var(--danger)";
         setTimeout(() => { isProcessingScan = false; }, 2000);
         return;
