@@ -53,19 +53,6 @@
       min-height: 100vh;
     }
 
-    #pullIndicator {
-      height: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--secondary);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      transition: height 0.2s ease;
-    }
-
     header {
       background: 
         linear-gradient(180deg, rgba(4, 31, 23, 0.65) 0%, rgba(6, 40, 30, 0.88) 100%),
@@ -216,8 +203,7 @@
       border: 1px solid rgba(212, 175, 55, 0.35);
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
-    .pulse-dot.active { background: #34d399; box-shadow: 0 0 10px #34d399; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px #34d399; }
 
     .nav-tabs {
       display: flex;
@@ -596,7 +582,6 @@
     @keyframes sheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     .sheet-handle { width: 40px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -10px auto 14px; }
 
-    /* 4K ULTRA-HIGH DEFINITION BOARDING PASS */
     .ticket-4k {
       background: #ffffff;
       border-radius: 18px;
@@ -763,8 +748,6 @@
 </head>
 <body>
 
-  <div id="pullIndicator">Pull down to refresh cloud data...</div>
-
   <header>
     <div class="header-layout">
       <div class="kerala-bus-photo-container" title="Maskara Luxury Tourist Coach - Kerala">
@@ -778,7 +761,7 @@
         <p>Annual Catechism Pilgrimage</p>
         <div class="sync-status-pill">
           <span class="pulse-dot active" id="cloudDot"></span>
-          <span id="cloudStatusText">Google Sheet Live Synced</span>
+          <span id="cloudStatusText">System Live Ready</span>
         </div>
       </div>
 
@@ -868,31 +851,6 @@
             <div id="chipTotalPax">0 Registered</div>
           </div>
         </div>
-
-        <div class="guidelines-box">
-          <div class="guide-title">📜 Pilgrimage Guidelines (Do's & Don'ts)</div>
-          <div class="guide-grid">
-            <div class="guide-col dos">
-              <h5>DO'S (Follow)</h5>
-              <ul class="guide-list">
-                <li>Assemble at Church campus 30 mins before departure.</li>
-                <li>Wear Catechism ID card & maintain reverence at holy shrines.</li>
-                <li>Stay with your assigned group leader at every stop.</li>
-                <li>Keep the luxury coach clean and tidy throughout.</li>
-              </ul>
-            </div>
-            <div class="guide-col donts">
-              <h5>DON'TS (Avoid)</h5>
-              <ul class="guide-list">
-                <li>Do not leave the bus at any stop without teacher's permission.</li>
-                <li>Do not stand or move along the aisle while coach is in motion.</li>
-                <li>Avoid carrying expensive jewelry or heavy cash.</li>
-                <li>Do not delay bus restart timing at tea or meal breaks.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -1000,10 +958,6 @@
     <div id="manifestTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📋 Full Passenger Directory (Students & Teachers)</div>
-        <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom: 10px;">
-          Complete master record of all 60 tickets with live payment and seat allocations:
-        </p>
-
         <div class="search-input-box">
           <span class="search-icon-pos">🔍</span>
           <input type="text" id="manifestSearchInput" placeholder="Filter manifest by name, standard, phone..." oninput="renderManifestTable()">
@@ -1122,10 +1076,6 @@
         </div>
         <a href="tel:+919486270230" class="call-btn">📞 Call</a>
       </div>
-
-      <p style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 12px; font-weight: 600;">
-        St. Joseph's Church Midalam • 24/7 Pilgrimage Support
-      </p>
     </div>
   </div>
 
@@ -1137,7 +1087,6 @@
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h3>
         <button onclick="closeHeadcountModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Tap each student as they step into the bus:</p>
 
       <div style="background:#f1f5f9; padding:10px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
         <span style="font-size:0.85rem; font-weight:800;" id="hcCountDisplay">Onboard: 0 / 0</span>
@@ -1145,8 +1094,7 @@
       </div>
 
       <div class="headcount-list" id="headcountItemsList"></div>
-
-      <button class="btn btn-primary" onclick="closeHeadcountModal()">Finish Stop Headcount</button>
+      <button class="btn btn-primary" onclick="closeHeadcountModal()" style="margin-top:10px;">Finish Stop Headcount</button>
     </div>
   </div>
 
@@ -1196,22 +1144,15 @@
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📷 Maskara Coach Scanner</h3>
         <button onclick="closeScannerModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Point camera inside frame for instant verification</p>
-      
       <div id="qr-scanner-box">
         <div class="scanner-viewfinder"></div>
         <div id="scannerTarget" style="width: 100%; height: 100%;"></div>
-
         <div class="boarding-success-card" id="successCard">
           <div class="success-icon-badge">✓</div>
           <h2 style="font-size: 1.25rem; font-weight: 900; color: var(--success-dark);" id="scannedStudentName">Student Name</h2>
           <p style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin: 6px 0;" id="scannedSeatBadge">Seat #00 • Confirmed</p>
-          <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 6px 14px; font-size: 0.76rem; font-weight: 800; color: #065f46; margin-top: 4px;">
-            VERIFIED & BOARDED LIVE
-          </div>
         </div>
       </div>
-
       <div id="scannerResult" style="font-size: 0.85rem; font-weight: 800; min-height: 22px; color: var(--text-muted);">Camera active...</div>
     </div>
   </div>
@@ -1224,26 +1165,21 @@
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">✅ Confirm Seat & Payment</h3>
         <button onclick="closeConfirmModal()" style="border:none;background:none;font-size:1.2rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-
       <div style="background:#f1f5f9;padding:12px;border-radius:12px;margin-bottom:14px;font-size:0.82rem;">
         <div><strong>Student:</strong> <span id="mStudentName">-</span> (<span id="mStudentClass">-</span>)</div>
         <div><strong>Ticket ID:</strong> <span id="mTicketId">-</span></div>
         <div style="margin-top:4px;"><strong>Already Paid:</strong> ₹<span id="mAlreadyPaid">0</span> | <strong style="color:var(--danger);">Balance Due:</strong> ₹<span id="mBalanceDue">0</span></div>
       </div>
-
       <input type="hidden" id="mCurrentIdx">
-
       <div class="form-group">
         <label>Additional Amount Received (₹)</label>
         <input type="number" id="mAdditionalPaid" min="0">
       </div>
-
       <div class="form-group">
         <label>Assign / Confirm 60-Coach Seat</label>
         <select id="mAssignSeat"></select>
       </div>
-
-      <button class="btn btn-primary" onclick="submitConfirmation()" id="mSaveBtn">Confirm Registration</button>
+      <button class="btn btn-primary" onclick="submitConfirmation()">Confirm Registration</button>
     </div>
   </div>
 
@@ -1277,6 +1213,7 @@
       return Date.now() < until;
     }
 
+    /* ZERO-HANG INVISIBLE IFRAME SUBMISSION DISPATCH */
     function sendToSheet(payload) {
       const form = document.createElement('form');
       form.method = 'POST';
@@ -1513,11 +1450,10 @@
           </div>
         `;
 
-        // PREVENT CLICKING ALREADY BOOKED SEATS
         if (!isBooked) {
           seatWrapper.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', seatWrapper);
         } else {
-          seatWrapper.onclick = () => showToast(`Seat #${seatNo} is already booked by ${occupant.name}!`);
+          seatWrapper.onclick = () => showToast(`Seat #${seatNo} is already occupied by ${occupant.name}!`);
         }
         matrix.appendChild(seatWrapper);
 
@@ -1531,7 +1467,6 @@
     }
 
     function selectSeat(seatNo, seatType, el) {
-      // CHECK IF ALREADY TAKEN IN CURRENT LOCAL STATE
       const isTaken = registrations.some(r => r.status === 'CONFIRMED' && String(r.seatNum).padStart(2, '0') === String(seatNo).padStart(2, '0'));
       if (isTaken) {
         showToast(`Seat #${seatNo} is already occupied! Please choose another.`);
@@ -1549,7 +1484,6 @@
     function handleRegistration(e) {
       e.preventDefault();
       
-      const submitBtn = document.getElementById('submitBtn');
       const payType = document.getElementById('paymentType').value;
       const selectedSeat = document.getElementById('selectedSeat').value;
 
@@ -1561,7 +1495,7 @@
       if (payType === 'Full') {
         const taken = registrations.some(r => r.status === 'CONFIRMED' && String(r.seatNum).padStart(2, '0') === String(selectedSeat).padStart(2, '0'));
         if (taken) {
-          showToast(`Seat #${selectedSeat} was just booked by someone else! Please pick another seat.`);
+          showToast(`Seat #${selectedSeat} was just booked by someone else! Please pick another.`);
           renderSeats();
           return;
         }
@@ -1592,21 +1526,16 @@
         boarded: false
       };
 
-      // 1. Instant local state update
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
       renderManifestTable();
 
-      // 2. Open Pass Modal Instantly
       openTicketModal(bookingData);
-      showToast("✓ Pass Generated & Saved!");
+      showToast("✓ Pass Generated Instantly!");
 
-      // 3. Dispatch to Google Sheet via hidden form submission
       sendToSheet(bookingData);
-
-      // 4. Reset form
       document.getElementById('regForm').reset();
     }
 
@@ -1772,7 +1701,7 @@
         `• Ticket No: ${currentTicket.id}%0A` +
         `• Passenger: ${currentTicket.name} (${currentTicket.standard})%0A` +
         `• Seat: ${currentTicket.seatNum} (${currentTicket.seatType})%0A` +
-        `• Paid: ₹${currentTicket.paid} | Balance: ₹${currentTicket.balance}%0A` +
+        `• Paid: ${currentTicket.paid} | Balance: ₹${currentTicket.balance}%0A` +
         `• Status: ${currentTicket.status}%0A%0A` +
         `Portal: https://shyjanminu.github.io/Kerala-Trip-2026/`;
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
@@ -2205,12 +2134,6 @@
     }
 
     function fetchLiveRegistrations() {
-      const dot = document.getElementById('cloudDot');
-      const text = document.getElementById('cloudStatusText');
-
-      if (dot) dot.className = "pulse-dot active";
-      if (text) text.innerText = "Google Sheet Live Synced";
-
       const oldScript = document.getElementById('cloud-jsonp-script');
       if (oldScript) oldScript.remove();
 
@@ -2219,20 +2142,15 @@
       script.src = `${GOOGLE_SCRIPT_URL}?callback=handleCloudData&t=${Date.now()}`;
       
       script.onerror = function() {
-        if (dot) dot.className = "pulse-dot active";
-        if (text) text.innerText = "Google Sheet Live Synced";
+        renderSeats();
+        updateDashboard();
+        renderManifestTable();
       };
 
       document.body.appendChild(script);
     }
 
     window.handleCloudData = function(response) {
-      const dot = document.getElementById('cloudDot');
-      const text = document.getElementById('cloudStatusText');
-
-      if (dot) dot.className = "pulse-dot active";
-      if (text) text.innerText = "Google Sheet Live Synced";
-
       if (response && response.status === "success" && response.data && response.data.length > 0) {
         registrations = response.data;
         localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
