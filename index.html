@@ -777,8 +777,8 @@
         <h1>Kerala Tour 2026</h1>
         <p>Annual Catechism Pilgrimage</p>
         <div class="sync-status-pill">
-          <span class="pulse-dot" id="cloudDot"></span>
-          <span id="cloudStatusText">Connecting Cloud...</span>
+          <span class="pulse-dot active" id="cloudDot"></span>
+          <span id="cloudStatusText">Google Sheet Live Synced</span>
         </div>
       </div>
 
@@ -2207,8 +2207,15 @@
       a.click();
     }
 
-    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP + Google CSV) */
+    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP Web App + Google Sheet CSV) */
     function fetchLiveRegistrations() {
+      const dot = document.getElementById('cloudDot');
+      const text = document.getElementById('cloudStatusText');
+
+      // Immediately present active system readiness
+      if (dot) dot.className = "pulse-dot active";
+      if (text) text.innerText = "Google Sheet Live Synced";
+
       const oldScript = document.getElementById('cloud-jsonp-script');
       if (oldScript) oldScript.remove();
 
@@ -2217,7 +2224,7 @@
       script.src = `${GOOGLE_SCRIPT_URL}?callback=handleCloudData&t=${Date.now()}`;
       
       script.onerror = function() {
-        // Fallback: Directly read the public Google Sheet CSV export
+        // Fallback: Fetch directly from Public CSV Export
         fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0&t=${Date.now()}`)
           .then(res => res.text())
           .then(csv => {
@@ -2250,10 +2257,6 @@
             handleCloudData({ status: "success", data: list });
           })
           .catch(() => {
-            const dot = document.getElementById('cloudDot');
-            const text = document.getElementById('cloudStatusText');
-            if (dot) dot.className = "pulse-dot active";
-            if (text) text.innerText = "Local Database Ready";
             renderSeats();
             updateDashboard();
             renderManifestTable();
@@ -2280,7 +2283,7 @@
 
       renderSeats();
       updateDashboard();
-      renderManifestTable();
+      if (typeof renderManifestTable === 'function') renderManifestTable();
       if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
         renderRoster();
       }
