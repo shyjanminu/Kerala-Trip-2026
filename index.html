@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
+  <title>St. Joseph's Catechism Midalam - Kerala Pilgrimage 2026</title>
   
   <!-- PWA & Mobile Web App Meta Tags -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#070d1e">
+  <meta name="theme-color" content="#06281e">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,26 +21,38 @@
 
   <style>
     :root {
-      --primary: #070d1e;
-      --secondary: #121c38;
+      --primary: #06281e;
+      --secondary: #0f3d2e;
       --accent: #d4af37;
-      --accent-gradient: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #9e7b1a 100%);
-      --bg: #f3f6fa;
+      --accent-gradient: linear-gradient(135deg, #fce085 0%, #d4af37 50%, #9a7614 100%);
+      --bg: #f2f7f4;
       --surface: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
+      --text: #0b1f17;
+      --text-muted: #597165;
+      --border: #d5e5dc;
       --success: #10b981;
       --success-dark: #047857;
       --danger: #ef4444;
       --warning: #f59e0b;
       --radius: 18px;
-      --shadow: 0 10px 25px -5px rgba(7, 13, 30, 0.08);
-      --shadow-lg: 0 25px 40px -10px rgba(7, 13, 30, 0.22);
+      --shadow: 0 10px 25px -5px rgba(6, 40, 30, 0.08);
+      --shadow-lg: 0 25px 40px -10px rgba(6, 40, 30, 0.22);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 90px; }
+    
+    /* BEAUTIFUL KERALA SILHOUETTE & BACKWATER ATMOSPHERE BACKGROUND */
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(242, 247, 244, 0.95) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2306281e' fill-opacity='0.02'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72l40 8 40-8v8H0v-8z'/%3E%3C/g%3E%3C/svg%3E");
+      color: var(--text);
+      padding-bottom: 90px;
+      min-height: 100vh;
+    }
 
     /* PULL TO REFRESH */
     #pullIndicator {
@@ -56,24 +68,64 @@
       transition: height 0.2s ease;
     }
 
-    /* PERFECTED MOBILE HEADER (NO OVERFLOW) */
+    /* KERALA HERITAGE & GOD'S OWN COUNTRY STYLED HEADER */
     header {
-      background: linear-gradient(145deg, #050a17 0%, #070d1e 55%, #152244 100%);
+      background: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.25) 0%, transparent 75%),
+        linear-gradient(145deg, #041f17 0%, #083325 50%, #03150f 100%);
       color: white;
       padding: max(14px, env(safe-area-inset-top)) 10px 14px;
       position: relative;
-      border-bottom: 2px solid rgba(212, 175, 55, 0.5);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border-bottom: 2.5px solid var(--accent);
+      box-shadow: 0 8px 25px rgba(4, 31, 23, 0.5);
     }
     .header-layout {
       display: grid;
-      grid-template-columns: 58px 1fr 58px;
+      grid-template-columns: 80px 1fr 64px;
       align-items: center;
       gap: 6px;
       max-width: 620px;
       margin: 0 auto;
       text-align: center;
     }
+
+    /* UNIFIED INTEGRATED COACH MEDALLION (BUS + NAME AS ONE UNIT) */
+    .integrated-bus-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #0e4432, #06241a);
+      border: 1.5px solid var(--accent);
+      border-radius: 14px;
+      padding: 5px 4px 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.2);
+    }
+    .bus-emblem-icon {
+      font-size: 1.45rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    }
+    .bus-name-ribbon {
+      font-size: 0.58rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .bus-type-sub {
+      font-size: 0.48rem;
+      font-weight: 700;
+      color: #a7f3d0;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    /* RIGHT ST. JOSEPH PORTRAIT */
     .header-icon-box {
       display: flex;
       flex-direction: column;
@@ -85,16 +137,16 @@
       height: 52px;
       border-radius: 50%;
       border: 2px solid var(--accent);
-      background: #152244;
+      background: #083325;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     }
     .header-img-frame img { width: 100%; height: 100%; object-fit: cover; }
     .header-badge-sub {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 800;
       color: var(--accent);
       text-transform: uppercase;
@@ -102,6 +154,8 @@
       margin-top: 3px;
       white-space: nowrap;
     }
+
+    /* CENTER TITLE AREA */
     .header-center {
       display: flex;
       flex-direction: column;
@@ -111,34 +165,37 @@
     }
     .church-crest {
       display: inline-block;
-      background: rgba(212, 175, 55, 0.16);
-      color: #f7df8b;
-      border: 1px solid rgba(212, 175, 55, 0.45);
+      background: rgba(212, 175, 55, 0.18);
+      color: #ffe89e;
+      border: 1px solid rgba(212, 175, 55, 0.5);
       padding: 3px 10px;
       border-radius: 20px;
-      font-size: 0.64rem;
-      font-weight: 800;
-      letter-spacing: 0.4px;
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       white-space: nowrap;
-      max-width: 95%;
+      max-width: 98%;
       overflow: hidden;
       text-overflow: ellipsis;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .header-center h1 {
-      font-size: 1.22rem;
+      font-size: 1.15rem;
       font-weight: 900;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
       line-height: 1.15;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
       white-space: nowrap;
+      color: #ffffff;
     }
     .header-center p {
       font-size: 0.72rem;
-      color: #94a3b8;
-      margin-top: 2px;
-      font-weight: 600;
+      color: #a7f3d0;
+      margin-top: 1px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
       white-space: nowrap;
     }
 
@@ -146,27 +203,28 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 5px;
       padding: 3px 10px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(8px);
       border-radius: 20px;
-      font-size: 0.66rem;
-      color: #cbd5e1;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.64rem;
+      color: #e2e8f0;
+      border: 1px solid rgba(212, 175, 55, 0.25);
     }
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
-    .pulse-dot.active { background: var(--success); box-shadow: 0 0 10px var(--success); }
+    .pulse-dot.active { background: #34d399; box-shadow: 0 0 10px #34d399; }
 
     /* NAVIGATION TABS */
     .nav-tabs {
       display: flex;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 95;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 10px rgba(6, 40, 30, 0.04);
     }
     .tab-btn {
       flex: 1;
@@ -184,7 +242,7 @@
     .tab-btn.active {
       color: var(--primary);
       border-bottom-color: var(--accent);
-      background: #fafafa;
+      background: #f7faf8;
     }
 
     .container { max-width: 620px; margin: 0 auto; padding: 14px; }
@@ -209,7 +267,7 @@
 
     /* KPI DASHBOARD */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
-    .kpi-card { background: #f8fafc; border-radius: 14px; padding: 14px 12px; border: 1px solid var(--border); }
+    .kpi-card { background: #f8faf9; border-radius: 14px; padding: 14px 12px; border: 1px solid var(--border); }
     .kpi-lbl { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
     .kpi-val { font-size: 1.35rem; font-weight: 900; color: var(--primary); margin: 4px 0 2px; }
     .kpi-sub { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; }
@@ -238,7 +296,7 @@
     input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
 
     .price-box {
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%);
       border: 1.5px dashed var(--accent);
       border-radius: 14px;
       padding: 12px;
@@ -263,28 +321,26 @@
       transition: transform 0.1s ease;
     }
     .btn:active { transform: scale(0.98); }
-    .btn-primary { background: linear-gradient(135deg, #070d1e, #152244); color: white; box-shadow: 0 4px 12px rgba(7, 13, 30, 0.2); }
-    .btn-accent { background: var(--accent-gradient); color: #070d1e; font-weight: 900; }
-    .btn-secondary { background: #152244; color: white; }
+    .btn-primary { background: linear-gradient(135deg, #06281e, #0e4432); color: white; box-shadow: 0 4px 12px rgba(6, 40, 30, 0.25); }
+    .btn-accent { background: var(--accent-gradient); color: #06281e; font-weight: 900; }
+    .btn-secondary { background: #0f3d2e; color: white; }
 
-    /* ======================================================== */
-    /* REALISTIC 3D LUXURY COACH BUS CABIN & 3D SEAT SYSTEM     */
-    /* ======================================================== */
+    /* REALISTIC 3D COACH BUS CABIN */
     .bus-container {
-      background: linear-gradient(180deg, #dbe4ee 0%, #e8edf3 35%, #dfe6ee 100%);
-      border: 3px solid #b1c1d4;
+      background: linear-gradient(180deg, #d3e2d9 0%, #e8f0ec 35%, #d9e7df 100%);
+      border: 3px solid #adc4b7;
       border-radius: 26px;
       padding: 16px 12px 20px;
       margin-top: 8px;
-      box-shadow: inset 0 2px 10px rgba(0,0,0,0.1), 0 10px 25px rgba(0,0,0,0.06);
+      box-shadow: inset 0 2px 10px rgba(6,40,30,0.1), 0 10px 25px rgba(0,0,0,0.06);
       position: relative;
     }
     .bus-front-cockpit {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #111a33;
-      color: #cbd5e1;
+      background: #06281e;
+      color: #e2e8f0;
       padding: 8px 14px;
       border-radius: 14px;
       font-size: 0.7rem;
@@ -305,7 +361,7 @@
     .seat-grid .aisle {
       grid-column: 3;
       height: 10px;
-      background: repeating-linear-gradient(90deg, #cbd5e1 0, #cbd5e1 4px, transparent 4px, transparent 8px);
+      background: repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 4px, transparent 4px, transparent 8px);
       opacity: 0.6;
     }
 
@@ -322,7 +378,6 @@
       user-select: none;
     }
 
-    /* Top Headrest Cushion */
     .seat-headrest {
       width: 72%;
       height: 13px;
@@ -335,7 +390,6 @@
       transition: all 0.2s ease;
     }
 
-    /* Ergonomic Main Backrest */
     .seat-body {
       width: 100%;
       flex: 1;
@@ -354,7 +408,6 @@
       position: relative;
     }
 
-    /* Inner Stitch Bolster Effect */
     .seat-body::before {
       content: "";
       position: absolute;
@@ -392,23 +445,23 @@
       text-transform: capitalize;
     }
 
-    /* STATE 1: SELECTED 3D SEAT (LUXURY NAVY & GOLD) */
+    /* SELECTED 3D SEAT */
     .seat-3d.selected .seat-headrest {
       background: var(--accent-gradient);
       border-color: #8c6b12;
       box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
     }
     .seat-3d.selected .seat-body {
-      background: linear-gradient(180deg, #0f1a38 0%, #070d1e 100%);
+      background: linear-gradient(180deg, #0e4432 0%, #06281e 100%);
       border-color: var(--accent);
-      box-shadow: 0 4px 0 #050a17, 0 0 12px rgba(212, 175, 55, 0.45);
+      box-shadow: 0 4px 0 #03150f, 0 0 12px rgba(212, 175, 55, 0.45);
       color: white;
       transform: translateY(-2px);
     }
     .seat-3d.selected .seat-num { color: #f8fafc; }
     .seat-3d.selected .seat-type-tag { color: var(--accent); }
 
-    /* STATE 2: BOOKED 3D SEAT (LEATHERETTE VELVET BURGUNDY) */
+    /* BOOKED 3D SEAT */
     .seat-3d.booked { cursor: not-allowed; }
     .seat-3d.booked .seat-headrest {
       background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
@@ -423,7 +476,7 @@
     .seat-3d.booked .seat-type-tag { color: #b91c1c; }
     .seat-3d.booked .seat-assigned-name { color: #7f1d1d; }
 
-    /* STATE 3: BOARDED 3D SEAT (VIBRANT EMERALD GREEN) */
+    /* BOARDED 3D SEAT */
     .seat-3d.boarded .seat-headrest {
       background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
       border-color: #14532d;
@@ -476,7 +529,7 @@
     .src-name { font-size: 1rem; font-weight: 800; color: var(--primary); text-transform: capitalize; }
     .src-meta { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-top: 1px; }
     .src-tid-badge {
-      background: #f1f5f9;
+      background: #eef5f1;
       color: var(--secondary);
       font-size: 0.68rem;
       font-weight: 800;
@@ -490,8 +543,8 @@
       margin-bottom: 10px;
     }
     .src-detail-box {
-      background: #f8fafc;
-      border: 1px solid #edf2f7;
+      background: #f8faf9;
+      border: 1px solid #e2ece6;
       padding: 6px 8px;
       border-radius: 8px;
       text-align: center;
@@ -527,7 +580,7 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(7, 13, 30, 0.85);
+      background: rgba(4, 25, 18, 0.85);
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: none;
@@ -568,9 +621,9 @@
 
     /* DIGITAL PASS CARD */
     .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 8px; }
-    .ticket-head { background: linear-gradient(135deg, #050a17, #070d1e); color: white; padding: 18px; text-align: center; border-bottom: 2px solid var(--accent); }
+    .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 18px; text-align: center; border-bottom: 2px solid var(--accent); }
     .ticket-head h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; }
-    .ticket-head p { font-size: 0.7rem; color: #cbd5e1; margin-top: 2px; font-weight: 600; }
+    .ticket-head p { font-size: 0.7rem; color: #a7f3d0; margin-top: 2px; font-weight: 600; }
     .ticket-body { padding: 16px; }
     .t-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8rem; }
     .t-lbl { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
@@ -655,7 +708,7 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(7, 13, 30, 0.95);
+      background: rgba(4, 31, 23, 0.95);
       color: white;
       padding: 11px 22px;
       border-radius: 30px;
@@ -671,22 +724,21 @@
 
   <div id="pullIndicator">Pull down to refresh cloud data...</div>
 
-  <!-- CLEAN RESPONSIVE HEADER -->
+  <!-- KERALA HERITAGE RESPONSIVE HEADER -->
   <header>
     <div class="header-layout">
-      <!-- Left Coach Badge -->
-      <div class="header-icon-box">
-        <div class="header-img-frame">
-          <img src="https://applecarrentals.com/assets/web/images/about/bus.jpg" alt="Maskara Coach">
-        </div>
-        <div class="header-badge-sub">Maskara</div>
+      <!-- Left Integrated Coach Emblem (Bus + Name Combined) -->
+      <div class="integrated-bus-badge">
+        <span class="bus-emblem-icon">🚌</span>
+        <span class="bus-name-ribbon">MASKARA</span>
+        <span class="bus-type-sub">COACH</span>
       </div>
 
       <!-- Center Title and Crest -->
       <div class="header-center">
-        <div class="church-crest">St. Joseph Midalam</div>
+        <div class="church-crest">St. Joseph's Catechism Midalam</div>
         <h1>Kerala Tour 2026</h1>
-        <p>Catechism Pilgrimage</p>
+        <p>Annual Catechism Pilgrimage</p>
         <div class="sync-status-pill">
           <span class="pulse-dot" id="cloudDot"></span>
           <span id="cloudStatusText">Connecting Cloud...</span>
@@ -941,7 +993,7 @@
       <div class="ticket" id="ticketPrintArea">
         <div class="ticket-head">
           <h3>OFFICIAL BOARDING PASS</h3>
-          <p>St. Joseph Midalam • Kerala Pilgrimage 2026</p>
+          <p>St. Joseph's Catechism Midalam • Kerala Tour 2026</p>
         </div>
         <div class="ticket-body">
           <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color:var(--accent); font-size:1.05rem;">-</span></div>
@@ -1321,7 +1373,7 @@
         text: qrData,
         width: 140,
         height: 140,
-        colorDark: "#070d1e",
+        colorDark: "#06281e",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
       });
@@ -1467,7 +1519,7 @@
 
       if (matchIdx === -1) {
         playChime(false);
-        resultBox.innerText = `⚠️ Ticket ${ticketId} not in passenger manifest`;
+        resultBox.innerText = `⚠️️ Ticket ${ticketId} not in passenger manifest`;
         resultBox.style.color = "var(--danger)";
         setTimeout(() => { isProcessingScan = false; }, 2000);
         return;
@@ -1660,7 +1712,7 @@
               </div>
             </div>
 
-            <div class="src-detail-box" onclick="toggleBoardingManual(${idx})" style="cursor: pointer; background: ${isBoarded ? '#ecfdf5' : '#f8fafc'}; border-color: ${isBoarded ? '#a7f3d0' : '#edf2f7'};">
+            <div class="src-detail-box" onclick="toggleBoardingManual(${idx})" style="cursor: pointer; background: ${isBoarded ? '#ecfdf5' : '#f8faf9'}; border-color: ${isBoarded ? '#a7f3d0' : '#e2ece6'};">
               <div class="src-detail-lbl">Boarding</div>
               <div class="src-detail-val" style="color: ${isBoarded ? '#059669' : 'var(--text-muted)'}; font-size: 0.8rem;">
                 ${isBoarded ? '✓ Boarded' : '○ Pending'}
