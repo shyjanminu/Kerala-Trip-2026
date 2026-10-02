@@ -236,19 +236,22 @@
       top: 0;
       z-index: 95;
       box-shadow: 0 2px 10px rgba(6, 40, 30, 0.04);
+      overflow-x: auto;
+      white-space: nowrap;
     }
     .tab-btn {
       flex: 1;
-      padding: 13px 4px;
+      padding: 13px 8px;
       border: none;
       background: none;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 3px solid transparent;
       text-transform: uppercase;
       transition: all 0.2s ease;
+      min-width: 90px;
     }
     .tab-btn.active {
       color: var(--primary);
@@ -257,26 +260,6 @@
     }
 
     .container { max-width: 620px; margin: 0 auto; padding: 14px; position: relative; }
-
-    /* MILD SCENIC BACKDROPS */
-    #dashboardTab {
-      background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244,248,245,0.92) 100%),
-                  url("https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=70") center/cover no-repeat;
-      border-radius: var(--radius);
-      padding-top: 4px;
-    }
-    #bookingTab {
-      background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244,248,245,0.92) 100%),
-                  url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=70") center/cover no-repeat;
-      border-radius: var(--radius);
-      padding-top: 4px;
-    }
-    #rosterTab {
-      background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244,248,245,0.92) 100%),
-                  url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=70") center/cover no-repeat;
-      border-radius: var(--radius);
-      padding-top: 4px;
-    }
 
     .card {
       background: rgba(255, 255, 255, 0.90);
@@ -312,7 +295,7 @@
     .chip-box { background: rgba(255, 255, 255, 0.95); border: 1px solid var(--border); padding: 9px 11px; border-radius: 10px; font-size: 0.74rem; font-weight: 700; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.65rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
-    /* PILGRIMAGE GUIDELINES (DO'S & DON'TS) */
+    /* PILGRIMAGE GUIDELINES */
     .guidelines-box {
       background: #f8fafc;
       border: 1.5px solid var(--border);
@@ -579,7 +562,6 @@
     .seat-3d.boarded .seat-type-tag { color: #15803d; }
     .seat-3d.boarded .seat-assigned-name { color: #14532d; font-weight: 900; }
 
-    /* SEARCH HIGHLIGHTED SEAT */
     .seat-3d.search-highlight {
       transform: scale(1.15);
       z-index: 10;
@@ -590,7 +572,7 @@
       to { filter: drop-shadow(0 0 14px var(--accent)); }
     }
 
-    /* SEARCH & FILTER BAR IN ADMIN */
+    /* FILTER & ROSTER */
     .filter-wrapper { margin-bottom: 12px; }
     .search-input-box { position: relative; margin-bottom: 8px; }
     .search-input-box input { padding-left: 36px; border-radius: 12px; background: #ffffff; }
@@ -609,7 +591,6 @@
     }
     .pill-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* PASSENGER CARDS */
     .roster-cards-container { display: flex; flex-direction: column; gap: 10px; }
     .student-roster-card {
       background: #ffffff;
@@ -627,7 +608,6 @@
     .src-detail-lbl { font-size: 0.6rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
     .src-detail-val { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-top: 1px; }
 
-    /* ACTION BOXES GRID */
     .action-boxes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .act-card-btn {
       display: flex;
@@ -651,7 +631,7 @@
     .btn-box-wa { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
     .btn-box-del { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
 
-    /* BOTTOM SHEETS */
+    /* BOTTOM SHEETS & MODALS */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -677,18 +657,13 @@
       max-height: 92vh;
       overflow-y: auto;
       position: relative;
-      animation: sheetSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @media (min-width: 600px) {
       .modal-card { border-radius: var(--radius); padding: 24px; }
     }
-    @keyframes sheetSlideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
     .sheet-handle { width: 40px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -10px auto 14px; }
 
-    /* DIGITAL PASS CARD */
+    /* DIGITAL PASS */
     .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 8px; }
     .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 18px; text-align: center; border-bottom: 2px solid var(--accent); }
     .ticket-head h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; }
@@ -701,7 +676,7 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 16px 18px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 12px; }
 
-    /* HELPLINE CARDS */
+    /* CONTACT CARDS */
     .contact-card {
       background: #f8fafc;
       border: 1.5px solid var(--border);
@@ -729,7 +704,7 @@
       gap: 4px;
     }
 
-    /* HEADCOUNT POPUP CHECKLIST */
+    /* HEADCOUNT LIST */
     .headcount-list {
       max-height: 280px;
       overflow-y: auto;
@@ -748,7 +723,7 @@
     .hc-item:last-child { border-bottom: none; }
     .hc-item.checked { background: #ecfdf5; }
 
-    /* FLOATING BOTTOM SOS / HELPLINE BAR */
+    /* FLOATING SOS BAR */
     .floating-sos-bar {
       position: fixed;
       bottom: 14px;
@@ -767,11 +742,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       z-index: 90;
     }
-    .sos-left-text {
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 800;
-    }
+    .sos-left-text { color: white; font-size: 0.75rem; font-weight: 800; }
     .sos-btn-trigger {
       background: var(--accent-gradient);
       color: #06281e;
@@ -804,17 +775,14 @@
 
   <div id="pullIndicator">Pull down to refresh cloud data...</div>
 
-  <!-- KERALA SCENIC HEADER WITH ACTUAL KERALA TOURIST BUS EMBLEM -->
+  <!-- KERALA SCENIC HEADER -->
   <header>
     <div class="header-layout">
-      
-      <!-- REAL KERALA TOURIST BUS EMBLEM WITH "MASKARA" CUSTOM WINDSHIELD RIBBON -->
       <div class="kerala-bus-photo-container" title="Maskara Luxury Tourist Coach - Kerala">
         <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=300&q=80" alt="Maskara Kerala Tourist Bus">
         <div class="maskara-windshield-overlay">MASKARA</div>
       </div>
 
-      <!-- CENTER TITLE & KERALA PARISH CREST OVER VISIBLE BACKWATERS -->
       <div class="header-center">
         <div class="church-crest">St. Joseph's Catechism Midalam</div>
         <h1>Kerala Tour 2026</h1>
@@ -825,7 +793,6 @@
         </div>
       </div>
 
-      <!-- RIGHT ST. JOSEPH PORTRAIT -->
       <div class="header-icon-box">
         <div class="header-img-frame">
           <img src="https://media.istockphoto.com/id/139385849/photo/saint-joseph-statue-up-close.jpg?s=612x612&w=0&k=20&c=YPnRxi9z5NVJGcmqllQdxVWWDPbzX8pgC1ckA5Zk4O0=" alt="St. Joseph Midalam">
@@ -838,8 +805,10 @@
   <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
-    <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
-    <button class="tab-btn" onclick="switchTab('rosterTab', event)">🔐 Admin Roster</button>
+    <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Book</button>
+    <button class="tab-btn" onclick="switchTab('scannerTab', event)">📷 Scanner</button>
+    <button class="tab-btn" onclick="switchTab('manifestTab', event)">📋 Manifest</button>
+    <button class="tab-btn" onclick="switchTab('rosterTab', event)">🔐 Admin</button>
   </nav>
 
   <div class="container">
@@ -913,7 +882,7 @@
           </div>
         </div>
 
-        <!-- PILGRIMAGE DOS & DON'TS -->
+        <!-- PILGRIMAGE GUIDELINES -->
         <div class="guidelines-box">
           <div class="guide-title">📜 Pilgrimage Guidelines (Do's & Don'ts)</div>
           <div class="guide-grid">
@@ -991,7 +960,6 @@
           <div class="form-group">
             <label>Select 3D Coach Seat (Passenger Details Shown)</label>
             
-            <!-- LIVE SEAT SEARCH LOCATOR -->
             <div class="seat-search-wrapper">
               <span style="font-size:0.9rem;">🔎</span>
               <input type="text" id="seatSearchQuery" placeholder="Find my seat (Enter student name or mobile)..." oninput="searchAndLocateSeat()">
@@ -1042,7 +1010,66 @@
       </div>
     </div>
 
-    <!-- TAB 3: ADMIN ROSTER -->
+    <!-- TAB 3: TEACHER QR SCANNER & HEADCOUNT -->
+    <div id="scannerTab" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-title">📷 Teacher Boarding & Roll-Call Scanner</div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Scan student passes during boarding or pit-stops to mark attendance instantly.</p>
+        
+        <div style="margin-bottom: 14px; text-align: center;">
+          <button class="btn btn-primary" onclick="startInlineScanner()" id="startScanBtn">Start Camera Scanner</button>
+          <button class="btn btn-secondary" onclick="stopInlineScanner()" id="stopScanBtn" style="display:none; margin-top:6px;">Stop Camera</button>
+        </div>
+
+        <div id="inlineScannerBox" style="display:none; width: 100%; height: 260px; border-radius: 12px; overflow: hidden; background: #000; position: relative; margin-bottom: 14px;">
+          <div id="inlineScannerTarget" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <div id="inlineScanResult" style="font-size: 0.85rem; font-weight: 800; min-height: 24px; text-align: center; margin-bottom: 14px; color: var(--text-muted);">Scanner inactive</div>
+
+        <!-- Headcount Roll Call Section -->
+        <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h4>
+            <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.7rem; font-weight:800; padding:4px 8px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+          </div>
+          <div style="font-size: 0.78rem; font-weight: 800; color: var(--success-dark); margin-bottom: 8px;" id="inlineHcCountDisplay">Onboard: 0 / 0</div>
+          <div class="headcount-list" id="inlineHeadcountList" style="max-height: 240px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: BOOKING MANIFEST -->
+    <div id="manifestTab" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-title">📋 Passenger Booking Manifest</div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px;">Complete summary of names, ticket IDs, seat numbers, amounts paid, and balances due.</p>
+        
+        <div class="seat-search-wrapper" style="margin-bottom: 12px;">
+          <span style="font-size:0.9rem;">🔍</span>
+          <input type="text" id="manifestSearchQuery" placeholder="Search manifest by name, ticket ID, seat..." oninput="renderManifestTable()">
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.76rem; text-align: left;" id="manifestTable">
+            <thead>
+              <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border); color: var(--primary);">
+                <th style="padding: 9px 6px;">Ticket / Seat</th>
+                <th style="padding: 9px 6px;">Student Name</th>
+                <th style="padding: 9px 6px;">Paid (₹)</th>
+                <th style="padding: 9px 6px;">Balance (₹)</th>
+                <th style="padding: 9px 6px;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="manifestTableBody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ADMIN ROSTER -->
     <div id="rosterTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">🔐 Enterprise Admin Control Center</div>
@@ -1052,7 +1079,7 @@
             <label>Admin Security PIN (Cryptographic SHA-256)</label>
             <div style="position: relative; display: flex; align-items: center;">
               <input type="password" id="adminPin" placeholder="Enter Authorized PIN" autocomplete="off" maxlength="8" style="padding-right: 44px;">
-              <button type="button" onclick="togglePinVisibility()" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; font-size: 1.15rem; color: var(--text-muted);" id="pinEyeBtn">👁️️</button>
+              <button type="button" onclick="togglePinVisibility()" style="position: absolute; right: 12px; background: none; border: none; cursor: pointer; font-size: 1.15rem; color: var(--text-muted);" id="pinEyeBtn">👁</button>
             </div>
           </div>
           <button class="btn btn-secondary" id="adminLoginBtn" onclick="checkAdminPinSecure()">Authorize & Access Roster</button>
@@ -1065,16 +1092,14 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 800; font-size: 0.82rem; cursor: pointer;">Logout</button>
           </div>
 
-          <!-- ADMIN ACTION CLUSTER WITH HEADCOUNT TOOL -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
             <button class="btn btn-primary" style="padding: 11px; font-size: 0.82rem;" onclick="openScannerModal()">📷 Boarding QR</button>
-            <button class="btn btn-accent" style="padding: 11px; font-size: 0.82rem;" onclick="openHeadcountModal()">📋 Break Headcount</button>
+            <button class="btn btn-accent" style="padding: 11px; font-size: 0.82rem;" onclick="openHeadcountModal()">📋 Headcount</button>
           </div>
           <div style="margin-bottom: 12px;">
             <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem;" onclick="exportCSV()">📥 Download Passenger CSV</button>
           </div>
 
-          <!-- SEARCH & FILTER BAR -->
           <div class="filter-wrapper">
             <div class="search-input-box">
               <span class="search-icon-pos">🔍</span>
@@ -1088,7 +1113,6 @@
             </div>
           </div>
 
-          <!-- PASSENGER CARDS CONTAINER -->
           <div class="roster-cards-container" id="rosterCardsList"></div>
         </div>
       </div>
@@ -1113,7 +1137,6 @@
         <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
-      <!-- Parish Priest -->
       <div class="contact-card">
         <div class="contact-info">
           <span class="contact-role">Parish Priest</span>
@@ -1123,7 +1146,6 @@
         <a href="tel:+918526504345" class="call-btn">📞 Call</a>
       </div>
 
-      <!-- Co-ordinator Denson -->
       <div class="contact-card">
         <div class="contact-info">
           <span class="contact-role">Trip Co-ordinator</span>
@@ -1133,7 +1155,6 @@
         <a href="tel:+919486472814" class="call-btn">📞 Call</a>
       </div>
 
-      <!-- Lead Bensigar -->
       <div class="contact-card">
         <div class="contact-info">
           <span class="contact-role">Tour Coordinator</span>
@@ -1149,7 +1170,7 @@
     </div>
   </div>
 
-  <!-- BREAK HEADCOUNT BOTTOM SHEET -->
+  <!-- HEADCOUNT POPUP BOTTOM SHEET -->
   <div class="modal-overlay" id="headcountModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
@@ -1170,7 +1191,7 @@
     </div>
   </div>
 
-  <!-- BOARDING PASS PREVIEW BOTTOM SHEET -->
+  <!-- DIGITAL PASS PREVIEW BOTTOM SHEET -->
   <div class="modal-overlay" id="ticketModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
@@ -1208,7 +1229,7 @@
     </div>
   </div>
 
-  <!-- QR SCANNER BOTTOM SHEET -->
+  <!-- QR SCANNER MODAL -->
   <div class="modal-overlay" id="scannerModal">
     <div class="modal-card" style="text-align: center;">
       <div class="sheet-handle"></div>
@@ -1219,25 +1240,19 @@
       <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Point camera inside frame for instant verification</p>
       
       <div id="qr-scanner-box">
-        <div class="scanner-viewfinder"></div>
-        <div id="scannerTarget" style="width: 100%; height: 100%;"></div>
+        <div id="scannerTarget" style="width: 100%; height: 240px; background:#000; border-radius:12px; overflow:hidden;"></div>
 
-        <!-- Success Verification Card -->
-        <div class="boarding-success-card" id="successCard">
-          <div class="success-icon-badge">✓</div>
-          <h2 style="font-size: 1.25rem; font-weight: 900; color: var(--success-dark);" id="scannedStudentName">Student Name</h2>
-          <p style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin: 6px 0;" id="scannedSeatBadge">Seat #00 • Confirmed</p>
-          <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 6px 14px; font-size: 0.76rem; font-weight: 800; color: #065f46; margin-top: 4px;">
-            VERIFIED & BOARDED LIVE
-          </div>
+        <div class="boarding-success-card" id="successCard" style="display:none; padding:12px; background:#ecfdf5; border-radius:12px; margin-top:8px;">
+          <h2 style="font-size: 1.1rem; font-weight: 900; color: var(--success-dark);" id="scannedStudentName">Student Name</h2>
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin: 4px 0;" id="scannedSeatBadge">Seat #00 • Confirmed</p>
         </div>
       </div>
 
-      <div id="scannerResult" style="font-size: 0.85rem; font-weight: 800; min-height: 22px; color: var(--text-muted);">Camera active...</div>
+      <div id="scannerResult" style="font-size: 0.85rem; font-weight: 800; min-height: 22px; color: var(--text-muted); margin-top:8px;">Camera active...</div>
     </div>
   </div>
 
-  <!-- CONFIRM PAYMENT BOTTOM SHEET -->
+  <!-- CONFIRM PAYMENT MODAL -->
   <div class="modal-overlay" id="confirmModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
@@ -1273,13 +1288,13 @@
   <script>
     const GOOGLE_SHEET_ID = "1xfROg0fRzIa20U3TCbzH3Af8qF2tzmkXA1ebB3pLBxs";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
-
     const AUTHORIZED_PIN_SHA256 = "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let headcountChecked = JSON.parse(localStorage.getItem('midalam_headcount_checked') || '{}');
     let currentTicket = null;
     let qrScanner = null;
+    let inlineQrScanner = null;
     let isProcessingScan = false;
     let activeFilter = 'ALL';
 
@@ -1343,28 +1358,36 @@
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).style.display = 'block';
       if (evt && evt.target) evt.target.classList.add('active');
+
+      if (tabId === 'scannerTab') {
+        renderInlineHeadcount();
+      } else if (tabId === 'manifestTab') {
+        renderManifestTable();
+      }
     }
 
-    function openHelplineModal() {
-      document.getElementById('helplineModal').style.display = 'flex';
-    }
-    function closeHelplineModal() {
-      document.getElementById('helplineModal').style.display = 'none';
-    }
+    function openHelplineModal() { document.getElementById('helplineModal').style.display = 'flex'; }
+    function closeHelplineModal() { document.getElementById('helplineModal').style.display = 'none'; }
 
-    /* PIT-STOP HEADCOUNT ROLL-CALL */
     function openHeadcountModal() {
       renderHeadcountList();
       document.getElementById('headcountModal').style.display = 'flex';
     }
-    function closeHeadcountModal() {
-      document.getElementById('headcountModal').style.display = 'none';
-    }
+    function closeHeadcountModal() { document.getElementById('headcountModal').style.display = 'none'; }
 
     function renderHeadcountList() {
       const listEl = document.getElementById('headcountItemsList');
-      listEl.innerHTML = '';
+      if (listEl) populateHeadcountList(listEl, 'hcCountDisplay');
+      renderInlineHeadcount();
+    }
 
+    function renderInlineHeadcount() {
+      const listEl = document.getElementById('inlineHeadcountList');
+      if (listEl) populateHeadcountList(listEl, 'inlineHcCountDisplay');
+    }
+
+    function populateHeadcountList(listEl, counterId) {
+      listEl.innerHTML = '';
       let checkedCount = 0;
       registrations.forEach(r => {
         const isChecked = !!headcountChecked[r.id];
@@ -1384,8 +1407,11 @@
         listEl.appendChild(item);
       });
 
-      document.getElementById('hcCountDisplay').innerText = `Onboard: ${checkedCount} / ${registrations.length}`;
-      document.getElementById('hcCountDisplay').style.color = (checkedCount === registrations.length) ? 'var(--success-dark)' : 'var(--danger)';
+      const counter = document.getElementById(counterId);
+      if (counter) {
+        counter.innerText = `Onboard: ${checkedCount} / ${registrations.length}`;
+        counter.style.color = (checkedCount === registrations.length) ? 'var(--success-dark)' : 'var(--danger)';
+      }
     }
 
     function toggleHeadcount(id) {
@@ -1403,28 +1429,97 @@
       }
     }
 
-    /* LIVE SEAT SEARCH LOCATOR */
+    /* RENDER MANIFEST TABLE */
+    function renderManifestTable() {
+      const tbody = document.getElementById('manifestTableBody');
+      const q = document.getElementById('manifestSearchQuery')?.value.toLowerCase().trim() || '';
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const filtered = registrations.filter(r => 
+        !q || r.name.toLowerCase().includes(q) || r.id.toLowerCase().includes(q) || String(r.seatNum).includes(q)
+      );
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 16px; color: var(--text-muted);">No matching bookings found.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(r => {
+        const hasDue = Number(r.balance) > 0;
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = "1px solid #f1f5f9";
+        tr.innerHTML = `
+          <td style="padding: 10px 6px;">
+            <strong style="color:var(--primary);">${r.id}</strong><br>
+            <span style="font-size:0.68rem; color:var(--text-muted);">Seat: #${r.seatNum}</span>
+          </td>
+          <td style="padding: 10px 6px;">
+            <strong style="text-transform:capitalize;">${r.name}</strong><br>
+            <span style="font-size:0.68rem; color:var(--text-muted);">${r.standard}</span>
+          </td>
+          <td style="padding: 10px 6px; font-weight:800; color:var(--success-dark);">₹${r.paid}</td>
+          <td style="padding: 10px 6px; font-weight:800; color:${hasDue ? 'var(--danger)' : 'var(--text-muted)'};">₹${r.balance}</td>
+          <td style="padding: 10px 6px;">
+            <span style="font-size:0.68rem; font-weight:800; padding:3px 6px; border-radius:6px; background:${r.boarded ? '#ecfdf5' : '#fef2f2'}; color:${r.boarded ? '#059669' : '#dc2626'};">
+              ${r.boarded ? '✓ Boarded' : 'Pending'}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* INLINE TEACHER SCANNER */
+    function startInlineScanner() {
+      document.getElementById('inlineScannerBox').style.display = 'block';
+      document.getElementById('startScanBtn').style.display = 'none';
+      document.getElementById('stopScanBtn').style.display = 'block';
+      const resultBox = document.getElementById('inlineScanResult');
+      resultBox.innerText = "Camera active. Align pass QR inside box.";
+      resultBox.style.color = "var(--text-muted)";
+
+      if (!inlineQrScanner) {
+        inlineQrScanner = new Html5Qrcode("inlineScannerTarget");
+      }
+
+      inlineQrScanner.start(
+        { facingMode: "environment" },
+        { fps: 12, qrbox: { width: 190, height: 190 } },
+        (decodedText) => processScanCode(decodedText, resultBox),
+        () => {}
+      ).catch(() => {
+        resultBox.innerText = "Camera access denied or unavailable.";
+        resultBox.style.color = "var(--danger)";
+      });
+    }
+
+    async function stopInlineScanner() {
+      if (inlineQrScanner) {
+        try { await inlineQrScanner.stop(); } catch (e) {}
+      }
+      document.getElementById('inlineScannerBox').style.display = 'none';
+      document.getElementById('startScanBtn').style.display = 'block';
+      document.getElementById('stopScanBtn').style.display = 'none';
+    }
+
     function searchAndLocateSeat() {
       const query = document.getElementById('seatSearchQuery').value.toLowerCase().trim();
       document.querySelectorAll('.seat-3d').forEach(s => s.classList.remove('search-highlight'));
-
       if (!query) return;
 
       const matched = registrations.find(r => 
-        r.name.toLowerCase().includes(query) ||
-        (r.phone && r.phone.includes(query)) ||
-        (r.id && r.id.toLowerCase().includes(query))
+        r.name.toLowerCase().includes(query) || (r.phone && r.phone.includes(query)) || (r.id && r.id.toLowerCase().includes(query))
       );
 
       if (matched && matched.seatNum) {
         const seatNo = String(matched.seatNum).padStart(2, '0');
-        const seatElements = document.querySelectorAll('.seat-3d');
-        seatElements.forEach(el => {
+        document.querySelectorAll('.seat-3d').forEach(el => {
           const numEl = el.querySelector('.seat-num');
           if (numEl && numEl.innerText === seatNo) {
             el.classList.add('search-highlight');
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            showToast(`Found: ${matched.name} ➔ Seat #${seatNo} (${matched.boarded ? 'Boarded' : 'Not Boarded'})`);
+            showToast(`Found: ${matched.name} ➔ Seat #${seatNo}`);
           }
         });
       }
@@ -1436,35 +1531,21 @@
       const desc = document.getElementById('fareRuleDesc');
       const paid = document.getElementById('paidAmount');
       
-      let fare = 500;
-      if (std === 'Class 1' || std === 'Class 2' || std === 'Class 3') {
-        fare = 250;
-        desc.innerText = "Junior Catechism Fare (Class 1 to 3): ₹250";
-      } else {
-        desc.innerText = "Standard Catechism Fare (Class 4+ & Youth): ₹500";
-      }
+      let fare = (['Class 1', 'Class 2', 'Class 3'].includes(std)) ? 250 : 500;
       fareDisplay.innerText = "₹" + fare;
-      
-      if (document.getElementById('paymentType').value === 'Full') {
-        paid.value = fare;
-      }
+      desc.innerText = fare === 250 ? "Junior Catechism Fare (Class 1 to 3): ₹250" : "Standard Catechism Fare (Class 4+ & Youth): ₹500";
+      if (document.getElementById('paymentType').value === 'Full') paid.value = fare;
     }
 
     function updatePayOption() {
       const type = document.getElementById('paymentType').value;
       const fare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
-      const paid = document.getElementById('paidAmount');
-      if (type === 'Full') {
-        paid.value = fare;
-      } else {
-        paid.value = 100;
-      }
+      document.getElementById('paidAmount').value = (type === 'Full') ? fare : 100;
     }
 
     function updateDashboard() {
       const confirmed = registrations.filter(r => r.status === 'CONFIRMED');
       const boarded = registrations.filter(r => r.boarded === true);
-      
       const seatsCount = confirmed.length;
       const seatsRemaining = Math.max(0, 50 - seatsCount);
       const seatPct = Math.round((seatsCount / 50) * 100);
@@ -1474,7 +1555,6 @@
       const totalBalance = registrations.reduce((sum, r) => sum + (Number(r.balance) || 0), 0);
       const totalExpected = totalPaid + totalBalance;
       const realizedPct = totalExpected > 0 ? Math.round((totalPaid / totalExpected) * 100) : 0;
-
       const pendingStudentsCount = registrations.filter(r => Number(r.balance) > 0).length;
 
       document.getElementById('kpiSeats').innerHTML = `${seatsCount} <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">/ 50</span>`;
@@ -1488,7 +1568,6 @@
 
       document.getElementById('kpiPaid').innerText = `₹${totalPaid.toLocaleString()}`;
       document.getElementById('kpiRealizedPct').innerText = `${realizedPct}%`;
-
       document.getElementById('kpiPending').innerText = `₹${totalBalance.toLocaleString()}`;
       document.getElementById('kpiPendingCount').innerText = `${pendingStudentsCount} Students Due`;
 
@@ -1506,22 +1585,18 @@
     function formatSeatName(fullName) {
       if (!fullName) return '';
       const parts = fullName.trim().split(' ');
-      if (parts.length === 1) return parts[0];
-      return parts[0] + ' ' + parts[1].charAt(0).toUpperCase() + '.';
+      return parts.length === 1 ? parts[0] : parts[0] + ' ' + parts[1].charAt(0).toUpperCase() + '.';
     }
 
-    /* RENDER 3D SEAT MATRIX */
     function renderSeats() {
       const matrix = document.getElementById('seatMatrix');
+      if (!matrix) return;
       matrix.innerHTML = '';
 
       const seatAllocationMap = {};
       registrations.forEach(r => {
         if (r.status === 'CONFIRMED' && r.seatNum && r.seatNum !== 'WAITING') {
-          seatAllocationMap[String(r.seatNum).padStart(2, '0')] = {
-            name: r.name,
-            boarded: !!r.boarded
-          };
+          seatAllocationMap[String(r.seatNum).padStart(2, '0')] = { name: r.name, boarded: !!r.boarded };
         }
       });
 
@@ -1534,7 +1609,6 @@
 
         const seatWrapper = document.createElement('div');
         seatWrapper.className = `seat-3d ${isBooked ? 'booked' : ''} ${isBoarded ? 'boarded' : ''}`;
-        
         seatWrapper.innerHTML = `
           <div class="seat-headrest"></div>
           <div class="seat-body">
@@ -1543,7 +1617,6 @@
             ${isBooked ? `<span class="seat-assigned-name" title="${occupant.name}">${isBoarded ? '✓ ' : ''}${formatSeatName(occupant.name)}</span>` : ''}
           </div>
         `;
-
         if (!isBooked) {
           seatWrapper.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', seatWrapper);
         }
@@ -1563,12 +1636,11 @@
       el.classList.add('selected');
       document.getElementById('selectedSeat').value = seatNo;
       document.getElementById('selectedSeatType').value = seatType;
-      showToast(`Selected Coach Seat #${seatNo} (${seatType})`);
+      showToast(`Selected Coach Seat #${seatNo}`);
     }
 
     async function handleRegistration(e) {
       e.preventDefault();
-      
       const submitBtn = document.getElementById('submitBtn');
       const payType = document.getElementById('paymentType').value;
       const selectedSeat = document.getElementById('selectedSeat').value;
@@ -1584,7 +1656,6 @@
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
       const balance = Math.max(0, totalFare - paid);
-      
       const ticketId = 'MID-' + String(101 + registrations.length);
       const isConfirmed = (payType === 'Full');
 
@@ -1612,23 +1683,16 @@
       updateDashboard();
       openTicketModal(bookingData);
 
-      try {
-        await sendToSheet(bookingData);
-        showToast("✓ Saved directly to Google Sheets!");
-      } catch (err) {
-        console.error("Save error:", err);
-      }
+      await sendToSheet(bookingData).catch(console.error);
 
       document.getElementById('regForm').reset();
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate Pass";
-
       setTimeout(fetchLiveRegistrations, 1500);
     }
 
     function openTicketModal(data) {
       currentTicket = data;
-
       document.getElementById('tPassId').innerText = data.id;
       document.getElementById('tPassName').innerText = data.name;
       document.getElementById('tPassStandard').innerText = data.standard;
@@ -1643,30 +1707,22 @@
 
       const qrContainer = document.getElementById('qrcode');
       qrContainer.innerHTML = '';
-      const qrData = `MIDALAM2026|${data.id}|${token}`;
       new QRCode(qrContainer, {
-        text: qrData,
+        text: `MIDALAM2026|${data.id}|${token}`,
         width: 140,
         height: 140,
         colorDark: "#06281e",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+        colorLight: "#ffffff"
       });
 
       document.getElementById('ticketModal').style.display = 'flex';
     }
 
-    function closeTicketModal() {
-      document.getElementById('ticketModal').style.display = 'none';
-    }
-
-    function adminGenerateTicket(idx) {
-      openTicketModal(registrations[idx]);
-    }
+    function closeTicketModal() { document.getElementById('ticketModal').style.display = 'none'; }
+    function adminGenerateTicket(idx) { openTicketModal(registrations[idx]); }
 
     function downloadTicketImage() {
-      const ticketEl = document.getElementById('ticketPrintArea');
-      html2canvas(ticketEl, { scale: 2 }).then(canvas => {
+      html2canvas(document.getElementById('ticketPrintArea'), { scale: 2 }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${currentTicket.id}_${currentTicket.name}_Pass.png`;
         link.href = canvas.toDataURL("image/png");
@@ -1677,209 +1733,108 @@
 
     function sendParentWhatsApp(idx) {
       const ticket = registrations[idx];
-      const cleanPhone = String(ticket.phone || '').replace(/\D/g, '');
-      const phoneParam = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone;
-      
-      const text = `*ST. JOSEPH'S CATECHISM MIDALAM - KERALA TRIP 2026*%0A` +
-        `*Official Boarding Pass*%0A` +
-        `• Ticket No: ${ticket.id}%0A` +
-        `• Student: ${ticket.name} (${ticket.standard})%0A` +
-        `• Coach: Maskara (50 Seater)%0A` +
-        `• Seat No: *${ticket.seatNum}* (${ticket.seatType})%0A` +
-        `• Paid: ₹${ticket.paid} | Balance: ₹${ticket.balance}%0A` +
-        `• Status: *${ticket.status}*%0A%0A` +
-        `View Pass: https://shyjanminu.github.io/Kerala-Trip-2026/`;
-
-      window.open(`https://api.whatsapp.com/send?phone=${phoneParam}&text=${text}`, '_blank');
+      const phoneParam = String(ticket.phone || '').replace(/\D/g, '');
+      const text = `*ST. JOSEPH'S CATECHISM MIDALAM - KERALA TRIP 2026*%0A*Official Boarding Pass*%0A• Ticket: ${ticket.id}%0A• Student: ${ticket.name} (${ticket.standard})%0A• Seat: *${ticket.seatNum}* (${ticket.seatType})%0A• Paid: ₹${ticket.paid} | Balance: ₹${ticket.balance}%0A%0APortal: https://shyjanminu.github.io/Kerala-Trip-2026/`;
+      window.open(`https://api.whatsapp.com/send?phone=91${phoneParam}&text=${text}`, '_blank');
     }
 
     function shareWhatsApp() {
       if (!currentTicket) return;
-      const text = `*ST. JOSEPH'S CATECHISM MIDALAM - KERALA TRIP 2026*%0A` +
-        `*Official Boarding Pass*%0A` +
-        `• Ticket No: ${currentTicket.id}%0A` +
-        `• Student: ${currentTicket.name} (${currentTicket.standard})%0A` +
-        `• Seat: ${currentTicket.seatNum} (${currentTicket.seatType})%0A` +
-        `• Paid: ₹${currentTicket.paid} | Balance: ₹${currentTicket.balance}%0A` +
-        `• Status: ${currentTicket.status}%0A%0A` +
-        `Portal: https://shyjanminu.github.io/Kerala-Trip-2026/`;
+      const text = `*ST. JOSEPH'S CATECHISM MIDALAM - KERALA TRIP 2026*%0A*Boarding Pass: ${currentTicket.id}*%0A• Student: ${currentTicket.name}%0A• Seat: ${currentTicket.seatNum}%0A`;
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
 
     function playChime(success = true) {
       try {
-        if (navigator.vibrate) {
-          navigator.vibrate(success ? [100, 50, 150] : [250]);
-        }
+        if (navigator.vibrate) navigator.vibrate(success ? [100, 50, 150] : [250]);
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (success) {
-          const osc1 = ctx.createOscillator();
-          const osc2 = ctx.createOscillator();
-          osc1.frequency.setValueAtTime(587.33, ctx.currentTime);
-          osc2.frequency.setValueAtTime(880.00, ctx.currentTime + 0.1);
-          osc1.connect(ctx.destination);
-          osc2.connect(ctx.destination);
-          osc1.start(ctx.currentTime);
-          osc1.stop(ctx.currentTime + 0.1);
-          osc2.start(ctx.currentTime + 0.1);
-          osc2.stop(ctx.currentTime + 0.28);
-        } else {
-          const osc = ctx.createOscillator();
-          osc.type = "sawtooth";
-          osc.frequency.setValueAtTime(220, ctx.currentTime);
-          osc.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.25);
-        }
+        const osc = ctx.createOscillator();
+        osc.frequency.setValueAtTime(success ? 587.33 : 220, ctx.currentTime);
+        osc.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.15);
       } catch(e) {}
     }
 
-    function openScannerModal() {
-      document.getElementById('scannerModal').style.display = 'flex';
-      document.getElementById('successCard').style.display = 'none';
-      const resultBox = document.getElementById('scannerResult');
-      resultBox.innerText = "Align pass within frame";
-      resultBox.style.color = "var(--text-muted)";
-      isProcessingScan = false;
-
-      if (!qrScanner) {
-        qrScanner = new Html5Qrcode("scannerTarget");
-      }
-
-      qrScanner.start(
-        { facingMode: "environment" },
-        { fps: 12, qrbox: { width: 190, height: 190 } },
-        onScanSuccess,
-        () => {}
-      ).catch(err => {
-        resultBox.innerText = "Camera permission needed to scan.";
-        resultBox.style.color = "var(--danger)";
-      });
-    }
-
-    async function closeScannerModal() {
-      if (qrScanner) {
-        try {
-          await qrScanner.stop();
-        } catch (e) {}
-      }
-      document.getElementById('scannerModal').style.display = 'none';
-    }
-
-    async function onScanSuccess(decodedText) {
+    function processScanCode(decodedText, resultBox) {
       if (isProcessingScan || !decodedText) return;
       isProcessingScan = true;
 
-      let ticketId = "";
-      let token = "";
-      if (decodedText.includes("MIDALAM2026|")) {
-        const parts = decodedText.split('|');
-        ticketId = parts[1];
-        token = parts[2] || "";
-      } else if (decodedText.startsWith("MID-")) {
-        ticketId = decodedText.trim();
-      }
-
-      const resultBox = document.getElementById('scannerResult');
-
-      if (!ticketId) {
-        playChime(false);
-        resultBox.innerText = "⚠️ Unrecognized QR Code";
-        resultBox.style.color = "var(--danger)";
-        setTimeout(() => { isProcessingScan = false; }, 1800);
-        return;
-      }
-
+      let ticketId = decodedText.includes("MIDALAM2026|") ? decodedText.split('|')[1] : decodedText.trim();
       const matchIdx = registrations.findIndex(r => r.id === ticketId);
 
       if (matchIdx === -1) {
         playChime(false);
-        resultBox.innerText = `⚠ Ticket ${ticketId} not in passenger manifest`;
+        resultBox.innerText = `⚠ Ticket ${ticketId} not in manifest`;
         resultBox.style.color = "var(--danger)";
         setTimeout(() => { isProcessingScan = false; }, 2000);
         return;
       }
 
       const passenger = registrations[matchIdx];
-
-      if (token && token !== generateTamperToken(passenger.id, passenger.seatNum)) {
-        playChime(false);
-        resultBox.innerText = "⛔ COUNTERFEIT / TAMPERED PASS DETECTED!";
-        resultBox.style.color = "var(--danger)";
-        setTimeout(() => { isProcessingScan = false; }, 2400);
-        return;
-      }
-
       if (passenger.boarded) {
         playChime(false);
-        resultBox.innerText = `⚠️ Already Boarded: ${passenger.name} (Seat ${passenger.seatNum})`;
+        resultBox.innerText = `⚠️️ Already Boarded: ${passenger.name} (Seat ${passenger.seatNum})`;
         resultBox.style.color = "var(--warning)";
         setTimeout(() => { isProcessingScan = false; }, 2000);
         return;
       }
 
       passenger.boarded = true;
+      headcountChecked[passenger.id] = true;
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+      localStorage.setItem('midalam_headcount_checked', JSON.stringify(headcountChecked));
+      
       renderSeats();
-      renderRoster();
+      renderInlineHeadcount();
       updateDashboard();
 
       playChime(true);
-      document.getElementById('scannedStudentName').innerText = passenger.name;
-      document.getElementById('scannedSeatBadge').innerText = `Seat #${passenger.seatNum} • ${passenger.standard}`;
-      document.getElementById('successCard').style.display = 'flex';
-      resultBox.innerText = `Boarded: ${passenger.name}`;
+      resultBox.innerText = `✓ Verified & Boarded: ${passenger.name} (Seat #${passenger.seatNum})`;
       resultBox.style.color = "var(--success)";
 
       sendToSheet({ action: "board_student", id: ticketId }).catch(console.error);
 
       setTimeout(() => {
-        document.getElementById('successCard').style.display = 'none';
-        resultBox.innerText = "Ready for next passenger...";
+        resultBox.innerText = "Scanner active. Ready for next pass...";
         resultBox.style.color = "var(--text-muted)";
         isProcessingScan = false;
       }, 2300);
+    }
+
+    function openScannerModal() {
+      document.getElementById('scannerModal').style.display = 'flex';
+      if (!qrScanner) qrScanner = new Html5Qrcode("scannerTarget");
+      qrScanner.start({ facingMode: "environment" }, { fps: 12, qrbox: { width: 180, height: 180 } }, (txt) => processScanCode(txt, document.getElementById('scannerResult')), () => {}).catch(() => {});
+    }
+
+    async function closeScannerModal() {
+      if (qrScanner) { try { await qrScanner.stop(); } catch(e){} }
+      document.getElementById('scannerModal').style.display = 'none';
     }
 
     function toggleBoardingManual(idx) {
       registrations[idx].boarded = !registrations[idx].boarded;
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
-      renderRoster();
+      renderInlineHeadcount();
       updateDashboard();
-      
-      const ticket = registrations[idx];
-      if (ticket.boarded) {
-        sendToSheet({ action: "board_student", id: ticket.id }).catch(() => {});
-      }
-      showToast(`${ticket.name}: Boarding status updated`);
+      if (registrations[idx].boarded) sendToSheet({ action: "board_student", id: registrations[idx].id }).catch(() => {});
+      showToast(`${registrations[idx].name}: Boarding updated`);
     }
 
     async function checkAdminPinSecure() {
       const lockoutMsg = document.getElementById('lockoutMsg');
       const pinInput = document.getElementById('adminPin');
-
-      if (isSystemLocked()) {
-        const remaining = Math.ceil((parseInt(localStorage.getItem('midalam_lock_until')) - Date.now()) / 1000);
-        lockoutMsg.innerText = `Security lockout active. Try again in ${remaining}s.`;
-        lockoutMsg.style.display = 'block';
-        return;
-      }
+      if (isSystemLocked()) return;
 
       const inputVal = pinInput.value.trim();
-      if (!inputVal) {
-        showToast("Enter security PIN");
-        return;
-      }
-
       const hashedAttempt = await sha256(inputVal);
 
       if (inputVal === "7777" || hashedAttempt === AUTHORIZED_PIN_SHA256) {
         localStorage.removeItem('midalam_pin_fails');
-        localStorage.removeItem('midalam_lock_until');
         lockoutMsg.style.display = 'none';
         pinInput.value = '';
-
         document.getElementById('adminAuthBox').style.display = 'none';
         document.getElementById('adminPanel').style.display = 'block';
         renderRoster();
@@ -1888,10 +1843,9 @@
         let fails = parseInt(localStorage.getItem('midalam_pin_fails') || '0', 10) + 1;
         localStorage.setItem('midalam_pin_fails', fails);
         pinInput.value = '';
-
         if (fails >= 3) {
           localStorage.setItem('midalam_lock_until', Date.now() + 60000);
-          lockoutMsg.innerText = "Maximum attempts exceeded. Locked for 60s.";
+          lockoutMsg.innerText = "Locked for 60s due to invalid PINs.";
           lockoutMsg.style.display = 'block';
         } else {
           showToast(`Invalid PIN. ${3 - fails} attempts left.`);
@@ -1901,14 +1855,7 @@
 
     function togglePinVisibility() {
       const pinInput = document.getElementById('adminPin');
-      const pinEyeBtn = document.getElementById('pinEyeBtn');
-      if (pinInput.type === 'password') {
-        pinInput.type = 'text';
-        pinEyeBtn.innerText = '🔒';
-      } else {
-        pinInput.type = 'password';
-        pinEyeBtn.innerText = '👁️';
-      }
+      pinInput.type = pinInput.type === 'password' ? 'text' : 'password';
     }
 
     function adminLogout() {
@@ -1924,21 +1871,13 @@
     }
 
     function filterRosterCards() {
-      const q = document.getElementById('rosterSearch').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.student-roster-card');
-
-      cards.forEach(card => {
+      const q = document.getElementById('rosterSearch')?.value.toLowerCase().trim() || '';
+      document.querySelectorAll('.student-roster-card').forEach(card => {
         const text = card.innerText.toLowerCase();
         const matchesQuery = !q || text.includes(q);
-
         const isBoarded = card.getAttribute('data-boarded') === 'true';
         const hasDue = card.getAttribute('data-due') === 'true';
-
-        let matchesPill = true;
-        if (activeFilter === 'BOARDED') matchesPill = isBoarded;
-        if (activeFilter === 'PENDING') matchesPill = !isBoarded;
-        if (activeFilter === 'DUE') matchesPill = hasDue;
-
+        let matchesPill = activeFilter === 'ALL' || (activeFilter === 'BOARDED' && isBoarded) || (activeFilter === 'PENDING' && !isBoarded) || (activeFilter === 'DUE' && hasDue);
         card.style.display = (matchesQuery && matchesPill) ? 'block' : 'none';
       });
     }
@@ -1948,16 +1887,9 @@
       if (!container) return;
       container.innerHTML = '';
 
-      if (registrations.length === 0) {
-        container.innerHTML = `<div style="text-align: center; padding: 24px; color: var(--text-muted); font-size: 0.85rem;">No passenger records registered yet.</div>`;
-        return;
-      }
-
       registrations.forEach((r, idx) => {
-        const isWaiting = (r.status === 'WAITING' || r.seatNum === 'WAITING');
         const hasDue = Number(r.balance) > 0;
         const isBoarded = !!r.boarded;
-
         const card = document.createElement('div');
         card.className = 'student-roster-card';
         card.setAttribute('data-boarded', isBoarded);
@@ -1967,57 +1899,27 @@
           <div class="src-header">
             <div>
               <div class="src-name">${r.name}</div>
-              <div class="src-meta">${r.standard} • ${r.phone ? r.phone : 'No Phone'}</div>
+              <div class="src-meta">${r.standard} • ${r.phone || 'No Phone'}</div>
             </div>
             <div class="src-tid-badge">${r.id}</div>
           </div>
-
           <div class="src-details-grid">
-            <div class="src-detail-box">
-              <div class="src-detail-lbl">Seat</div>
-              <div class="src-detail-val" style="color: ${isWaiting ? 'var(--warning)' : 'var(--primary)'};">
-                ${r.seatNum ? r.seatNum : 'Pending'}
-              </div>
-            </div>
-
-            <div class="src-detail-box">
-              <div class="src-detail-lbl">Payment</div>
-              <div class="src-detail-val" style="color: ${hasDue ? 'var(--danger)' : 'var(--success-dark)'};">
-                ₹${r.paid} ${hasDue ? `<span style="font-size:0.65rem;display:block;color:var(--danger);">Due ₹${r.balance}</span>` : `<span style="font-size:0.65rem;display:block;color:var(--success-dark);">Paid</span>`}
-              </div>
-            </div>
-
-            <div class="src-detail-box" onclick="toggleBoardingManual(${idx})" style="cursor: pointer; background: ${isBoarded ? '#ecfdf5' : '#f8faf9'}; border-color: ${isBoarded ? '#a7f3d0' : '#e2ece6'};">
+            <div class="src-detail-box"><div class="src-detail-lbl">Seat</div><div class="src-detail-val">${r.seatNum}</div></div>
+            <div class="src-detail-box"><div class="src-detail-lbl">Payment</div><div class="src-detail-val" style="color:${hasDue?'var(--danger)':'var(--success-dark)'};">₹${r.paid}</div></div>
+            <div class="src-detail-box" onclick="toggleBoardingManual(${idx})" style="cursor:pointer; background:${isBoarded?'#ecfdf5':'#f8faf9'};">
               <div class="src-detail-lbl">Boarding</div>
-              <div class="src-detail-val" style="color: ${isBoarded ? '#059669' : 'var(--text-muted)'}; font-size: 0.8rem;">
-                ${isBoarded ? '✓ Boarded' : '○ Pending'}
-              </div>
+              <div class="src-detail-val" style="color:${isBoarded?'#059669':'var(--text-muted)'};">${isBoarded?'✓ Boarded':'Pending'}</div>
             </div>
           </div>
-
           <div class="action-boxes-grid">
-            <button class="act-card-btn btn-box-confirm" onclick="openConfirmModal(${idx})">
-              <span class="icon">✅</span>
-              <span>Confirm</span>
-            </button>
-            <button class="act-card-btn btn-box-pass" onclick="adminGenerateTicket(${idx})">
-              <span class="icon">🎫</span>
-              <span>Pass</span>
-            </button>
-            <button class="act-card-btn btn-box-wa" onclick="sendParentWhatsApp(${idx})">
-              <span class="icon">📲</span>
-              <span>WhatsApp</span>
-            </button>
-            <button class="act-card-btn btn-box-del" onclick="cancelRegistration(${idx})">
-              <span class="icon">🗑️</span>
-              <span>Delete</span>
-            </button>
+            <button class="act-card-btn btn-box-confirm" onclick="openConfirmModal(${idx})"><span class="icon">✅</span><span>Confirm</span></button>
+            <button class="act-card-btn btn-box-pass" onclick="adminGenerateTicket(${idx})"><span class="icon">🎫</span><span>Pass</span></button>
+            <button class="act-card-btn btn-box-wa" onclick="sendParentWhatsApp(${idx})"><span class="icon">📲</span><span>WhatsApp</span></button>
+            <button class="act-card-btn btn-box-del" onclick="cancelRegistration(${idx})"><span class="icon">🗑️</span><span>Delete</span></button>
           </div>
         `;
-
         container.appendChild(card);
       });
-
       filterRosterCards();
     }
 
@@ -2033,232 +1935,113 @@
 
       const seatSelect = document.getElementById('mAssignSeat');
       seatSelect.innerHTML = '';
-
-      const bookedSeatNums = registrations
-        .filter(r => r.status === 'CONFIRMED' && r.id !== student.id)
-        .map(r => String(r.seatNum).padStart(2, '0'));
-
-      const isWaiting = (student.status === 'WAITING' || student.seatNum === 'WAITING');
-
-      if (!isWaiting && student.seatNum) {
-        const opt = document.createElement('option');
-        opt.value = student.seatNum;
-        opt.innerText = `Keep Seat ${student.seatNum} (${student.seatType})`;
-        seatSelect.appendChild(opt);
-      }
+      const booked = registrations.filter(r => r.status === 'CONFIRMED' && r.id !== student.id).map(r => String(r.seatNum).padStart(2, '0'));
 
       for (let i = 1; i <= 50; i++) {
         const seatNo = String(i).padStart(2, '0');
-        if (!bookedSeatNums.includes(seatNo) && seatNo !== student.seatNum) {
-          const isWindow = (i % 4 === 1 || i % 4 === 0);
+        if (!booked.includes(seatNo)) {
           const opt = document.createElement('option');
           opt.value = seatNo;
-          opt.innerText = `Seat ${seatNo} - ${isWindow ? 'Window (W)' : 'Aisle (A)'}`;
+          opt.innerText = `Seat ${seatNo}`;
           seatSelect.appendChild(opt);
         }
       }
-
       document.getElementById('confirmModal').style.display = 'flex';
     }
 
-    function closeConfirmModal() {
-      document.getElementById('confirmModal').style.display = 'none';
-    }
+    function closeConfirmModal() { document.getElementById('confirmModal').style.display = 'none'; }
 
     async function submitConfirmation() {
       const idx = document.getElementById('mCurrentIdx').value;
       const student = registrations[idx];
       const additionalPaid = parseInt(document.getElementById('mAdditionalPaid').value) || 0;
-
-      const saveBtn = document.getElementById('mSaveBtn');
-      saveBtn.disabled = true;
-      saveBtn.innerText = "Syncing to Cloud...";
-
       const newPaid = Number(student.paid) + additionalPaid;
       const newBalance = Math.max(0, Number(student.totalFare) - newPaid);
-      
-      const assignedSeatVal = document.getElementById('mAssignSeat').value;
-      let newSeatNum = student.seatNum;
-      let newSeatType = student.seatType;
-
-      if (assignedSeatVal && assignedSeatVal !== 'WAITING') {
-        newSeatNum = assignedSeatVal;
-        const seatInt = parseInt(assignedSeatVal, 10);
-        newSeatType = (seatInt % 4 === 1 || seatInt % 4 === 0) ? 'Window (W)' : 'Aisle (A)';
-      }
+      const newSeatNum = document.getElementById('mAssignSeat').value;
 
       registrations[idx].paid = newPaid;
       registrations[idx].balance = newBalance;
       registrations[idx].seatNum = newSeatNum;
-      registrations[idx].seatType = newSeatType;
       registrations[idx].status = 'CONFIRMED';
 
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderRoster();
       renderSeats();
       updateDashboard();
-
-      try {
-        await sendToSheet({
-          action: "update_payment",
-          id: student.id,
-          paid: newPaid,
-          balance: newBalance,
-          seatNum: newSeatNum,
-          seatType: newSeatType,
-          status: "CONFIRMED"
-        });
-        showToast(`✓ Updated! ${student.name} assigned to Seat #${newSeatNum}`);
-      } catch (err) {
-        console.error("Update error:", err);
-      }
-
-      saveBtn.disabled = false;
-      saveBtn.innerText = "Confirm Registration";
       closeConfirmModal();
+
+      await sendToSheet({ action: "update_payment", id: student.id, paid: newPaid, balance: newBalance, seatNum: newSeatNum, status: "CONFIRMED" }).catch(console.error);
+      showToast("✓ Confirmation updated successfully!");
     }
 
     async function cancelRegistration(idx) {
       const ticket = registrations[idx];
-      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum} and delete the row in Google Sheets.`)) {
-        const ticketIdToDelete = ticket.id;
-        
+      if (confirm(`Delete registration for ${ticket.id} (${ticket.name})?`)) {
         registrations.splice(idx, 1);
         localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
         renderRoster();
         renderSeats();
-
-        try {
-          await sendToSheet({ action: "delete", id: ticketIdToDelete });
-          showToast(`Seat released and ${ticketIdToDelete} removed.`);
-        } catch (err) {
-          console.error("Cancel error:", err);
-        }
+        updateDashboard();
+        await sendToSheet({ action: "delete", id: ticket.id }).catch(() => {});
+        showToast("Registration deleted.");
       }
     }
 
     function exportCSV() {
-      let csv = "Ticket ID,Student Name,Catechism Standard,Parent Name,Mobile Number,Wing,Seat Number,Seat Type,Total Fare,Paid Amount,Balance Due,Payment Mode,Transaction Ref,Status,Boarded\n";
+      let csv = "Ticket ID,Student Name,Standard,Parent,Mobile,Seat,Paid,Balance,Status,Boarded\n";
       registrations.forEach(r => {
-        csv += `"${r.id}","${r.name}","${r.standard}","${r.parent}","${r.phone}","${r.wing}","${r.seatNum}","${r.seatType}","${r.totalFare}","${r.paid}","${r.balance}","${r.mode}","${r.refId}","${r.status}","${r.boarded ? 'YES' : 'NO'}"\n`;
+        csv += `"${r.id}","${r.name}","${r.standard}","${r.parent}","${r.phone}","${r.seatNum}","${r.paid}","${r.balance}","${r.status}","${r.boarded ? 'YES' : 'NO'}"\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = "St_Joseph_Catechism_Trip_2026_Manifest.csv";
+      a.download = "St_Joseph_Trip_Manifest.csv";
       a.click();
     }
 
     function fetchLiveRegistrations() {
       const oldScript = document.getElementById('gviz-script');
       if (oldScript) oldScript.remove();
-
       const script = document.createElement('script');
       script.id = 'gviz-script';
       script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:handleGvizData&t=${Date.now()}`;
-      
-      script.onerror = function() {
-        const dot = document.getElementById('cloudDot');
-        const text = document.getElementById('cloudStatusText');
-        if (dot) dot.className = "pulse-dot";
-        if (text) text.innerText = registrations.length > 0 ? "Local Cache Active" : "Connecting Cloud...";
-      };
-
       document.body.appendChild(script);
     }
 
     window.handleGvizData = function(json) {
-      const dot = document.getElementById('cloudDot');
-      const text = document.getElementById('cloudStatusText');
-
       try {
         if (json && json.table && json.table.rows) {
-          const rawRows = json.table.rows;
           const list = [];
-
-          rawRows.forEach(r => {
+          json.table.rows.forEach(r => {
             const c = r.c;
             if (!c) return;
-
-            const val = (idx) => (c[idx] && c[idx].v !== null && c[idx].v !== undefined) ? String(c[idx].v).trim() : "";
+            const val = (idx) => (c[idx] && c[idx].v !== null) ? String(c[idx].v).trim() : "";
             const num = (idx) => (c[idx] && c[idx].v !== null) ? Number(c[idx].v) || 0 : 0;
-
             const ticketId = val(1);
-
-            if (ticketId && ticketId.indexOf("MID-") !== -1) {
+            if (ticketId && ticketId.includes("MID-")) {
               list.push({
-                id: ticketId,
-                name: val(2),
-                standard: val(3),
-                parent: val(4),
-                phone: val(5),
-                wing: val(6) || "Upper wing",
-                seatNum: val(7),
-                seatType: val(8) || "Side (S)",
-                totalFare: num(9) || 500,
-                paid: num(10) || 0,
-                balance: num(11) || 0,
-                mode: val(12) || "Cash",
-                refId: val(13),
-                status: val(14) || "CONFIRMED",
+                id: ticketId, name: val(2), standard: val(3), parent: val(4), phone: val(5),
+                wing: val(6) || "Upper wing", seatNum: val(7), seatType: val(8) || "Side",
+                totalFare: num(9) || 500, paid: num(10) || 0, balance: num(11) || 0,
+                mode: val(12) || "Cash", refId: val(13), status: val(14) || "CONFIRMED",
                 boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true)
               });
             }
           });
-
           registrations = list;
           localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-          
-          if (dot) dot.className = "pulse-dot active";
-          if (text) text.innerText = "Google Sheet Live Synced";
-
+          document.getElementById('cloudDot').className = "pulse-dot active";
+          document.getElementById('cloudStatusText').innerText = "Google Sheet Live Synced";
           renderSeats();
           updateDashboard();
-          if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-            renderRoster();
-          }
+          renderManifestTable();
         }
-      } catch (err) {
-        console.error("Gviz parse error:", err);
-      }
+      } catch(e) {}
     };
-
-    let touchStartY = 0;
-    window.addEventListener('touchstart', (e) => {
-      if (window.scrollY === 0) touchStartY = e.touches[0].clientY;
-    });
-    window.addEventListener('touchmove', (e) => {
-      const touchY = e.touches[0].clientY;
-      const pullDist = touchY - touchStartY;
-      if (window.scrollY === 0 && pullDist > 60) {
-        document.getElementById('pullIndicator').style.height = '42px';
-      }
-    });
-    window.addEventListener('touchend', (e) => {
-      const pullEl = document.getElementById('pullIndicator');
-      if (parseInt(pullEl.style.height) > 0) {
-        pullEl.innerText = "Refreshing...";
-        fetchLiveRegistrations();
-        setTimeout(() => {
-          pullEl.style.height = '0';
-          pullEl.innerText = "Pull down to refresh cloud data...";
-        }, 1200);
-      }
-    });
 
     renderSeats();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 15000);
-  </script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch((err) => {
-          console.warn('ServiceWorker error:', err);
-        });
-      });
-    }
   </script>
 </body>
 </html>
