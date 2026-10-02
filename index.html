@@ -596,7 +596,6 @@
     @keyframes sheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     .sheet-handle { width: 40px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -10px auto 14px; }
 
-    /* 4K ULTRA-HIGH DEFINITION BOARDING PASS */
     .ticket-4k {
       background: #ffffff;
       border-radius: 18px;
@@ -1093,7 +1092,7 @@
       <div class="sheet-handle"></div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📞 Parish Pilgrimage Helplines</h3>
-        <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
+        <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:color:var(--text-muted);">✕</button>
       </div>
 
       <div class="contact-card">
@@ -1277,19 +1276,18 @@
       return Date.now() < until;
     }
 
-    /* RELIABLE ZERO-HANG BACKGROUND CLOUD DISPATCH */
+    /* DIRECT NON-BLOCKING SUBMISSION DISPATCH */
     function sendToSheet(payload) {
-      const formBody = new URLSearchParams();
-      for (const key in payload) {
-        formBody.append(key, payload[key]);
+      const params = new URLSearchParams();
+      for (const k in payload) {
+        params.append(k, payload[k]);
       }
 
-      // Sends in background without freezing the browser interface
       fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formBody.toString()
+        body: params.toString()
       }).catch(() => {});
     }
 
@@ -1522,7 +1520,6 @@
       showToast(`Selected Coach Seat #${seatNo} (${seatType})`);
     }
 
-    /* ZERO-FREEZE SUBMISSION ENGINE */
     function handleRegistration(e) {
       e.preventDefault();
       
@@ -1534,9 +1531,6 @@
         showToast("Please pick an available 3D seat on the coach map");
         return;
       }
-
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Generating 4K Pass...";
 
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
@@ -1563,24 +1557,22 @@
         boarded: false
       };
 
-      // 1. INSTANT LOCAL UPDATE (NEVER FREEZES)
+      // 1. Instant local state update
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
       renderManifestTable();
 
-      // 2. OPEN BOARDING PASS INSTANTLY
+      // 2. Open 4K Boarding pass
       openTicketModal(bookingData);
-      showToast("✓ Confirmed! Boarding pass generated.");
+      showToast("✓ Pass Generated!");
 
-      // 3. BACKGROUND ASYNC CLOUD SYNC
+      // 3. Dispatch to Google Sheet without blocking the browser
       sendToSheet(bookingData);
 
-      // 4. RESET FORM CLEANLY
+      // 4. Reset form
       document.getElementById('regForm').reset();
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Confirm Booking & Generate 4K Pass";
     }
 
     function openTicketModal(data) {
@@ -2128,12 +2120,14 @@
       registrations[idx].seatType = newSeatType;
       registrations[idx].status = 'CONFIRMED';
 
+      // 1. Instant local update
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderRoster();
       renderSeats();
       renderManifestTable();
       updateDashboard();
 
+      // 2. Dispatch to Google Sheet without blocking UI
       sendToSheet({
         action: "update_payment",
         id: student.id,
@@ -2177,7 +2171,6 @@
       a.click();
     }
 
-    /* ZERO-HANG BACKGROUND CLOUD FETCH */
     function fetchLiveRegistrations() {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
@@ -2243,7 +2236,6 @@
       }
     });
 
-    // Initialize layout immediately on page load
     renderSeats();
     updateDashboard();
     renderManifestTable();
