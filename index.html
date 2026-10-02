@@ -2149,8 +2149,8 @@
       registrations[idx].status = 'CONFIRMED';
 
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-      renderSeats();
       renderRoster();
+      renderSeats();
       renderManifestTable();
       updateDashboard();
 
@@ -2206,97 +2206,51 @@
       a.click();
     }
 
-    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (WEB APP doGet + SHEET CSV) */
-    async function fetchLiveRegistrations() {
+    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP Web App + Sheet CSV) */
+    function fetchLiveRegistrations() {
+      const oldScript = document.getElementById('cloud-jsonp-script');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement('script');
+      script.id = 'cloud-jsonp-script';
+      script.src = `${GOOGLE_SCRIPT_URL}?callback=handleCloudData&t=${Date.now()}`;
+      
+      script.onerror = function() {
+        // Fallback to local storage if network request fails
+        const dot = document.getElementById('cloudDot');
+        const text = document.getElementById('cloudStatusText');
+        if (dot) dot.className = "pulse-dot active";
+        if (text) text.innerText = "Local Database Ready";
+        renderSeats();
+        updateDashboard();
+        renderManifestTable();
+      };
+
+      document.body.appendChild(script);
+    }
+
+    /* GLOBAL JSONP CALLBACK HANDLER */
+    window.handleCloudData = function(response) {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
 
-      // Attempt 1: Fetch from Apps Script doGet JSON
-      try {
-        const res = await fetch(`${GOOGLE_SCRIPT_URL}?t=${Date.now()}`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json && json.status === "success") {
-            if (json.data && json.data.length > 0) {
-              registrations = json.data;
-              localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-            }
-            if (dot) dot.className = "pulse-dot active";
-            if (text) text.innerText = "Google Sheet Live Synced";
-            renderSeats();
-            updateDashboard();
-            renderManifestTable();
-            if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-              renderRoster();
-            }
-            return;
-          }
-        }
-      } catch (err) {
-        // Fallback to Attempt 2
-      }
-
-      // Attempt 2: Fetch via Public CSV Export
-      try {
-        const csvRes = await fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0&t=${Date.now()}`);
-        if (csvRes.ok) {
-          const csvText = await csvRes.text();
-          const lines = csvText.split(/\r?\n/);
-          const list = [];
-
-          for (let i = 1; i < lines.length; i++) {
-            if (!lines[i].trim()) continue;
-            // Parse CSV row taking commas inside quotes into account
-            const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"\vert{}"$/g, '').trim());
-            const tid = row[1]; // Col B: Ticket ID
-
-            if (tid && tid.indexOf("MID-") !== -1) {
-              list.push({
-                id: tid,
-                name: row[2] || "",
-                standard: row[3] || "",
-                parent: row[4] || "",
-                phone: row[5] || "",
-                wing: row[6] || "Upper wing",
-                seatNum: row[7] || "",
-                seatType: row[8] || "Side (S)",
-                totalFare: Number(row[9]) || 500,
-                paid: Number(row[10]) || 0,
-                balance: Number(row[11]) || 0,
-                mode: row[12] || "Cash",
-                refId: row[13] || "",
-                status: row[14] || "CONFIRMED",
-                boarded: ((row[15] || "").toUpperCase() === "YES")
-              });
-            }
-          }
-
-          if (list.length > 0) {
-            registrations = list;
-            localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-          }
-
-          if (dot) dot.className = "pulse-dot active";
-          if (text) text.innerText = "Google Sheet Live Synced";
-          renderSeats();
-          updateDashboard();
-          renderManifestTable();
-          if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-            renderRoster();
-          }
-          return;
-        }
-      } catch (err) {
-        // Fallback to local cache
-      }
-
-      // If network fails completely, rely on local cache
       if (dot) dot.className = "pulse-dot active";
-      if (text) text.innerText = registrations.length > 0 ? "Local Cache Active" : "Local Database Ready";
+      if (text) text.innerText = "Google Sheet Live Synced";
+
+      if (response && response.status === "success" && response.data) {
+        if (response.data.length > 0) {
+          registrations = response.data;
+          localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+        }
+      }
+
       renderSeats();
       updateDashboard();
       renderManifestTable();
-    }
+      if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
+        renderRoster();
+      }
+    };
 
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
