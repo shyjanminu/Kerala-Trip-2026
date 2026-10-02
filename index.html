@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
   
-  <!-- High-Density QR Engine & HTML5 QR Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
@@ -21,6 +20,7 @@
       --text-muted: #64748b;
       --border: #e2e8f0;
       --success: #10b981;
+      --success-dark: #059669;
       --danger: #ef4444;
       --warning: #f59e0b;
       --radius: 16px;
@@ -31,7 +31,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
 
-    /* Custom Header */
     header {
       background: linear-gradient(135deg, #070d1e 0%, #0b132b 50%, #1c2541 100%);
       color: white;
@@ -109,7 +108,6 @@
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
-    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -156,7 +154,6 @@
       gap: 8px;
     }
 
-    /* Dashboard */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .kpi-card { background: #f8fafc; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); }
     .kpi-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
@@ -171,7 +168,6 @@
     .chip-box { background: white; border: 1px solid var(--border); padding: 10px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
-    /* Form */
     .form-group { margin-bottom: 15px; }
     label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
     input, select {
@@ -213,7 +209,6 @@
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Coach Diagram */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -245,6 +240,7 @@
       cursor: pointer;
       padding: 4px 2px;
       text-align: center;
+      transition: all 0.3s ease;
     }
     .seat .num { font-size: 0.75rem; font-weight: 800; }
     .seat .type { font-size: 0.55rem; color: var(--text-muted); font-weight: 600; }
@@ -261,11 +257,10 @@
     }
     .seat.booked { background: #fee2e2; border-color: #fca5a5; cursor: not-allowed; }
     .seat.boarded { background: #dcfce7; border-color: #86efac; }
-    .seat.boarded .allocated-name { color: #166534; }
+    .seat.boarded .allocated-name { color: #166534; font-weight: 900; }
     .seat.selected { background: var(--primary); border-color: var(--primary); color: white; }
     .seat.selected .type { color: var(--accent); }
 
-    /* Admin Table & Actions */
     .table-container { overflow-x: auto; margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
     th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
@@ -289,12 +284,11 @@
     .act-wa { background: #25d366; color: white; }
     .act-cancel { background: #fee2e2; color: #ef4444; }
 
-    /* Modals */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(11, 19, 43, 0.78);
-      backdrop-filter: blur(4px);
+      background: rgba(11, 19, 43, 0.82);
+      backdrop-filter: blur(5px);
       z-index: 1000;
       display: none;
       align-items: center;
@@ -310,6 +304,7 @@
       box-shadow: var(--shadow-lg);
       max-height: 90vh;
       overflow-y: auto;
+      position: relative;
     }
 
     .ticket { background: white; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; margin-top: 10px; }
@@ -324,13 +319,76 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
-    #scanner-container {
+    /* PROFESSIONAL QR SCANNER BOX */
+    #qr-scanner-box {
       width: 100%;
-      max-width: 380px;
-      border-radius: 12px;
+      height: 270px;
+      border-radius: 16px;
       overflow: hidden;
       margin: 12px auto;
-      border: 2px solid var(--border);
+      border: 2px solid #cbd5e1;
+      background: #000;
+      position: relative;
+    }
+    .scanner-viewfinder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 190px;
+      height: 190px;
+      border: 2px solid rgba(212, 175, 55, 0.7);
+      border-radius: 12px;
+      box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .scanner-viewfinder::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: scanAnim 2s infinite linear;
+    }
+    @keyframes scanAnim {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+
+    /* FULL-SCREEN VERIFIED BOARDING POPUP OVER SCANNER */
+    .boarding-success-card {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #ffffff;
+      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      z-index: 20;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .success-icon-badge {
+      width: 68px;
+      height: 68px;
+      background: #dcfce7;
+      color: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
     }
 
     #toast {
@@ -357,7 +415,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="header-layout">
       <div class="header-icon-box">
@@ -386,7 +443,6 @@
     </div>
   </header>
 
-  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
@@ -514,7 +570,7 @@
           </div>
 
           <div class="form-group">
-            <label>Select Seat (Passenger Names Shown Live)</label>
+            <label>Select Seat (Live Coach Map)</label>
             <div class="bus-container">
               <div class="bus-front">
                 <span>ENTRY DOOR 🚪</span>
@@ -645,20 +701,31 @@
     </div>
   </div>
 
-  <!-- QR SCANNER MODAL -->
+  <!-- PROFESSIONAL QR SCANNER MODAL -->
   <div class="modal-overlay" id="scannerModal">
     <div class="modal-card" style="text-align: center;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📷 Coach Boarding QR Scanner</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📷 Maskara Coach Scanner</h3>
         <button onclick="closeScannerModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px;">Point camera at student's boarding pass QR code</p>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Hold pass inside yellow box for instant boarding</p>
       
-      <div id="scanner-container">
-        <div id="qr-reader" style="width: 100%;"></div>
+      <div id="qr-scanner-box">
+        <div class="scanner-viewfinder"></div>
+        <div id="scannerTarget" style="width: 100%; height: 100%;"></div>
+
+        <!-- Pop-in Success Badge -->
+        <div class="boarding-success-card" id="successCard">
+          <div class="success-icon-badge">✓</div>
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--success-dark);" id="scannedStudentName">Student Name</h2>
+          <p style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin: 6px 0;" id="scannedSeatBadge">Seat #00 • Confirmed</p>
+          <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 6px 14px; font-size: 0.76rem; font-weight: 700; color: #065f46; margin-top: 4px;">
+            VERIFIED & BOARDED LIVE
+          </div>
+        </div>
       </div>
 
-      <div id="scannerResult" style="margin-top: 12px; font-size: 0.85rem; font-weight: 800;"></div>
+      <div id="scannerResult" style="font-size: 0.85rem; font-weight: 800; min-height: 22px; color: var(--text-muted);">Camera active...</div>
     </div>
   </div>
 
@@ -695,17 +762,31 @@
   <div id="toast"></div>
 
   <script>
-    // EXACT CONFIGURATION FOR YOUR SHEET:
     const GOOGLE_SHEET_ID = "1xfROg0fRzIa20U3TCbzH3Af8qF2tzmkXA1ebB3pLBxs";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let currentTicket = null;
-    let html5QrScanner = null;
+    let qrScanner = null;
+    let isProcessingScan = false;
 
     let failedAttempts = parseInt(sessionStorage.getItem('midalam_failed_pins') || '0', 10);
     let lockoutUntil = parseInt(sessionStorage.getItem('midalam_lockout_until') || '0', 10);
     let sessionTimeout = null;
+
+    // Guaranteed Google Sheets POST Dispatcher
+    async function sendToSheet(payload) {
+      const formBody = new URLSearchParams();
+      for (const key in payload) {
+        formBody.append(key, payload[key]);
+      }
+      return fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody.toString()
+      });
+    }
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -866,7 +947,7 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "Securing Seat & Generating...";
+      submitBtn.innerText = "Securing Seat & Saving...";
 
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
@@ -897,25 +978,20 @@
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
-
       openTicketModal(bookingData);
 
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bookingData)
-        });
+        await sendToSheet(bookingData);
+        showToast("✓ Pass generated and saved to Google Sheets!");
       } catch (err) {
-        console.error("Cloud sync warning:", err);
+        console.error("Save error:", err);
       }
 
       document.getElementById('regForm').reset();
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate Pass";
 
-      setTimeout(fetchLiveRegistrations, 2000);
+      setTimeout(fetchLiveRegistrations, 1500);
     }
 
     function openTicketModal(data) {
@@ -932,7 +1008,7 @@
 
       const qrContainer = document.getElementById('qrcode');
       qrContainer.innerHTML = '';
-      const qrData = `MIDALAM2026|${data.id}|${data.name}|SEAT:${data.seatNum}|STATUS:${data.status}`;
+      const qrData = `MIDALAM2026|${data.id}|${data.name}`;
       new QRCode(qrContainer, {
         text: qrData,
         width: 130,
@@ -966,7 +1042,7 @@
         `• Seat No: *${ticket.seatNum}* (${ticket.seatType})%0A` +
         `• Paid: ₹${ticket.paid} | Balance: ₹${ticket.balance}%0A` +
         `• Status: *${ticket.status}*%0A%0A` +
-        `View / Download Pass: https://shyjanminu.github.io/Kerala-Trip-2026/`;
+        `View Pass: https://shyjanminu.github.io/Kerala-Trip-2026/`;
 
       window.open(`https://api.whatsapp.com/send?phone=${phoneParam}&text=${text}`, '_blank');
     }
@@ -984,70 +1060,136 @@
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
 
+    /* SOUND & HAPTIC SYNTHESIZER */
+    function playChime(success = true) {
+      try {
+        if (navigator.vibrate) {
+          navigator.vibrate(success ? [100, 50, 150] : [250]);
+        }
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (success) {
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          osc1.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+          osc2.frequency.setValueAtTime(880.00, ctx.currentTime + 0.1); // A5
+          osc1.connect(ctx.destination);
+          osc2.connect(ctx.destination);
+          osc1.start(ctx.currentTime);
+          osc1.stop(ctx.currentTime + 0.1);
+          osc2.start(ctx.currentTime + 0.1);
+          osc2.stop(ctx.currentTime + 0.28);
+        } else {
+          const osc = ctx.createOscillator();
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(220, ctx.currentTime);
+          osc.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.25);
+        }
+      } catch(e) {}
+    }
+
+    /* PROFESSIONAL BOARDING SCANNER ENGINE */
     function openScannerModal() {
       document.getElementById('scannerModal').style.display = 'flex';
-      document.getElementById('scannerResult').innerText = "Camera starting...";
-      document.getElementById('scannerResult').style.color = "var(--text)";
+      document.getElementById('successCard').style.display = 'none';
+      const resultBox = document.getElementById('scannerResult');
+      resultBox.innerText = "Align pass within frame";
+      resultBox.style.color = "var(--text-muted)";
+      isProcessingScan = false;
 
-      html5QrScanner = new Html5Qrcode("qr-reader");
-      html5QrScanner.start(
+      if (!qrScanner) {
+        qrScanner = new Html5Qrcode("scannerTarget");
+      }
+
+      qrScanner.start(
         { facingMode: "environment" },
-        { fps: 10, qrbox: 220 },
+        { fps: 12, qrbox: { width: 200, height: 200 } },
         onScanSuccess,
-        (errorMessage) => { }
+        () => {}
       ).catch(err => {
-        document.getElementById('scannerResult').innerText = "Camera permission needed to scan.";
-        document.getElementById('scannerResult').style.color = "var(--danger)";
+        resultBox.innerText = "Camera permission needed to scan.";
+        resultBox.style.color = "var(--danger)";
       });
     }
 
-    function closeScannerModal() {
-      if (html5QrScanner) {
-        html5QrScanner.stop().then(() => {
-          html5QrScanner.clear();
-          document.getElementById('scannerModal').style.display = 'none';
-        }).catch(() => {
-          document.getElementById('scannerModal').style.display = 'none';
-        });
-      } else {
-        document.getElementById('scannerModal').style.display = 'none';
+    async function closeScannerModal() {
+      if (qrScanner) {
+        try {
+          await qrScanner.stop();
+        } catch (e) {}
       }
+      document.getElementById('scannerModal').style.display = 'none';
     }
 
-    function onScanSuccess(decodedText) {
-      if (!decodedText.includes("MIDALAM2026")) {
-        document.getElementById('scannerResult').innerText = "⚠️ Unrecognized QR Code";
-        document.getElementById('scannerResult').style.color = "var(--danger)";
+    async function onScanSuccess(decodedText) {
+      if (isProcessingScan || !decodedText) return;
+      isProcessingScan = true;
+
+      let ticketId = "";
+      if (decodedText.includes("MIDALAM2026|")) {
+        const parts = decodedText.split('|');
+        ticketId = parts[1];
+      } else if (decodedText.startsWith("MID-")) {
+        ticketId = decodedText.trim();
+      }
+
+      const resultBox = document.getElementById('scannerResult');
+
+      if (!ticketId) {
+        playChime(false);
+        resultBox.innerText = "⚠️ Unrecognized QR Code";
+        resultBox.style.color = "var(--danger)";
+        setTimeout(() => { isProcessingScan = false; }, 1800);
         return;
       }
 
-      const parts = decodedText.split('|');
-      const ticketId = parts[1];
       const matchIdx = registrations.findIndex(r => r.id === ticketId);
 
-      if (matchIdx !== -1) {
-        registrations[matchIdx].boarded = true;
-        localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-        renderSeats();
-        renderRoster();
-        updateDashboard();
-
-        document.getElementById('scannerResult').innerHTML = `<span style="color:var(--success);">✅ BOARDED: ${registrations[matchIdx].name} (Seat ${registrations[matchIdx].seatNum})</span>`;
-        showToast(`Verified: ${registrations[matchIdx].name} has boarded!`);
-
-        try {
-          const ctx = new (window.AudioContext || window.webkitAudioContext)();
-          const osc = ctx.createOscillator();
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(800, ctx.currentTime);
-          osc.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.15);
-        } catch(e){}
-      } else {
-        document.getElementById('scannerResult').innerText = `⚠️ Ticket ${ticketId} not found in manifest`;
-        document.getElementById('scannerResult').style.color = "var(--danger)";
+      if (matchIdx === -1) {
+        playChime(false);
+        resultBox.innerText = `⚠️ Ticket ${ticketId} not in database`;
+        resultBox.style.color = "var(--danger)";
+        setTimeout(() => { isProcessingScan = false; }, 2000);
+        return;
       }
+
+      const passenger = registrations[matchIdx];
+
+      // Already Boarded Alert
+      if (passenger.boarded) {
+        playChime(false);
+        resultBox.innerText = `⚠️ Already Boarded: ${passenger.name} (Seat ${passenger.seatNum})`;
+        resultBox.style.color = "var(--warning)";
+        setTimeout(() => { isProcessingScan = false; }, 2000);
+        return;
+      }
+
+      // Mark Boarded Instantly in App State
+      passenger.boarded = true;
+      localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+      renderSeats();
+      renderRoster();
+      updateDashboard();
+
+      // Show Full-Screen Verified Card
+      playChime(true);
+      document.getElementById('scannedStudentName').innerText = passenger.name;
+      document.getElementById('scannedSeatBadge').innerText = `Seat #${passenger.seatNum} • ${passenger.standard}`;
+      document.getElementById('successCard').style.display = 'flex';
+      resultBox.innerText = `Boarded: ${passenger.name}`;
+      resultBox.style.color = "var(--success)";
+
+      // Send to Google Sheet in Background
+      sendToSheet({ action: "board_student", id: ticketId }).catch(console.error);
+
+      // Auto-Resume Camera for Next Student
+      setTimeout(() => {
+        document.getElementById('successCard').style.display = 'none';
+        resultBox.innerText = "Ready for next passenger...";
+        resultBox.style.color = "var(--text-muted)";
+        isProcessingScan = false;
+      }, 2300);
     }
 
     function toggleBoardingManual(idx) {
@@ -1056,7 +1198,12 @@
       renderSeats();
       renderRoster();
       updateDashboard();
-      showToast(`${registrations[idx].name}: Boarding status updated`);
+      
+      const ticket = registrations[idx];
+      if (ticket.boarded) {
+        sendToSheet({ action: "board_student", id: ticket.id }).catch(() => {});
+      }
+      showToast(`${ticket.name}: Boarding status updated`);
     }
 
     function checkAdminPin() {
@@ -1220,7 +1367,7 @@
 
       const saveBtn = document.getElementById('mSaveBtn');
       saveBtn.disabled = true;
-      saveBtn.innerText = "Syncing with Cloud...";
+      saveBtn.innerText = "Syncing to Sheet...";
 
       const newPaid = Number(student.paid) + additionalPaid;
       const newBalance = Math.max(0, Number(student.totalFare) - newPaid);
@@ -1247,23 +1394,18 @@
       updateDashboard();
 
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            action: "update_payment",
-            id: student.id,
-            paid: newPaid,
-            balance: newBalance,
-            seatNum: newSeatNum,
-            seatType: newSeatType,
-            status: "CONFIRMED"
-          })
+        await sendToSheet({
+          action: "update_payment",
+          id: student.id,
+          paid: newPaid,
+          balance: newBalance,
+          seatNum: newSeatNum,
+          seatType: newSeatType,
+          status: "CONFIRMED"
         });
-        showToast(`Confirmed! ${student.name} assigned to Seat #${newSeatNum}`);
+        showToast(`✓ Updated! ${student.name} assigned to Seat #${newSeatNum}`);
       } catch (err) {
-        console.error("Cloud update error:", err);
+        console.error("Update error:", err);
       }
 
       saveBtn.disabled = false;
@@ -1273,25 +1415,19 @@
 
     async function cancelRegistration(idx) {
       const ticket = registrations[idx];
-      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum} and remove the row from Google Sheets.`)) {
+      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum} and delete the row in Google Sheets.`)) {
         const ticketIdToDelete = ticket.id;
         
         registrations.splice(idx, 1);
         localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
         renderRoster();
         renderSeats();
-        showToast("Freeing seat & updating Google Sheets...");
 
         try {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "delete", id: ticketIdToDelete })
-          });
-          showToast(`Seat released and ${ticketIdToDelete} cancelled.`);
+          await sendToSheet({ action: "delete", id: ticketIdToDelete });
+          showToast(`Seat released and ${ticketIdToDelete} removed.`);
         } catch (err) {
-          console.error("Cancellation sync error:", err);
+          console.error("Cancel error:", err);
         }
       }
     }
@@ -1308,7 +1444,6 @@
       a.click();
     }
 
-    // DIRECT GOOGLE VISUALIZATION PIPELINE (Exact match for your sheet columns)
     function fetchLiveRegistrations() {
       const oldScript = document.getElementById('gviz-script');
       if (oldScript) oldScript.remove();
@@ -1343,8 +1478,7 @@
             const val = (idx) => (c[idx] && c[idx].v !== null && c[idx].v !== undefined) ? String(c[idx].v).trim() : "";
             const num = (idx) => (c[idx] && c[idx].v !== null) ? Number(c[idx].v) || 0 : 0;
 
-            // Col B is Ticket ID (c[1])
-            const ticketId = val(1);
+            const ticketId = val(1); // Col B: Ticket ID
 
             if (ticketId && ticketId.indexOf("MID-") !== -1) {
               list.push({
@@ -1362,7 +1496,7 @@
                 mode: val(12) || "Cash",    // Col M: Payment Mode
                 refId: val(13),             // Col N: Transaction Ref
                 status: val(14) || "CONFIRMED", // Col O: Status
-                boarded: false
+                boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true) // Col P: Boarded
               });
             }
           });
