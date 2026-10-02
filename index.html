@@ -1706,6 +1706,7 @@
     function renderManifestTable() {
       const q = (document.getElementById('manifestSearchInput')?.value || '').toLowerCase().trim();
       const tbody = document.getElementById('manifestTableBody');
+      if (!tbody) return;
       tbody.innerHTML = '';
 
       const filtered = registrations.filter(r => 
@@ -2206,7 +2207,7 @@
       a.click();
     }
 
-    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP Web App + Sheet CSV) */
+    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP + Google CSV) */
     function fetchLiveRegistrations() {
       const oldScript = document.getElementById('cloud-jsonp-script');
       if (oldScript) oldScript.remove();
@@ -2216,14 +2217,47 @@
       script.src = `${GOOGLE_SCRIPT_URL}?callback=handleCloudData&t=${Date.now()}`;
       
       script.onerror = function() {
-        // Fallback to local storage if network request fails
-        const dot = document.getElementById('cloudDot');
-        const text = document.getElementById('cloudStatusText');
-        if (dot) dot.className = "pulse-dot active";
-        if (text) text.innerText = "Local Database Ready";
-        renderSeats();
-        updateDashboard();
-        renderManifestTable();
+        // Fallback: Directly read the public Google Sheet CSV export
+        fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0&t=${Date.now()}`)
+          .then(res => res.text())
+          .then(csv => {
+            const lines = csv.split(/\r?\n/);
+            const list = [];
+            for (let i = 1; i < lines.length; i++) {
+              if (!lines[i].trim()) continue;
+              const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"\vert{}"$/g, '').trim());
+              const tid = row[1];
+              if (tid && tid.indexOf("MID-") !== -1) {
+                list.push({
+                  id: tid,
+                  name: row[2] || "",
+                  standard: row[3] || "",
+                  parent: row[4] || "",
+                  phone: row[5] || "",
+                  wing: row[6] || "Upper wing",
+                  seatNum: row[7] || "",
+                  seatType: row[8] || "Side (S)",
+                  totalFare: Number(row[9]) || 500,
+                  paid: Number(row[10]) || 0,
+                  balance: Number(row[11]) || 0,
+                  mode: row[12] || "Cash",
+                  refId: row[13] || "",
+                  status: row[14] || "CONFIRMED",
+                  boarded: ((row[15] || "").toUpperCase() === "YES")
+                });
+              }
+            }
+            handleCloudData({ status: "success", data: list });
+          })
+          .catch(() => {
+            const dot = document.getElementById('cloudDot');
+            const text = document.getElementById('cloudStatusText');
+            if (dot) dot.className = "pulse-dot active";
+            if (text) text.innerText = "Local Database Ready";
+            renderSeats();
+            updateDashboard();
+            renderManifestTable();
+          });
       };
 
       document.body.appendChild(script);
