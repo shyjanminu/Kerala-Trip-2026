@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
   
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b132b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kerala Tour">
+  <link rel="apple-touch-icon" href="https://applecarrentals.com/assets/web/images/about/bus.jpg">
+
+  <!-- High-Density QR Engine & HTML5 Camera Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
@@ -1353,7 +1363,7 @@
       if (sessionTimeout) clearTimeout(sessionTimeout);
     }
 
-    /* RENDER PROFESSIONAL PASSENGER CARDS WITH HORIZONTAL ACTION BOXES */
+    /* RENDER PASSENGER CARDS WITH HORIZONTAL ACTION BOXES */
     function renderRoster() {
       const container = document.getElementById('rosterCardsList');
       if (!container) return;
@@ -1377,7 +1387,6 @@
         card.className = 'student-roster-card';
 
         card.innerHTML = `
-          <!-- Header with Name, Standard & Ticket ID -->
           <div class="src-header">
             <div>
               <div class="src-name">${r.name}</div>
@@ -1386,7 +1395,6 @@
             <div class="src-tid-badge">${r.id}</div>
           </div>
 
-          <!-- 3 Data Metrics Grid -->
           <div class="src-details-grid">
             <div class="src-detail-box">
               <div class="src-detail-lbl">Seat</div>
@@ -1410,7 +1418,6 @@
             </div>
           </div>
 
-          <!-- ACTION BOXES GRID (BELOW THE STUDENT DATA) -->
           <div class="action-boxes-grid">
             <button class="act-card-btn btn-box-confirm" onclick="openConfirmModal(${idx})">
               <span class="icon">✅</span>
@@ -1640,6 +1647,17 @@
     renderSeats();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 15000);
+  </script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.warn('ServiceWorker registration error:', err);
+        });
+      });
+    }
   </script>
 </body>
 </html>
