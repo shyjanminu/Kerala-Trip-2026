@@ -596,6 +596,7 @@
     @keyframes sheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     .sheet-handle { width: 40px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -10px auto 14px; }
 
+    /* 4K ULTRA-HIGH DEFINITION BOARDING PASS */
     .ticket-4k {
       background: #ffffff;
       border-radius: 18px;
@@ -1092,7 +1093,7 @@
       <div class="sheet-handle"></div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📞 Parish Pilgrimage Helplines</h3>
-        <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:color:var(--text-muted);">✕</button>
+        <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
       <div class="contact-card">
@@ -1276,19 +1277,33 @@
       return Date.now() < until;
     }
 
-    /* DIRECT NON-BLOCKING SUBMISSION DISPATCH */
     function sendToSheet(payload) {
-      const params = new URLSearchParams();
-      for (const k in payload) {
-        params.append(k, payload[k]);
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = GOOGLE_SCRIPT_URL;
+      form.target = 'hidden_iframe';
+      form.style.display = 'none';
+
+      for (const key in payload) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = payload[key];
+        form.appendChild(input);
       }
 
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params.toString()
-      }).catch(() => {});
+      let iframe = document.getElementById('hidden_iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe';
+        iframe.id = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+      form.remove();
     }
 
     function showToast(msg) {
@@ -1498,8 +1513,11 @@
           </div>
         `;
 
+        // PREVENT CLICKING ALREADY BOOKED SEATS
         if (!isBooked) {
           seatWrapper.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', seatWrapper);
+        } else {
+          seatWrapper.onclick = () => showToast(`Seat #${seatNo} is already booked by ${occupant.name}!`);
         }
         matrix.appendChild(seatWrapper);
 
@@ -1513,6 +1531,14 @@
     }
 
     function selectSeat(seatNo, seatType, el) {
+      // CHECK IF ALREADY TAKEN IN CURRENT LOCAL STATE
+      const isTaken = registrations.some(r => r.status === 'CONFIRMED' && String(r.seatNum).padStart(2, '0') === String(seatNo).padStart(2, '0'));
+      if (isTaken) {
+        showToast(`Seat #${seatNo} is already occupied! Please choose another.`);
+        renderSeats();
+        return;
+      }
+
       document.querySelectorAll('.seat-3d').forEach(s => s.classList.remove('selected'));
       el.classList.add('selected');
       document.getElementById('selectedSeat').value = seatNo;
@@ -1530,6 +1556,15 @@
       if (payType === 'Full' && !selectedSeat) {
         showToast("Please pick an available 3D seat on the coach map");
         return;
+      }
+
+      if (payType === 'Full') {
+        const taken = registrations.some(r => r.status === 'CONFIRMED' && String(r.seatNum).padStart(2, '0') === String(selectedSeat).padStart(2, '0'));
+        if (taken) {
+          showToast(`Seat #${selectedSeat} was just booked by someone else! Please pick another seat.`);
+          renderSeats();
+          return;
+        }
       }
 
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
@@ -1564,11 +1599,11 @@
       updateDashboard();
       renderManifestTable();
 
-      // 2. Open 4K Boarding pass
+      // 2. Open Pass Modal Instantly
       openTicketModal(bookingData);
-      showToast("✓ Pass Generated!");
+      showToast("✓ Pass Generated & Saved!");
 
-      // 3. Dispatch to Google Sheet without blocking the browser
+      // 3. Dispatch to Google Sheet via hidden form submission
       sendToSheet(bookingData);
 
       // 4. Reset form
@@ -2120,14 +2155,12 @@
       registrations[idx].seatType = newSeatType;
       registrations[idx].status = 'CONFIRMED';
 
-      // 1. Instant local update
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderRoster();
       renderSeats();
       renderManifestTable();
       updateDashboard();
 
-      // 2. Dispatch to Google Sheet without blocking UI
       sendToSheet({
         action: "update_payment",
         id: student.id,
