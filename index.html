@@ -374,7 +374,7 @@
 </head>
 <body>
 
-  <!-- HEADER WITH LEFT COACH & RIGHT ST. JOSEPH PORTRAIT -->
+  <!-- HEADER -->
   <header>
     <div class="header-layout">
       <div class="header-icon-box">
@@ -1351,31 +1351,46 @@
       a.click();
     }
 
-    async function fetchLiveRegistrations() {
+    // JSONP Handler (Completely immune to CORS / browser blocking)
+    window.handleSheetData = function(data) {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
-      try {
-        const res = await fetch(GOOGLE_SCRIPT_URL);
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data)) {
-            registrations = data;
-            localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-            renderSeats();
-            updateDashboard();
-            if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-              renderRoster();
-            }
-          }
-          if (dot) dot.classList.add('active');
-          if (text) text.innerText = "Google Sheet Live Synced";
+
+      if (Array.isArray(data)) {
+        if (data.length > 0) {
+          registrations = data;
+          localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
         }
-      } catch (err) {
-        console.warn("Sync fallback to local cache:", err);
-        if (text) text.innerText = "Offline Mode (Local Storage)";
-        renderSeats();
-        updateDashboard();
+        if (dot) dot.className = "pulse-dot active";
+        if (text) text.innerText = "Google Sheet Live Synced";
+      } else {
+        if (dot) dot.className = "pulse-dot";
+        if (text) text.innerText = "Local Cache Mode";
       }
+
+      renderSeats();
+      updateDashboard();
+      if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
+        renderRoster();
+      }
+    };
+
+    function fetchLiveRegistrations() {
+      const oldScript = document.getElementById('jsonp-script');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement('script');
+      script.id = 'jsonp-script';
+      script.src = `${GOOGLE_SCRIPT_URL}?callback=handleSheetData&t=${Date.now()}`;
+      
+      script.onerror = function() {
+        const dot = document.getElementById('cloudDot');
+        const text = document.getElementById('cloudStatusText');
+        if (dot) dot.className = "pulse-dot";
+        if (text) text.innerText = registrations.length > 0 ? "Local Cache Mode" : "Connecting Cloud...";
+      };
+
+      document.body.appendChild(script);
     }
 
     renderSeats();
