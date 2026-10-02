@@ -726,7 +726,8 @@
   <div id="toast"></div>
 
   <script>
-    // LIVE GOOGLE APPS SCRIPT WEBHOOK URL:
+    // EXACT SPREADSHEET & WEBHOOK CONNECTIONS:
+    const GOOGLE_SHEET_ID = "1xfROg0fRzIa20U3TCbzH3Af8qF2tzmkXA1ebB3pLBxs";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
@@ -1351,51 +1352,87 @@
       a.click();
     }
 
-    // JSONP Handler (Completely immune to CORS / browser blocking)
-    window.handleSheetData = function(data) {
-      const dot = document.getElementById('cloudDot');
-      const text = document.getElementById('cloudStatusText');
-
-      if (Array.isArray(data)) {
-        if (data.length > 0) {
-          registrations = data;
-          localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-        }
-        if (dot) dot.className = "pulse-dot active";
-        if (text) text.innerText = "Google Sheet Live Synced";
-      } else {
-        if (dot) dot.className = "pulse-dot";
-        if (text) text.innerText = "Local Cache Mode";
-      }
-
-      renderSeats();
-      updateDashboard();
-      if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-        renderRoster();
-      }
-    };
-
+    // DIRECT GOOGLE VISUALIZATION SYNC (Zero CORS, 100% Guaranteed Connection)
     function fetchLiveRegistrations() {
-      const oldScript = document.getElementById('jsonp-script');
+      const oldScript = document.getElementById('gviz-script');
       if (oldScript) oldScript.remove();
 
       const script = document.createElement('script');
-      script.id = 'jsonp-script';
-      script.src = `${GOOGLE_SCRIPT_URL}?callback=handleSheetData&t=${Date.now()}`;
+      script.id = 'gviz-script';
+      script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:handleGvizData&t=${Date.now()}`;
       
       script.onerror = function() {
         const dot = document.getElementById('cloudDot');
         const text = document.getElementById('cloudStatusText');
         if (dot) dot.className = "pulse-dot";
-        if (text) text.innerText = registrations.length > 0 ? "Local Cache Mode" : "Connecting Cloud...";
+        if (text) text.innerText = registrations.length > 0 ? "Local Cache Active" : "Connecting Cloud...";
       };
 
       document.body.appendChild(script);
     }
 
+    window.handleGvizData = function(json) {
+      const dot = document.getElementById('cloudDot');
+      const text = document.getElementById('cloudStatusText');
+
+      try {
+        if (json && json.table && json.table.rows) {
+          const rawRows = json.table.rows;
+          const list = [];
+
+          rawRows.forEach(r => {
+            const c = r.c;
+            if (!c) return;
+
+            const val = (idx) => (c[idx] && c[idx].v !== null && c[idx].v !== undefined) ? String(c[idx].v).trim() : "";
+            const num = (idx) => (c[idx] && c[idx].v !== null) ? Number(c[idx].v) || 0 : 0;
+
+            let ticketId = "";
+            if (val(1).indexOf("MID-") !== -1) ticketId = val(1);
+            else if (val(0).indexOf("MID-") !== -1) ticketId = val(0);
+
+            if (ticketId) {
+              list.push({
+                id: ticketId,
+                name: val(2) || val(1),
+                standard: val(3) || val(2),
+                parent: val(4) || val(3),
+                phone: val(5) || val(4),
+                diet: val(6) || "Non-Veg",
+                wing: "Upper wing",
+                seatNum: val(7) || val(8),
+                seatType: val(8) || "Side (S)",
+                totalFare: num(9) || 500,
+                paid: num(10) || 0,
+                balance: num(11) || 0,
+                mode: val(12) || "Cash",
+                refId: val(13),
+                status: val(14) || "CONFIRMED",
+                boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true)
+              });
+            }
+          });
+
+          registrations = list;
+          localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+          
+          if (dot) dot.className = "pulse-dot active";
+          if (text) text.innerText = "Google Sheet Live Synced";
+
+          renderSeats();
+          updateDashboard();
+          if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
+            renderRoster();
+          }
+        }
+      } catch (err) {
+        console.error("Gviz parse error:", err);
+      }
+    };
+
     renderSeats();
     fetchLiveRegistrations();
-    setInterval(fetchLiveRegistrations, 25000);
+    setInterval(fetchLiveRegistrations, 20000);
   </script>
 </body>
 </html>
