@@ -261,28 +261,128 @@
     .seat.selected { background: var(--primary); border-color: var(--primary); color: white; }
     .seat.selected .type { color: var(--accent); }
 
-    .table-container { overflow-x: auto; margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
-    th { background: #f8fafc; color: var(--text-muted); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
-
-    .action-cluster { display: flex; gap: 4px; flex-wrap: wrap; }
-    .act-btn {
-      padding: 5px 8px;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      text-decoration: none;
+    /* PROFESSIONAL STUDENT ROSTER CARDS */
+    .roster-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
     }
-    .act-confirm { background: #10b981; color: white; }
-    .act-pass { background: #0b132b; color: var(--accent); border: 1px solid var(--accent); }
-    .act-wa { background: #25d366; color: white; }
-    .act-cancel { background: #fee2e2; color: #ef4444; }
+    .student-roster-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .student-roster-card:hover {
+      box-shadow: 0 4px 12px rgba(11, 19, 43, 0.08);
+    }
+    .src-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+    }
+    .src-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: capitalize;
+    }
+    .src-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .src-tid-badge {
+      background: #f1f5f9;
+      color: var(--secondary);
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+    .src-details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .src-detail-box {
+      background: #f8fafc;
+      border: 1px solid #edf2f7;
+      padding: 7px 8px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .src-detail-lbl {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .src-detail-val {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 1px;
+    }
+
+    /* ACTION BOXES GRID (BELOW STUDENT DATA) */
+    .action-boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .act-card-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 4px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      background: #f8fafc;
+    }
+    .act-card-btn:active {
+      transform: scale(0.96);
+    }
+    .act-card-btn span.icon {
+      font-size: 1.15rem;
+      margin-bottom: 3px;
+    }
+    .btn-box-confirm {
+      background: #ecfdf5;
+      color: #065f46;
+      border-color: #a7f3d0;
+    }
+    .btn-box-pass {
+      background: #f0fdfa;
+      color: #0f766e;
+      border-color: #99f6e4;
+    }
+    .btn-box-wa {
+      background: #f0fdf4;
+      color: #15803d;
+      border-color: #bbf7d0;
+    }
+    .btn-box-del {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
 
     .modal-overlay {
       position: fixed;
@@ -319,7 +419,6 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 10px; }
 
-    /* PROFESSIONAL QR SCANNER BOX */
     #qr-scanner-box {
       width: 100%;
       height: 270px;
@@ -358,7 +457,6 @@
       100% { top: 0%; }
     }
 
-    /* FULL-SCREEN VERIFIED BOARDING POPUP OVER SCANNER */
     .boarding-success-card {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -643,21 +741,8 @@
             <button class="btn btn-accent" style="flex: 1; padding: 11px; font-size: 0.85rem;" onclick="exportCSV()">📥 Download CSV</button>
           </div>
 
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Ticket</th>
-                  <th>Student</th>
-                  <th>Seat</th>
-                  <th>Payment</th>
-                  <th>Boarding</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="rosterTableBody"></tbody>
-            </table>
-          </div>
+          <!-- DEDICATED PASSENGER CARDS CONTAINER (WITH ACTION BOXES BELOW) -->
+          <div class="roster-cards-container" id="rosterCardsList"></div>
         </div>
       </div>
     </div>
@@ -708,7 +793,7 @@
         <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary);">📷 Maskara Coach Scanner</h3>
         <button onclick="closeScannerModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Hold pass inside yellow box for instant boarding</p>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">Hold pass inside frame for instant boarding</p>
       
       <div id="qr-scanner-box">
         <div class="scanner-viewfinder"></div>
@@ -774,7 +859,6 @@
     let lockoutUntil = parseInt(sessionStorage.getItem('midalam_lockout_until') || '0', 10);
     let sessionTimeout = null;
 
-    // Guaranteed Google Sheets POST Dispatcher
     async function sendToSheet(payload) {
       const formBody = new URLSearchParams();
       for (const key in payload) {
@@ -982,7 +1066,7 @@
 
       try {
         await sendToSheet(bookingData);
-        showToast("✓ Pass generated and saved to Google Sheets!");
+        showToast("✓ Saved to Google Sheet!");
       } catch (err) {
         console.error("Save error:", err);
       }
@@ -1060,7 +1144,6 @@
       window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
     }
 
-    /* SOUND & HAPTIC SYNTHESIZER */
     function playChime(success = true) {
       try {
         if (navigator.vibrate) {
@@ -1070,8 +1153,8 @@
         if (success) {
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          osc1.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-          osc2.frequency.setValueAtTime(880.00, ctx.currentTime + 0.1); // A5
+          osc1.frequency.setValueAtTime(587.33, ctx.currentTime);
+          osc2.frequency.setValueAtTime(880.00, ctx.currentTime + 0.1);
           osc1.connect(ctx.destination);
           osc2.connect(ctx.destination);
           osc1.start(ctx.currentTime);
@@ -1089,7 +1172,6 @@
       } catch(e) {}
     }
 
-    /* PROFESSIONAL BOARDING SCANNER ENGINE */
     function openScannerModal() {
       document.getElementById('scannerModal').style.display = 'flex';
       document.getElementById('successCard').style.display = 'none';
@@ -1156,7 +1238,6 @@
 
       const passenger = registrations[matchIdx];
 
-      // Already Boarded Alert
       if (passenger.boarded) {
         playChime(false);
         resultBox.innerText = `⚠️ Already Boarded: ${passenger.name} (Seat ${passenger.seatNum})`;
@@ -1165,14 +1246,12 @@
         return;
       }
 
-      // Mark Boarded Instantly in App State
       passenger.boarded = true;
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       renderRoster();
       updateDashboard();
 
-      // Show Full-Screen Verified Card
       playChime(true);
       document.getElementById('scannedStudentName').innerText = passenger.name;
       document.getElementById('scannedSeatBadge').innerText = `Seat #${passenger.seatNum} • ${passenger.standard}`;
@@ -1180,10 +1259,8 @@
       resultBox.innerText = `Boarded: ${passenger.name}`;
       resultBox.style.color = "var(--success)";
 
-      // Send to Google Sheet in Background
       sendToSheet({ action: "board_student", id: ticketId }).catch(console.error);
 
-      // Auto-Resume Camera for Next Student
       setTimeout(() => {
         document.getElementById('successCard').style.display = 'none';
         resultBox.innerText = "Ready for next passenger...";
@@ -1276,43 +1353,85 @@
       if (sessionTimeout) clearTimeout(sessionTimeout);
     }
 
+    /* RENDER PROFESSIONAL PASSENGER CARDS WITH HORIZONTAL ACTION BOXES */
     function renderRoster() {
-      const tbody = document.getElementById('rosterTableBody');
-      tbody.innerHTML = '';
+      const container = document.getElementById('rosterCardsList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (registrations.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 24px; color: var(--text-muted); font-size: 0.85rem;">
+            No passenger records registered yet.
+          </div>
+        `;
+        return;
+      }
 
       registrations.forEach((r, idx) => {
-        const tr = document.createElement('tr');
         const isWaiting = (r.status === 'WAITING' || r.seatNum === 'WAITING');
         const hasDue = Number(r.balance) > 0;
         const isBoarded = !!r.boarded;
 
-        tr.innerHTML = `
-          <td><strong style="color:var(--primary);">${r.id}</strong></td>
-          <td>${r.name}<br><span style="font-size:0.68rem;color:var(--text-muted);">${r.standard}</span></td>
-          <td>
-            <span style="font-weight:700;color:${isWaiting ? 'var(--warning)' : 'var(--primary)'};">
-              ${r.seatNum}
-            </span>
-          </td>
-          <td>
-            ₹${r.paid}<br>
-            ${hasDue ? `<span style="color:var(--danger);font-weight:700;font-size:0.68rem;">Due: ₹${r.balance}</span>` : `<span style="color:var(--success);font-size:0.68rem;">Paid in Full</span>`}
-          </td>
-          <td>
-            <button onclick="toggleBoardingManual(${idx})" style="border:none;border-radius:6px;padding:4px 8px;font-size:0.7rem;font-weight:700;cursor:pointer;background:${isBoarded ? '#dcfce7;color:#166534' : '#f1f5f9;color:var(--text-muted)'};">
-              ${isBoarded ? '✓ Boarded' : '○ Pending'}
-            </button>
-          </td>
-          <td>
-            <div class="action-cluster">
-              <button class="act-btn act-confirm" onclick="openConfirmModal(${idx})" title="Confirm Seat & Balance">✅</button>
-              <button class="act-btn act-pass" onclick="adminGenerateTicket(${idx})" title="Generate Official QR Pass">🎫</button>
-              <button class="act-btn act-wa" onclick="sendParentWhatsApp(${idx})" title="Direct WhatsApp Dispatch to Parent">📲</button>
-              <button class="act-btn act-cancel" onclick="cancelRegistration(${idx})" title="Cancel Booking & Free Seat">❌</button>
+        const card = document.createElement('div');
+        card.className = 'student-roster-card';
+
+        card.innerHTML = `
+          <!-- Header with Name, Standard & Ticket ID -->
+          <div class="src-header">
+            <div>
+              <div class="src-name">${r.name}</div>
+              <div class="src-meta">${r.standard} • ${r.phone ? r.phone : 'No Phone'}</div>
             </div>
-          </td>
+            <div class="src-tid-badge">${r.id}</div>
+          </div>
+
+          <!-- 3 Data Metrics Grid -->
+          <div class="src-details-grid">
+            <div class="src-detail-box">
+              <div class="src-detail-lbl">Seat</div>
+              <div class="src-detail-val" style="color: ${isWaiting ? 'var(--warning)' : 'var(--primary)'};">
+                ${r.seatNum ? r.seatNum : 'Pending'}
+              </div>
+            </div>
+
+            <div class="src-detail-box">
+              <div class="src-detail-lbl">Payment</div>
+              <div class="src-detail-val" style="color: ${hasDue ? 'var(--danger)' : 'var(--success-dark)'};">
+                ₹${r.paid} ${hasDue ? `<span style="font-size:0.65rem;display:block;color:var(--danger);">Due ₹${r.balance}</span>` : `<span style="font-size:0.65rem;display:block;color:var(--success-dark);">Paid</span>`}
+              </div>
+            </div>
+
+            <div class="src-detail-box" onclick="toggleBoardingManual(${idx})" style="cursor: pointer; background: ${isBoarded ? '#ecfdf5' : '#f8fafc'}; border-color: ${isBoarded ? '#a7f3d0' : '#edf2f7'};">
+              <div class="src-detail-lbl">Boarding</div>
+              <div class="src-detail-val" style="color: ${isBoarded ? '#059669' : 'var(--text-muted)'}; font-size: 0.8rem;">
+                ${isBoarded ? '✓ Boarded' : '○ Pending'}
+              </div>
+            </div>
+          </div>
+
+          <!-- ACTION BOXES GRID (BELOW THE STUDENT DATA) -->
+          <div class="action-boxes-grid">
+            <button class="act-card-btn btn-box-confirm" onclick="openConfirmModal(${idx})">
+              <span class="icon">✅</span>
+              <span>Confirm</span>
+            </button>
+            <button class="act-card-btn btn-box-pass" onclick="adminGenerateTicket(${idx})">
+              <span class="icon">🎫</span>
+              <span>Pass</span>
+            </button>
+            <button class="act-card-btn btn-box-wa" onclick="sendParentWhatsApp(${idx})">
+              <span class="icon">📲</span>
+              <span>WhatsApp</span>
+            </button>
+            <button class="act-card-btn btn-box-del" onclick="cancelRegistration(${idx})">
+              <span class="icon">🗑️</span>
+              <span>Delete</span>
+            </button>
+          </div>
         `;
-        tbody.appendChild(tr);
+
+        container.appendChild(card);
       });
     }
 
@@ -1478,25 +1597,25 @@
             const val = (idx) => (c[idx] && c[idx].v !== null && c[idx].v !== undefined) ? String(c[idx].v).trim() : "";
             const num = (idx) => (c[idx] && c[idx].v !== null) ? Number(c[idx].v) || 0 : 0;
 
-            const ticketId = val(1); // Col B: Ticket ID
+            const ticketId = val(1);
 
             if (ticketId && ticketId.indexOf("MID-") !== -1) {
               list.push({
-                id: ticketId,               // Col B: Ticket ID
-                name: val(2),               // Col C: Student Name
-                standard: val(3),           // Col D: Standard
-                parent: val(4),             // Col E: Parent Name
-                phone: val(5),              // Col F: Phone Number
-                wing: val(6) || "Upper wing",// Col G: Wing Category
-                seatNum: val(7),            // Col H: Seat Number
-                seatType: val(8) || "Side (S)", // Col I: Seat Type
-                totalFare: num(9) || 500,   // Col J: Total Fare
-                paid: num(10) || 0,         // Col K: Paid Amount
-                balance: num(11) || 0,      // Col L: Balance Due
-                mode: val(12) || "Cash",    // Col M: Payment Mode
-                refId: val(13),             // Col N: Transaction Ref
-                status: val(14) || "CONFIRMED", // Col O: Status
-                boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true) // Col P: Boarded
+                id: ticketId,
+                name: val(2),
+                standard: val(3),
+                parent: val(4),
+                phone: val(5),
+                wing: val(6) || "Upper wing",
+                seatNum: val(7),
+                seatType: val(8) || "Side (S)",
+                totalFare: num(9) || 500,
+                paid: num(10) || 0,
+                balance: num(11) || 0,
+                mode: val(12) || "Cash",
+                refId: val(13),
+                status: val(14) || "CONFIRMED",
+                boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true)
               });
             }
           });
