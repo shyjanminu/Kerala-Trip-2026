@@ -62,10 +62,10 @@
       transition: height 0.2s ease;
     }
 
-    /* HEADER WITH REAL KERALA BACKDROP BEHIND TITLE */
+    /* KERALA SCENIC HEADER */
     header {
       background: 
-        linear-gradient(180deg, rgba(4, 31, 23, 0.82) 0%, rgba(6, 40, 30, 0.94) 100%),
+        linear-gradient(180deg, rgba(4, 31, 23, 0.85) 0%, rgba(6, 40, 30, 0.95) 100%),
         url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=80") center/cover no-repeat;
       color: white;
       padding: max(14px, env(safe-area-inset-top)) 10px 14px;
@@ -75,84 +75,110 @@
     }
     .header-layout {
       display: grid;
-      grid-template-columns: 80px 1fr 64px;
+      grid-template-columns: 82px 1fr 62px;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       max-width: 620px;
       margin: 0 auto;
       text-align: center;
     }
 
-    /* REAL TOURIST BUS FRONT WINDSHIELD EMBLEM WITH "MASKARA" ON GLASS */
-    .bus-windshield-badge {
-      width: 76px;
-      height: 58px;
+    /* ======================================================== */
+    /* REALISTIC KERALA TOURIST COACH FRONT ELEVATION MODEL     */
+    /* ======================================================== */
+    .kerala-tourist-bus {
+      width: 80px;
+      height: 64px;
       background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-      border: 2px solid #94a3b8;
       border-radius: 12px 12px 6px 6px;
+      border: 2px solid #cbd5e1;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.3);
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.2);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 2px 3px 4px;
+      padding: 3px 3px 4px;
+      overflow: hidden;
     }
-    /* Windshield Sun Visor Tint Strip */
-    .windshield-visor {
-      background: linear-gradient(180deg, #d4af37 0%, #9a7614 100%);
-      color: #06281e;
-      font-size: 0.58rem;
+    /* Roof Top Aerodynamic Spoiler & Marker Beacons */
+    .bus-roof-markers {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 3px;
+    }
+    .roof-dot {
+      width: 4px;
+      height: 3px;
+      background: #f59e0b;
+      border-radius: 2px;
+      box-shadow: 0 0 4px #f59e0b;
+    }
+    .roof-dot.blue { background: #38bdf8; box-shadow: 0 0 4px #38bdf8; }
+
+    /* Kerala Tourist Bus Sunvisor Name Ribbon */
+    .kerala-name-visor {
+      background: linear-gradient(180deg, #d4af37 0%, #aa8620 100%);
+      color: #051a13;
+      font-size: 0.62rem;
       font-weight: 900;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
       padding: 2px 0;
-      border-radius: 6px 6px 0 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      border-radius: 4px;
       line-height: 1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      margin: 1px 0;
+      text-shadow: 0 0.5px 0 rgba(255,255,255,0.4);
     }
-    /* Transparent Front Glass with Cabin View & Reflection */
-    .windshield-glass {
+
+    /* Realistic Front Windshield Glass with Wiper & Reflection */
+    .bus-windshield {
       flex: 1;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0.85) 60%);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(15, 23, 42, 0.92) 55%);
+      border-radius: 3px;
       position: relative;
-      border-radius: 2px;
+      overflow: hidden;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
+      padding-bottom: 2px;
     }
-    .windshield-glass::after {
+    .bus-windshield::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; width: 40%; height: 100%;
+      top: 0; left: 0; width: 45%; height: 100%;
       background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent);
-      transform: skewX(-25deg);
+      transform: skewX(-26deg);
     }
-    .bus-dashboard-dash {
-      font-size: 0.52rem;
-      color: #cbd5e1;
+    .interior-cabin-indicator {
+      font-size: 0.44rem;
       font-weight: 800;
-      letter-spacing: 0.4px;
+      color: #e2e8f0;
+      letter-spacing: 0.5px;
+      z-index: 2;
     }
-    /* Front Headlights & Bumper Base */
-    .windshield-bumper {
+
+    /* Chrome Grill, Projector Headlights & Bumper */
+    .bus-grill-bumper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2px;
+      padding: 1px 1px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
     }
-    .bumper-light {
-      width: 8px;
+    .headlamp {
+      width: 10px;
       height: 4px;
       background: #fef08a;
       border-radius: 2px;
       box-shadow: 0 0 6px #fef08a;
     }
-    .bumper-grill {
+    .headlamp.right { background: #fef08a; }
+    .center-grill-badge {
       font-size: 0.42rem;
       font-weight: 800;
-      color: #64748b;
-      letter-spacing: 0.3px;
+      color: #cbd5e1;
+      letter-spacing: 0.4px;
     }
 
     /* RIGHT ST. JOSEPH PORTRAIT */
@@ -717,20 +743,26 @@
 
   <div id="pullIndicator">Pull down to refresh cloud data...</div>
 
-  <!-- KERALA SCENIC HEADER WITH TOURIST BUS WINDSHIELD -->
+  <!-- KERALA SCENIC HEADER WITH TOURIST BUS FRONT ELEVATION -->
   <header>
     <div class="header-layout">
       
-      <!-- REAL TOURIST BUS WINDSHIELD ("MASKARA") -->
-      <div class="bus-windshield-badge" title="Maskara Luxury Tourist Coach">
-        <div class="windshield-visor">MASKARA</div>
-        <div class="windshield-glass">
-          <span class="bus-dashboard-dash">TOURIST</span>
+      <!-- REALISTIC KERALA TOURIST BUS ELEVATION EMBLEM -->
+      <div class="kerala-tourist-bus" title="Maskara Luxury Tourist Coach">
+        <div class="bus-roof-markers">
+          <div class="roof-dot"></div>
+          <div class="roof-dot blue"></div>
+          <div class="roof-dot blue"></div>
+          <div class="roof-dot"></div>
         </div>
-        <div class="windshield-bumper">
-          <div class="bumper-light"></div>
-          <span class="bumper-grill">COACH</span>
-          <div class="bumper-light"></div>
+        <div class="kerala-name-visor">MASKARA</div>
+        <div class="bus-windshield">
+          <span class="interior-cabin-indicator">TOURIST</span>
+        </div>
+        <div class="bus-grill-bumper">
+          <div class="headlamp"></div>
+          <span class="center-grill-badge">COACH</span>
+          <div class="headlamp right"></div>
         </div>
       </div>
 
