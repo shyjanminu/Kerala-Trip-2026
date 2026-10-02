@@ -996,7 +996,7 @@
       </div>
     </div>
 
-    <!-- TAB 3: PASSENGER MANIFEST & MASTER DIRECTORY -->
+    <!-- TAB 3: PASSENGER MANIFEST -->
     <div id="manifestTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📋 Full Passenger Directory (Students & Teachers)</div>
@@ -1150,7 +1150,7 @@
     </div>
   </div>
 
-  <!-- 4K ULTRA-HD BOARDING PASS PREVIEW MODAL -->
+  <!-- 4K BOARDING PASS MODAL -->
   <div class="modal-overlay" id="ticketModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
@@ -1711,7 +1711,7 @@
       const filtered = registrations.filter(r => 
         !q || r.name.toLowerCase().includes(q) ||
         r.standard.toLowerCase().includes(q) ||
-        (r.phone && r.phone.includes(query)) ||
+        (r.phone && r.phone.includes(q)) ||
         r.id.toLowerCase().includes(q)
       );
 
@@ -2149,8 +2149,8 @@
       registrations[idx].status = 'CONFIRMED';
 
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-      renderRoster();
       renderSeats();
+      renderRoster();
       renderManifestTable();
       updateDashboard();
 
@@ -2206,83 +2206,97 @@
       a.click();
     }
 
-    function fetchLiveRegistrations() {
-      const oldScript = document.getElementById('gviz-script');
-      if (oldScript) oldScript.remove();
-
-      const script = document.createElement('script');
-      script.id = 'gviz-script';
-      script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:handleGvizData&t=${Date.now()}`;
-      
-      script.onerror = function() {
-        const dot = document.getElementById('cloudDot');
-        const text = document.getElementById('cloudStatusText');
-        if (dot) dot.className = "pulse-dot active";
-        if (text) text.innerText = "Local Database Ready";
-      };
-
-      document.body.appendChild(script);
-    }
-
-    /* FAULT-TOLERANT GVIZ SCRIPT PARSER (HANDLES EMPTY AND ACTIVE SHEETS) */
-    window.handleGvizData = function(json) {
+    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (WEB APP doGet + SHEET CSV) */
+    async function fetchLiveRegistrations() {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
 
+      // Attempt 1: Fetch from Apps Script doGet JSON
       try {
-        if (dot) dot.className = "pulse-dot active";
-        if (text) text.innerText = "Google Sheet Live Synced";
+        const res = await fetch(`${GOOGLE_SCRIPT_URL}?t=${Date.now()}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.status === "success") {
+            if (json.data && json.data.length > 0) {
+              registrations = json.data;
+              localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
+            }
+            if (dot) dot.className = "pulse-dot active";
+            if (text) text.innerText = "Google Sheet Live Synced";
+            renderSeats();
+            updateDashboard();
+            renderManifestTable();
+            if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
+              renderRoster();
+            }
+            return;
+          }
+        }
+      } catch (err) {
+        // Fallback to Attempt 2
+      }
 
-        if (json && json.table && json.table.rows && json.table.rows.length > 0) {
-          const rawRows = json.table.rows;
+      // Attempt 2: Fetch via Public CSV Export
+      try {
+        const csvRes = await fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0&t=${Date.now()}`);
+        if (csvRes.ok) {
+          const csvText = await csvRes.text();
+          const lines = csvText.split(/\r?\n/);
           const list = [];
 
-          rawRows.forEach(r => {
-            const c = r.c;
-            if (!c) return;
+          for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+            // Parse CSV row taking commas inside quotes into account
+            const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"\vert{}"$/g, '').trim());
+            const tid = row[1]; // Col B: Ticket ID
 
-            const val = (idx) => (c[idx] && c[idx].v !== null && c[idx].v !== undefined) ? String(c[idx].v).trim() : "";
-            const num = (idx) => (c[idx] && c[idx].v !== null) ? Number(c[idx].v) || 0 : 0;
-
-            const ticketId = val(1);
-
-            if (ticketId && ticketId.indexOf("MID-") !== -1) {
+            if (tid && tid.indexOf("MID-") !== -1) {
               list.push({
-                id: ticketId,
-                name: val(2),
-                standard: val(3),
-                parent: val(4),
-                phone: val(5),
-                wing: val(6) || "Upper wing",
-                seatNum: val(7),
-                seatType: val(8) || "Side (S)",
-                totalFare: num(9) || 500,
-                paid: num(10) || 0,
-                balance: num(11) || 0,
-                mode: val(12) || "Cash",
-                refId: val(13),
-                status: val(14) || "CONFIRMED",
-                boarded: (val(15).toUpperCase() === "YES" || c[15]?.v === true)
+                id: tid,
+                name: row[2] || "",
+                standard: row[3] || "",
+                parent: row[4] || "",
+                phone: row[5] || "",
+                wing: row[6] || "Upper wing",
+                seatNum: row[7] || "",
+                seatType: row[8] || "Side (S)",
+                totalFare: Number(row[9]) || 500,
+                paid: Number(row[10]) || 0,
+                balance: Number(row[11]) || 0,
+                mode: row[12] || "Cash",
+                refId: row[13] || "",
+                status: row[14] || "CONFIRMED",
+                boarded: ((row[15] || "").toUpperCase() === "YES")
               });
             }
-          });
+          }
 
           if (list.length > 0) {
             registrations = list;
             localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
           }
-        }
 
-        renderSeats();
-        updateDashboard();
-        renderManifestTable();
-        if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
-          renderRoster();
+          if (dot) dot.className = "pulse-dot active";
+          if (text) text.innerText = "Google Sheet Live Synced";
+          renderSeats();
+          updateDashboard();
+          renderManifestTable();
+          if (document.getElementById('adminPanel') && document.getElementById('adminPanel').style.display !== 'none') {
+            renderRoster();
+          }
+          return;
         }
       } catch (err) {
-        console.error("Gviz parse error:", err);
+        // Fallback to local cache
       }
-    };
+
+      // If network fails completely, rely on local cache
+      if (dot) dot.className = "pulse-dot active";
+      if (text) text.innerText = registrations.length > 0 ? "Local Cache Active" : "Local Database Ready";
+      renderSeats();
+      updateDashboard();
+      renderManifestTable();
+    }
 
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
