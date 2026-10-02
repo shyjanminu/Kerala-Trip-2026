@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>St. Joseph's Catechism Midalam - Kerala Pilgrimage 2026</title>
+  <title>St. Joseph's Church Midalam - Kerala Pilgrimage 2026</title>
   
   <!-- PWA & Mobile Web App Meta Tags -->
   <link rel="manifest" href="manifest.json">
@@ -11,7 +11,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Kerala Tour Booking">
+  <meta name="apple-mobile-web-app-title" content="Kerala Tour">
   <link rel="apple-touch-icon" href="https://applecarrentals.com/assets/web/images/about/bus.jpg">
 
   <!-- Production Engines -->
@@ -24,10 +24,9 @@
       --primary: #070d1e;
       --secondary: #121c38;
       --accent: #d4af37;
-      --accent-gradient: linear-gradient(135deg, #e6c86e 0%, #d4af37 50%, #aa8620 100%);
-      --bg: #f8fafc;
+      --accent-gradient: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #9e7b1a 100%);
+      --bg: #f3f6fa;
       --surface: #ffffff;
-      --surface-elevated: #ffffff;
       --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
@@ -36,7 +35,6 @@
       --danger: #ef4444;
       --warning: #f59e0b;
       --radius: 18px;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.03);
       --shadow: 0 10px 25px -5px rgba(7, 13, 30, 0.08);
       --shadow-lg: 0 25px 40px -10px rgba(7, 13, 30, 0.22);
     }
@@ -44,7 +42,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 90px; }
 
-    /* PULL TO REFRESH SPINNER */
+    /* PULL TO REFRESH */
     #pullIndicator {
       height: 0;
       overflow: hidden;
@@ -58,34 +56,33 @@
       transition: height 0.2s ease;
     }
 
+    /* PERFECTED MOBILE HEADER (NO OVERFLOW) */
     header {
-      background: linear-gradient(135deg, #050a17 0%, #070d1e 50%, #152244 100%);
+      background: linear-gradient(145deg, #050a17 0%, #070d1e 55%, #152244 100%);
       color: white;
-      padding: env(safe-area-inset-top, 24px) 14px 18px;
+      padding: max(14px, env(safe-area-inset-top)) 10px 14px;
       position: relative;
-      border-bottom: 1.5px solid rgba(212, 175, 55, 0.4);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
     .header-layout {
-      display: flex;
+      display: grid;
+      grid-template-columns: 58px 1fr 58px;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      max-width: 650px;
+      gap: 6px;
+      max-width: 620px;
       margin: 0 auto;
+      text-align: center;
     }
     .header-icon-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      width: 72px;
-      text-align: center;
     }
     .header-img-frame {
-      width: 60px;
-      height: 60px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: 2px solid var(--accent);
       background: #152244;
@@ -93,52 +90,75 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.6);
     }
     .header-img-frame img { width: 100%; height: 100%; object-fit: cover; }
     .header-badge-sub {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 800;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-top: 5px;
+      letter-spacing: 0.4px;
+      margin-top: 3px;
       white-space: nowrap;
     }
-    .header-center { flex: 1; text-align: center; }
-    .church-crest {
-      display: inline-flex;
-      background: rgba(212, 175, 55, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      padding: 3px 12px;
-      border-radius: 20px;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+    .header-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
     }
-    .header-center h1 { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.3px; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.4); }
-    .header-center p { font-size: 0.75rem; color: #94a3b8; margin-top: 3px; font-weight: 600; }
+    .church-crest {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.16);
+      color: #f7df8b;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      max-width: 95%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header-center h1 {
+      font-size: 1.22rem;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+    .header-center p {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
 
     .sync-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 8px;
-      padding: 4px 12px;
+      margin-top: 6px;
+      padding: 3px 10px;
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(8px);
       border-radius: 20px;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: #cbd5e1;
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 10px var(--success); }
 
-    /* SEGMENTED APP NAVIGATION */
+    /* NAVIGATION TABS */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -150,10 +170,10 @@
     }
     .tab-btn {
       flex: 1;
-      padding: 14px 4px;
+      padding: 13px 4px;
       border: none;
       background: none;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
@@ -167,47 +187,47 @@
       background: #fafafa;
     }
 
-    .container { max-width: 650px; margin: 0 auto; padding: 16px; }
+    .container { max-width: 620px; margin: 0 auto; padding: 14px; }
 
     .card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 20px 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .card-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--primary);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     /* KPI DASHBOARD */
-    .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
-    .kpi-card { background: #f8fafc; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); }
-    .kpi-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-    .kpi-val { font-size: 1.45rem; font-weight: 800; color: var(--primary); margin: 6px 0 2px; }
-    .kpi-sub { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; }
+    .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi-card { background: #f8fafc; border-radius: 14px; padding: 14px 12px; border: 1px solid var(--border); }
+    .kpi-lbl { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .kpi-val { font-size: 1.35rem; font-weight: 900; color: var(--primary); margin: 4px 0 2px; }
+    .kpi-sub { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; }
     .progress-bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 8px; }
     .progress-bar-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
     .bg-accent { background: var(--accent); }
     .bg-success { background: var(--success); }
 
-    .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
-    .chip-box { background: white; border: 1px solid var(--border); padding: 10px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: var(--secondary); }
-    .chip-box span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
+    .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+    .chip-box { background: white; border: 1px solid var(--border); padding: 9px 11px; border-radius: 10px; font-size: 0.74rem; font-weight: 700; color: var(--secondary); }
+    .chip-box span { display: block; font-size: 0.65rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
 
     /* FORM STYLES */
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 0.76rem; font-weight: 700; color: var(--text); margin-bottom: 5px; text-transform: uppercase; }
     input, select {
       width: 100%;
-      padding: 13px 14px;
+      padding: 12px 14px;
       border: 1.5px solid var(--border);
       border-radius: 12px;
       font-size: 0.95rem;
@@ -221,110 +241,208 @@
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border: 1.5px dashed var(--accent);
       border-radius: 14px;
-      padding: 14px;
+      padding: 12px;
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .price-tag { font-size: 1.7rem; font-weight: 900; color: var(--primary); }
-    .price-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
+    .price-tag { font-size: 1.6rem; font-weight: 900; color: var(--primary); }
+    .price-desc { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
 
     .btn {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border: none;
       border-radius: 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.1s ease, filter 0.2s ease;
+      transition: transform 0.1s ease;
     }
     .btn:active { transform: scale(0.98); }
-    .btn-primary { background: linear-gradient(135deg, #070d1e, #152244); color: white; box-shadow: 0 4px 14px rgba(7, 13, 30, 0.2); }
+    .btn-primary { background: linear-gradient(135deg, #070d1e, #152244); color: white; box-shadow: 0 4px 12px rgba(7, 13, 30, 0.2); }
     .btn-accent { background: var(--accent-gradient); color: #070d1e; font-weight: 900; }
     .btn-secondary { background: #152244; color: white; }
 
-    /* COACH SEAT MAP */
+    /* ======================================================== */
+    /* REALISTIC 3D LUXURY COACH BUS CABIN & 3D SEAT SYSTEM     */
+    /* ======================================================== */
     .bus-container {
-      background: #eef2f6;
-      border: 2px solid #cbd5e1;
-      border-radius: 20px;
-      padding: 16px 12px;
+      background: linear-gradient(180deg, #dbe4ee 0%, #e8edf3 35%, #dfe6ee 100%);
+      border: 3px solid #b1c1d4;
+      border-radius: 26px;
+      padding: 16px 12px 20px;
       margin-top: 8px;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.1), 0 10px 25px rgba(0,0,0,0.06);
+      position: relative;
     }
-    .bus-front {
+    .bus-front-cockpit {
       display: flex;
       justify-content: space-between;
-      font-size: 0.72rem;
+      align-items: center;
+      background: #111a33;
+      color: #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 14px;
+      font-size: 0.7rem;
       font-weight: 800;
-      color: var(--text-muted);
-      padding-bottom: 8px;
-      border-bottom: 2px dashed #cbd5e1;
-      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; align-items: center; }
-    .seat-grid .aisle { grid-column: 3; height: 8px; }
-    .seat {
-      min-height: 62px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
-      background: white;
+    .bus-front-cockpit span { display: flex; align-items: center; gap: 5px; }
+
+    .seat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px 6px;
+      align-items: center;
+    }
+    .seat-grid .aisle {
+      grid-column: 3;
+      height: 10px;
+      background: repeating-linear-gradient(90deg, #cbd5e1 0, #cbd5e1 4px, transparent 4px, transparent 8px);
+      opacity: 0.6;
+    }
+
+    /* 3D SEAT SCULPTURE */
+    .seat-3d {
+      position: relative;
+      min-height: 68px;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      cursor: pointer;
-      padding: 4px 2px;
-      text-align: center;
+      justify-content: flex-start;
+      perspective: 600px;
+      user-select: none;
+    }
+
+    /* Top Headrest Cushion */
+    .seat-headrest {
+      width: 72%;
+      height: 13px;
+      background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%);
+      border-radius: 6px 6px 3px 3px;
+      border: 1px solid #94a3b8;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      z-index: 3;
+      margin-bottom: -3px;
       transition: all 0.2s ease;
     }
-    .seat .num { font-size: 0.75rem; font-weight: 800; }
-    .seat .type { font-size: 0.55rem; color: var(--text-muted); font-weight: 700; }
-    .seat .allocated-name {
-      font-size: 0.58rem;
+
+    /* Ergonomic Main Backrest */
+    .seat-body {
+      width: 100%;
+      flex: 1;
+      min-height: 52px;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px 8px 12px 12px;
+      box-shadow: 0 4px 0 #94a3b8, 0 6px 8px rgba(15, 23, 42, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 2px 5px;
+      text-align: center;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    /* Inner Stitch Bolster Effect */
+    .seat-body::before {
+      content: "";
+      position: absolute;
+      top: 4px; bottom: 6px; left: 4px; right: 4px;
+      border: 1px dashed rgba(100, 116, 139, 0.35);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .seat-3d:active .seat-body {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #94a3b8, 0 2px 4px rgba(15, 23, 42, 0.2);
+    }
+
+    .seat-num {
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .seat-type-tag {
+      font-size: 0.52rem;
       font-weight: 800;
-      color: #991b1b;
+      color: #64748b;
       margin-top: 2px;
+    }
+    .seat-assigned-name {
+      font-size: 0.55rem;
+      font-weight: 800;
       max-width: 50px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-top: 2px;
       text-transform: capitalize;
     }
-    .seat.booked { background: #fee2e2; border-color: #fca5a5; cursor: not-allowed; }
-    .seat.boarded { background: #dcfce7; border-color: #86efac; }
-    .seat.boarded .allocated-name { color: #166534; font-weight: 900; }
-    .seat.selected { background: var(--primary); border-color: var(--primary); color: white; transform: scale(1.04); }
-    .seat.selected .type { color: var(--accent); }
+
+    /* STATE 1: SELECTED 3D SEAT (LUXURY NAVY & GOLD) */
+    .seat-3d.selected .seat-headrest {
+      background: var(--accent-gradient);
+      border-color: #8c6b12;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+    .seat-3d.selected .seat-body {
+      background: linear-gradient(180deg, #0f1a38 0%, #070d1e 100%);
+      border-color: var(--accent);
+      box-shadow: 0 4px 0 #050a17, 0 0 12px rgba(212, 175, 55, 0.45);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .seat-3d.selected .seat-num { color: #f8fafc; }
+    .seat-3d.selected .seat-type-tag { color: var(--accent); }
+
+    /* STATE 2: BOOKED 3D SEAT (LEATHERETTE VELVET BURGUNDY) */
+    .seat-3d.booked { cursor: not-allowed; }
+    .seat-3d.booked .seat-headrest {
+      background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
+      border-color: #991b1b;
+    }
+    .seat-3d.booked .seat-body {
+      background: linear-gradient(180deg, #fee2e2 0%, #fecaca 60%, #fca5a5 100%);
+      border-color: #f87171;
+      box-shadow: 0 4px 0 #ef4444, 0 5px 8px rgba(185, 28, 28, 0.15);
+    }
+    .seat-3d.booked .seat-num { color: #991b1b; }
+    .seat-3d.booked .seat-type-tag { color: #b91c1c; }
+    .seat-3d.booked .seat-assigned-name { color: #7f1d1d; }
+
+    /* STATE 3: BOARDED 3D SEAT (VIBRANT EMERALD GREEN) */
+    .seat-3d.boarded .seat-headrest {
+      background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+      border-color: #14532d;
+    }
+    .seat-3d.boarded .seat-body {
+      background: linear-gradient(180deg, #dcfce7 0%, #bbf7d0 60%, #86efac 100%);
+      border-color: #22c55e;
+      box-shadow: 0 4px 0 #16a34a, 0 0 10px rgba(34, 197, 94, 0.25);
+    }
+    .seat-3d.boarded .seat-num { color: #14532d; }
+    .seat-3d.boarded .seat-type-tag { color: #15803d; }
+    .seat-3d.boarded .seat-assigned-name { color: #14532d; font-weight: 900; }
 
     /* SEARCH & FILTER BAR IN ADMIN */
-    .filter-wrapper { margin-bottom: 14px; }
-    .search-input-box {
-      position: relative;
-      margin-bottom: 10px;
-    }
-    .search-input-box input {
-      padding-left: 38px;
-      border-radius: 12px;
-      background: #ffffff;
-    }
-    .search-icon-pos {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-    .filter-pills-row {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
+    .filter-wrapper { margin-bottom: 12px; }
+    .search-input-box { position: relative; margin-bottom: 8px; }
+    .search-input-box input { padding-left: 36px; border-radius: 12px; background: #ffffff; }
+    .search-icon-pos { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; color: var(--text-muted); }
+    .filter-pills-row { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
     .pill-btn {
       padding: 6px 12px;
       border-radius: 20px;
@@ -336,55 +454,50 @@
       cursor: pointer;
       white-space: nowrap;
     }
-    .pill-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
+    .pill-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
     /* PASSENGER CARDS */
-    .roster-cards-container { display: flex; flex-direction: column; gap: 12px; }
+    .roster-cards-container { display: flex; flex-direction: column; gap: 10px; }
     .student-roster-card {
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
     .src-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-bottom: 1px solid #f1f5f9;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
-    .src-name { font-size: 1.05rem; font-weight: 800; color: var(--primary); text-transform: capitalize; }
-    .src-meta { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+    .src-name { font-size: 1rem; font-weight: 800; color: var(--primary); text-transform: capitalize; }
+    .src-meta { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-top: 1px; }
     .src-tid-badge {
       background: #f1f5f9;
       color: var(--secondary);
       font-size: 0.68rem;
       font-weight: 800;
-      padding: 4px 8px;
+      padding: 3px 8px;
       border-radius: 6px;
-      letter-spacing: 0.5px;
     }
     .src-details-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
     .src-detail-box {
       background: #f8fafc;
       border: 1px solid #edf2f7;
-      padding: 7px 8px;
-      border-radius: 10px;
+      padding: 6px 8px;
+      border-radius: 8px;
       text-align: center;
     }
-    .src-detail-lbl { font-size: 0.62rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
-    .src-detail-val { font-size: 0.88rem; font-weight: 800; color: var(--primary); margin-top: 2px; }
+    .src-detail-lbl { font-size: 0.6rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+    .src-detail-val { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-top: 1px; }
 
     /* ACTION BOXES GRID */
     .action-boxes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
@@ -393,10 +506,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 9px 4px;
+      padding: 8px 3px;
       border-radius: 10px;
       border: 1px solid transparent;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       cursor: pointer;
       text-decoration: none;
@@ -404,13 +517,13 @@
       background: #f8fafc;
     }
     .act-card-btn:active { transform: scale(0.96); }
-    .act-card-btn span.icon { font-size: 1.15rem; margin-bottom: 3px; }
+    .act-card-btn span.icon { font-size: 1.1rem; margin-bottom: 2px; }
     .btn-box-confirm { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
     .btn-box-pass { background: #f0fdfa; color: #0f766e; border-color: #99f6e4; }
     .btn-box-wa { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
     .btn-box-del { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
 
-    /* MOBILE NATIVE BOTTOM SHEET MODALS */
+    /* BOTTOM SHEETS */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -418,7 +531,7 @@
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: none;
-      align-items: flex-end; /* Mobile Bottom Sheet */
+      align-items: flex-end;
       justify-content: center;
       padding: 0;
     }
@@ -429,7 +542,7 @@
       background: white;
       border-top-left-radius: 24px;
       border-top-right-radius: 24px;
-      padding: 24px 20px env(safe-area-inset-bottom, 24px);
+      padding: 22px 18px env(safe-area-inset-bottom, 20px);
       max-width: 480px;
       width: 100%;
       box-shadow: var(--shadow-lg);
@@ -450,29 +563,29 @@
       height: 5px;
       background: #cbd5e1;
       border-radius: 4px;
-      margin: -10px auto 16px;
+      margin: -10px auto 14px;
     }
 
-    /* DIGITAL BOARDING PASS CARD */
-    .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 10px; }
-    .ticket-head { background: linear-gradient(135deg, #050a17, #070d1e); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
-    .ticket-head h3 { font-size: 1.2rem; font-weight: 900; letter-spacing: 0.5px; }
-    .ticket-head p { font-size: 0.72rem; color: #cbd5e1; margin-top: 3px; font-weight: 600; }
-    .ticket-body { padding: 18px; }
-    .t-row { display: flex; justify-content: space-between; margin-bottom: 9px; font-size: 0.82rem; }
-    .t-lbl { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; font-weight: 700; }
+    /* DIGITAL PASS CARD */
+    .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 8px; }
+    .ticket-head { background: linear-gradient(135deg, #050a17, #070d1e); color: white; padding: 18px; text-align: center; border-bottom: 2px solid var(--accent); }
+    .ticket-head h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; }
+    .ticket-head p { font-size: 0.7rem; color: #cbd5e1; margin-top: 2px; font-weight: 600; }
+    .ticket-body { padding: 16px; }
+    .t-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8rem; }
+    .t-lbl { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
     .t-val { font-weight: 800; color: var(--text); }
-    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 14px 0; }
-    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
+    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 12px 0; }
+    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 16px 18px; }
     #qrcode { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 12px; }
 
-    /* PROFESSIONAL QR CAMERA SCANNER */
+    /* SCANNER MODAL */
     #qr-scanner-box {
       width: 100%;
-      height: 280px;
+      height: 270px;
       border-radius: 18px;
       overflow: hidden;
-      margin: 12px auto;
+      margin: 10px auto;
       border: 2px solid #cbd5e1;
       background: #000;
       position: relative;
@@ -482,8 +595,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 200px;
-      height: 200px;
+      width: 190px;
+      height: 190px;
       border: 2px solid rgba(212, 175, 55, 0.8);
       border-radius: 14px;
       box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.45);
@@ -515,7 +628,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
+      padding: 16px;
       z-index: 20;
       animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -524,16 +637,16 @@
       to { transform: scale(1); opacity: 1; }
     }
     .success-icon-badge {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 68px;
       background: #dcfce7;
       color: #10b981;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.3rem;
-      margin-bottom: 12px;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
       box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.15);
     }
 
@@ -544,9 +657,9 @@
       transform: translateX(-50%);
       background: rgba(7, 13, 30, 0.95);
       color: white;
-      padding: 12px 24px;
+      padding: 11px 22px;
       border-radius: 30px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
       z-index: 1100;
       display: none;
@@ -558,8 +671,10 @@
 
   <div id="pullIndicator">Pull down to refresh cloud data...</div>
 
+  <!-- CLEAN RESPONSIVE HEADER -->
   <header>
     <div class="header-layout">
+      <!-- Left Coach Badge -->
       <div class="header-icon-box">
         <div class="header-img-frame">
           <img src="https://applecarrentals.com/assets/web/images/about/bus.jpg" alt="Maskara Coach">
@@ -567,25 +682,28 @@
         <div class="header-badge-sub">Maskara</div>
       </div>
 
+      <!-- Center Title and Crest -->
       <div class="header-center">
-        <div class="church-crest">St. Joseph's Catechism Midalam</div>
+        <div class="church-crest">St. Joseph Midalam</div>
         <h1>Kerala Tour 2026</h1>
-        <p>Catechism Ministry • Pilgrimage</p>
+        <p>Catechism Pilgrimage</p>
         <div class="sync-status-pill">
           <span class="pulse-dot" id="cloudDot"></span>
           <span id="cloudStatusText">Connecting Cloud...</span>
         </div>
       </div>
 
+      <!-- Right St. Joseph Portrait -->
       <div class="header-icon-box">
         <div class="header-img-frame">
-          <img src="https://media.istockphoto.com/id/139385849/photo/saint-joseph-statue-up-close.jpg?s=612x612&w=0&k=20&c=YPnRxi9z5NVJGcmqllQdxVWWDPbzX8pgC1ckA5Zk4O0=" alt="St. Joseph's Catechism Midalam Midalam">
+          <img src="https://media.istockphoto.com/id/139385849/photo/saint-joseph-statue-up-close.jpg?s=612x612&w=0&k=20&c=YPnRxi9z5NVJGcmqllQdxVWWDPbzX8pgC1ckA5Zk4O0=" alt="St. Joseph Midalam">
         </div>
-        <div class="header-badge-sub">St. Joseph's Catechism Midalam</div>
+        <div class="header-badge-sub">St. Joseph</div>
       </div>
     </div>
   </header>
 
+  <!-- NAVIGATION TABS -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Seat Booking</button>
@@ -713,14 +831,17 @@
           </div>
 
           <div class="form-group">
-            <label>Select Seat (Live Coach Map)</label>
+            <label>Select 3D Coach Seat (Passenger Details Shown)</label>
+            
+            <!-- REALISTIC 3D COACH BUS CABIN -->
             <div class="bus-container">
-              <div class="bus-front">
-                <span>ENTRY DOOR 🚪</span>
+              <div class="bus-front-cockpit">
+                <span>🚪 ENTRY DOOR</span>
                 <span>FRONT (DRIVER CABIN) ➔</span>
               </div>
               <div class="seat-grid" id="seatMatrix"></div>
             </div>
+            
             <input type="hidden" id="selectedSeat">
             <input type="hidden" id="selectedSeatType" value="Side (S)">
           </div>
@@ -820,7 +941,7 @@
       <div class="ticket" id="ticketPrintArea">
         <div class="ticket-head">
           <h3>OFFICIAL BOARDING PASS</h3>
-          <p>St. Joseph's Catechism Midalam • Kerala Pilgrimage 2026</p>
+          <p>St. Joseph Midalam • Kerala Pilgrimage 2026</p>
         </div>
         <div class="ticket-body">
           <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color:var(--accent); font-size:1.05rem;">-</span></div>
@@ -912,9 +1033,7 @@
     const GOOGLE_SHEET_ID = "1xfROg0fRzIa20U3TCbzH3Af8qF2tzmkXA1ebB3pLBxs";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
 
-    // SECURITY: SHA-256 Hash of PIN '7777' with Midalam salt
-    // Plain PIN is NEVER stored in code
-    const AUTHORIZED_PIN_SHA256 = "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"; // SHA-256 for '1' or '7777'
+    const AUTHORIZED_PIN_SHA256 = "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b";
 
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let currentTicket = null;
@@ -922,7 +1041,6 @@
     let isProcessingScan = false;
     let activeFilter = 'ALL';
 
-    // CRYPTO HELPERS (Web Crypto API)
     async function sha256(str) {
       const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
       return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -932,13 +1050,11 @@
       return (parseInt(id.replace(/\D/g, '') || 0) * 31 + parseInt(seat || 0) * 7).toString(36).toUpperCase();
     }
 
-    // PERSISTENT LOCKOUT CHECK
     function isSystemLocked() {
       const until = parseInt(localStorage.getItem('midalam_lock_until') || '0', 10);
       return Date.now() < until;
     }
 
-    // GUARANTEED NETWORK SYNC WITH OFFLINE QUEUE
     async function sendToSheet(payload) {
       const formBody = new URLSearchParams();
       for (const key in payload) {
@@ -946,7 +1062,6 @@
       }
 
       if (!navigator.onLine) {
-        // Queue for background execution
         let queue = JSON.parse(localStorage.getItem('midalam_offline_queue') || '[]');
         queue.push(payload);
         localStorage.setItem('midalam_offline_queue', JSON.stringify(queue));
@@ -962,7 +1077,6 @@
       });
     }
 
-    // Process Offline Queue when online returns
     window.addEventListener('online', async () => {
       let queue = JSON.parse(localStorage.getItem('midalam_offline_queue') || '[]');
       if (queue.length > 0) {
@@ -1069,6 +1183,7 @@
       return parts[0] + ' ' + parts[1].charAt(0).toUpperCase() + '.';
     }
 
+    /* RENDER 3D SEAT MATRIX */
     function renderSeats() {
       const matrix = document.getElementById('seatMatrix');
       matrix.innerHTML = '';
@@ -1090,19 +1205,22 @@
         const isBoarded = isBooked && occupant.boarded;
         const isWindow = (i % 4 === 1 || i % 4 === 0);
 
-        const btn = document.createElement('div');
-        btn.className = `seat ${isBooked ? 'booked' : ''} ${isBoarded ? 'boarded' : ''}`;
+        const seatWrapper = document.createElement('div');
+        seatWrapper.className = `seat-3d ${isBooked ? 'booked' : ''} ${isBoarded ? 'boarded' : ''}`;
         
-        btn.innerHTML = `
-          <span class="num">${seatNo}</span>
-          <span class="type">${isWindow ? 'W' : 'A'}</span>
-          ${isBooked ? `<span class="allocated-name" title="${occupant.name}">${isBoarded ? '✓ ' : ''}${formatSeatName(occupant.name)}</span>` : ''}
+        seatWrapper.innerHTML = `
+          <div class="seat-headrest"></div>
+          <div class="seat-body">
+            <span class="seat-num">${seatNo}</span>
+            <span class="seat-type-tag">${isWindow ? 'WINDOW' : 'AISLE'}</span>
+            ${isBooked ? `<span class="seat-assigned-name" title="${occupant.name}">${isBoarded ? '✓ ' : ''}${formatSeatName(occupant.name)}</span>` : ''}
+          </div>
         `;
 
         if (!isBooked) {
-          btn.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', btn);
+          seatWrapper.onclick = () => selectSeat(seatNo, isWindow ? 'Window (W)' : 'Aisle (A)', seatWrapper);
         }
-        matrix.appendChild(btn);
+        matrix.appendChild(seatWrapper);
 
         if (i % 4 === 2) {
           const aisle = document.createElement('div');
@@ -1114,7 +1232,7 @@
     }
 
     function selectSeat(seatNo, seatType, el) {
-      document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+      document.querySelectorAll('.seat-3d').forEach(s => s.classList.remove('selected'));
       el.classList.add('selected');
       document.getElementById('selectedSeat').value = seatNo;
       document.getElementById('selectedSeatType').value = seatType;
@@ -1129,7 +1247,7 @@
       const selectedSeat = document.getElementById('selectedSeat').value;
 
       if (payType === 'Full' && !selectedSeat) {
-        showToast("Please pick an available seat on the coach map");
+        showToast("Please pick an available 3D seat on the coach map");
         return;
       }
 
@@ -1193,7 +1311,6 @@
       document.getElementById('tPassBalance').innerText = `₹${data.balance}`;
       document.getElementById('tPassBoarding').innerHTML = data.boarded ? `<span style="color:var(--success);">✓ BOARDED</span>` : `<span style="color:var(--warning);">PENDING BOARDING</span>`;
 
-      // TAMPER-PROOF AUTH TOKEN
       const token = generateTamperToken(data.id, data.seatNum);
       document.getElementById('tAuthHash').innerText = `TOKEN: ${token} • AUTHENTICATED PASS`;
 
@@ -1227,7 +1344,7 @@
         link.download = `${currentTicket.id}_${currentTicket.name}_Pass.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
-        showToast("✓ Pass downloaded to gallery!");
+        showToast("✓ Pass saved to gallery!");
       });
     }
 
@@ -1304,7 +1421,7 @@
 
       qrScanner.start(
         { facingMode: "environment" },
-        { fps: 12, qrbox: { width: 200, height: 200 } },
+        { fps: 12, qrbox: { width: 190, height: 190 } },
         onScanSuccess,
         () => {}
       ).catch(err => {
@@ -1358,7 +1475,6 @@
 
       const passenger = registrations[matchIdx];
 
-      // CRYPTOGRAPHIC TOKEN VERIFICATION
       if (token && token !== generateTamperToken(passenger.id, passenger.seatNum)) {
         playChime(false);
         resultBox.innerText = "⛔ COUNTERFEIT / TAMPERED PASS DETECTED!";
@@ -1412,7 +1528,6 @@
       showToast(`${ticket.name}: Boarding status updated`);
     }
 
-    // ENTERPRISE HARDENED PIN CHECK WITH PERSISTENT RATE LIMITING
     async function checkAdminPinSecure() {
       const lockoutMsg = document.getElementById('lockoutMsg');
       const pinInput = document.getElementById('adminPin');
@@ -1430,10 +1545,8 @@
         return;
       }
 
-      // Hash input with SHA-256 before testing
       const hashedAttempt = await sha256(inputVal);
 
-      // Verify Against Precomputed Hash
       if (inputVal === "7777" || hashedAttempt === AUTHORIZED_PIN_SHA256) {
         localStorage.removeItem('midalam_pin_fails');
         localStorage.removeItem('midalam_lock_until');
@@ -1476,7 +1589,6 @@
       document.getElementById('adminAuthBox').style.display = 'block';
     }
 
-    // SEARCH & FILTER CONTROLLER
     function setFilterCategory(cat, el) {
       activeFilter = cat;
       document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
@@ -1784,7 +1896,6 @@
       }
     };
 
-    // PULL TO REFRESH IMPLEMENTATION
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
       if (window.scrollY === 0) touchStartY = e.touches[0].clientY;
@@ -1813,12 +1924,11 @@
     setInterval(fetchLiveRegistrations, 15000);
   </script>
 
-  <!-- PWA SERVICE WORKER REGISTRATION -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch((err) => {
-          console.warn('ServiceWorker registration error:', err);
+          console.warn('ServiceWorker error:', err);
         });
       });
     }
