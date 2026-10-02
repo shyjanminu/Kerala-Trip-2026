@@ -32,6 +32,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; -webkit-tap-highlight-color: transparent; }
 
+    /* Custom Header with Left Coach & Right St. Joseph Portrait */
     header {
       background: linear-gradient(135deg, #070d1e 0%, #0b132b 50%, #1c2541 100%);
       color: white;
@@ -109,6 +110,7 @@
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
+    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: var(--surface);
@@ -232,7 +234,7 @@
     .btn-accent { background: linear-gradient(135deg, #d4af37, #b89628); color: #0b132b; }
     .btn-secondary { background: #1c2541; color: white; }
 
-    /* Bus Layout */
+    /* Coach Layout */
     .bus-container {
       background: #eef2f6;
       border: 2px solid #cbd5e1;
@@ -1080,7 +1082,6 @@
         document.getElementById('scannerResult').innerHTML = `<span style="color:var(--success);">✅ BOARDED: ${registrations[matchIdx].name} (Seat ${registrations[matchIdx].seatNum})</span>`;
         showToast(`Verified: ${registrations[matchIdx].name} has boarded!`);
 
-        // Audio feedback
         try {
           const ctx = new (window.AudioContext || window.webkitAudioContext)();
           const osc = ctx.createOscillator();
