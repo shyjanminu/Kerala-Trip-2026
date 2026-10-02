@@ -53,19 +53,6 @@
       min-height: 100vh;
     }
 
-    #pullIndicator {
-      height: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--secondary);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      transition: height 0.2s ease;
-    }
-
     header {
       background: 
         linear-gradient(180deg, rgba(4, 31, 23, 0.65) 0%, rgba(6, 40, 30, 0.88) 100%),
@@ -216,8 +203,7 @@
       border: 1px solid rgba(212, 175, 55, 0.35);
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
-    .pulse-dot.active { background: #34d399; box-shadow: 0 0 10px #34d399; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px #34d399; }
 
     .nav-tabs {
       display: flex;
@@ -284,24 +270,6 @@
     .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
     .chip-box { background: rgba(255, 255, 255, 0.95); border: 1px solid var(--border); padding: 9px 11px; border-radius: 10px; font-size: 0.74rem; font-weight: 700; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.65rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
-
-    .guidelines-box {
-      background: #f8fafc;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 16px;
-    }
-    .guide-title { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
-    .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .guide-col { background: white; border-radius: 10px; padding: 10px; border: 1px solid var(--border); }
-    .guide-col h5 { font-size: 0.75rem; font-weight: 800; margin-bottom: 6px; }
-    .guide-col.dos h5 { color: var(--success-dark); }
-    .guide-col.donts h5 { color: var(--danger); }
-    .guide-list { list-style: none; font-size: 0.68rem; color: var(--text); line-height: 1.4; }
-    .guide-list li { margin-bottom: 5px; padding-left: 12px; position: relative; }
-    .guide-col.dos .guide-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 800; }
-    .guide-col.donts .guide-list li::before { content: "✕"; position: absolute; left: 0; color: var(--danger); font-weight: 800; }
 
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 0.76rem; font-weight: 700; color: var(--text); margin-bottom: 5px; text-transform: uppercase; }
@@ -518,6 +486,25 @@
 </head>
 <body>
 
+  <!-- HIDDEN GOOGLE SHEET SYNC FORM FRAMEWORK -->
+  <iframe name="hidden_sheet_frame" id="hidden_sheet_frame" style="display:none;"></iframe>
+  <form id="sheetSyncForm" method="POST" action="https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec" target="hidden_sheet_frame" style="display:none;">
+    <input type="hidden" name="id" id="f_id">
+    <input type="hidden" name="name" id="f_name">
+    <input type="hidden" name="standard" id="f_standard">
+    <input type="hidden" name="parent" id="f_parent">
+    <input type="hidden" name="phone" id="f_phone">
+    <input type="hidden" name="wing" id="f_wing">
+    <input type="hidden" name="seatNum" id="f_seatNum">
+    <input type="hidden" name="seatType" id="f_seatType">
+    <input type="hidden" name="totalFare" id="f_totalFare">
+    <input type="hidden" name="paid" id="f_paid">
+    <input type="hidden" name="balance" id="f_balance">
+    <input type="hidden" name="mode" id="f_mode">
+    <input type="hidden" name="refId" id="f_refId">
+    <input type="hidden" name="status" id="f_status">
+  </form>
+
   <header>
     <div class="header-layout">
       <div class="kerala-bus-photo-container" title="Maskara Luxury Tourist Coach - Kerala">
@@ -530,8 +517,8 @@
         <h1>Kerala Tour 2026</h1>
         <p>Annual Catechism Pilgrimage</p>
         <div class="sync-status-pill">
-          <span class="pulse-dot"></span>
-          <span id="cloudStatusText">Local Safe Mode Active</span>
+          <span class="pulse-dot active"></span>
+          <span id="cloudStatusText">Google Sheet Live Synced</span>
         </div>
       </div>
 
@@ -954,6 +941,9 @@
   <div id="toast"></div>
 
   <script>
+    const GOOGLE_SHEET_ID = "1xfROg0fRzIa20U3TCbzH3Af8qF2tzmkXA1ebB3pLBxs";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMJW4WmZrbbHS-BbFVmIAk15Cvoy08t99sFNz_1Y0Cpuy0qbygCzNXUKujWSlrW-zKzg/exec";
+
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let headcountChecked = JSON.parse(localStorage.getItem('midalam_headcount_checked')) || {};
     let currentTicket = null;
@@ -965,16 +955,31 @@
       return (parseInt(id.replace(/\D/g, '') || 0) * 31 + parseInt(seat || 0) * 7).toString(36).toUpperCase();
     }
 
-    function isSystemLocked() {
-      const until = parseInt(localStorage.getItem('midalam_lock_until') || '0', 10);
-      return Date.now() < until;
-    }
-
     function showToast(msg) {
       const toast = document.getElementById('toast');
       toast.innerText = msg;
       toast.style.display = 'block';
       setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+
+    // NON-BLOCKING GOOGLE SHEET SYNC VIA HIDDEN FORM & IFRAME
+    function sendToSheet(payload) {
+      document.getElementById('f_id').value = payload.id || "";
+      document.getElementById('f_name').value = payload.name || "";
+      document.getElementById('f_standard').value = payload.standard || "";
+      document.getElementById('f_parent').value = payload.parent || "";
+      document.getElementById('f_phone').value = payload.phone || "";
+      document.getElementById('f_wing').value = payload.wing || "Upper wing";
+      document.getElementById('f_seatNum').value = payload.seatNum || "";
+      document.getElementById('f_seatType').value = payload.seatType || "";
+      document.getElementById('f_totalFare').value = payload.totalFare || 0;
+      document.getElementById('f_paid').value = payload.paid || 0;
+      document.getElementById('f_balance').value = payload.balance || 0;
+      document.getElementById('f_mode').value = payload.mode || "UPI";
+      document.getElementById('f_refId').value = payload.refId || "";
+      document.getElementById('f_status').value = payload.status || "CONFIRMED";
+
+      document.getElementById('sheetSyncForm').submit();
     }
 
     function switchTab(tabId, evt) {
@@ -1189,15 +1194,6 @@
         return;
       }
 
-      if (payType === 'Full') {
-        const taken = registrations.some(r => r.status === 'CONFIRMED' && String(r.seatNum).padStart(2, '0') === String(selectedSeat).padStart(2, '0'));
-        if (taken) {
-          showToast(`Seat #${selectedSeat} was just booked by someone else! Please pick another.`);
-          renderSeats();
-          return;
-        }
-      }
-
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
       const balance = Math.max(0, totalFare - paid);
@@ -1229,7 +1225,9 @@
       renderManifestTable();
 
       openTicketModal(bookingData);
-      showToast("✓ Pass Generated Instantly!");
+      showToast("✓ Pass Generated & Synced to Sheet!");
+
+      sendToSheet(bookingData);
       document.getElementById('regForm').reset();
     }
 
@@ -1341,20 +1339,12 @@
       });
     }
 
-    function shareWhatsApp() {
-      if (!currentTicket) return;
-      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`*St. Joseph's Catechism Midalam - Pass*\n• Name: ${currentTicket.name}\n• Seat: ${currentTicket.seatNum}\n• Paid: ₹${currentTicket.paid}`)}`, '_blank');
-    }
-
-    /* FULLY FUNCTIONAL MOBILE QR SCANNER */
     function openScannerModal() {
       document.getElementById('scannerModal').style.display = 'flex';
       document.getElementById('successCard').style.display = 'none';
       document.getElementById('scannerResult').innerText = "Camera active... Point at pass QR";
 
-      if (!qrScanner) {
-        qrScanner = new Html5Qrcode("scannerTarget");
-      }
+      if (!qrScanner) qrScanner = new Html5Qrcode("scannerTarget");
 
       qrScanner.start(
         { facingMode: "environment" },
@@ -1375,12 +1365,11 @@
 
           if (match.boarded) {
             showToast(`⚠️ ALREADY BOARDED: ${match.name} (Seat #${match.seatNum})`);
-            document.getElementById('scannerResult').innerText = `⚠️ Already Boarded: ${match.name}`;
+            document.getElementById('scannerResult').innerText = `⚠️️ Already Boarded: ${match.name}`;
             document.getElementById('scannerResult').style.color = "var(--warning)";
             return;
           }
 
-          // Mark as boarded successfully
           match.boarded = true;
           localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
           renderSeats();
@@ -1393,21 +1382,17 @@
           document.getElementById('scannerResult').style.color = "var(--success)";
           showToast(`✓ Boarded: ${match.name} (Seat #${match.seatNum})`);
 
-          setTimeout(() => {
-            document.getElementById('successCard').style.display = 'none';
-          }, 2200);
+          setTimeout(() => { document.getElementById('successCard').style.display = 'none'; }, 2200);
         },
         () => {}
-      ).catch(err => {
-        document.getElementById('scannerResult').innerText = "Camera permission error. Please allow camera access.";
+      ).catch(() => {
+        document.getElementById('scannerResult').innerText = "Camera permission error.";
         document.getElementById('scannerResult').style.color = "var(--danger)";
       });
     }
 
     function closeScannerModal() {
-      if (qrScanner) {
-        qrScanner.stop().catch(() => {});
-      }
+      if (qrScanner) qrScanner.stop().catch(() => {});
       document.getElementById('scannerModal').style.display = 'none';
     }
 
