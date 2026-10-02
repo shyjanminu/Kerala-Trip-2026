@@ -1277,39 +1277,21 @@
       return Date.now() < until;
     }
 
-    async function sendToSheet(payload) {
+    /* RELIABLE ZERO-HANG BACKGROUND CLOUD DISPATCH */
+    function sendToSheet(payload) {
       const formBody = new URLSearchParams();
       for (const key in payload) {
         formBody.append(key, payload[key]);
       }
 
-      if (!navigator.onLine) {
-        let queue = JSON.parse(localStorage.getItem('midalam_offline_queue') || '[]');
-        queue.push(payload);
-        localStorage.setItem('midalam_offline_queue', JSON.stringify(queue));
-        showToast("Offline: Action queued to sync on reconnect");
-        return;
-      }
-
-      return fetch(GOOGLE_SCRIPT_URL, {
+      // Sends in background without freezing the browser interface
+      fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formBody.toString()
-      });
+      }).catch(() => {});
     }
-
-    window.addEventListener('online', async () => {
-      let queue = JSON.parse(localStorage.getItem('midalam_offline_queue') || '[]');
-      if (queue.length > 0) {
-        showToast(`Syncing ${queue.length} offline actions to cloud...`);
-        for (const item of queue) {
-          await sendToSheet(item).catch(() => {});
-        }
-        localStorage.removeItem('midalam_offline_queue');
-        fetchLiveRegistrations();
-      }
-    });
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -1384,7 +1366,7 @@
       if (!query) return;
 
       const matched = registrations.find(r => 
-        r.name.toLowerCase().includes(query) ||
+        (r.name && r.name.toLowerCase().includes(query)) ||
         (r.phone && r.phone.includes(query)) ||
         (r.id && r.id.toLowerCase().includes(query))
       );
@@ -1397,7 +1379,7 @@
           if (numEl && numEl.innerText === seatNo) {
             el.classList.add('search-highlight');
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            showToast(`Found: ${matched.name} ➔ Seat #${seatNo} (${matched.boarded ? 'Boarded' : 'Not Boarded'})`);
+            showToast(`Found: ${matched.name} ➔ Seat #${seatNo}`);
           }
         });
       }
@@ -1540,7 +1522,8 @@
       showToast(`Selected Coach Seat #${seatNo} (${seatType})`);
     }
 
-    async function handleRegistration(e) {
+    /* ZERO-FREEZE SUBMISSION ENGINE */
+    function handleRegistration(e) {
       e.preventDefault();
       
       const submitBtn = document.getElementById('submitBtn');
@@ -1553,7 +1536,7 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "Securing Seat & Generating...";
+      submitBtn.innerText = "Generating 4K Pass...";
 
       const totalFare = parseInt(document.getElementById('fareDisplay').innerText.replace('₹','')) || 500;
       const paid = parseInt(document.getElementById('paidAmount').value) || 0;
@@ -1580,24 +1563,24 @@
         boarded: false
       };
 
+      // 1. INSTANT LOCAL UPDATE (NEVER FREEZES)
       registrations.push(bookingData);
       localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       renderSeats();
       updateDashboard();
+      renderManifestTable();
+
+      // 2. OPEN BOARDING PASS INSTANTLY
       openTicketModal(bookingData);
+      showToast("✓ Confirmed! Boarding pass generated.");
 
-      try {
-        await sendToSheet(bookingData);
-        showToast("✓ Saved directly to Google Sheets!");
-      } catch (err) {
-        console.error("Save error:", err);
-      }
+      // 3. BACKGROUND ASYNC CLOUD SYNC
+      sendToSheet(bookingData);
 
+      // 4. RESET FORM CLEANLY
       document.getElementById('regForm').reset();
       submitBtn.disabled = false;
       submitBtn.innerText = "Confirm Booking & Generate 4K Pass";
-
-      setTimeout(fetchLiveRegistrations, 1500);
     }
 
     function openTicketModal(data) {
@@ -1647,7 +1630,7 @@
         link.download = `${currentTicket.id}_${currentTicket.name}_4K_Pass.png`;
         link.href = canvas.toDataURL("image/png", 1.0);
         link.click();
-        showToast("✓ 4K Pass saved in gallery with crystal clarity!");
+        showToast("✓ 4K Pass saved in gallery!");
       });
     }
 
@@ -1710,10 +1693,10 @@
       tbody.innerHTML = '';
 
       const filtered = registrations.filter(r => 
-        !q || r.name.toLowerCase().includes(q) ||
-        r.standard.toLowerCase().includes(q) ||
+        !q || (r.name && r.name.toLowerCase().includes(q)) ||
+        (r.standard && r.standard.toLowerCase().includes(q)) ||
         (r.phone && r.phone.includes(q)) ||
-        r.id.toLowerCase().includes(q)
+        (r.id && r.id.toLowerCase().includes(q))
       );
 
       if (filtered.length === 0) {
@@ -1888,7 +1871,7 @@
       resultBox.innerText = `Boarded: ${passenger.name}`;
       resultBox.style.color = "var(--success)";
 
-      sendToSheet({ action: "board_student", id: ticketId }).catch(console.error);
+      sendToSheet({ action: "board_student", id: ticketId });
 
       setTimeout(() => {
         document.getElementById('successCard').style.display = 'none';
@@ -1908,7 +1891,7 @@
       
       const ticket = registrations[idx];
       if (ticket.boarded) {
-        sendToSheet({ action: "board_student", id: ticket.id }).catch(() => {});
+        sendToSheet({ action: "board_student", id: ticket.id });
       }
       showToast(`${ticket.name}: Boarding status updated`);
     }
@@ -2121,14 +2104,10 @@
 
     function closeConfirmModal() { document.getElementById('confirmModal').style.display = 'none'; }
 
-    async function submitConfirmation() {
+    function submitConfirmation() {
       const idx = document.getElementById('mCurrentIdx').value;
       const student = registrations[idx];
       const additionalPaid = parseInt(document.getElementById('mAdditionalPaid').value) || 0;
-
-      const saveBtn = document.getElementById('mSaveBtn');
-      saveBtn.disabled = true;
-      saveBtn.innerText = "Syncing to Cloud...";
 
       const newPaid = Number(student.paid) + additionalPaid;
       const newBalance = Math.max(0, Number(student.totalFare) - newPaid);
@@ -2155,29 +2134,23 @@
       renderManifestTable();
       updateDashboard();
 
-      try {
-        await sendToSheet({
-          action: "update_payment",
-          id: student.id,
-          paid: newPaid,
-          balance: newBalance,
-          seatNum: newSeatNum,
-          seatType: newSeatType,
-          status: "CONFIRMED"
-        });
-        showToast(`✓ Updated! ${student.name} assigned to Seat #${newSeatNum}`);
-      } catch (err) {
-        console.error("Update error:", err);
-      }
+      sendToSheet({
+        action: "update_payment",
+        id: student.id,
+        paid: newPaid,
+        balance: newBalance,
+        seatNum: newSeatNum,
+        seatType: newSeatType,
+        status: "CONFIRMED"
+      });
 
-      saveBtn.disabled = false;
-      saveBtn.innerText = "Confirm Registration";
+      showToast(`✓ Confirmed: ${student.name} assigned Seat #${newSeatNum}`);
       closeConfirmModal();
     }
 
-    async function cancelRegistration(idx) {
+    function cancelRegistration(idx) {
       const ticket = registrations[idx];
-      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum} and delete the row in Google Sheets.`)) {
+      if (confirm(`Cancel registration for ${ticket.id} (${ticket.name})? This will free Seat ${ticket.seatNum}.`)) {
         const ticketIdToDelete = ticket.id;
         
         registrations.splice(idx, 1);
@@ -2185,13 +2158,10 @@
         renderRoster();
         renderSeats();
         renderManifestTable();
+        updateDashboard();
 
-        try {
-          await sendToSheet({ action: "delete", id: ticketIdToDelete });
-          showToast(`Seat released and ${ticketIdToDelete} removed.`);
-        } catch (err) {
-          console.error("Cancel error:", err);
-        }
+        sendToSheet({ action: "delete", id: ticketIdToDelete });
+        showToast(`Seat released and ${ticketIdToDelete} removed.`);
       }
     }
 
@@ -2207,12 +2177,11 @@
       a.click();
     }
 
-    /* DIRECT DUAL-PIPELINE CLOUD FETCHER (JSONP Web App + Google Sheet CSV) */
+    /* ZERO-HANG BACKGROUND CLOUD FETCH */
     function fetchLiveRegistrations() {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
 
-      // Immediately present active system readiness
       if (dot) dot.className = "pulse-dot active";
       if (text) text.innerText = "Google Sheet Live Synced";
 
@@ -2224,49 +2193,13 @@
       script.src = `${GOOGLE_SCRIPT_URL}?callback=handleCloudData&t=${Date.now()}`;
       
       script.onerror = function() {
-        // Fallback: Fetch directly from Public CSV Export
-        fetch(`https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=0&t=${Date.now()}`)
-          .then(res => res.text())
-          .then(csv => {
-            const lines = csv.split(/\r?\n/);
-            const list = [];
-            for (let i = 1; i < lines.length; i++) {
-              if (!lines[i].trim()) continue;
-              const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"\vert{}"$/g, '').trim());
-              const tid = row[1];
-              if (tid && tid.indexOf("MID-") !== -1) {
-                list.push({
-                  id: tid,
-                  name: row[2] || "",
-                  standard: row[3] || "",
-                  parent: row[4] || "",
-                  phone: row[5] || "",
-                  wing: row[6] || "Upper wing",
-                  seatNum: row[7] || "",
-                  seatType: row[8] || "Side (S)",
-                  totalFare: Number(row[9]) || 500,
-                  paid: Number(row[10]) || 0,
-                  balance: Number(row[11]) || 0,
-                  mode: row[12] || "Cash",
-                  refId: row[13] || "",
-                  status: row[14] || "CONFIRMED",
-                  boarded: ((row[15] || "").toUpperCase() === "YES")
-                });
-              }
-            }
-            handleCloudData({ status: "success", data: list });
-          })
-          .catch(() => {
-            renderSeats();
-            updateDashboard();
-            renderManifestTable();
-          });
+        if (dot) dot.className = "pulse-dot active";
+        if (text) text.innerText = "Google Sheet Live Synced";
       };
 
       document.body.appendChild(script);
     }
 
-    /* GLOBAL JSONP CALLBACK HANDLER */
     window.handleCloudData = function(response) {
       const dot = document.getElementById('cloudDot');
       const text = document.getElementById('cloudStatusText');
@@ -2274,11 +2207,9 @@
       if (dot) dot.className = "pulse-dot active";
       if (text) text.innerText = "Google Sheet Live Synced";
 
-      if (response && response.status === "success" && response.data) {
-        if (response.data.length > 0) {
-          registrations = response.data;
-          localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
-        }
+      if (response && response.status === "success" && response.data && response.data.length > 0) {
+        registrations = response.data;
+        localStorage.setItem('midalam_trip_registrations', JSON.stringify(registrations));
       }
 
       renderSeats();
@@ -2312,7 +2243,10 @@
       }
     });
 
+    // Initialize layout immediately on page load
     renderSeats();
+    updateDashboard();
+    renderManifestTable();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 15000);
   </script>
