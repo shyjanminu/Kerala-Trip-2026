@@ -54,100 +54,43 @@
     }
 
     #pullIndicator {
-      height: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--secondary);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      transition: height 0.2s ease;
+      height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center;
+      background: var(--secondary); color: var(--accent); font-size: 0.75rem; font-weight: 700; transition: height 0.2s ease;
     }
 
-    /* PREMIUM HEADER */
+    /* HEADER */
     header {
-      background: 
-        linear-gradient(180deg, rgba(4, 31, 23, 0.75) 0%, rgba(6, 40, 30, 0.92) 100%),
-        url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
-      color: white;
-      padding: max(16px, env(safe-area-inset-top)) 16px 18px;
-      position: relative;
-      border-bottom: 3px solid var(--accent);
-      box-shadow: 0 10px 30px rgba(4, 31, 23, 0.45);
+      background: linear-gradient(180deg, rgba(4, 31, 23, 0.75) 0%, rgba(6, 40, 30, 0.92) 100%),
+                  url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      color: white; padding: max(16px, env(safe-area-inset-top)) 16px 18px; position: relative;
+      border-bottom: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(4, 31, 23, 0.45);
     }
-    .header-layout {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 640px;
-      margin: 0 auto;
-      gap: 12px;
-    }
+    .header-layout { display: flex; align-items: center; justify-content: space-between; max-width: 640px; margin: 0 auto; gap: 12px; }
 
     .kerala-bus-photo-container {
-      width: 76px;
-      height: 60px;
-      border-radius: 12px;
-      border: 2px solid var(--accent);
-      background: #0f172a;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 76px; height: 60px; border-radius: 12px; border: 2px solid var(--accent);
+      background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.5); position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .kerala-bus-photo-container img { width: 100%; height: 100%; object-fit: cover; }
     .maskara-windshield-overlay {
-      position: absolute;
-      top: 12px; left: 6px; right: 6px;
-      background: linear-gradient(180deg, #d90429 0%, #7209b7 100%);
-      color: #ffffff;
-      border: 1px solid var(--accent);
-      border-radius: 3px;
-      font-size: 0.5rem;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 1px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.8);
-      z-index: 5;
+      position: absolute; top: 12px; left: 6px; right: 6px;
+      background: linear-gradient(180deg, #d90429 0%, #7209b7 100%); color: #ffffff;
+      border: 1px solid var(--accent); border-radius: 3px; font-size: 0.5rem; font-weight: 900;
+      letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 1px 0; z-index: 5;
     }
 
     .header-center { flex: 1; text-align: center; min-width: 0; }
     .church-crest {
-      display: inline-block;
-      background: rgba(212, 175, 55, 0.22);
-      color: #ffe89e;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.62rem;
-      font-weight: 900;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      backdrop-filter: blur(4px);
+      display: inline-block; background: rgba(212, 175, 55, 0.22); color: #ffe89e;
+      border: 1px solid rgba(212, 175, 55, 0.5); padding: 3px 10px; border-radius: 20px;
+      font-size: 0.62rem; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 4px;
     }
-    .header-center h1 {
-      font-size: 1.15rem;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-      line-height: 1.2;
-      color: #ffffff;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-    }
+    .header-center h1 { font-size: 1.15rem; font-weight: 900; color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
     .header-center p { font-size: 0.7rem; color: #bbf7d0; margin-top: 2px; font-weight: 700; }
 
     .header-icon-box { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
-    .header-img-frame {
-      width: 48px; height: 48px; border-radius: 50%;
-      border: 2px solid var(--accent); background: #083325; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
+    .header-img-frame { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--accent); background: #083325; overflow: hidden; }
     .header-img-frame img { width: 100%; height: 100%; object-fit: cover; }
     .header-badge-sub { font-size: 0.56rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
 
@@ -160,111 +103,66 @@
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: #34d399; box-shadow: 0 0 8px #34d399; }
 
-    /* SPACIOUS TWO-TIER GRID NAVIGATION BAR */
+    /* GRID NAVIGATION BAR (6 TABS ARRANGED CLEANLY) */
     .nav-tabs {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      border-bottom: 1.5px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 95;
-      box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05);
-      padding: 8px 12px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      max-width: 640px;
-      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
+      border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 95;
+      box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05); padding: 8px 10px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 640px; margin: 0 auto;
     }
-    .nav-tabs .tab-btn:nth-child(4),
-    .nav-tabs .tab-btn:nth-child(5) {
-      grid-column: span 1;
-    }
-    /* Center the bottom 2 buttons nicely in a 3-column grid */
-    .nav-tabs {
-      grid-template-areas: 
-        "dash book board"
-        ". manifest admin";
-    }
-    .tab-btn:nth-child(1) { grid-area: dash; }
-    .tab-btn:nth-child(2) { grid-area: book; }
-    .tab-btn:nth-child(3) { grid-area: board; }
-    .tab-btn:nth-child(4) { grid-area: manifest; }
-    .tab-btn:nth-child(5) { grid-area: admin; }
-
     .tab-btn {
-      padding: 10px 6px;
-      border: 1.5px solid var(--border);
-      background: #f8fafc;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      padding: 10px 4px; border: 1.5px solid var(--border); background: #f8fafc;
+      border-radius: 10px; font-size: 0.72rem; font-weight: 800; color: var(--text-muted);
+      cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; text-align: center;
     }
     .tab-btn.active {
-      color: #ffffff;
-      background: var(--primary);
-      border-color: var(--accent);
+      color: #ffffff; background: var(--primary); border-color: var(--accent);
       box-shadow: 0 4px 10px rgba(6, 40, 30, 0.2);
     }
 
     .container { max-width: 640px; margin: 0 auto; padding: 16px; position: relative; }
 
     .card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: var(--radius);
-      padding: 22px 18px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      border-radius: var(--radius); padding: 22px 18px; border: 1px solid var(--border);
+      box-shadow: var(--shadow); margin-bottom: 18px;
     }
     .card-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      letter-spacing: -0.2px;
+      font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
     }
+
+    /* ITINERARY TIMELINE */
+    .timeline { position: relative; padding-left: 24px; margin-top: 10px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; background: var(--border);
+    }
+    .timeline-item { position: relative; margin-bottom: 20px; }
+    .timeline-dot {
+      position: absolute; left: -24px; top: 4px; width: 15px; height: 15px;
+      border-radius: 50%; background: var(--accent); border: 3px solid #ffffff; box-shadow: 0 0 0 2px var(--border);
+    }
+    .timeline-item.completed .timeline-dot { background: var(--success); }
+    .timeline-time { font-size: 0.72rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+    .timeline-title { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 2px 0; }
+    .timeline-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
 
     /* ADMIN ANNOUNCEMENT BANNER */
     .announcement-banner {
       background: linear-gradient(135deg, #06281e 0%, #0f3d2e 100%);
-      border: 1.5px solid var(--accent);
-      border-radius: 16px;
-      padding: 16px;
-      color: white;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 20px rgba(6, 40, 30, 0.15);
-      position: relative;
-      overflow: hidden;
+      border: 1.5px solid var(--accent); border-radius: 16px; padding: 16px; color: white; margin-bottom: 18px;
+      box-shadow: 0 8px 20px rgba(6, 40, 30, 0.15); position: relative; overflow: hidden;
     }
-    .announcement-banner::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
-      background: var(--accent-gradient);
-    }
+    .announcement-banner::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-gradient); }
     .ann-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .ann-title {
-      font-size: 0.8rem; font-weight: 900; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;
-    }
+    .ann-title { font-size: 0.8rem; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
     .ann-date { font-size: 0.65rem; color: #a7f3d0; font-weight: 700; }
     .ann-text { font-size: 0.85rem; line-height: 1.45; color: #f1f5f9; font-weight: 600; }
 
-    /* KPI DASHBOARD */
+    /* KPI DASHBOARD & CHIPS */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .kpi-card { background: #f8faf9; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
-    .kpi-lbl { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .kpi-lbl { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
     .kpi-val { font-size: 1.4rem; font-weight: 900; color: var(--primary); margin: 6px 0 4px; }
     .kpi-sub { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; font-weight: 600; }
     .progress-bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
@@ -273,13 +171,11 @@
     .bg-success { background: var(--success); }
 
     .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
-    .chip-box { background: #ffffff; border: 1px solid var(--border); padding: 11px 13px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; color: var(--secondary); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .chip-box { background: #ffffff; border: 1px solid var(--border); padding: 11px 13px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.64rem; color: var(--text-muted); font-weight: 700; margin-bottom: 3px; text-transform: uppercase; }
 
     /* GUIDELINES */
-    .guidelines-box {
-      background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-top: 18px;
-    }
+    .guidelines-box { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-top: 18px; }
     .guide-title { font-size: 0.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .guide-col { background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--border); }
@@ -293,17 +189,14 @@
 
     /* FORMS & INPUTS */
     .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
+    label { display: block; font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
     input, select {
       width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 12px;
       font-size: 0.95rem; background: #fafafa; color: var(--text); transition: all 0.2s ease;
     }
     input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
 
-    .price-box {
-      background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%);
-      border: 1.5px dashed var(--accent); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 16px;
-    }
+    .price-box { background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%); border: 1.5px dashed var(--accent); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 16px; }
     .price-tag { font-size: 1.7rem; font-weight: 900; color: var(--primary); }
     .price-desc { font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; font-weight: 700; }
 
@@ -317,9 +210,7 @@
     .btn-secondary { background: #0f3d2e; color: white; }
 
     /* 60 SEATER BUS */
-    .seat-search-wrapper {
-      background: #f1f5f9; padding: 10px 14px; border-radius: 12px; margin-bottom: 14px; display: flex; gap: 8px; align-items: center; border: 1px solid var(--border);
-    }
+    .seat-search-wrapper { background: #f1f5f9; padding: 10px 14px; border-radius: 12px; margin-bottom: 14px; display: flex; gap: 8px; align-items: center; border: 1px solid var(--border); }
     .seat-search-wrapper input { padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; background: white; border: 1px solid var(--border); }
 
     .bus-container {
@@ -332,52 +223,28 @@
       padding: 9px 16px; border-radius: 12px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.5px;
       margin-bottom: 16px; border-bottom: 2px solid var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .bus-front-cockpit span { display: flex; align-items: center; gap: 5px; }
-
     .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 6px; align-items: center; }
     .seat-grid .aisle { grid-column: 3; height: 8px; background: repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 4px, transparent 4px, transparent 8px); opacity: 0.6; }
 
-    .seat-3d {
-      position: relative; min-height: 60px; cursor: pointer; display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-start; user-select: none; transition: transform 0.2s ease;
-    }
-    .seat-headrest {
-      width: 72%; height: 11px; background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%);
-      border-radius: 6px 6px 3px 3px; border: 1px solid #94a3b8; box-shadow: 0 2px 4px rgba(0,0,0,0.12); z-index: 3; margin-bottom: -3px;
-    }
+    .seat-3d { position: relative; min-height: 60px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; user-select: none; transition: transform 0.2s ease; }
+    .seat-headrest { width: 72%; height: 11px; background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%); border-radius: 6px 6px 3px 3px; border: 1px solid #94a3b8; box-shadow: 0 2px 4px rgba(0,0,0,0.12); z-index: 3; margin-bottom: -3px; }
     .seat-body {
       width: 100%; flex: 1; min-height: 46px; background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
       border: 1.5px solid #94a3b8; border-radius: 8px 8px 12px 12px; box-shadow: 0 3px 0 #94a3b8, 0 5px 6px rgba(15, 23, 42, 0.15);
       display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 2px 4px; text-align: center; position: relative;
     }
-    .seat-body::before {
-      content: ""; position: absolute; top: 3px; bottom: 5px; left: 3px; right: 3px;
-      border: 1px dashed rgba(100, 116, 139, 0.35); border-radius: 4px; pointer-events: none;
-    }
+    .seat-body::before { content: ""; position: absolute; top: 3px; bottom: 5px; left: 3px; right: 3px; border: 1px dashed rgba(100, 116, 139, 0.35); border-radius: 4px; pointer-events: none; }
     .seat-num { font-size: 0.72rem; font-weight: 900; color: #0f172a; line-height: 1; }
     .seat-type-tag { font-size: 0.48rem; font-weight: 800; color: #64748b; margin-top: 1px; }
     .seat-assigned-name { font-size: 0.5rem; font-weight: 800; max-width: 48px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; text-transform: capitalize; }
 
     .seat-3d.selected .seat-headrest { background: var(--accent-gradient); border-color: #8c6b12; }
     .seat-3d.selected .seat-body { background: linear-gradient(180deg, #0e4432 0%, #06281e 100%); border-color: var(--accent); color: white; }
-    .seat-3d.selected .seat-num { color: #f8fafc; }
-    .seat-3d.selected .seat-type-tag { color: var(--accent); }
-
     .seat-3d.booked { cursor: not-allowed; }
     .seat-3d.booked .seat-headrest { background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); border-color: #991b1b; }
     .seat-3d.booked .seat-body { background: linear-gradient(180deg, #fee2e2 0%, #fca5a5 100%); border-color: #f87171; }
-    .seat-3d.booked .seat-num { color: #991b1b; }
-    .seat-3d.booked .seat-type-tag { color: #b91c1c; }
-    .seat-3d.booked .seat-assigned-name { color: #7f1d1d; }
-
     .seat-3d.boarded .seat-headrest { background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%); border-color: #14532d; }
     .seat-3d.boarded .seat-body { background: linear-gradient(180deg, #dcfce7 0%, #86efac 100%); border-color: #22c55e; }
-    .seat-3d.boarded .seat-num { color: #14532d; }
-    .seat-3d.boarded .seat-type-tag { color: #15803d; }
-    .seat-3d.boarded .seat-assigned-name { color: #14532d; font-weight: 900; }
-
-    .seat-3d.search-highlight { transform: scale(1.15); z-index: 10; animation: seatPulse 1s infinite alternate; }
-    @keyframes seatPulse { from { filter: drop-shadow(0 0 4px var(--accent)); } to { filter: drop-shadow(0 0 14px var(--accent)); } }
 
     /* MANIFEST & ROSTER */
     .filter-wrapper { margin-bottom: 14px; }
@@ -385,10 +252,7 @@
     .search-input-box input { padding-left: 38px; border-radius: 12px; background: #ffffff; }
     .search-icon-pos { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 0.95rem; color: var(--text-muted); }
     .filter-pills-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
-    .pill-btn {
-      padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border);
-      background: white; font-size: 0.74rem; font-weight: 800; color: var(--text-muted); cursor: pointer; white-space: nowrap;
-    }
+    .pill-btn { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); background: white; font-size: 0.74rem; font-weight: 800; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
     .pill-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
     .roster-cards-container { display: flex; flex-direction: column; gap: 12px; }
@@ -405,10 +269,8 @@
     .action-boxes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .act-card-btn {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 9px 4px; border-radius: 10px; border: 1px solid transparent;
-      font-size: 0.7rem; font-weight: 800; cursor: pointer; text-decoration: none; transition: all 0.2s ease; background: #f8fafc;
+      padding: 9px 4px; border-radius: 10px; border: 1px solid transparent; font-size: 0.7rem; font-weight: 800; cursor: pointer; background: #f8fafc;
     }
-    .act-card-btn span.icon { font-size: 1.15rem; margin-bottom: 2px; }
     .btn-box-confirm { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
     .btn-box-pass { background: #f0fdfa; color: #0f766e; border-color: #99f6e4; }
     .btn-box-wa { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
@@ -416,23 +278,20 @@
 
     /* MODALS */
     .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(4, 25, 18, 0.85); backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4, 25, 18, 0.85); backdrop-filter: blur(8px);
       z-index: 1000; display: none; align-items: flex-end; justify-content: center; padding: 0;
     }
     @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 16px; } }
     .modal-card {
       background: white; border-top-left-radius: 26px; border-top-right-radius: 26px;
-      padding: 24px 20px env(safe-area-inset-bottom, 22px); max-width: 500px; width: 100%;
-      box-shadow: var(--shadow-lg); max-height: 92vh; overflow-y: auto; position: relative;
+      padding: 24px 20px env(safe-area-inset-bottom, 22px); max-width: 500px; width: 100%; box-shadow: var(--shadow-lg); max-height: 92vh; overflow-y: auto; position: relative;
     }
-    @media (min-width: 600px) { .modal-card { border-radius: var(--radius); padding: 26px; } }
     .sheet-handle { width: 44px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -12px auto 16px; }
 
-    /* TICKET */
+    /* TICKET & CONTACT CARDS */
     .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 10px; }
     .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
-    .ticket-head h3 { font-size: 1.2rem; font-weight: 900; letter-spacing: 0.5px; }
+    .ticket-head h3 { font-size: 1.2rem; font-weight: 900; }
     .ticket-head p { font-size: 0.72rem; color: #a7f3d0; margin-top: 3px; font-weight: 700; }
     .ticket-body { padding: 18px; }
     .t-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.82rem; }
@@ -442,7 +301,6 @@
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
     #qrcode { padding: 10px; background: white; border: 1px solid var(--border); border-radius: 12px; }
 
-    /* HELPLINES */
     .contact-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
     .contact-info { display: flex; flex-direction: column; }
     .contact-name { font-size: 0.98rem; font-weight: 900; color: var(--primary); }
@@ -450,28 +308,22 @@
     .contact-phone { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
     .call-btn { background: #10b981; color: white; text-decoration: none; font-size: 0.82rem; font-weight: 900; padding: 9px 16px; border-radius: 10px; display: flex; align-items: center; gap: 6px; }
 
-    /* HEADCOUNT */
     .headcount-list { max-height: 280px; overflow-y: auto; margin: 12px 0; border: 1.5px solid var(--border); border-radius: 14px; }
     .hc-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #f1f5f9; background: white; }
-    .hc-item:last-child { border-bottom: none; }
     .hc-item.checked { background: #ecfdf5; }
 
     /* FLOATING SOS BAR */
     .floating-sos-bar {
-      position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
-      width: calc(100% - 28px); max-width: 500px;
-      background: rgba(6, 40, 30, 0.96); backdrop-filter: blur(14px);
-      border: 1.5px solid var(--accent); border-radius: 30px;
-      padding: 9px 18px; display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 90;
+      position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); width: calc(100% - 28px); max-width: 500px;
+      background: rgba(6, 40, 30, 0.96); backdrop-filter: blur(14px); border: 1.5px solid var(--accent); border-radius: 30px;
+      padding: 9px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 90;
     }
     .sos-left-text { color: white; font-size: 0.78rem; font-weight: 900; }
     .sos-btn-trigger { background: var(--accent-gradient); color: #06281e; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 900; cursor: pointer; }
 
     #toast {
-      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
-      background: rgba(4, 31, 23, 0.96); color: white; padding: 12px 24px;
-      border-radius: 30px; font-size: 0.85rem; font-weight: 900; z-index: 1100; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%); background: rgba(4, 31, 23, 0.96); color: white;
+      padding: 12px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: 900; z-index: 1100; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
   </style>
 </head>
@@ -508,9 +360,10 @@
     </div>
   </header>
 
-  <!-- SPACIOUS GRID NAVIGATION BAR -->
+  <!-- SPACIOUS GRID NAVIGATION BAR (6 TABS) -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('itineraryTab', event)">🗓️ Itinerary</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Book</button>
     <button class="tab-btn" onclick="switchTab('scannerTab', event)">📷 Boarding</button>
     <button class="tab-btn" onclick="switchTab('manifestTab', event)">📋 Manifest</button>
@@ -521,8 +374,6 @@
     
     <!-- TAB 1: DASHBOARD -->
     <div id="dashboardTab" class="tab-content">
-      
-      <!-- ADMIN ANNOUNCEMENT BANNER -->
       <div class="announcement-banner">
         <div class="ann-header">
           <div class="ann-title">📢 Parish Announcement</div>
@@ -535,7 +386,6 @@
 
       <div class="card">
         <div class="card-title">📊 Executive Financial & Trip Dashboard</div>
-
         <div class="dash-grid">
           <div class="kpi-card">
             <div class="kpi-lbl">Confirmed Seats</div>
@@ -544,9 +394,7 @@
               <span>Remaining: <strong id="kpiRemaining">60</strong></span>
               <span id="kpiSeatPct">0%</span>
             </div>
-            <div class="progress-bar-bg">
-              <div class="progress-bar-fill bg-accent" id="barSeats" style="width: 0%;"></div>
-            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill bg-accent" id="barSeats" style="width: 0%;"></div></div>
           </div>
 
           <div class="kpi-card">
@@ -556,51 +404,30 @@
               <span>Coach Maskara</span>
               <span id="kpiBoardedPct">0%</span>
             </div>
-            <div class="progress-bar-bg">
-              <div class="progress-bar-fill bg-success" id="barBoarded" style="width: 0%;"></div>
-            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill bg-success" id="barBoarded" style="width: 0%;"></div></div>
           </div>
 
           <div class="kpi-card">
             <div class="kpi-lbl">Total Collected</div>
             <div class="kpi-val" id="kpiPaid">₹0</div>
-            <div class="kpi-sub">
-              <span>Realized Target</span>
-              <span id="kpiRealizedPct">0%</span>
-            </div>
+            <div class="kpi-sub"><span>Realized Target</span><span id="kpiRealizedPct">0%</span></div>
           </div>
 
           <div class="kpi-card">
             <div class="kpi-lbl">Pending Balances</div>
             <div class="kpi-val" style="color: var(--danger);" id="kpiPending">₹0</div>
-            <div class="kpi-sub">
-              <span id="kpiPendingCount">0 Due</span>
-              <span>Due</span>
-            </div>
+            <div class="kpi-sub"><span id="kpiPendingCount">0 Due</span><span>Due</span></div>
           </div>
         </div>
 
         <label style="margin-top: 10px;">Catechism & Payment Distribution</label>
         <div class="chips-grid">
-          <div class="chip-box">
-            <span>JUNIORS (CLASSES 1-3)</span>
-            <div id="chipJunior" style="margin-top:2px;">0 Registered (₹250)</div>
-          </div>
-          <div class="chip-box">
-            <span>SENIORS & OTHERS</span>
-            <div id="chipSenior" style="margin-top:2px;">0 Registered (₹500)</div>
-          </div>
-          <div class="chip-box">
-            <span>COLLECTION CHANNEL</span>
-            <div id="chipPayChannels" style="margin-top:2px;">UPI: ₹0 | Cash: ₹0</div>
-          </div>
-          <div class="chip-box">
-            <span>TOTAL PASSENGERS</span>
-            <div id="chipTotalPax" style="margin-top:2px;">0 Registered</div>
-          </div>
+          <div class="chip-box"><span>JUNIORS (CLASSES 1-3)</span><div id="chipJunior" style="margin-top:2px;">0 Registered (₹250)</div></div>
+          <div class="chip-box"><span>SENIORS & OTHERS</span><div id="chipSenior" style="margin-top:2px;">0 Registered (₹500)</div></div>
+          <div class="chip-box"><span>COLLECTION CHANNEL</span><div id="chipPayChannels" style="margin-top:2px;">UPI: ₹0 | Cash: ₹0</div></div>
+          <div class="chip-box"><span>TOTAL PASSENGERS</span><div id="chipTotalPax" style="margin-top:2px;">0 Registered</div></div>
         </div>
 
-        <!-- GUIDELINES -->
         <div class="guidelines-box">
           <div class="guide-title">📜 Pilgrimage Guidelines (Do's & Don'ts)</div>
           <div class="guide-grid">
@@ -624,15 +451,79 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- TAB 2: SEAT BOOKING -->
+    <!-- TAB 2: ITINERARY SECTION -->
+    <div id="itineraryTab" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-title">🗓️ Pilgrimage Tour Itinerary</div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600;">Scheduled roadmap and milestones for the Kerala Tour 2026:</p>
+        
+        <div class="timeline">
+          <div class="timeline-item completed">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">05:30 AM</div>
+            <div class="timeline-title">Assembly at St. Joseph's Church, Midalam</div>
+            <div class="timeline-desc">Roll-call headcount, luggage loading, and morning prayer led by Rev. Fr. Vigin Bright.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">06:00 AM</div>
+            <div class="timeline-title">Departure via Coach Maskara</div>
+            <div class="timeline-desc">Heading north towards Kerala via Nagercoil / Trivandrum highway route.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">08:30 AM</div>
+            <div class="timeline-title">Breakfast & Rest Stop</div>
+            <div class="timeline-desc">30-minute refreshment stop. Pit-stop headcount check by teachers.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">11:00 AM</div>
+            <div class="timeline-title">Holy Shrine / Pilgrimage Destination Visit</div>
+            <div class="timeline-desc">Group prayer, spiritual reflection, and guided tour of the pilgrimage site.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">01:30 PM</div>
+            <div class="timeline-title">Lunch Break & Fellowship</div>
+            <div class="timeline-desc">Group lunch arrangement and relaxation time.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">04:00 PM</div>
+            <div class="timeline-title">Evening Sightseeing & Tea</div>
+            <div class="timeline-desc">Scenic coastal or backwater view stop with group photos.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">07:00 PM</div>
+            <div class="timeline-title">Return Journey Commences</div>
+            <div class="timeline-desc">Boarding coach for return transit to Midalam.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">10:00 PM</div>
+            <div class="timeline-title">Arrival at Midalam Church Campus</div>
+            <div class="timeline-desc">Final roll-call headcount and dispersal.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: SEAT BOOKING -->
     <div id="bookingTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📝 Passenger Registration & Seat Allocation</div>
-
         <form id="regForm" onsubmit="handleRegistration(event)">
           <div class="form-group">
             <label>Full Name</label>
@@ -678,7 +569,6 @@
 
           <div class="form-group">
             <label>Select 3D Coach Seat (60 Seater)</label>
-            
             <div class="seat-search-wrapper">
               <span style="font-size:0.95rem;">🔎</span>
               <input type="text" id="seatSearchQuery" placeholder="Find my seat (Enter name or mobile)..." oninput="searchAndLocateSeat()">
@@ -722,14 +612,12 @@
             <input type="text" id="refId" required placeholder="e.g. UPI Ref / Cash receipt details">
           </div>
 
-          <button type="submit" class="btn btn-primary" id="submitBtn">
-            Confirm Booking & Generate Pass
-          </button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Confirm Booking & Generate Pass</button>
         </form>
       </div>
     </div>
 
-    <!-- TAB 3: BOARDING & ROLL CALL -->
+    <!-- TAB 4: BOARDING & ROLL CALL -->
     <div id="scannerTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📷 Teacher Boarding & Roll-Call Scanner</div>
@@ -757,7 +645,7 @@
       </div>
     </div>
 
-    <!-- TAB 4: BOOKING MANIFEST -->
+    <!-- TAB 5: BOOKING MANIFEST -->
     <div id="manifestTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📋 Passenger Booking Manifest</div>
@@ -785,7 +673,7 @@
       </div>
     </div>
 
-    <!-- TAB 5: ADMIN ROSTER -->
+    <!-- TAB 6: ADMIN ROSTER -->
     <div id="rosterTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">🔐 Enterprise Admin Control Center</div>
@@ -906,7 +794,6 @@
       </div>
 
       <div class="headcount-list" id="headcountItemsList"></div>
-
       <button class="btn btn-primary" style="margin-top: 12px;" onclick="closeHeadcountModal()">Finish Stop Headcount</button>
     </div>
   </div>
@@ -962,7 +849,6 @@
       <div id="qr-scanner-box">
         <div id="scannerTarget" style="width: 100%; height: 260px; background:#000; border-radius:14px; overflow:hidden;"></div>
       </div>
-
       <div id="scannerResult" style="font-size: 0.88rem; font-weight: 900; min-height: 24px; color: var(--text-muted); margin-top:12px;">Camera active...</div>
     </div>
   </div>
