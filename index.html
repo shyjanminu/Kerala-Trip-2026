@@ -16,6 +16,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     :root {
@@ -59,7 +61,7 @@
       background: var(--secondary); color: var(--accent); font-size: 0.75rem; font-weight: 800; transition: height 0.2s ease;
     }
 
-    /* APP HEADER */
+    /* HEADER */
     header {
       background: linear-gradient(180deg, rgba(4, 31, 23, 0.92) 0%, rgba(6, 40, 30, 0.99) 100%),
                   url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
@@ -106,7 +108,7 @@
     .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: #34d399; box-shadow: 0 0 10px #34d399; }
 
-    /* NATIVE FLOATING BOTTOM NAVIGATION BAR WITH GLOW */
+    /* NATIVE BOTTOM NAVIGATION BAR */
     .nav-tabs {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 95;
       background: rgba(6, 40, 30, 0.97); backdrop-filter: blur(18px);
@@ -312,7 +314,7 @@
     .t-val { font-weight: 900; color: var(--text); }
     .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 14px 0; }
     .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
-    #qrcode { padding: 10px; background: white; border: 1.5px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    #qrcode { padding: 10px; background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
 
     .contact-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
     .contact-info { display: flex; flex-direction: column; }
@@ -935,9 +937,8 @@
     let activeFilter = 'ALL';
     let lastActivityTime = Date.now();
 
-    // Auto-lock security timeout (5 minutes of inactivity locks admin panel)
     setInterval(() => {
-      if (Date.now() - lastActivityTime > 300000) { // 300,000ms = 5 mins
+      if (Date.now() - lastActivityTime > 300000) {
         const adminPanel = document.getElementById('adminPanel');
         if (adminPanel && adminPanel.style.display === 'block') {
           adminLogout();
@@ -1513,6 +1514,16 @@
       });
 
       document.getElementById('ticketModal').style.display = 'flex';
+
+      // 🌟 Trigger celebratory confetti explosion!
+      try {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#06281e', '#10b981', '#d4af37']
+        });
+      } catch (e) {}
     }
 
     function closeTicketModal() { document.getElementById('ticketModal').style.display = 'none'; }
