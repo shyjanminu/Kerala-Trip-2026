@@ -103,7 +103,7 @@
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: #34d399; box-shadow: 0 0 8px #34d399; }
 
-    /* GRID NAVIGATION BAR (6 TABS ARRANGED CLEANLY) */
+    /* NAVIGATION BAR */
     .nav-tabs {
       background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
       border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 95;
@@ -134,15 +134,12 @@
 
     /* ITINERARY TIMELINE */
     .timeline { position: relative; padding-left: 24px; margin-top: 10px; }
-    .timeline::before {
-      content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; background: var(--border);
-    }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; background: var(--border); }
     .timeline-item { position: relative; margin-bottom: 20px; }
     .timeline-dot {
       position: absolute; left: -24px; top: 4px; width: 15px; height: 15px;
       border-radius: 50%; background: var(--accent); border: 3px solid #ffffff; box-shadow: 0 0 0 2px var(--border);
     }
-    .timeline-item.completed .timeline-dot { background: var(--success); }
     .timeline-time { font-size: 0.72rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
     .timeline-title { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 2px 0; }
     .timeline-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
@@ -159,7 +156,7 @@
     .ann-date { font-size: 0.65rem; color: #a7f3d0; font-weight: 700; }
     .ann-text { font-size: 0.85rem; line-height: 1.45; color: #f1f5f9; font-weight: 600; }
 
-    /* KPI DASHBOARD & CHIPS */
+    /* DASHBOARD & FORMS */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .kpi-card { background: #f8faf9; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
     .kpi-lbl { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
@@ -174,7 +171,6 @@
     .chip-box { background: #ffffff; border: 1px solid var(--border); padding: 11px 13px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; color: var(--secondary); }
     .chip-box span { display: block; font-size: 0.64rem; color: var(--text-muted); font-weight: 700; margin-bottom: 3px; text-transform: uppercase; }
 
-    /* GUIDELINES */
     .guidelines-box { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-top: 18px; }
     .guide-title { font-size: 0.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -187,7 +183,6 @@
     .guide-col.dos .guide-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 900; }
     .guide-col.donts .guide-list li::before { content: "✕"; position: absolute; left: 0; color: var(--danger); font-weight: 900; }
 
-    /* FORMS & INPUTS */
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
     input, select {
@@ -360,7 +355,7 @@
     </div>
   </header>
 
-  <!-- SPACIOUS GRID NAVIGATION BAR (6 TABS) -->
+  <!-- NAVIGATION BAR -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('itineraryTab', event)">🗓️ Itinerary</button>
@@ -459,64 +454,7 @@
       <div class="card">
         <div class="card-title">🗓️ Pilgrimage Tour Itinerary</div>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600;">Scheduled roadmap and milestones for the Kerala Tour 2026:</p>
-        
-        <div class="timeline">
-          <div class="timeline-item completed">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">05:30 AM</div>
-            <div class="timeline-title">Assembly at St. Joseph's Church, Midalam</div>
-            <div class="timeline-desc">Roll-call headcount, luggage loading, and morning prayer led by Rev. Fr. Vigin Bright.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">06:00 AM</div>
-            <div class="timeline-title">Departure via Coach Maskara</div>
-            <div class="timeline-desc">Heading north towards Kerala via Nagercoil / Trivandrum highway route.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">08:30 AM</div>
-            <div class="timeline-title">Breakfast & Rest Stop</div>
-            <div class="timeline-desc">30-minute refreshment stop. Pit-stop headcount check by teachers.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">11:00 AM</div>
-            <div class="timeline-title">Holy Shrine / Pilgrimage Destination Visit</div>
-            <div class="timeline-desc">Group prayer, spiritual reflection, and guided tour of the pilgrimage site.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">01:30 PM</div>
-            <div class="timeline-title">Lunch Break & Fellowship</div>
-            <div class="timeline-desc">Group lunch arrangement and relaxation time.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">04:00 PM</div>
-            <div class="timeline-title">Evening Sightseeing & Tea</div>
-            <div class="timeline-desc">Scenic coastal or backwater view stop with group photos.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">07:00 PM</div>
-            <div class="timeline-title">Return Journey Commences</div>
-            <div class="timeline-desc">Boarding coach for return transit to Midalam.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-time">10:00 PM</div>
-            <div class="timeline-title">Arrival at Midalam Church Campus</div>
-            <div class="timeline-desc">Final roll-call headcount and dispersal.</div>
-          </div>
-        </div>
+        <div class="timeline" id="publicItineraryTimeline"></div>
       </div>
     </div>
 
@@ -696,10 +634,23 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 900; font-size: 0.82rem; cursor: pointer;">Logout</button>
           </div>
 
+          <!-- ADMIN ANNOUNCEMENT EDITOR -->
           <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
             <label style="color: var(--primary);">📢 Edit Admin Announcement Banner</label>
             <input type="text" id="adminAnnouncementInput" placeholder="Enter announcement text to broadcast..." style="margin-top: 6px; margin-bottom: 8px; font-size: 0.85rem;" />
             <button class="btn btn-primary" style="padding: 10px; font-size: 0.8rem;" onclick="saveAnnouncement()">Broadcast Announcement</button>
+          </div>
+
+          <!-- ADMIN ITINERARY BUILDER -->
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+            <label style="color: var(--primary);">🗓️ Manage Tour Itinerary Stops</label>
+            <div style="display: grid; gap: 8px; margin-top: 8px;">
+              <input type="text" id="itnTime" placeholder="Time (e.g. 05:30 AM)" style="font-size:0.85rem;" />
+              <input type="text" id="itnTitle" placeholder="Stop Title (e.g. Church Assembly)" style="font-size:0.85rem;" />
+              <input type="text" id="itnDesc" placeholder="Description details..." style="font-size:0.85rem;" />
+              <button class="btn btn-accent" style="padding: 10px; font-size: 0.8rem;" onclick="addItineraryStop()">➕ Add Itinerary Stop</button>
+            </div>
+            <div id="adminItineraryList" style="margin-top: 12px; max-height: 180px; overflow-y: auto;"></div>
           </div>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
@@ -895,6 +846,19 @@
     let headcountChecked = JSON.parse(localStorage.getItem('midalam_headcount_checked') || '{}');
     let currentAnnouncement = localStorage.getItem('midalam_announcement') || "Welcome pilgrims! Please ensure all seat bookings and advance dues are cleared before departure. Assemble at St. Joseph's Church campus 30 mins prior.";
     
+    let defaultItinerary = [
+      { time: "05:30 AM", title: "Assembly at St. Joseph's Church, Midalam", desc: "Roll-call headcount, luggage loading, and morning prayer led by Rev. Fr. Vigin Bright." },
+      { time: "06:00 AM", title: "Departure via Coach Maskara", desc: "Heading north towards Kerala via Nagercoil / Trivandrum highway route." },
+      { time: "08:30 AM", title: "Breakfast & Rest Stop", desc: "30-minute refreshment stop. Pit-stop headcount check by teachers." },
+      { time: "11:00 AM", title: "Holy Shrine / Pilgrimage Destination Visit", desc: "Group prayer, spiritual reflection, and guided tour of the pilgrimage site." },
+      { time: "01:30 PM", title: "Lunch Break & Fellowship", desc: "Group lunch arrangement and relaxation time." },
+      { time: "04:00 PM", title: "Evening Sightseeing & Tea", desc: "Scenic coastal or backwater view stop with group photos." },
+      { time: "07:00 PM", title: "Return Journey Commences", desc: "Boarding coach for return transit to Midalam." },
+      { time: "10:00 PM", title: "Arrival at Midalam Church Campus", desc: "Final roll-call headcount and dispersal." }
+    ];
+
+    let itineraryStops = JSON.parse(localStorage.getItem('midalam_itinerary')) || defaultItinerary;
+
     let currentTicket = null;
     let qrScanner = null;
     let inlineQrScanner = null;
@@ -911,6 +875,66 @@
         localStorage.setItem('midalam_announcement', val);
         document.getElementById('adminAnnouncementText').innerText = val;
         showToast("✓ Announcement broadcasted successfully!");
+      }
+    }
+
+    function renderItinerary() {
+      const pubContainer = document.getElementById('publicItineraryTimeline');
+      const adminContainer = document.getElementById('adminItineraryList');
+      if (!pubContainer) return;
+
+      pubContainer.innerHTML = '';
+      if (adminContainer) adminContainer.innerHTML = '';
+
+      itineraryStops.forEach((stop, idx) => {
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        item.innerHTML = `
+          <div class="timeline-dot"></div>
+          <div class="timeline-time">${stop.time}</div>
+          <div class="timeline-title">${stop.title}</div>
+          <div class="timeline-desc">${stop.desc}</div>
+        `;
+        pubContainer.appendChild(item);
+
+        if (adminContainer) {
+          const admItem = document.createElement('div');
+          admItem.style.cssText = "background:white; border:1px solid var(--border); padding:8px; border-radius:8px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; font-size:0.75rem;";
+          admItem.innerHTML = `
+            <div><strong>${stop.time}</strong> - ${stop.title}</div>
+            <button onclick="deleteItineraryStop(${idx})" style="background:#fee2e2; color:#ef4444; border:none; padding:4px 8px; border-radius:4px; font-weight:900; cursor:pointer;">Delete</button>
+          `;
+          adminContainer.appendChild(admItem);
+        }
+      });
+    }
+
+    function addItineraryStop() {
+      const time = document.getElementById('itnTime').value.trim();
+      const title = document.getElementById('itnTitle').value.trim();
+      const desc = document.getElementById('itnDesc').value.trim();
+
+      if (!time || !title) {
+        showToast("Enter time and title for itinerary stop");
+        return;
+      }
+
+      itineraryStops.push({ time, title, desc });
+      localStorage.setItem('midalam_itinerary', JSON.stringify(itineraryStops));
+      renderItinerary();
+
+      document.getElementById('itnTime').value = '';
+      document.getElementById('itnTitle').value = '';
+      document.getElementById('itnDesc').value = '';
+      showToast("✓ Itinerary stop added successfully!");
+    }
+
+    function deleteItineraryStop(idx) {
+      if (confirm("Delete this itinerary stop?")) {
+        itineraryStops.splice(idx, 1);
+        localStorage.setItem('midalam_itinerary', JSON.stringify(itineraryStops));
+        renderItinerary();
+        showToast("Itinerary stop removed");
       }
     }
 
@@ -968,6 +992,7 @@
 
       if (tabId === 'scannerTab') renderInlineHeadcount();
       else if (tabId === 'manifestTab') renderManifestTable();
+      else if (tabId === 'itineraryTab') renderItinerary();
     }
 
     function openHelplineModal() { document.getElementById('helplineModal').style.display = 'flex'; }
@@ -1432,6 +1457,7 @@
         document.getElementById('adminAuthBox').style.display = 'none';
         document.getElementById('adminPanel').style.display = 'block';
         renderRoster();
+        renderItinerary();
         showToast("Access Granted: Admin Mode Active");
       } else {
         let fails = parseInt(localStorage.getItem('midalam_pin_fails') || '0', 10) + 1;
@@ -1634,6 +1660,7 @@
     };
 
     renderSeats();
+    renderItinerary();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 15000);
   </script>
