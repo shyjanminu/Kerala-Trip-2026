@@ -107,12 +107,12 @@
     .nav-tabs {
       background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
       border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 95;
-      box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05); padding: 8px 10px;
+      box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05); padding: 8px 6px;
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 640px; margin: 0 auto;
     }
     .tab-btn {
-      padding: 10px 4px; border: 1.5px solid var(--border); background: #f8fafc;
-      border-radius: 10px; font-size: 0.72rem; font-weight: 800; color: var(--text-muted);
+      padding: 9px 2px; border: 1.5px solid var(--border); background: #f8fafc;
+      border-radius: 10px; font-size: 0.68rem; font-weight: 800; color: var(--text-muted);
       cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; text-align: center;
     }
     .tab-btn.active {
@@ -143,6 +143,17 @@
     .timeline-time { font-size: 0.72rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
     .timeline-title { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 2px 0; }
     .timeline-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
+
+    /* SPONSOR WALL CARDS */
+    .sponsor-card {
+      background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%);
+      border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .sponsor-info h4 { font-size: 0.95rem; font-weight: 900; color: var(--primary); text-transform: capitalize; }
+    .sponsor-info p { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+    .sponsor-amount { font-size: 1.1rem; font-weight: 900; color: var(--success-dark); background: #ecfdf5; padding: 6px 12px; border-radius: 10px; border: 1px solid #a7f3d0; }
 
     /* ADMIN ANNOUNCEMENT BANNER */
     .announcement-banner {
@@ -355,10 +366,11 @@
     </div>
   </header>
 
-  <!-- NAVIGATION BAR -->
-  <nav class="nav-tabs">
+  <!-- NAVIGATION BAR (7 TABS INCLUSIVE OF SPONSORS) -->
+  <nav class="nav-tabs" style="grid-template-columns: repeat(4, 1fr);">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('itineraryTab', event)">🗓️ Itinerary</button>
+    <button class="tab-btn" onclick="switchTab('sponsorsTab', event)">🙏 Sponsors</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Book</button>
     <button class="tab-btn" onclick="switchTab('scannerTab', event)">📷 Boarding</button>
     <button class="tab-btn" onclick="switchTab('manifestTab', event)">📋 Manifest</button>
@@ -458,7 +470,22 @@
       </div>
     </div>
 
-    <!-- TAB 3: SEAT BOOKING -->
+    <!-- TAB 3: SPONSORS & DONATIONS WALL -->
+    <div id="sponsorsTab" class="tab-content" style="display: none;">
+      <div class="card">
+        <div class="card-title">🙏 Sponsors & Donations Wall</div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600;">We sincerely thank our generous donors and sponsors supporting the Kerala Pilgrimage 2026:</p>
+        
+        <div style="background: linear-gradient(135deg, #06281e 0%, #0f3d2e 100%); color: white; border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; border: 1px solid var(--accent);">
+          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase;">Total Sponsorship Funds Raised</div>
+          <div style="font-size: 1.8rem; font-weight: 900; margin-top: 4px;" id="totalSponsorshipDisplay">₹0</div>
+        </div>
+
+        <div id="publicSponsorsList"></div>
+      </div>
+    </div>
+
+    <!-- TAB 4: SEAT BOOKING -->
     <div id="bookingTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📝 Passenger Registration & Seat Allocation</div>
@@ -541,13 +568,13 @@
             <label>Payment Channel</label>
             <select id="paymentMode" required>
               <option value="UPI">UPI (GPay / PhonePe / Paytm)</option>
-              <option value="Cash">Cash to Catechism Teacher</option>
+              <option value="Cash">Cash to Parish Teacher / Coordinator</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Transaction / UTR Reference</label>
-            <input type="text" id="refId" required placeholder="e.g. UPI Ref / Cash receipt details">
+            <label>Transaction / Cash Reference Note</label>
+            <input type="text" id="refId" required placeholder="e.g. UPI Ref OR 'Cash given to Teacher Denson'">
           </div>
 
           <button type="submit" class="btn btn-primary" id="submitBtn">Confirm Booking & Generate Pass</button>
@@ -555,19 +582,17 @@
       </div>
     </div>
 
-    <!-- TAB 4: ADMIN-CONTROLLED BOARDING & ROLL CALL -->
+    <!-- TAB 5: ADMIN-CONTROLLED BOARDING & ROLL CALL -->
     <div id="scannerTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📷 Teacher Boarding & Roll-Call Scanner</div>
         
-        <!-- Locked Message if Admin hasn't enabled boarding -->
         <div id="boardingLockedMsg" style="text-align: center; padding: 24px 10px;">
           <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
           <h4 style="font-size: 1rem; font-weight: 900; color: var(--primary);">Boarding Scanner is Currently Locked</h4>
           <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; font-weight: 600;">The admin must enable boarding mode from the Admin panel before scanning can begin.</p>
         </div>
 
-        <!-- Unlocked Boarding Content -->
         <div id="boardingUnlockedContent" style="display:none;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <span style="font-size:0.75rem; font-weight:900; color:var(--success);">● Boarding Mode Active (Admin Enabled)</span>
@@ -598,7 +623,7 @@
       </div>
     </div>
 
-    <!-- TAB 5: BOOKING MANIFEST -->
+    <!-- TAB 6: BOOKING MANIFEST -->
     <div id="manifestTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📋 Passenger Booking Manifest</div>
@@ -626,7 +651,7 @@
       </div>
     </div>
 
-    <!-- TAB 6: ADMIN ROSTER -->
+    <!-- TAB 7: ADMIN ROSTER -->
     <div id="rosterTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">🔐 Enterprise Admin Control Center</div>
@@ -664,14 +689,25 @@
           </div>
 
           <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
-            <label style="color: var(--primary);">🗓️ Manage Tour Itinerary Stops</label>
+            <label style="color: var(--primary);">🙏 Manage Sponsors & Donations</label>
+            <div style="display: grid; gap: 8px; margin-top: 8px;">
+              <input type="text" id="spnName" placeholder="Donor / Sponsor Name" style="font-size:0.85rem;" />
+              <input type="number" id="spnAmount" placeholder="Donation Amount (₹)" style="font-size:0.85rem;" />
+              <input type="text" id="spnNote" placeholder="Note / Category (e.g. Food Sponsor)" style="font-size:0.85rem;" />
+              <button class="btn btn-accent" style="padding: 10px; font-size: 0.8rem;" onclick="addSponsor()">➕ Add Sponsor Entry</button>
+            </div>
+            <div id="adminSponsorsList" style="margin-top: 12px; max-height: 160px; overflow-y: auto;"></div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+            <label style="color: var(--primary);">🗓️️ Manage Tour Itinerary Stops</label>
             <div style="display: grid; gap: 8px; margin-top: 8px;">
               <input type="text" id="itnTime" placeholder="Time (e.g. 05:30 AM)" style="font-size:0.85rem;" />
               <input type="text" id="itnTitle" placeholder="Stop Title (e.g. Church Assembly)" style="font-size:0.85rem;" />
               <input type="text" id="itnDesc" placeholder="Description details..." style="font-size:0.85rem;" />
-              <button class="btn btn-accent" style="padding: 10px; font-size: 0.8rem;" onclick="addItineraryStop()">➕ Add Itinerary Stop</button>
+              <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem;" onclick="addItineraryStop()">➕ Add Itinerary Stop</button>
             </div>
-            <div id="adminItineraryList" style="margin-top: 12px; max-height: 180px; overflow-y: auto;"></div>
+            <div id="adminItineraryList" style="margin-top: 12px; max-height: 160px; overflow-y: auto;"></div>
           </div>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
@@ -880,6 +916,10 @@
     ];
 
     let itineraryStops = JSON.parse(localStorage.getItem('midalam_itinerary')) || defaultItinerary;
+    let sponsorsList = JSON.parse(localStorage.getItem('midalam_sponsors')) || [
+      { name: "Parish Welfare Fund", amount: 5000, note: "General Tour Sponsorship" },
+      { name: "Anonymous Well-Wisher", amount: 2000, note: "Refreshments Sponsor" }
+    ];
 
     let currentTicket = null;
     let qrScanner = null;
@@ -959,28 +999,87 @@
       const time = document.getElementById('itnTime').value.trim();
       const title = document.getElementById('itnTitle').value.trim();
       const desc = document.getElementById('itnDesc').value.trim();
-
-      if (!time || !title) {
-        showToast("Enter time and title for itinerary stop");
-        return;
-      }
-
+      if (!time || !title) { showToast("Enter time and title"); return; }
       itineraryStops.push({ time, title, desc });
       localStorage.setItem('midalam_itinerary', JSON.stringify(itineraryStops));
       renderItinerary();
-
       document.getElementById('itnTime').value = '';
       document.getElementById('itnTitle').value = '';
       document.getElementById('itnDesc').value = '';
-      showToast("✓ Itinerary stop added successfully!");
+      showToast("✓ Itinerary stop added!");
     }
 
     function deleteItineraryStop(idx) {
-      if (confirm("Delete this itinerary stop?")) {
+      if (confirm("Delete this stop?")) {
         itineraryStops.splice(idx, 1);
         localStorage.setItem('midalam_itinerary', JSON.stringify(itineraryStops));
         renderItinerary();
-        showToast("Itinerary stop removed");
+        showToast("Stop removed");
+      }
+    }
+
+    function renderSponsors() {
+      const pubContainer = document.getElementById('publicSponsorsList');
+      const adminContainer = document.getElementById('adminSponsorsList');
+      const totalDisplay = document.getElementById('totalSponsorshipDisplay');
+      if (!pubContainer) return;
+
+      pubContainer.innerHTML = '';
+      if (adminContainer) adminContainer.innerHTML = '';
+      let totalSum = 0;
+
+      if (sponsorsList.length === 0) {
+        pubContainer.innerHTML = `<div style="text-align:center; padding:16px; color:var(--text-muted); font-size:0.8rem;">No sponsors listed yet.</div>`;
+      }
+
+      sponsorsList.forEach((spn, idx) => {
+        totalSum += Number(spn.amount) || 0;
+        
+        const card = document.createElement('div');
+        card.className = 'sponsor-card';
+        card.innerHTML = `
+          <div class="sponsor-info">
+            <h4>${spn.name}</h4>
+            <p>${spn.note || 'Pilgrimage Donor'}</p>
+          </div>
+          <div class="sponsor-amount">₹${Number(spn.amount).toLocaleString()}</div>
+        `;
+        pubContainer.appendChild(card);
+
+        if (adminContainer) {
+          const admItem = document.createElement('div');
+          admItem.style.cssText = "background:white; border:1px solid var(--border); padding:8px; border-radius:8px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; font-size:0.75rem;";
+          admItem.innerHTML = `
+            <div><strong>${spn.name}</strong> (₹${spn.amount})</div>
+            <button onclick="deleteSponsor(${idx})" style="background:#fee2e2; color:#ef4444; border:none; padding:4px 8px; border-radius:4px; font-weight:900; cursor:pointer;">Delete</button>
+          `;
+          adminContainer.appendChild(admItem);
+        }
+      });
+
+      if (totalDisplay) totalDisplay.innerText = `₹${totalSum.toLocaleString()}`;
+    }
+
+    function addSponsor() {
+      const name = document.getElementById('spnName').value.trim();
+      const amount = parseInt(document.getElementById('spnAmount').value) || 0;
+      const note = document.getElementById('spnNote').value.trim();
+      if (!name || amount <= 0) { showToast("Enter valid donor name and amount"); return; }
+      sponsorsList.push({ name, amount, note });
+      localStorage.setItem('midalam_sponsors', JSON.stringify(sponsorsList));
+      renderSponsors();
+      document.getElementById('spnName').value = '';
+      document.getElementById('spnAmount').value = '';
+      document.getElementById('spnNote').value = '';
+      showToast("✓ Sponsor added successfully!");
+    }
+
+    function deleteSponsor(idx) {
+      if (confirm("Delete this sponsor?")) {
+        sponsorsList.splice(idx, 1);
+        localStorage.setItem('midalam_sponsors', JSON.stringify(sponsorsList));
+        renderSponsors();
+        showToast("Sponsor removed");
       }
     }
 
@@ -1046,6 +1145,8 @@
         renderManifestTable();
       } else if (tabId === 'itineraryTab') {
         renderItinerary();
+      } else if (tabId === 'sponsorsTab') {
+        renderSponsors();
       }
     }
 
@@ -1512,6 +1613,7 @@
         document.getElementById('adminPanel').style.display = 'block';
         renderRoster();
         renderItinerary();
+        renderSponsors();
         showToast("Access Granted: Admin Mode Active");
       } else {
         let fails = parseInt(localStorage.getItem('midalam_pin_fails') || '0', 10) + 1;
@@ -1715,6 +1817,7 @@
 
     renderSeats();
     renderItinerary();
+    renderSponsors();
     fetchLiveRegistrations();
     setInterval(fetchLiveRegistrations, 15000);
   </script>
