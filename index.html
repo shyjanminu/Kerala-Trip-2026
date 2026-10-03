@@ -555,30 +555,45 @@
       </div>
     </div>
 
-    <!-- TAB 4: BOARDING & ROLL CALL -->
+    <!-- TAB 4: ADMIN-CONTROLLED BOARDING & ROLL CALL -->
     <div id="scannerTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📷 Teacher Boarding & Roll-Call Scanner</div>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Scan passenger passes during boarding or pit-stops to mark attendance instantly.</p>
         
-        <div style="margin-bottom: 14px; text-align: center;">
-          <button class="btn btn-primary" onclick="startInlineScanner()" id="startScanBtn">Start Camera Scanner</button>
-          <button class="btn btn-secondary" onclick="stopInlineScanner()" id="stopScanBtn" style="display:none; margin-top:6px;">Stop Camera</button>
+        <!-- Locked Message if Admin hasn't enabled boarding -->
+        <div id="boardingLockedMsg" style="text-align: center; padding: 24px 10px;">
+          <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
+          <h4 style="font-size: 1rem; font-weight: 900; color: var(--primary);">Boarding Scanner is Currently Locked</h4>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; font-weight: 600;">The admin must enable boarding mode from the Admin panel before scanning can begin.</p>
         </div>
 
-        <div id="inlineScannerBox" style="display:none; width: 100%; height: 260px; border-radius: 14px; overflow: hidden; background: #000; position: relative; margin-bottom: 14px;">
-          <div id="inlineScannerTarget" style="width: 100%; height: 100%;"></div>
-        </div>
-
-        <div id="inlineScanResult" style="font-size: 0.85rem; font-weight: 800; min-height: 24px; text-align: center; margin-bottom: 14px; color: var(--text-muted);">Scanner inactive</div>
-
-        <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h4 style="font-size: 0.92rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h4>
-            <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.7rem; font-weight:900; padding:5px 10px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+        <!-- Unlocked Boarding Content -->
+        <div id="boardingUnlockedContent" style="display:none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size:0.75rem; font-weight:900; color:var(--success);">● Boarding Mode Active (Admin Enabled)</span>
           </div>
-          <div style="font-size: 0.8rem; font-weight: 900; color: var(--success-dark); margin-bottom: 10px;" id="inlineHcCountDisplay">Onboard: 0 / 0</div>
-          <div class="headcount-list" id="inlineHeadcountList" style="max-height: 240px;"></div>
+
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Scan passenger passes during boarding or pit-stops to mark attendance instantly.</p>
+          
+          <div style="margin-bottom: 14px; text-align: center;">
+            <button class="btn btn-primary" onclick="startInlineScanner()" id="startScanBtn">Start Camera Scanner</button>
+            <button class="btn btn-secondary" onclick="stopInlineScanner()" id="stopScanBtn" style="display:none; margin-top:6px;">Stop Camera</button>
+          </div>
+
+          <div id="inlineScannerBox" style="display:none; width: 100%; height: 260px; border-radius: 14px; overflow: hidden; background: #000; position: relative; margin-bottom: 14px;">
+            <div id="inlineScannerTarget" style="width: 100%; height: 100%;"></div>
+          </div>
+
+          <div id="inlineScanResult" style="font-size: 0.85rem; font-weight: 800; min-height: 24px; text-align: center; margin-bottom: 14px; color: var(--text-muted);">Scanner inactive</div>
+
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h4 style="font-size: 0.92rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h4>
+              <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.7rem; font-weight:900; padding:5px 10px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+            </div>
+            <div style="font-size: 0.8rem; font-weight: 900; color: var(--success-dark); margin-bottom: 10px;" id="inlineHcCountDisplay">Onboard: 0 / 0</div>
+            <div class="headcount-list" id="inlineHeadcountList" style="max-height: 240px;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -634,14 +649,20 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 900; font-size: 0.82rem; cursor: pointer;">Logout</button>
           </div>
 
-          <!-- ADMIN ANNOUNCEMENT EDITOR -->
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <label style="color: var(--primary); margin-bottom: 2px;">📷 Master Boarding Switch</label>
+              <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;" id="boardingSwitchStatusDesc">Status: Locked for public</span>
+            </div>
+            <button class="btn btn-accent" style="width: auto; padding: 8px 16px; font-size: 0.78rem;" id="boardingSwitchBtn" onclick="toggleBoardingMasterSwitch()">Enable Boarding</button>
+          </div>
+
           <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
             <label style="color: var(--primary);">📢 Edit Admin Announcement Banner</label>
             <input type="text" id="adminAnnouncementInput" placeholder="Enter announcement text to broadcast..." style="margin-top: 6px; margin-bottom: 8px; font-size: 0.85rem;" />
             <button class="btn btn-primary" style="padding: 10px; font-size: 0.8rem;" onclick="saveAnnouncement()">Broadcast Announcement</button>
           </div>
 
-          <!-- ADMIN ITINERARY BUILDER -->
           <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
             <label style="color: var(--primary);">🗓️ Manage Tour Itinerary Stops</label>
             <div style="display: grid; gap: 8px; margin-top: 8px;">
@@ -845,7 +866,8 @@
     let registrations = JSON.parse(localStorage.getItem('midalam_trip_registrations')) || [];
     let headcountChecked = JSON.parse(localStorage.getItem('midalam_headcount_checked') || '{}');
     let currentAnnouncement = localStorage.getItem('midalam_announcement') || "Welcome pilgrims! Please ensure all seat bookings and advance dues are cleared before departure. Assemble at St. Joseph's Church campus 30 mins prior.";
-    
+    let isBoardingActive = localStorage.getItem('midalam_boarding_active') === 'true';
+
     let defaultItinerary = [
       { time: "05:30 AM", title: "Assembly at St. Joseph's Church, Midalam", desc: "Roll-call headcount, luggage loading, and morning prayer led by Rev. Fr. Vigin Bright." },
       { time: "06:00 AM", title: "Departure via Coach Maskara", desc: "Heading north towards Kerala via Nagercoil / Trivandrum highway route." },
@@ -867,6 +889,7 @@
 
     document.getElementById('adminAnnouncementInput').value = currentAnnouncement;
     document.getElementById('adminAnnouncementText').innerText = currentAnnouncement;
+    updateBoardingSwitchUI();
 
     function saveAnnouncement() {
       const val = document.getElementById('adminAnnouncementInput').value.trim();
@@ -875,6 +898,29 @@
         localStorage.setItem('midalam_announcement', val);
         document.getElementById('adminAnnouncementText').innerText = val;
         showToast("✓ Announcement broadcasted successfully!");
+      }
+    }
+
+    function toggleBoardingMasterSwitch() {
+      isBoardingActive = !isBoardingActive;
+      localStorage.setItem('midalam_boarding_active', isBoardingActive);
+      updateBoardingSwitchUI();
+      showToast(isBoardingActive ? "✓ Boarding scanner enabled for teachers" : "🔒 Boarding scanner locked down");
+    }
+
+    function updateBoardingSwitchUI() {
+      const btn = document.getElementById('boardingSwitchBtn');
+      const desc = document.getElementById('boardingSwitchStatusDesc');
+      if (btn && desc) {
+        if (isBoardingActive) {
+          btn.innerText = "Lock Boarding";
+          btn.style.background = "var(--danger)";
+          desc.innerText = "Status: Unlocked & Active";
+        } else {
+          btn.innerText = "Enable Boarding";
+          btn.style.background = "var(--accent-gradient)";
+          desc.innerText = "Status: Locked";
+        }
       }
     }
 
@@ -990,9 +1036,17 @@
       document.getElementById(tabId).style.display = 'block';
       if (evt && evt.target) evt.target.classList.add('active');
 
-      if (tabId === 'scannerTab') renderInlineHeadcount();
-      else if (tabId === 'manifestTab') renderManifestTable();
-      else if (tabId === 'itineraryTab') renderItinerary();
+      if (tabId === 'scannerTab') {
+        const isLive = localStorage.getItem('midalam_boarding_active') === 'true';
+        document.getElementById('boardingLockedMsg').style.display = isLive ? 'none' : 'block';
+        document.getElementById('boardingUnlockedContent').style.display = isLive ? 'block' : 'none';
+        if (isLive) renderInlineHeadcount();
+        else stopInlineScanner();
+      } else if (tabId === 'manifestTab') {
+        renderManifestTable();
+      } else if (tabId === 'itineraryTab') {
+        renderItinerary();
+      }
     }
 
     function openHelplineModal() { document.getElementById('helplineModal').style.display = 'flex'; }
