@@ -24,7 +24,7 @@
       --accent: #d4af37;
       --accent-gradient: linear-gradient(135deg, #fce085 0%, #d4af37 50%, #9a7614 100%);
       --bg: #f4f8f5;
-      --surface: #ffffff;
+      --surface: rgba(255, 255, 255, 0.96);
       --text: #0b1f17;
       --text-muted: #597165;
       --border: #d5e5dc;
@@ -32,9 +32,9 @@
       --success-dark: #047857;
       --danger: #ef4444;
       --warning: #f59e0b;
-      --radius: 20px;
-      --shadow: 0 12px 30px -6px rgba(6, 40, 30, 0.08);
-      --shadow-lg: 0 25px 40px -10px rgba(6, 40, 30, 0.22);
+      --radius: 22px;
+      --shadow: 0 14px 35px -8px rgba(6, 40, 30, 0.1);
+      --shadow-lg: 0 25px 50px -12px rgba(6, 40, 30, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -42,240 +42,250 @@
     body {
       background-color: var(--bg);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.09) 0px, transparent 50%),
-        linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(244, 248, 245, 0.96) 100%),
+        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(244, 248, 245, 0.98) 100%),
         url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=70");
       background-attachment: fixed;
       background-size: cover;
       color: var(--text);
-      padding-bottom: 110px;
+      padding-bottom: 120px;
       min-height: 100vh;
     }
 
     #pullIndicator {
       height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center;
-      background: var(--secondary); color: var(--accent); font-size: 0.75rem; font-weight: 700; transition: height 0.2s ease;
+      background: var(--secondary); color: var(--accent); font-size: 0.75rem; font-weight: 800; transition: height 0.2s ease;
     }
 
-    /* HEADER */
+    /* PREMIUM HEADER */
     header {
-      background: linear-gradient(180deg, rgba(4, 31, 23, 0.75) 0%, rgba(6, 40, 30, 0.92) 100%),
-                  url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
-      color: white; padding: max(16px, env(safe-area-inset-top)) 16px 18px; position: relative;
-      border-bottom: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(4, 31, 23, 0.45);
+      background: 
+        linear-gradient(180deg, rgba(4, 31, 23, 0.8) 0%, rgba(6, 40, 30, 0.95) 100%),
+        url("https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      color: white; padding: max(18px, env(safe-area-inset-top)) 16px 20px; position: relative;
+      border-bottom: 3.5px solid var(--accent); box-shadow: 0 12px 35px rgba(4, 31, 23, 0.5);
     }
     .header-layout { display: flex; align-items: center; justify-content: space-between; max-width: 640px; margin: 0 auto; gap: 12px; }
 
     .kerala-bus-photo-container {
-      width: 76px; height: 60px; border-radius: 12px; border: 2px solid var(--accent);
-      background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.5); position: relative; overflow: hidden;
+      width: 80px; height: 64px; border-radius: 14px; border: 2px solid var(--accent);
+      background: #0f172a; box-shadow: 0 6px 16px rgba(0,0,0,0.6); position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .kerala-bus-photo-container img { width: 100%; height: 100%; object-fit: cover; }
     .maskara-windshield-overlay {
-      position: absolute; top: 12px; left: 6px; right: 6px;
+      position: absolute; top: 13px; left: 6px; right: 6px;
       background: linear-gradient(180deg, #d90429 0%, #7209b7 100%); color: #ffffff;
-      border: 1px solid var(--accent); border-radius: 3px; font-size: 0.5rem; font-weight: 900;
-      letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 1px 0; z-index: 5;
+      border: 1px solid var(--accent); border-radius: 4px; font-size: 0.52rem; font-weight: 900;
+      letter-spacing: 0.9px; text-transform: uppercase; text-align: center; padding: 1.5px 0; z-index: 5;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.8);
     }
 
     .header-center { flex: 1; text-align: center; min-width: 0; }
     .church-crest {
-      display: inline-block; background: rgba(212, 175, 55, 0.22); color: #ffe89e;
-      border: 1px solid rgba(212, 175, 55, 0.5); padding: 3px 10px; border-radius: 20px;
-      font-size: 0.62rem; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 4px;
+      display: inline-block; background: rgba(212, 175, 55, 0.25); color: #ffe89e;
+      border: 1px solid rgba(212, 175, 55, 0.6); padding: 3px 12px; border-radius: 20px;
+      font-size: 0.64rem; font-weight: 900; letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 5px;
+      backdrop-filter: blur(6px); box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    .header-center h1 { font-size: 1.15rem; font-weight: 900; color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
-    .header-center p { font-size: 0.7rem; color: #bbf7d0; margin-top: 2px; font-weight: 700; }
+    .header-center h1 { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.3px; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.85); }
+    .header-center p { font-size: 0.72rem; color: #bbf7d0; margin-top: 2px; font-weight: 800; letter-spacing: 0.3px; }
 
     .header-icon-box { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
-    .header-img-frame { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--accent); background: #083325; overflow: hidden; }
+    .header-img-frame {
+      width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent);
+      background: #083325; overflow: hidden; box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+    }
     .header-img-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .header-badge-sub { font-size: 0.56rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
+    .header-badge-sub { font-size: 0.58rem; font-weight: 900; color: var(--accent); text-transform: uppercase; margin-top: 3px; }
 
-    .sync-pill-row { display: flex; justify-content: center; margin-top: 8px; }
+    .sync-pill-row { display: flex; justify-content: center; margin-top: 9px; }
     .sync-status-pill {
-      display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px;
-      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
-      border-radius: 20px; font-size: 0.62rem; color: #ffffff; border: 1px solid rgba(212, 175, 55, 0.3);
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px);
+      border-radius: 20px; font-size: 0.64rem; color: #ffffff; border: 1px solid rgba(212, 175, 55, 0.4);
+      font-weight: 700;
     }
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
-    .pulse-dot.active { background: #34d399; box-shadow: 0 0 8px #34d399; }
+    .pulse-dot.active { background: #34d399; box-shadow: 0 0 10px #34d399; }
 
-    /* NAVIGATION BAR */
+    /* PROFESSIONAL TWO-TIER NAVIGATION BAR */
     .nav-tabs {
-      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
-      border-bottom: 1.5px solid var(--border); position: sticky; top: 0; z-index: 95;
-      box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05); padding: 8px 6px;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 640px; margin: 0 auto;
+      background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 95;
+      box-shadow: 0 6px 20px rgba(6, 40, 30, 0.06); padding: 10px 12px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: 640px; margin: 0 auto;
     }
     .tab-btn {
-      padding: 9px 2px; border: 1.5px solid var(--border); background: #f8fafc;
-      border-radius: 10px; font-size: 0.68rem; font-weight: 800; color: var(--text-muted);
+      padding: 10px 4px; border: 1.5px solid var(--border); background: #f8fafc;
+      border-radius: 12px; font-size: 0.7rem; font-weight: 900; color: var(--text-muted);
       cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
     .tab-btn.active {
       color: #ffffff; background: var(--primary); border-color: var(--accent);
-      box-shadow: 0 4px 10px rgba(6, 40, 30, 0.2);
+      box-shadow: 0 6px 15px rgba(6, 40, 30, 0.25); transform: translateY(-1px);
     }
 
     .container { max-width: 640px; margin: 0 auto; padding: 16px; position: relative; }
 
     .card {
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-      border-radius: var(--radius); padding: 22px 18px; border: 1px solid var(--border);
-      box-shadow: var(--shadow); margin-bottom: 18px;
+      background: var(--surface); backdrop-filter: blur(12px);
+      border-radius: var(--radius); padding: 24px 20px; border: 1px solid var(--border);
+      box-shadow: var(--shadow); margin-bottom: 20px;
     }
     .card-title {
-      font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
+      font-size: 1.15rem; font-weight: 900; color: var(--primary); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px; letter-spacing: -0.3px;
     }
 
     /* ITINERARY TIMELINE */
-    .timeline { position: relative; padding-left: 24px; margin-top: 10px; }
-    .timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; background: var(--border); }
-    .timeline-item { position: relative; margin-bottom: 20px; }
+    .timeline { position: relative; padding-left: 26px; margin-top: 12px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3.5px; background: var(--border); border-radius: 4px; }
+    .timeline-item { position: relative; margin-bottom: 22px; }
     .timeline-dot {
-      position: absolute; left: -24px; top: 4px; width: 15px; height: 15px;
+      position: absolute; left: -26px; top: 3px; width: 16px; height: 16px;
       border-radius: 50%; background: var(--accent); border: 3px solid #ffffff; box-shadow: 0 0 0 2px var(--border);
     }
-    .timeline-time { font-size: 0.72rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
-    .timeline-title { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 2px 0; }
-    .timeline-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 600; }
+    .timeline-time { font-size: 0.74rem; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-title { font-size: 0.98rem; font-weight: 900; color: var(--primary); margin: 3px 0; }
+    .timeline-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.45; font-weight: 600; }
 
     /* SPONSOR WALL CARDS */
     .sponsor-card {
       background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%);
-      border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px;
+      border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px;
       display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
     }
-    .sponsor-info h4 { font-size: 0.95rem; font-weight: 900; color: var(--primary); text-transform: capitalize; }
-    .sponsor-info p { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
-    .sponsor-amount { font-size: 1.1rem; font-weight: 900; color: var(--success-dark); background: #ecfdf5; padding: 6px 12px; border-radius: 10px; border: 1px solid #a7f3d0; }
+    .sponsor-info h4 { font-size: 1rem; font-weight: 900; color: var(--primary); text-transform: capitalize; }
+    .sponsor-info p { font-size: 0.74rem; color: var(--text-muted); font-weight: 700; margin-top: 3px; }
+    .sponsor-amount { font-size: 1.15rem; font-weight: 900; color: var(--success-dark); background: #ecfdf5; padding: 8px 14px; border-radius: 12px; border: 1px solid #a7f3d0; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.1); }
 
     /* ADMIN ANNOUNCEMENT BANNER */
     .announcement-banner {
       background: linear-gradient(135deg, #06281e 0%, #0f3d2e 100%);
-      border: 1.5px solid var(--accent); border-radius: 16px; padding: 16px; color: white; margin-bottom: 18px;
-      box-shadow: 0 8px 20px rgba(6, 40, 30, 0.15); position: relative; overflow: hidden;
+      border: 1.5px solid var(--accent); border-radius: 18px; padding: 18px; color: white; margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(6, 40, 30, 0.2); position: relative; overflow: hidden;
     }
-    .announcement-banner::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-gradient); }
-    .ann-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .ann-title { font-size: 0.8rem; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
-    .ann-date { font-size: 0.65rem; color: #a7f3d0; font-weight: 700; }
-    .ann-text { font-size: 0.85rem; line-height: 1.45; color: #f1f5f9; font-weight: 600; }
+    .announcement-banner::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--accent-gradient); }
+    .ann-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .ann-title { font-size: 0.82rem; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.6px; display: flex; align-items: center; gap: 6px; }
+    .ann-date { font-size: 0.68rem; color: #a7f3d0; font-weight: 800; }
+    .ann-text { font-size: 0.88rem; line-height: 1.5; color: #f1f5f9; font-weight: 600; }
 
     /* DASHBOARD & FORMS */
     .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
-    .kpi-card { background: #f8faf9; border-radius: 14px; padding: 16px 14px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
-    .kpi-lbl { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
-    .kpi-val { font-size: 1.4rem; font-weight: 900; color: var(--primary); margin: 6px 0 4px; }
-    .kpi-sub { font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; font-weight: 600; }
-    .progress-bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+    .kpi-card { background: #f8faf9; border-radius: 16px; padding: 16px 14px; border: 1px solid var(--border); box-shadow: 0 3px 8px rgba(0,0,0,0.02); }
+    .kpi-lbl { font-size: 0.72rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .kpi-val { font-size: 1.45rem; font-weight: 900; color: var(--primary); margin: 6px 0 4px; }
+    .kpi-sub { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; font-weight: 700; }
+    .progress-bar-bg { width: 100%; height: 7px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 10px; }
     .progress-bar-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
     .bg-accent { background: var(--accent); }
     .bg-success { background: var(--success); }
 
     .chips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
-    .chip-box { background: #ffffff; border: 1px solid var(--border); padding: 11px 13px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; color: var(--secondary); }
-    .chip-box span { display: block; font-size: 0.64rem; color: var(--text-muted); font-weight: 700; margin-bottom: 3px; text-transform: uppercase; }
+    .chip-box { background: #ffffff; border: 1px solid var(--border); padding: 12px 14px; border-radius: 14px; font-size: 0.78rem; font-weight: 900; color: var(--secondary); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    .chip-box span { display: block; font-size: 0.66rem; color: var(--text-muted); font-weight: 800; margin-bottom: 3px; text-transform: uppercase; }
 
-    .guidelines-box { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-top: 18px; }
-    .guide-title { font-size: 0.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .guidelines-box { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 18px; padding: 18px; margin-top: 20px; }
+    .guide-title { font-size: 0.92rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .guide-col { background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--border); }
-    .guide-col h5 { font-size: 0.76rem; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
+    .guide-col { background: white; border-radius: 14px; padding: 14px; border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+    .guide-col h5 { font-size: 0.78rem; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
     .guide-col.dos h5 { color: var(--success-dark); }
     .guide-col.donts h5 { color: var(--danger); }
-    .guide-list { list-style: none; font-size: 0.68rem; color: var(--text); line-height: 1.45; }
+    .guide-list { list-style: none; font-size: 0.7rem; color: var(--text); line-height: 1.5; }
     .guide-list li { margin-bottom: 6px; padding-left: 14px; position: relative; font-weight: 600; }
     .guide-col.dos .guide-list li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: 900; }
     .guide-col.donts .guide-list li::before { content: "✕"; position: absolute; left: 0; color: var(--danger); font-weight: 900; }
 
-    .form-group { margin-bottom: 16px; }
-    label { display: block; font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 6px; text-transform: uppercase; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: 0.76rem; font-weight: 900; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
     input, select {
-      width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 12px;
-      font-size: 0.95rem; background: #fafafa; color: var(--text); transition: all 0.2s ease;
+      width: 100%; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 14px;
+      font-size: 0.98rem; background: #fafafa; color: var(--text); transition: all 0.2s ease;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
     }
-    input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
+    input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); }
 
-    .price-box { background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%); border: 1.5px dashed var(--accent); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 16px; }
-    .price-tag { font-size: 1.7rem; font-weight: 900; color: var(--primary); }
-    .price-desc { font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; font-weight: 700; }
+    .price-box { background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%); border: 1.5px dashed var(--accent); border-radius: 16px; padding: 16px; text-align: center; margin-bottom: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    .price-tag { font-size: 1.8rem; font-weight: 900; color: var(--primary); }
+    .price-desc { font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; font-weight: 800; }
 
     .btn {
-      width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 0.92rem; font-weight: 800;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      width: 100%; padding: 15px; border: none; border-radius: 14px; font-size: 0.95rem; font-weight: 900;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s ease; box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
     .btn:active { transform: scale(0.98); }
-    .btn-primary { background: linear-gradient(135deg, #06281e, #0e4432); color: white; box-shadow: 0 6px 16px rgba(6, 40, 30, 0.25); }
-    .btn-accent { background: var(--accent-gradient); color: #06281e; font-weight: 900; }
+    .btn-primary { background: linear-gradient(135deg, #06281e, #0e4432); color: white; box-shadow: 0 8px 20px rgba(6, 40, 30, 0.3); }
+    .btn-accent { background: var(--accent-gradient); color: #06281e; font-weight: 900; box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3); }
     .btn-secondary { background: #0f3d2e; color: white; }
 
     /* 60 SEATER BUS */
-    .seat-search-wrapper { background: #f1f5f9; padding: 10px 14px; border-radius: 12px; margin-bottom: 14px; display: flex; gap: 8px; align-items: center; border: 1px solid var(--border); }
-    .seat-search-wrapper input { padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; background: white; border: 1px solid var(--border); }
+    .seat-search-wrapper { background: #f1f5f9; padding: 12px 16px; border-radius: 14px; margin-bottom: 16px; display: flex; gap: 10px; align-items: center; border: 1px solid var(--border); box-shadow: inset 0 1px 3px rgba(0,0,0,0.02); }
+    .seat-search-wrapper input { padding: 9px 12px; font-size: 0.88rem; border-radius: 10px; background: white; border: 1px solid var(--border); }
 
     .bus-container {
       background: linear-gradient(180deg, #d3e2d9 0%, #e8f0ec 35%, #d9e7df 100%);
-      border: 3px solid #adc4b7; border-radius: 26px; padding: 18px 14px 22px; margin-top: 8px;
-      box-shadow: inset 0 2px 10px rgba(6,40,30,0.1), 0 10px 25px rgba(0,0,0,0.06); position: relative;
+      border: 3.5px solid #adc4b7; border-radius: 28px; padding: 20px 16px 24px; margin-top: 10px;
+      box-shadow: inset 0 2px 12px rgba(6,40,30,0.12), 0 12px 30px rgba(0,0,0,0.08); position: relative;
     }
     .bus-front-cockpit {
       display: flex; justify-content: space-between; align-items: center; background: #06281e; color: #e2e8f0;
-      padding: 9px 16px; border-radius: 12px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.5px;
-      margin-bottom: 16px; border-bottom: 2px solid var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 10px 18px; border-radius: 14px; font-size: 0.74rem; font-weight: 900; letter-spacing: 0.6px;
+      margin-bottom: 18px; border-bottom: 2.5px solid var(--accent); box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     }
-    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 6px; align-items: center; }
-    .seat-grid .aisle { grid-column: 3; height: 8px; background: repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 4px, transparent 4px, transparent 8px); opacity: 0.6; }
+    .seat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px 6px; align-items: center; }
+    .seat-grid .aisle { grid-column: 3; height: 9px; background: repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 4px, transparent 4px, transparent 8px); opacity: 0.6; }
 
-    .seat-3d { position: relative; min-height: 60px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; user-select: none; transition: transform 0.2s ease; }
-    .seat-headrest { width: 72%; height: 11px; background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%); border-radius: 6px 6px 3px 3px; border: 1px solid #94a3b8; box-shadow: 0 2px 4px rgba(0,0,0,0.12); z-index: 3; margin-bottom: -3px; }
+    .seat-3d { position: relative; min-height: 62px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; user-select: none; transition: transform 0.2s ease; }
+    .seat-headrest { width: 72%; height: 12px; background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%); border-radius: 6px 6px 3px 3px; border: 1px solid #94a3b8; box-shadow: 0 2px 5px rgba(0,0,0,0.12); z-index: 3; margin-bottom: -3px; }
     .seat-body {
-      width: 100%; flex: 1; min-height: 46px; background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
-      border: 1.5px solid #94a3b8; border-radius: 8px 8px 12px 12px; box-shadow: 0 3px 0 #94a3b8, 0 5px 6px rgba(15, 23, 42, 0.15);
+      width: 100%; flex: 1; min-height: 48px; background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
+      border: 1.5px solid #94a3b8; border-radius: 8px 8px 12px 12px; box-shadow: 0 3px 0 #94a3b8, 0 6px 8px rgba(15, 23, 42, 0.15);
       display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 2px 4px; text-align: center; position: relative;
     }
     .seat-body::before { content: ""; position: absolute; top: 3px; bottom: 5px; left: 3px; right: 3px; border: 1px dashed rgba(100, 116, 139, 0.35); border-radius: 4px; pointer-events: none; }
-    .seat-num { font-size: 0.72rem; font-weight: 900; color: #0f172a; line-height: 1; }
-    .seat-type-tag { font-size: 0.48rem; font-weight: 800; color: #64748b; margin-top: 1px; }
-    .seat-assigned-name { font-size: 0.5rem; font-weight: 800; max-width: 48px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; text-transform: capitalize; }
+    .seat-num { font-size: 0.74rem; font-weight: 900; color: #0f172a; line-height: 1; }
+    .seat-type-tag { font-size: 0.5rem; font-weight: 900; color: #64748b; margin-top: 1px; }
+    .seat-assigned-name { font-size: 0.52rem; font-weight: 900; max-width: 48px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; text-transform: capitalize; }
 
-    .seat-3d.selected .seat-headrest { background: var(--accent-gradient); border-color: #8c6b12; }
-    .seat-3d.selected .seat-body { background: linear-gradient(180deg, #0e4432 0%, #06281e 100%); border-color: var(--accent); color: white; }
+    .seat-3d.selected .seat-headrest { background: var(--accent-gradient); border-color: #8c6b12; box-shadow: 0 0 10px rgba(212, 175, 55, 0.6); }
+    .seat-3d.selected .seat-body { background: linear-gradient(180deg, #0e4432 0%, #06281e 100%); border-color: var(--accent); color: white; box-shadow: 0 3px 0 #03150f, 0 0 12px rgba(212, 175, 55, 0.45); }
     .seat-3d.booked { cursor: not-allowed; }
     .seat-3d.booked .seat-headrest { background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); border-color: #991b1b; }
-    .seat-3d.booked .seat-body { background: linear-gradient(180deg, #fee2e2 0%, #fca5a5 100%); border-color: #f87171; }
+    .seat-3d.booked .seat-body { background: linear-gradient(180deg, #fee2e2 0%, #fca5a5 100%); border-color: #f87171; box-shadow: 0 3px 0 #ef4444, 0 5px 8px rgba(185, 28, 28, 0.15); }
     .seat-3d.boarded .seat-headrest { background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%); border-color: #14532d; }
-    .seat-3d.boarded .seat-body { background: linear-gradient(180deg, #dcfce7 0%, #86efac 100%); border-color: #22c55e; }
+    .seat-3d.boarded .seat-body { background: linear-gradient(180deg, #dcfce7 0%, #86efac 100%); border-color: #22c55e; box-shadow: 0 3px 0 #16a34a, 0 0 10px rgba(34, 197, 94, 0.25); }
 
     /* MANIFEST & ROSTER */
-    .filter-wrapper { margin-bottom: 14px; }
+    .filter-wrapper { margin-bottom: 16px; }
     .search-input-box { position: relative; margin-bottom: 10px; }
-    .search-input-box input { padding-left: 38px; border-radius: 12px; background: #ffffff; }
-    .search-icon-pos { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 0.95rem; color: var(--text-muted); }
-    .filter-pills-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
-    .pill-btn { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); background: white; font-size: 0.74rem; font-weight: 800; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
-    .pill-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .search-input-box input { padding-left: 40px; border-radius: 14px; background: #ffffff; }
+    .search-icon-pos { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--text-muted); }
+    .filter-pills-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+    .pill-btn { padding: 8px 16px; border-radius: 20px; border: 1.5px solid var(--border); background: white; font-size: 0.76rem; font-weight: 900; color: var(--text-muted); cursor: pointer; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+    .pill-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(6, 40, 30, 0.2); }
 
-    .roster-cards-container { display: flex; flex-direction: column; gap: 12px; }
-    .student-roster-card { background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: 0 3px 8px rgba(0,0,0,0.03); }
-    .src-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; }
-    .src-name { font-size: 1.02rem; font-weight: 900; color: var(--primary); text-transform: capitalize; }
-    .src-meta { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-top: 2px; }
-    .src-tid-badge { background: #eef5f1; color: var(--secondary); font-size: 0.7rem; font-weight: 900; padding: 4px 10px; border-radius: 8px; }
-    .src-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
-    .src-detail-box { background: #f8faf9; border: 1px solid #e2ece6; padding: 8px; border-radius: 10px; text-align: center; }
-    .src-detail-lbl { font-size: 0.62rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase; }
-    .src-detail-val { font-size: 0.88rem; font-weight: 900; color: var(--primary); margin-top: 2px; }
+    .roster-cards-container { display: flex; flex-direction: column; gap: 14px; }
+    .student-roster-card { background: #ffffff; border: 1px solid var(--border); border-radius: 18px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .src-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+    .src-name { font-size: 1.05rem; font-weight: 900; color: var(--primary); text-transform: capitalize; }
+    .src-meta { font-size: 0.74rem; color: var(--text-muted); font-weight: 800; margin-top: 3px; }
+    .src-tid-badge { background: #eef5f1; color: var(--secondary); font-size: 0.74rem; font-weight: 900; padding: 5px 12px; border-radius: 10px; }
+    .src-details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+    .src-detail-box { background: #f8faf9; border: 1.5px solid #e2ece6; padding: 10px 8px; border-radius: 12px; text-align: center; }
+    .src-detail-lbl { font-size: 0.65rem; color: var(--text-muted); font-weight: 900; text-transform: uppercase; }
+    .src-detail-val { font-size: 0.92rem; font-weight: 900; color: var(--primary); margin-top: 3px; }
 
-    .action-boxes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .action-boxes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
     .act-card-btn {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 9px 4px; border-radius: 10px; border: 1px solid transparent; font-size: 0.7rem; font-weight: 800; cursor: pointer; background: #f8fafc;
+      padding: 10px 4px; border-radius: 12px; border: 1.5px solid transparent; font-size: 0.72rem; font-weight: 900; cursor: pointer; background: #f8fafc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
     .btn-box-confirm { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
     .btn-box-pass { background: #f0fdfa; color: #0f766e; border-color: #99f6e4; }
@@ -284,52 +294,52 @@
 
     /* MODALS */
     .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4, 25, 18, 0.85); backdrop-filter: blur(8px);
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4, 25, 18, 0.88); backdrop-filter: blur(10px);
       z-index: 1000; display: none; align-items: flex-end; justify-content: center; padding: 0;
     }
-    @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 16px; } }
+    @media (min-width: 600px) { .modal-overlay { align-items: center; padding: 20px; } }
     .modal-card {
-      background: white; border-top-left-radius: 26px; border-top-right-radius: 26px;
-      padding: 24px 20px env(safe-area-inset-bottom, 22px); max-width: 500px; width: 100%; box-shadow: var(--shadow-lg); max-height: 92vh; overflow-y: auto; position: relative;
+      background: white; border-top-left-radius: 28px; border-top-right-radius: 28px;
+      padding: 26px 22px env(safe-area-inset-bottom, 24px); max-width: 500px; width: 100%; box-shadow: var(--shadow-lg); max-height: 92vh; overflow-y: auto; position: relative;
     }
-    .sheet-handle { width: 44px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -12px auto 16px; }
+    .sheet-handle { width: 48px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -14px auto 18px; }
 
     /* TICKET & CONTACT CARDS */
-    .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 10px; }
-    .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
-    .ticket-head h3 { font-size: 1.2rem; font-weight: 900; }
-    .ticket-head p { font-size: 0.72rem; color: #a7f3d0; margin-top: 3px; font-weight: 700; }
-    .ticket-body { padding: 18px; }
-    .t-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.82rem; }
-    .t-lbl { color: var(--text-muted); font-size: 0.72rem; text-transform: uppercase; font-weight: 800; }
+    .ticket { background: white; border-radius: 20px; border: 2px solid var(--border); overflow: hidden; margin-top: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 22px; text-align: center; border-bottom: 2.5px solid var(--accent); }
+    .ticket-head h3 { font-size: 1.25rem; font-weight: 900; letter-spacing: 0.5px; }
+    .ticket-head p { font-size: 0.75rem; color: #a7f3d0; margin-top: 4px; font-weight: 800; }
+    .ticket-body { padding: 20px; }
+    .t-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.85rem; }
+    .t-lbl { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 900; }
     .t-val { font-weight: 900; color: var(--text); }
-    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 14px 0; }
-    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 18px 20px; }
-    #qrcode { padding: 10px; background: white; border: 1px solid var(--border); border-radius: 12px; }
+    .ticket-divider { position: relative; border-top: 2px dashed #cbd5e1; margin: 16px 0; }
+    .ticket-footer { display: flex; flex-direction: column; align-items: center; padding: 0 20px 22px; }
+    #qrcode { padding: 12px; background: white; border: 1.5px solid var(--border); border-radius: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
 
-    .contact-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .contact-card { background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
     .contact-info { display: flex; flex-direction: column; }
-    .contact-name { font-size: 0.98rem; font-weight: 900; color: var(--primary); }
-    .contact-role { font-size: 0.72rem; font-weight: 800; color: var(--accent); text-transform: uppercase; }
-    .contact-phone { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
-    .call-btn { background: #10b981; color: white; text-decoration: none; font-size: 0.82rem; font-weight: 900; padding: 9px 16px; border-radius: 10px; display: flex; align-items: center; gap: 6px; }
+    .contact-name { font-size: 1rem; font-weight: 900; color: var(--primary); }
+    .contact-role { font-size: 0.74rem; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+    .contact-phone { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; font-weight: 700; }
+    .call-btn { background: #10b981; color: white; text-decoration: none; font-size: 0.85rem; font-weight: 900; padding: 10px 18px; border-radius: 12px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); }
 
-    .headcount-list { max-height: 280px; overflow-y: auto; margin: 12px 0; border: 1.5px solid var(--border); border-radius: 14px; }
-    .hc-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #f1f5f9; background: white; }
+    .headcount-list { max-height: 280px; overflow-y: auto; margin: 14px 0; border: 1.5px solid var(--border); border-radius: 16px; }
+    .hc-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #f1f5f9; background: white; }
     .hc-item.checked { background: #ecfdf5; }
 
     /* FLOATING SOS BAR */
     .floating-sos-bar {
-      position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); width: calc(100% - 28px); max-width: 500px;
-      background: rgba(6, 40, 30, 0.96); backdrop-filter: blur(14px); border: 1.5px solid var(--accent); border-radius: 30px;
-      padding: 9px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 90;
+      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 500px;
+      background: rgba(6, 40, 30, 0.98); backdrop-filter: blur(16px); border: 2px solid var(--accent); border-radius: 35px;
+      padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 12px 35px rgba(0,0,0,0.45); z-index: 90;
     }
-    .sos-left-text { color: white; font-size: 0.78rem; font-weight: 900; }
-    .sos-btn-trigger { background: var(--accent-gradient); color: #06281e; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 900; cursor: pointer; }
+    .sos-left-text { color: white; font-size: 0.8rem; font-weight: 900; }
+    .sos-btn-trigger { background: var(--accent-gradient); color: #06281e; border: none; padding: 9px 18px; border-radius: 22px; font-size: 0.8rem; font-weight: 900; cursor: pointer; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
 
     #toast {
-      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%); background: rgba(4, 31, 23, 0.96); color: white;
-      padding: 12px 24px; border-radius: 30px; font-size: 0.85rem; font-weight: 900; z-index: 1100; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      position: fixed; bottom: 82px; left: 50%; transform: translateX(-50%); background: rgba(4, 31, 23, 0.98); color: white;
+      padding: 14px 26px; border-radius: 35px; font-size: 0.88rem; font-weight: 900; z-index: 1100; display: none; box-shadow: 0 10px 28px rgba(0,0,0,0.35);
     }
   </style>
 </head>
@@ -366,8 +376,8 @@
     </div>
   </header>
 
-  <!-- NAVIGATION BAR (7 TABS INCLUSIVE OF SPONSORS) -->
-  <nav class="nav-tabs" style="grid-template-columns: repeat(4, 1fr);">
+  <!-- NAVIGATION BAR -->
+  <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('itineraryTab', event)">🗓️ Itinerary</button>
     <button class="tab-btn" onclick="switchTab('sponsorsTab', event)">🙏 Sponsors</button>
@@ -476,9 +486,9 @@
         <div class="card-title">🙏 Sponsors & Donations Wall</div>
         <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; font-weight: 600;">We sincerely thank our generous donors and sponsors supporting the Kerala Pilgrimage 2026:</p>
         
-        <div style="background: linear-gradient(135deg, #06281e 0%, #0f3d2e 100%); color: white; border-radius: 14px; padding: 16px; text-align: center; margin-bottom: 16px; border: 1px solid var(--accent);">
-          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase;">Total Sponsorship Funds Raised</div>
-          <div style="font-size: 1.8rem; font-weight: 900; margin-top: 4px;" id="totalSponsorshipDisplay">₹0</div>
+        <div style="background: linear-gradient(135deg, #06281e 0%, #0f3d2e 100%); color: white; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 18px; border: 1.5px solid var(--accent); box-shadow: 0 8px 20px rgba(6, 40, 30, 0.15);">
+          <div style="font-size: 0.72rem; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">Total Sponsorship Funds Raised</div>
+          <div style="font-size: 1.9rem; font-weight: 900; margin-top: 4px;" id="totalSponsorshipDisplay">₹0</div>
         </div>
 
         <div id="publicSponsorsList"></div>
@@ -587,36 +597,36 @@
       <div class="card">
         <div class="card-title">📷 Teacher Boarding & Roll-Call Scanner</div>
         
-        <div id="boardingLockedMsg" style="text-align: center; padding: 24px 10px;">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
-          <h4 style="font-size: 1rem; font-weight: 900; color: var(--primary);">Boarding Scanner is Currently Locked</h4>
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; font-weight: 600;">The admin must enable boarding mode from the Admin panel before scanning can begin.</p>
+        <div id="boardingLockedMsg" style="text-align: center; padding: 28px 12px;">
+          <div style="font-size: 2.5rem; margin-bottom: 10px;">🔒</div>
+          <h4 style="font-size: 1.05rem; font-weight: 900; color: var(--primary);">Boarding Scanner is Currently Locked</h4>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; font-weight: 600;">The admin must enable boarding mode from the Admin panel before scanning can begin.</p>
         </div>
 
         <div id="boardingUnlockedContent" style="display:none;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-size:0.75rem; font-weight:900; color:var(--success);">● Boarding Mode Active (Admin Enabled)</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span style="font-size:0.78rem; font-weight:900; color:var(--success);">● Boarding Mode Active (Admin Enabled)</span>
           </div>
 
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Scan passenger passes during boarding or pit-stops to mark attendance instantly.</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Scan passenger passes during boarding or pit-stops to mark attendance instantly.</p>
           
-          <div style="margin-bottom: 14px; text-align: center;">
+          <div style="margin-bottom: 16px; text-align: center;">
             <button class="btn btn-primary" onclick="startInlineScanner()" id="startScanBtn">Start Camera Scanner</button>
-            <button class="btn btn-secondary" onclick="stopInlineScanner()" id="stopScanBtn" style="display:none; margin-top:6px;">Stop Camera</button>
+            <button class="btn btn-secondary" onclick="stopInlineScanner()" id="stopScanBtn" style="display:none; margin-top:8px;">Stop Camera</button>
           </div>
 
-          <div id="inlineScannerBox" style="display:none; width: 100%; height: 260px; border-radius: 14px; overflow: hidden; background: #000; position: relative; margin-bottom: 14px;">
+          <div id="inlineScannerBox" style="display:none; width: 100%; height: 260px; border-radius: 16px; overflow: hidden; background: #000; position: relative; margin-bottom: 16px;">
             <div id="inlineScannerTarget" style="width: 100%; height: 100%;"></div>
           </div>
 
-          <div id="inlineScanResult" style="font-size: 0.85rem; font-weight: 800; min-height: 24px; text-align: center; margin-bottom: 14px; color: var(--text-muted);">Scanner inactive</div>
+          <div id="inlineScanResult" style="font-size: 0.88rem; font-weight: 900; min-height: 24px; text-align: center; margin-bottom: 16px; color: var(--text-muted);">Scanner inactive</div>
 
-          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <h4 style="font-size: 0.92rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h4>
-              <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.7rem; font-weight:900; padding:5px 10px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 18px; padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <h4 style="font-size: 0.95rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h4>
+              <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.72rem; font-weight:900; padding:6px 12px; border-radius:8px; cursor:pointer;">Reset Counter</button>
             </div>
-            <div style="font-size: 0.8rem; font-weight: 900; color: var(--success-dark); margin-bottom: 10px;" id="inlineHcCountDisplay">Onboard: 0 / 0</div>
+            <div style="font-size: 0.82rem; font-weight: 900; color: var(--success-dark); margin-bottom: 12px;" id="inlineHcCountDisplay">Onboard: 0 / 0</div>
             <div class="headcount-list" id="inlineHeadcountList" style="max-height: 240px;"></div>
           </div>
         </div>
@@ -627,22 +637,22 @@
     <div id="manifestTab" class="tab-content" style="display: none;">
       <div class="card">
         <div class="card-title">📋 Passenger Booking Manifest</div>
-        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Complete summary of names, ticket IDs, seat numbers, amounts paid, and balances due.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Complete summary of names, ticket IDs, seat numbers, amounts paid, and balances due.</p>
         
-        <div class="seat-search-wrapper" style="margin-bottom: 14px;">
-          <span style="font-size:0.95rem;">🔍</span>
+        <div class="seat-search-wrapper" style="margin-bottom: 16px;">
+          <span style="font-size:1rem;">🔍</span>
           <input type="text" id="manifestSearchQuery" placeholder="Search manifest by name, ticket ID, seat..." oninput="renderManifestTable()">
         </div>
 
         <div style="overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left;" id="manifestTable">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;" id="manifestTable">
             <thead>
               <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border); color: var(--primary);">
-                <th style="padding: 10px 8px;">Ticket / Seat</th>
-                <th style="padding: 10px 8px;">Name & Class</th>
-                <th style="padding: 10px 8px;">Paid (₹)</th>
-                <th style="padding: 10px 8px;">Balance (₹)</th>
-                <th style="padding: 10px 8px;">Status</th>
+                <th style="padding: 12px 8px;">Ticket / Seat</th>
+                <th style="padding: 12px 8px;">Name & Class</th>
+                <th style="padding: 12px 8px;">Paid (₹)</th>
+                <th style="padding: 12px 8px;">Balance (₹)</th>
+                <th style="padding: 12px 8px;">Status</th>
               </tr>
             </thead>
             <tbody id="manifestTableBody"></tbody>
@@ -669,53 +679,53 @@
         </div>
 
         <div id="adminPanel" style="display: none;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-            <span style="font-size: 0.82rem; font-weight: 900; color: var(--success);">● Session Authenticated</span>
-            <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 900; font-size: 0.82rem; cursor: pointer;">Logout</button>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <span style="font-size: 0.85rem; font-weight: 900; color: var(--success);">● Session Authenticated</span>
+            <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 900; font-size: 0.85rem; cursor: pointer;">Logout</button>
           </div>
 
-          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center;">
             <div>
               <label style="color: var(--primary); margin-bottom: 2px;">📷 Master Boarding Switch</label>
-              <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;" id="boardingSwitchStatusDesc">Status: Locked for public</span>
+              <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;" id="boardingSwitchStatusDesc">Status: Locked for public</span>
             </div>
-            <button class="btn btn-accent" style="width: auto; padding: 8px 16px; font-size: 0.78rem;" id="boardingSwitchBtn" onclick="toggleBoardingMasterSwitch()">Enable Boarding</button>
+            <button class="btn btn-accent" style="width: auto; padding: 9px 18px; font-size: 0.8rem;" id="boardingSwitchBtn" onclick="toggleBoardingMasterSwitch()">Enable Boarding</button>
           </div>
 
-          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 18px;">
             <label style="color: var(--primary);">📢 Edit Admin Announcement Banner</label>
-            <input type="text" id="adminAnnouncementInput" placeholder="Enter announcement text to broadcast..." style="margin-top: 6px; margin-bottom: 8px; font-size: 0.85rem;" />
-            <button class="btn btn-primary" style="padding: 10px; font-size: 0.8rem;" onclick="saveAnnouncement()">Broadcast Announcement</button>
+            <input type="text" id="adminAnnouncementInput" placeholder="Enter announcement text to broadcast..." style="margin-top: 8px; margin-bottom: 10px; font-size: 0.88rem;" />
+            <button class="btn btn-primary" style="padding: 11px; font-size: 0.82rem;" onclick="saveAnnouncement()">Broadcast Announcement</button>
           </div>
 
-          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 18px;">
             <label style="color: var(--primary);">🙏 Manage Sponsors & Donations</label>
-            <div style="display: grid; gap: 8px; margin-top: 8px;">
-              <input type="text" id="spnName" placeholder="Donor / Sponsor Name" style="font-size:0.85rem;" />
-              <input type="number" id="spnAmount" placeholder="Donation Amount (₹)" style="font-size:0.85rem;" />
-              <input type="text" id="spnNote" placeholder="Note / Category (e.g. Food Sponsor)" style="font-size:0.85rem;" />
-              <button class="btn btn-accent" style="padding: 10px; font-size: 0.8rem;" onclick="addSponsor()">➕ Add Sponsor Entry</button>
+            <div style="display: grid; gap: 10px; margin-top: 10px;">
+              <input type="text" id="spnName" placeholder="Donor / Sponsor Name" style="font-size:0.88rem;" />
+              <input type="number" id="spnAmount" placeholder="Donation Amount (₹)" style="font-size:0.88rem;" />
+              <input type="text" id="spnNote" placeholder="Note / Category (e.g. Food Sponsor)" style="font-size:0.88rem;" />
+              <button class="btn btn-accent" style="padding: 11px; font-size: 0.82rem;" onclick="addSponsor()">➕ Add Sponsor Entry</button>
             </div>
-            <div id="adminSponsorsList" style="margin-top: 12px; max-height: 160px; overflow-y: auto;"></div>
+            <div id="adminSponsorsList" style="margin-top: 14px; max-height: 180px; overflow-y: auto;"></div>
           </div>
 
-          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
-            <label style="color: var(--primary);">🗓️️ Manage Tour Itinerary Stops</label>
-            <div style="display: grid; gap: 8px; margin-top: 8px;">
-              <input type="text" id="itnTime" placeholder="Time (e.g. 05:30 AM)" style="font-size:0.85rem;" />
-              <input type="text" id="itnTitle" placeholder="Stop Title (e.g. Church Assembly)" style="font-size:0.85rem;" />
-              <input type="text" id="itnDesc" placeholder="Description details..." style="font-size:0.85rem;" />
-              <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem;" onclick="addItineraryStop()">➕ Add Itinerary Stop</button>
+          <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 18px;">
+            <label style="color: var(--primary);">🗓 Manage Tour Itinerary Stops</label>
+            <div style="display: grid; gap: 10px; margin-top: 10px;">
+              <input type="text" id="itnTime" placeholder="Time (e.g. 05:30 AM)" style="font-size:0.88rem;" />
+              <input type="text" id="itnTitle" placeholder="Stop Title (e.g. Church Assembly)" style="font-size:0.88rem;" />
+              <input type="text" id="itnDesc" placeholder="Description details..." style="font-size:0.88rem;" />
+              <button class="btn btn-secondary" style="padding: 11px; font-size: 0.82rem;" onclick="addItineraryStop()">➕ Add Itinerary Stop</button>
             </div>
-            <div id="adminItineraryList" style="margin-top: 12px; max-height: 160px; overflow-y: auto;"></div>
+            <div id="adminItineraryList" style="margin-top: 14px; max-height: 180px; overflow-y: auto;"></div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-            <button class="btn btn-primary" style="padding: 11px; font-size: 0.82rem;" onclick="openScannerModal()">📷 Boarding QR</button>
-            <button class="btn btn-accent" style="padding: 11px; font-size: 0.82rem;" onclick="openHeadcountModal()">📋 Headcount</button>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <button class="btn btn-primary" style="padding: 12px; font-size: 0.85rem;" onclick="openScannerModal()">📷 Boarding QR</button>
+            <button class="btn btn-accent" style="padding: 12px; font-size: 0.85rem;" onclick="openHeadcountModal()">📋 Headcount</button>
           </div>
-          <div style="margin-bottom: 14px;">
-            <button class="btn btn-secondary" style="padding: 10px; font-size: 0.8rem;" onclick="exportCSV()">📥 Download Passenger CSV</button>
+          <div style="margin-bottom: 16px;">
+            <button class="btn btn-secondary" style="padding: 11px; font-size: 0.82rem;" onclick="exportCSV()">📥 Download Passenger CSV</button>
           </div>
 
           <div class="filter-wrapper">
@@ -748,8 +758,8 @@
   <div class="modal-overlay" id="helplineModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--primary);">📞 Parish Pilgrimage Helplines</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--primary);">📞 Parish Pilgrimage Helplines</h3>
         <button onclick="closeHelplineModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
@@ -780,7 +790,7 @@
         <a href="tel:+919486270230" class="call-btn">📞 Call</a>
       </div>
 
-      <p style="font-size: 0.74rem; color: var(--text-muted); text-align: center; margin-top: 14px; font-weight: 700;">
+      <p style="font-size: 0.76rem; color: var(--text-muted); text-align: center; margin-top: 16px; font-weight: 800;">
         St. Joseph's Church Midalam • 24/7 Pilgrimage Support
       </p>
     </div>
@@ -790,19 +800,19 @@
   <div class="modal-overlay" id="headcountModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--primary);">📋 Pit-Stop Roll-Call & Headcount</h3>
         <button onclick="closeHeadcountModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:10px; font-weight:600;">Tap each passenger as they step into the bus:</p>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; font-weight:700;">Tap each passenger as they step into the bus:</p>
 
-      <div style="background:#f1f5f9; padding:12px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
-        <span style="font-size:0.88rem; font-weight:900;" id="hcCountDisplay">Onboard: 0 / 0</span>
-        <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.72rem; font-weight:900; padding:5px 10px; border-radius:6px; cursor:pointer;">Reset Counter</button>
+      <div style="background:#f1f5f9; padding:14px; border-radius:14px; display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+        <span style="font-size:0.9rem; font-weight:900;" id="hcCountDisplay">Onboard: 0 / 0</span>
+        <button onclick="resetHeadcount()" style="border:none; background:#fee2e2; color:#ef4444; font-size:0.74rem; font-weight:900; padding:6px 12px; border-radius:8px; cursor:pointer;">Reset Counter</button>
       </div>
 
       <div class="headcount-list" id="headcountItemsList"></div>
-      <button class="btn btn-primary" style="margin-top: 12px;" onclick="closeHeadcountModal()">Finish Stop Headcount</button>
+      <button class="btn btn-primary" style="margin-top: 14px;" onclick="closeHeadcountModal()">Finish Stop Headcount</button>
     </div>
   </div>
 
@@ -810,8 +820,8 @@
   <div class="modal-overlay" id="ticketModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-        <h3 style="font-size: 1.05rem; font-weight: 900; color: var(--primary);">Official Boarding Pass</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--primary);">Official Boarding Pass</h3>
         <button onclick="closeTicketModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
@@ -821,7 +831,7 @@
           <p>St. Joseph's Catechism Midalam • Kerala Tour 2026</p>
         </div>
         <div class="ticket-body">
-          <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color:var(--accent); font-size:1.1rem;">-</span></div>
+          <div class="t-row"><span class="t-lbl">Ticket ID</span><span class="t-val" id="tPassId" style="color:var(--accent); font-size:1.15rem;">-</span></div>
           <div class="t-row"><span class="t-lbl">Passenger Name</span><span class="t-val" id="tPassName">-</span></div>
           <div class="t-row"><span class="t-lbl">Class / Role</span><span class="t-val" id="tPassStandard">-</span></div>
           <div class="t-row"><span class="t-lbl">Parent</span><span class="t-val" id="tPassParent">-</span></div>
@@ -833,11 +843,11 @@
         <div class="ticket-divider"></div>
         <div class="ticket-footer">
           <div id="qrcode"></div>
-          <p style="font-size:0.65rem; color:var(--text-muted); margin-top:8px; font-weight:800;" id="tAuthHash">SECURE PARISH VERIFICATION TOKEN</p>
+          <p style="font-size:0.68rem; color:var(--text-muted); margin-top:10px; font-weight:900;" id="tAuthHash">SECURE PARISH VERIFICATION TOKEN</p>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px;">
         <button class="btn btn-accent" onclick="downloadTicketImage()">💾 Save to Gallery</button>
         <button class="btn btn-secondary" onclick="shareWhatsApp()">💬 WhatsApp</button>
       </div>
@@ -848,16 +858,16 @@
   <div class="modal-overlay" id="scannerModal">
     <div class="modal-card" style="text-align: center;">
       <div class="sheet-handle"></div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--primary);">📷 Maskara Coach Scanner</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--primary);">📷 Maskara Coach Scanner</h3>
         <button onclick="closeScannerModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
-      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; font-weight: 600;">Point camera inside frame for instant verification</p>
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 700;">Point camera inside frame for instant verification</p>
       
       <div id="qr-scanner-box">
-        <div id="scannerTarget" style="width: 100%; height: 260px; background:#000; border-radius:14px; overflow:hidden;"></div>
+        <div id="scannerTarget" style="width: 100%; height: 260px; background:#000; border-radius:16px; overflow:hidden;"></div>
       </div>
-      <div id="scannerResult" style="font-size: 0.88rem; font-weight: 900; min-height: 24px; color: var(--text-muted); margin-top:12px;">Camera active...</div>
+      <div id="scannerResult" style="font-size: 0.9rem; font-weight: 900; min-height: 26px; color: var(--text-muted); margin-top:14px;">Camera active...</div>
     </div>
   </div>
 
@@ -865,12 +875,12 @@
   <div class="modal-overlay" id="confirmModal">
     <div class="modal-card">
       <div class="sheet-handle"></div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-        <h3 style="font-size: 1.1rem; font-weight: 900; color: var(--primary);">✅ Confirm Seat & Payment</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--primary);">✅ Confirm Seat & Payment</h3>
         <button onclick="closeConfirmModal()" style="border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--text-muted);">✕</button>
       </div>
 
-      <div style="background:#f1f5f9;padding:14px;border-radius:12px;margin-bottom:16px;font-size:0.85rem;">
+      <div style="background:#f1f5f9;padding:16px;border-radius:14px;margin-bottom:18px;font-size:0.88rem;">
         <div><strong>Passenger:</strong> <span id="mStudentName">-</span> (<span id="mStudentClass">-</span>)</div>
         <div><strong>Ticket ID:</strong> <span id="mTicketId">-</span></div>
         <div style="margin-top:6px;"><strong>Already Paid:</strong> ₹<span id="mAlreadyPaid">0</span> | <strong style="color:var(--danger);">Balance Due:</strong> ₹<span id="mBalanceDue">0</span></div>
