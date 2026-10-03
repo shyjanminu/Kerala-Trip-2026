@@ -34,7 +34,7 @@
       --warning: #f59e0b;
       --radius: 20px;
       --shadow: 0 12px 30px -6px rgba(6, 40, 30, 0.08);
-      --shadow-lg: t0 25px 40px -10px rgba(6, 40, 30, 0.22);
+      --shadow-lg: 0 25px 40px -10px rgba(6, 40, 30, 0.22);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -118,11 +118,7 @@
       z-index: 5;
     }
 
-    .header-center {
-      flex: 1;
-      text-align: center;
-      min-width: 0;
-    }
+    .header-center { flex: 1; text-align: center; min-width: 0; }
     .church-crest {
       display: inline-block;
       background: rgba(212, 175, 55, 0.22);
@@ -145,91 +141,76 @@
       color: #ffffff;
       text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
-    .header-center p {
-      font-size: 0.7rem;
-      color: #bbf7d0;
-      margin-top: 2px;
-      font-weight: 700;
-    }
+    .header-center p { font-size: 0.7rem; color: #bbf7d0; margin-top: 2px; font-weight: 700; }
 
-    .header-icon-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .header-icon-box { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
     .header-img-frame {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-      background: #083325;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 2px solid var(--accent); background: #083325; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
     .header-img-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .header-badge-sub {
-      font-size: 0.56rem;
-      font-weight: 800;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
+    .header-badge-sub { font-size: 0.56rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-top: 2px; }
 
-    .sync-pill-row {
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
-    }
+    .sync-pill-row { display: flex; justify-content: center; margin-top: 8px; }
     .sync-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 10px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      font-size: 0.62rem;
-      color: #ffffff;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+      border-radius: 20px; font-size: 0.62rem; color: #ffffff; border: 1px solid rgba(212, 175, 55, 0.3);
     }
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warning); }
     .pulse-dot.active { background: #34d399; box-shadow: 0 0 8px #34d399; }
 
-    /* CLEAN NAVIGATION BAR */
+    /* SPACIOUS TWO-TIER GRID NAVIGATION BAR */
     .nav-tabs {
-      display: flex;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(12px);
       border-bottom: 1.5px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 95;
       box-shadow: 0 4px 15px rgba(6, 40, 30, 0.05);
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 0 6px;
+      padding: 8px 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      max-width: 640px;
+      margin: 0 auto;
     }
+    .nav-tabs .tab-btn:nth-child(4),
+    .nav-tabs .tab-btn:nth-child(5) {
+      grid-column: span 1;
+    }
+    /* Center the bottom 2 buttons nicely in a 3-column grid */
+    .nav-tabs {
+      grid-template-areas: 
+        "dash book board"
+        ". manifest admin";
+    }
+    .tab-btn:nth-child(1) { grid-area: dash; }
+    .tab-btn:nth-child(2) { grid-area: book; }
+    .tab-btn:nth-child(3) { grid-area: board; }
+    .tab-btn:nth-child(4) { grid-area: manifest; }
+    .tab-btn:nth-child(5) { grid-area: admin; }
+
     .tab-btn {
-      flex: 1;
-      padding: 12px 10px;
-      border: none;
-      background: none;
-      font-size: 0.74rem;
+      padding: 10px 6px;
+      border: 1.5px solid var(--border);
+      background: #f8fafc;
+      border-radius: 10px;
+      font-size: 0.75rem;
       font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
-      border-bottom: 3px solid transparent;
       text-transform: uppercase;
       transition: all 0.2s ease;
-      min-width: 85px;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--accent);
-      background: rgba(240, 247, 243, 0.9);
+      color: #ffffff;
+      background: var(--primary);
+      border-color: var(--accent);
+      box-shadow: 0 4px 10px rgba(6, 40, 30, 0.2);
     }
 
     .container { max-width: 640px; margin: 0 auto; padding: 16px; position: relative; }
@@ -272,21 +253,10 @@
       top: 0; left: 0; width: 4px; height: 100%;
       background: var(--accent-gradient);
     }
-    .ann-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
+    .ann-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
     .ann-title {
-      font-size: 0.8rem;
-      font-weight: 900;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 0.8rem; font-weight: 900; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;
     }
     .ann-date { font-size: 0.65rem; color: #a7f3d0; font-weight: 700; }
     .ann-text { font-size: 0.85rem; line-height: 1.45; color: #f1f5f9; font-weight: 600; }
@@ -308,21 +278,9 @@
 
     /* GUIDELINES */
     .guidelines-box {
-      background: #f8fafc;
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      margin-top: 18px;
+      background: #f8fafc; border: 1.5px solid var(--border); border-radius: 16px; padding: 16px; margin-top: 18px;
     }
-    .guide-title {
-      font-size: 0.9rem;
-      font-weight: 900;
-      color: var(--primary);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .guide-title { font-size: 0.9rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .guide-col { background: white; border-radius: 12px; padding: 12px; border: 1px solid var(--border); }
     .guide-col h5 { font-size: 0.76rem; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
@@ -337,42 +295,21 @@
     .form-group { margin-bottom: 16px; }
     label { display: block; font-size: 0.75rem; font-weight: 800; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
     input, select {
-      width: 100%;
-      padding: 13px 15px;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      font-size: 0.95rem;
-      background: #fafafa;
-      color: var(--text);
-      transition: all 0.2s ease;
+      width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 12px;
+      font-size: 0.95rem; background: #fafafa; color: var(--text); transition: all 0.2s ease;
     }
     input:focus, select:focus { outline: none; border-color: var(--accent); background: #ffffff; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
 
     .price-box {
       background: linear-gradient(135deg, #f8fbf9 0%, #edf5f0 100%);
-      border: 1.5px dashed var(--accent);
-      border-radius: 14px;
-      padding: 14px;
-      text-align: center;
-      margin-bottom: 16px;
+      border: 1.5px dashed var(--accent); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 16px;
     }
     .price-tag { font-size: 1.7rem; font-weight: 900; color: var(--primary); }
     .price-desc { font-size: 0.74rem; color: var(--text-muted); margin-top: 3px; font-weight: 700; }
 
     .btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 0.92rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform 0.1s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 0.92rem; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
     .btn:active { transform: scale(0.98); }
     .btn-primary { background: linear-gradient(135deg, #06281e, #0e4432); color: white; box-shadow: 0 6px 16px rgba(6, 40, 30, 0.25); }
@@ -381,40 +318,19 @@
 
     /* 60 SEATER BUS */
     .seat-search-wrapper {
-      background: #f1f5f9;
-      padding: 10px 14px;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      border: 1px solid var(--border);
+      background: #f1f5f9; padding: 10px 14px; border-radius: 12px; margin-bottom: 14px; display: flex; gap: 8px; align-items: center; border: 1px solid var(--border);
     }
     .seat-search-wrapper input { padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; background: white; border: 1px solid var(--border); }
 
     .bus-container {
       background: linear-gradient(180deg, #d3e2d9 0%, #e8f0ec 35%, #d9e7df 100%);
-      border: 3px solid #adc4b7;
-      border-radius: 26px;
-      padding: 18px 14px 22px;
-      margin-top: 8px;
-      box-shadow: inset 0 2px 10px rgba(6,40,30,0.1), 0 10px 25px rgba(0,0,0,0.06);
-      position: relative;
+      border: 3px solid #adc4b7; border-radius: 26px; padding: 18px 14px 22px; margin-top: 8px;
+      box-shadow: inset 0 2px 10px rgba(6,40,30,0.1), 0 10px 25px rgba(0,0,0,0.06); position: relative;
     }
     .bus-front-cockpit {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #06281e;
-      color: #e2e8f0;
-      padding: 9px 16px;
-      border-radius: 12px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      border-bottom: 2px solid var(--accent);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex; justify-content: space-between; align-items: center; background: #06281e; color: #e2e8f0;
+      padding: 9px 16px; border-radius: 12px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.5px;
+      margin-bottom: 16px; border-bottom: 2px solid var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     .bus-front-cockpit span { display: flex; align-items: center; gap: 5px; }
 
@@ -422,32 +338,17 @@
     .seat-grid .aisle { grid-column: 3; height: 8px; background: repeating-linear-gradient(90deg, #94a3b8 0, #94a3b8 4px, transparent 4px, transparent 8px); opacity: 0.6; }
 
     .seat-3d {
-      position: relative;
-      min-height: 60px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      user-select: none;
-      transition: transform 0.2s ease;
+      position: relative; min-height: 60px; cursor: pointer; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start; user-select: none; transition: transform 0.2s ease;
     }
     .seat-headrest {
-      width: 72%; height: 11px;
-      background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%);
-      border-radius: 6px 6px 3px 3px;
-      border: 1px solid #94a3b8;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-      z-index: 3; margin-bottom: -3px;
+      width: 72%; height: 11px; background: linear-gradient(180deg, #ffffff 0%, #d8e2ee 100%);
+      border-radius: 6px 6px 3px 3px; border: 1px solid #94a3b8; box-shadow: 0 2px 4px rgba(0,0,0,0.12); z-index: 3; margin-bottom: -3px;
     }
     .seat-body {
-      width: 100%; flex: 1; min-height: 46px;
-      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
-      border: 1.5px solid #94a3b8;
-      border-radius: 8px 8px 12px 12px;
-      box-shadow: 0 3px 0 #94a3b8, 0 5px 6px rgba(15, 23, 42, 0.15);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 2px 2px 4px; text-align: center; position: relative;
+      width: 100%; flex: 1; min-height: 46px; background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 70%, #cbd5e1 100%);
+      border: 1.5px solid #94a3b8; border-radius: 8px 8px 12px 12px; box-shadow: 0 3px 0 #94a3b8, 0 5px 6px rgba(15, 23, 42, 0.15);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 2px 4px; text-align: center; position: relative;
     }
     .seat-body::before {
       content: ""; position: absolute; top: 3px; bottom: 5px; left: 3px; right: 3px;
@@ -478,7 +379,7 @@
     .seat-3d.search-highlight { transform: scale(1.15); z-index: 10; animation: seatPulse 1s infinite alternate; }
     @keyframes seatPulse { from { filter: drop-shadow(0 0 4px var(--accent)); } to { filter: drop-shadow(0 0 14px var(--accent)); } }
 
-    /* MANIFEST TABLE & ROSTER */
+    /* MANIFEST & ROSTER */
     .filter-wrapper { margin-bottom: 14px; }
     .search-input-box { position: relative; margin-bottom: 10px; }
     .search-input-box input { padding-left: 38px; border-radius: 12px; background: #ffffff; }
@@ -513,7 +414,7 @@
     .btn-box-wa { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
     .btn-box-del { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
 
-    /* MODALS & BOTTOM SHEETS */
+    /* MODALS */
     .modal-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(4, 25, 18, 0.85); backdrop-filter: blur(8px);
@@ -528,7 +429,7 @@
     @media (min-width: 600px) { .modal-card { border-radius: var(--radius); padding: 26px; } }
     .sheet-handle { width: 44px; height: 5px; background: #cbd5e1; border-radius: 4px; margin: -12px auto 16px; }
 
-    /* DIGITAL PASS */
+    /* TICKET */
     .ticket { background: white; border-radius: 18px; border: 1.5px solid var(--border); overflow: hidden; margin-top: 10px; }
     .ticket-head { background: linear-gradient(135deg, #041f17, #083325); color: white; padding: 20px; text-align: center; border-bottom: 2px solid var(--accent); }
     .ticket-head h3 { font-size: 1.2rem; font-weight: 900; letter-spacing: 0.5px; }
@@ -549,7 +450,7 @@
     .contact-phone { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
     .call-btn { background: #10b981; color: white; text-decoration: none; font-size: 0.82rem; font-weight: 900; padding: 9px 16px; border-radius: 10px; display: flex; align-items: center; gap: 6px; }
 
-    /* HEADCOUNT LIST */
+    /* HEADCOUNT */
     .headcount-list { max-height: 280px; overflow-y: auto; margin: 12px 0; border: 1.5px solid var(--border); border-radius: 14px; }
     .hc-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #f1f5f9; background: white; }
     .hc-item:last-child { border-bottom: none; }
@@ -607,7 +508,7 @@
     </div>
   </header>
 
-  <!-- NAVIGATION TABS -->
+  <!-- SPACIOUS GRID NAVIGATION BAR -->
   <nav class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('dashboardTab', event)">📊 Dashboard</button>
     <button class="tab-btn" onclick="switchTab('bookingTab', event)">🚌 Book</button>
@@ -907,7 +808,6 @@
             <button onclick="adminLogout()" style="background: none; border: none; color: var(--danger); font-weight: 900; font-size: 0.82rem; cursor: pointer;">Logout</button>
           </div>
 
-          <!-- ANNOUNCEMENT EDITOR FOR ADMIN -->
           <div style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 16px;">
             <label style="color: var(--primary);">📢 Edit Admin Announcement Banner</label>
             <input type="text" id="adminAnnouncementInput" placeholder="Enter announcement text to broadcast..." style="margin-top: 6px; margin-bottom: 8px; font-size: 0.85rem;" />
